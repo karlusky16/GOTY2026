@@ -372,6 +372,7 @@ MonoBehaviour:
   _width: 9
   _height: 5
   _tilePrefab: {fileID: 1175473000211192314, guid: cbee2983890fd974886f52efbc96efff, type: 3}
+  parent: {fileID: 762374117}
   _cam: {fileID: 519420032}
 --- !u!4 &762374117
 Transform:
