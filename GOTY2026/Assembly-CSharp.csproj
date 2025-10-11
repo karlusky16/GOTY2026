@@ -52,6 +52,7 @@
     <Compile Include="Assets\Scripts\GridManager.cs" />
     <Compile Include="Assets\Scripts\DisplayCard.cs" />
     <Compile Include="Assets\Scripts\Card.cs" />
+    <Compile Include="Assets\Scripts\CardAction.cs" />
     <Compile Include="Assets\Scripts\CardDataBase.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
   </ItemGroup>
