@@ -12,16 +12,18 @@ public class Card
     public int coste;
     public int tipo;
     public String descripcion;
+    public String patron;
     public Card()
     {
 
     }
-    public Card(int id, String _name, int coste, int tipo, String descripcion)
+    public Card(int id, String _name,String patron, int coste, int tipo, String descripcion)
     {
         this.id = id;
         this._name = _name;
         this.coste = coste;
         this.tipo = tipo;
+        this.patron = patron;
         this.descripcion = descripcion;
     }
 }

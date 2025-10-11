@@ -15,10 +15,11 @@ public class DisplayCard : MonoBehaviour
     public Text nameText;
     public Text costText;
     public Text descriptionText;
+    public String patron;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        card = CardDataBase.cardList[displayID];
+        card = CardDataBase.cardList[displayID - 1];
     }
 
     // Update is called once per frame
@@ -29,6 +30,7 @@ public class DisplayCard : MonoBehaviour
         this.coste = card.coste;
         this.tipo = card.tipo;
         this.descripcion = card.descripcion;
+        this.patron = card.patron;
         nameText.text = " " + _name;
         costText.text = " " + coste;
         descriptionText.text = " " + descripcion;

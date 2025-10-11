@@ -11,10 +11,11 @@ public class GridManager : MonoBehaviour
     public Transform parent;
     public Transform _cam;
     private Boolean pulso;
-    private Dictionary<Vector2, Tile> _tiles;
+    public static Dictionary<Vector2, Tile> _tiles;
 
     void Start()
     {
+        Debug.Log(gameObject.GetType());
         GenerateGrid();
         pulso = false;
         
@@ -30,7 +31,8 @@ public class GridManager : MonoBehaviour
                 var spawnedTile = Instantiate(_tilePrefab, new Vector3(x, y), Quaternion.identity, parent);
                 
                 spawnedTile.name = $"Tile {x} {y}";
-
+                spawnedTile.x = x;
+                spawnedTile.y = y;
                 var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
                 spawnedTile.Init(isOffset);
 

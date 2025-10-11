@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -17,16 +18,25 @@ public class CardAction : MonoBehaviour , IPointerClickHandler, IPointerEnterHan
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left)
+        if (eventData.button == PointerEventData.InputButton.Left && !Player.cartaSeleccionada)
+        {
+            Player.cartaSeleccionada = true;
             borde.color = Color.red;
+            Player.carta = gameObject;
+        }
 
         if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            Player.cartaSeleccionada = false;
             borde.color = Color.blue;
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        carta.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        if (!Player.cartaSeleccionada) {
+           carta.transform.localScale = new Vector3(1f, 1f, 1f); 
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -34,3 +44,4 @@ public class CardAction : MonoBehaviour , IPointerClickHandler, IPointerEnterHan
         carta.transform.localScale = scale;
     }
 }
+
