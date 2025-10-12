@@ -39,25 +39,11 @@ public class Tile : MonoBehaviour
             if (Player.carta.GetComponent<DisplayCard>().patron == "Cruz")
             {
                 Highlight();
-                Tile tile = null;
-                Boolean leido = GridManager._tiles.TryGetValue(new Vector2(x-1, y),out tile);
-                if (leido == true)
-                {
-                    tile.Highlight();
-                }
-                leido = GridManager._tiles.TryGetValue(new Vector2(x + 1, y),out tile);
-                if (leido == true)
-                {
-                    tile.Highlight();
-                }
-                leido = GridManager._tiles.TryGetValue(new Vector2(x, y - 1),out tile);
-                if (leido == true)
-                {
-                    tile.Highlight();
-                }
-                leido = GridManager._tiles.TryGetValue(new Vector2(x, y + 1),out tile);
-                if (leido == true)
-                {
+
+            Vector2[] direcciones ={new Vector2(-1, 0),new Vector2(1, 0),new Vector2(0, -1),new Vector2(0, 1)};
+            foreach (var dir in direcciones)
+            {
+                if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
                     tile.Highlight();
                 }
             }
@@ -65,30 +51,19 @@ public class Tile : MonoBehaviour
     }
     void OnMouseExit()
     {
-        if (Player.carta != null && Player.carta.GetComponent<DisplayCard>().patron == "Cruz")
+        if (Player.cartaSeleccionada == true)
+        {
+            if (Player.carta.GetComponent<DisplayCard>().patron == "Cruz")
         {
             UnHighlight();
-            Tile tile ;
-            Boolean leido = GridManager._tiles.TryGetValue(new Vector2(x-1, y),out tile);
-            if (leido == true)
+
+            Vector2[] direcciones = { new Vector2(-1, 0), new Vector2(1, 0), new Vector2(0, -1), new Vector2(0, 1) };
+            foreach (var dir in direcciones)
             {
-                tile.UnHighlight();
+                if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
+                    tile.UnHighlight();
             }
-            leido = GridManager._tiles.TryGetValue(new Vector2(x+1, y),out tile);
-            if (leido == true)
-            {
-                tile.UnHighlight();
-            }
-            leido = GridManager._tiles.TryGetValue(new Vector2(x, y - 1),out tile);
-            if (leido == true)
-            {
-                tile.UnHighlight();
-            }
-            leido = GridManager._tiles.TryGetValue(new Vector2(x, y + 1),out tile);
-            if (leido == true)
-            {
-                tile.UnHighlight();
-            }
+        }
         }
     }
 
