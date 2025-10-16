@@ -330,7 +330,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4, y: 2, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -543,6 +543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   prefabCarta: {fileID: 3056461602653164621, guid: a5e27678bd144014fad4d1ca2da6713f, type: 3}
   parentCanvas: {fileID: 1848331628}
+  prefabEnemigo: {fileID: 169369035194069795, guid: cf637a3b2f24efc46b9234c758dccca2, type: 3}
 --- !u!4 &815646175
 Transform:
   m_ObjectHideFlags: 0
@@ -646,4 +647,27 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-
+  m_GameObject: {fileID: 1848331624}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!1660057539 &9223372036854775807
+SceneRoots:
+  m_ObjectHideFlags: 0
+  m_Roots:
+  - {fileID: 68725461}
+  - {fileID: 519420032}
+  - {fileID: 619394802}
+  - {fileID: 668020054}
+  - {fileID: 762374117}
+  - {fileID: 815646175}
+  - {fileID: 1848331628}
