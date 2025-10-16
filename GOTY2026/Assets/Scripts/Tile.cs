@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Mono.Cecil.Cil;
+using Unity.VisualScripting;
 using UnityEditor.EditorTools;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ public class Tile : MonoBehaviour
     private SpriteRenderer render;
     public GameObject _highlight;
     public GameObject gridManager;
+    public Boolean ocupado = false;
+    public GameObject ocupadoObj;
     //Variables para obtener la posicion del tile
     public int x, y;
 
@@ -63,6 +66,25 @@ public class Tile : MonoBehaviour
                 if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
                     tile.UnHighlight();
             }
+        }
+        }
+    }
+
+    void OnMouseDown()
+    {
+        if (Player.cartaSeleccionada == true)
+        {
+            if (Player.carta.GetComponent<DisplayCard>().patron == "Cruz")
+            {
+                UnHighlight();
+
+                Vector2[] direcciones = { new Vector2(-1, 0), new Vector2(1, 0), new Vector2(0, -1), new Vector2(0, 1) };
+                foreach (var dir in direcciones)
+                {
+                    if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
+                        tile.UnHighlight();
+                }
+            Player.carta.GetComponent<CardAction>().Efecto(direcciones);
         }
         }
     }

@@ -1,9 +1,10 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CardAction : MonoBehaviour , IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Image borde;
     public GameObject carta;
@@ -34,8 +35,9 @@ public class CardAction : MonoBehaviour , IPointerClickHandler, IPointerEnterHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!Player.cartaSeleccionada) {
-           carta.transform.localScale = new Vector3(1f, 1f, 1f); 
+        if (!Player.cartaSeleccionada)
+        {
+            carta.transform.localScale = new Vector3(1f, 1f, 1f);
         }
     }
 
@@ -43,5 +45,20 @@ public class CardAction : MonoBehaviour , IPointerClickHandler, IPointerEnterHan
     {
         carta.transform.localScale = scale;
     }
+
+    internal void Efecto(Vector2[] tiles)
+    {
+        foreach (var dir in tiles)
+        {
+            if (GridManager._tiles.TryGetValue(dir,out Tile tile) && tile.ocupado && tile.ocupadoObj.CompareTag("Enemy"))
+            {
+                 tile.ocupadoObj.GetComponent<EnemyController>().ReducirVida(5);
+            }
+        }
+        Player.carta = null;
+        Player.cartaSeleccionada = false;
+        Destroy(gameObject);
+    }
+
 }
 
