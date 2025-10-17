@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
         Player.cartas.Add(1);
         mano();
         GridManager._tiles[new Vector2(1,1)].ocupadoObj = Instantiate(prefabEnemigo, GridManager._tiles[new Vector2(1,1)].transform.position,Quaternion.identity);
+        GridManager._tiles[new Vector2(1, 1)].ocupado = true;
     }
     void mano()
     {
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviour
             mano[i].GetComponent<DisplayCard>().displayID = Player.cartas[indiceAleatorio];
             float xPos = xMin + i * (xMax - xMin) / (cartas - 1);
             RectTransform rt = mano[i].GetComponent<RectTransform>();
-            rt.anchoredPosition = new Vector2(xPos, -200);
+            rt.anchoredPosition = new Vector2(xPos, -100);
         }
   
     }

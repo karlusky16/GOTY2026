@@ -37,7 +37,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     {
         if (!Player.cartaSeleccionada) {
            carta.transform.localScale = new Vector3(1f, 1f, 1f);
-           carta.transform.position = new Vector3(posicion.x, posicion.y + 75f, posicion.z);
+          // carta.transform.position = new Vector3(posicion.x, posicion.y, posicion.z);
         }
     }
 
@@ -46,15 +46,19 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         carta.transform.localScale = scale;
         carta.transform.position = posicion;
     }
-    }
+    
 
     internal void Efecto(Vector2[] tiles)
     {
+        Debug.Log("efecto");
+        
         foreach (var dir in tiles)
         {
+            Debug.Log(dir);
             if (GridManager._tiles.TryGetValue(dir,out Tile tile) && tile.ocupado && tile.ocupadoObj.CompareTag("Enemy"))
             {
-                 tile.ocupadoObj.GetComponent<EnemyController>().ReducirVida(5);
+                Debug.Log("detecta");
+                tile.ocupadoObj.GetComponent<EnemyController>().ReducirVida(5);
             }
         }
         Player.carta = null;
