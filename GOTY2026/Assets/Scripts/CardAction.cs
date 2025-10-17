@@ -44,7 +44,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     public void OnPointerExit(PointerEventData eventData)
     {
         carta.transform.localScale = scale;
-        carta.transform.position = posicion;
+        //carta.transform.position = posicion;
     }
     
 

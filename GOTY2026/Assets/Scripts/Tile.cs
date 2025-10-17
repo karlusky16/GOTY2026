@@ -100,19 +100,17 @@ public class Tile : MonoBehaviour
             {
                 UnHighlight();
                 int i = 0;
-                Vector2[] direccionesEfecto = new Vector2[4];
+                Vector2[] direccionesEfecto = new Vector2[5];
                 Vector2[] direcciones = { new Vector2(-1, 0), new Vector2(1, 0), new Vector2(0, -1), new Vector2(0, 1) };
                 foreach (var dir in direcciones)
                 {
                     if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
                         tile.UnHighlight();
                     direccionesEfecto[i] = (new Vector2(x, y) + dir);
-                    Debug.Log(direccionesEfecto[2]);
-                    Debug.Log(direccionesEfecto[1]);
                     i++;
                 }
-
-            Player.carta.GetComponent<CardAction>().Efecto(direccionesEfecto);
+             direccionesEfecto[4] = (new Vector2(x, y));
+             Player.carta.GetComponent<CardAction>().Efecto(direccionesEfecto);
         }
         }
     }
