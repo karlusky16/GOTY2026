@@ -1,5 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
+using Mono.Cecil.Cil;
+using Unity.VisualScripting;
+using UnityEditor.EditorTools;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
@@ -8,27 +13,32 @@ public class Tile : MonoBehaviour
     private SpriteRenderer render;
     private String lastPatron;
     public GameObject _highlight;
+    public GameObject gridManager;
+    public Boolean ocupado = false;
+    public GameObject ocupadoObj;
+    //Variables para obtener la posicion del tile
+    public int x, y;
 
+    void Start() {
+    }
     public void Init(bool isOffset)
     {
         Debug.Log(mainColor);
         render = GetComponent<SpriteRenderer>();
         if (isOffset)
-        { 
+        {
             render.color = Color.black;
         }
-            
+
         else
         {
             render.color = Color.red;
         }
     }
-    
+
     void OnMouseEnter()
     {
-<<<<<<< Updated upstream
 
-=======
         if (Player.cartaSeleccionada == true)
         {
             if (Player.carta.GetComponent<DisplayCard>().patron == "Cruz")
@@ -44,6 +54,7 @@ public class Tile : MonoBehaviour
                 }
             }
         }
+
     }
     void OnMouseExit()
     {
@@ -77,14 +88,34 @@ public class Tile : MonoBehaviour
            
     }
 
-    void Highlight()
-    {
->>>>>>> Stashed changes
-        _highlight.SetActive(true);
+    
     }
 
-    void OnMouseExit()
+    void OnMouseDown()
     {
+        if (Player.cartaSeleccionada == true)
+        {
+            if (Player.carta.GetComponent<DisplayCard>().patron == "Cruz")
+            {
+                UnHighlight();
+
+                Vector2[] direcciones = { new Vector2(-1, 0), new Vector2(1, 0), new Vector2(0, -1), new Vector2(0, 1) };
+                foreach (var dir in direcciones)
+                {
+                    if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
+                        tile.UnHighlight();
+                }
+            Player.carta.GetComponent<CardAction>().Efecto(direcciones);
+        }
+        }
+    }
+
+    void Highlight()
+    {
+        _highlight.SetActive(true);
+    }
+    
+     void UnHighlight() {
         _highlight.SetActive(false);
     }
    

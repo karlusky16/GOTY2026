@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public GameObject prefabCarta;   // tu prefab de carta
     public Transform parentCanvas;   // referencia al Canvas en la escena
+    public GameObject prefabEnemigo;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
         Player.cartas.Add(1);
         Player.cartas.Add(1);
         mano();
+        GridManager._tiles[new Vector2(1,1)].ocupadoObj = Instantiate(prefabEnemigo, GridManager._tiles[new Vector2(1,1)].transform.position,Quaternion.identity);
     }
     void mano()
     {
