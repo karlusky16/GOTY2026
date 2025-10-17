@@ -29,8 +29,8 @@ public class GameManager : MonoBehaviour
         System.Random rand = new();
         int cartas = Player.cartas.Count;
         GameObject[] mano = new GameObject[Player.longMano];
-        float xMin = -230f;
-        float xMax = 230f;
+        float xMin = -250f;
+        float xMax = 250f;
         for (int i = 0; i < Player.longMano; i++)
         {
             int indiceAleatorio = rand.Next(cartas);
@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
             mano[i].GetComponent<DisplayCard>().displayID = Player.cartas[indiceAleatorio];
             float xPos = xMin + i * (xMax - xMin) / (cartas - 1);
             RectTransform rt = mano[i].GetComponent<RectTransform>();
-            rt.anchoredPosition = new Vector2(xPos, -190);
+            rt.anchoredPosition = new Vector2(xPos, -200);
         }
   
     }

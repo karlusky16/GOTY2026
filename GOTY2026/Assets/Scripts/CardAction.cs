@@ -35,15 +35,17 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!Player.cartaSeleccionada)
-        {
-            carta.transform.localScale = new Vector3(1f, 1f, 1f);
+        if (!Player.cartaSeleccionada) {
+           carta.transform.localScale = new Vector3(1f, 1f, 1f);
+           carta.transform.position = new Vector3(posicion.x, posicion.y + 75f, posicion.z);
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         carta.transform.localScale = scale;
+        carta.transform.position = posicion;
+    }
     }
 
     internal void Efecto(Vector2[] tiles)

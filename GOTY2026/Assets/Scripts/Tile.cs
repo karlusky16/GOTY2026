@@ -11,6 +11,7 @@ public class Tile : MonoBehaviour
 {
     [SerializeField] private Color mainColor, otherColor;
     private SpriteRenderer render;
+    private String lastPatron;
     public GameObject _highlight;
     public GameObject gridManager;
     public Boolean ocupado = false;
@@ -37,10 +38,12 @@ public class Tile : MonoBehaviour
 
     void OnMouseEnter()
     {
+
         if (Player.cartaSeleccionada == true)
         {
             if (Player.carta.GetComponent<DisplayCard>().patron == "Cruz")
             {
+                lastPatron = "Cruz";
                 Highlight();
 
             Vector2[] direcciones ={new Vector2(-1, 0),new Vector2(1, 0),new Vector2(0, -1),new Vector2(0, 1)};
@@ -51,6 +54,7 @@ public class Tile : MonoBehaviour
                 }
             }
         }
+
     }
     void OnMouseExit()
     {
@@ -68,6 +72,23 @@ public class Tile : MonoBehaviour
             }
         }
         }
+        else
+        {
+            UnHighlight();
+            if (lastPatron == "Cruz")
+            { 
+                Vector2[] direcciones = { new Vector2(-1, 0), new Vector2(1, 0), new Vector2(0, -1), new Vector2(0, 1) };
+                foreach (var dir in direcciones)
+                {
+                    if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
+                        tile.UnHighlight();
+                }
+            }
+        }
+           
+    }
+
+    
     }
 
     void OnMouseDown()
