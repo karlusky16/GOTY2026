@@ -13,14 +13,14 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     Vector3 scale;
     public GameObject centro;
     GameObject copia;
-    public Image deck;
+    public GameObject deck;
     public GameObject player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         centro = GameObject.Find("Visual Centrado");
-        deck = GameObject.Find("InterfazJugador/BordeCartas").GetComponent<Image>();
+        deck = GameObject.Find("InterfazJugador/CardPanel");
         scale = gameObject.GetComponent<RectTransform>().localScale;
     }
     public void OnPointerClick(PointerEventData eventData)

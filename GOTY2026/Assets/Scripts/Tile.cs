@@ -104,10 +104,11 @@ public class Tile : MonoBehaviour
                 foreach (var dir in direcciones)
                 {
                     if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
+                    {
                         tile.UnHighlight();
-                    tile.UnHighlight();
-                    direccionesEfecto[i] = (new Vector2(x, y) + dir);
-                    i++;
+                        direccionesEfecto[i] = (new Vector2(x, y) + dir);
+                        i++; 
+                    }
                 }
              direccionesEfecto[4] = (new Vector2(x, y));
              Player.carta.GetComponent<CardAction>().Efecto(direccionesEfecto);
