@@ -3,12 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\javie\\Fdv\\GOTY2026\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|C:\\Users\\javie\\Fdv\\GOTY2026\\assets\\scripts\\gridmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gridmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\GridManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\GridManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|c:\\users\\javie\\fdv\\goty2026\\assets\\scripts\\tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\Tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\CardDataBase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\CardDataBase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\PlayerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\PlayerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\Card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\EnemyController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\EnemyController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\CardAction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\CardAction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\Player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
@@ -32,10 +56,88 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\Tile.cs",
               "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\Tile.cs",
               "RelativeToolTip": "Assets\\Scripts\\Tile.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAIA7wCMAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAmwHIAAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-10T10:49:40.113Z",
               "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CardDataBase.cs",
+              "DocumentMoniker": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\CardDataBase.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\CardDataBase.cs",
+              "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\CardDataBase.cs",
+              "RelativeToolTip": "Assets\\Scripts\\CardDataBase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-17T14:19:53.668Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PlayerController.cs",
+              "DocumentMoniker": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\PlayerController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
+              "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\PlayerController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PlayerController.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-17T10:46:11.425Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Card.cs",
+              "DocumentMoniker": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\Card.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Card.cs",
+              "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\Card.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Card.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-17T10:46:03.832Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EnemyController.cs",
+              "DocumentMoniker": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\EnemyController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\EnemyController.cs",
+              "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\EnemyController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\EnemyController.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAYwBkAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-17T10:31:32.776Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
+              "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBkAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-17T10:29:16.371Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CardAction.cs",
+              "DocumentMoniker": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\CardAction.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\CardAction.cs",
+              "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\CardAction.cs",
+              "RelativeToolTip": "Assets\\Scripts\\CardAction.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAcwC4AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-17T10:13:10.514Z",
               "EditorCaption": ""
             },
             {
@@ -46,14 +148,14 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\GridManager.cs",
               "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\GridManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\GridManager.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAYwBsAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwCQAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-10T10:48:08.422Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "Player.cs",
               "DocumentMoniker": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\Player.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player.cs",
@@ -61,7 +163,8 @@
               "RelativeToolTip": "Assets\\Scripts\\Player.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-09T14:48:44.074Z"
+              "WhenOpened": "2025-10-09T14:48:44.074Z",
+              "EditorCaption": ""
             }
           ]
         }
