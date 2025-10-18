@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameObject prefabCarta;   // tu prefab de carta
-    public Transform parentCanvas;   // referencia al Canvas en la escena
+    public Transform cardPanel;   // referencia al Canvas en la escena
     public GameObject prefabEnemigo;
 
     void Start()
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < Player.longMano; i++)
         {
             int indiceAleatorio = rand.Next(cartas);
-            mano[i] = Instantiate(prefabCarta, parentCanvas);
+            mano[i] = Instantiate(prefabCarta, cardPanel);
             mano[i].GetComponent<DisplayCard>().displayID = Player.cartas[indiceAleatorio];
             float xPos = xMin + i * (xMax - xMin) / (cartas - 1);
             RectTransform rt = mano[i].GetComponent<RectTransform>();
