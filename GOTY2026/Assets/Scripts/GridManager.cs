@@ -39,7 +39,11 @@ public class GridManager : MonoBehaviour
             }
         }
 
+<<<<<<< Updated upstream
         _cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
+=======
+        _cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);//coloca la c�mara.
+>>>>>>> Stashed changes
     }
 
     void Update()
