@@ -1,7 +1,5 @@
 using System;
-using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,123 +7,63 @@ using UnityEngine.UI;
 public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Image borde;
+    public GameObject carta;
     Vector3 posicion;
     Vector3 scale;
-    public GameObject centro;
-    GameObject copia;
-    public Image deck;
-    public GameObject player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
-        centro = GameObject.Find("Visual Centrado");
-        deck = GameObject.Find("InterfazJugador/BordeCartas").GetComponent<Image>();
-        scale = gameObject.GetComponent<RectTransform>().localScale;
+        posicion = carta.transform.position;
+        scale = carta.transform.localScale;
     }
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        Destroy(copia);
         if (eventData.button == PointerEventData.InputButton.Left && !Player.cartaSeleccionada)
         {
-            Seleccionar();
+            Player.cartaSeleccionada = true;
+            borde.color = Color.red;
+            Player.carta = gameObject;
         }
 
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            DeSeleccionar();
+            Player.cartaSeleccionada = false;
+            borde.color = Color.blue;
         }
     }
-    void Seleccionar()
-    {
-        Player.cartaSeleccionada = true;
-        borde.color = Color.red;
-        Player.carta = gameObject;
-    }
-    void DeSeleccionar()
-    {
-        Player.cartaSeleccionada = false;
-        borde.color = Color.blue;
-    }
-
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!Player.cartaSeleccionada)
-        {
-            Destacar();
+        if (!Player.cartaSeleccionada) {
+           carta.transform.localScale = new Vector3(1f, 1f, 1f);
+          // carta.transform.position = new Vector3(posicion.x, posicion.y, posicion.z);
         }
-    }
-
-    void Destacar()
-    {
-        copia = Instantiate(gameObject);
-        copia.transform.localScale = new Vector3(2f, 2f, 2f);
-        copia.transform.SetParent(centro.transform, worldPositionStays: false);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Destroy(copia);
+        carta.transform.localScale = scale;
+        //carta.transform.position = posicion;
     }
-
+    
 
     internal void Efecto(Vector2[] tiles)
     {
-        if (SePuede())
+        Debug.Log("efecto");
+        
+        foreach (var dir in tiles)
         {
-            foreach (var dir in tiles)
+            Debug.Log(dir);
+            if (GridManager._tiles.TryGetValue(dir,out Tile tile) && tile.ocupado && tile.ocupadoObj.CompareTag("Enemy"))
             {
-                if (GridManager._tiles.TryGetValue(dir, out Tile tile) && tile.ocupado && tile.ocupadoObj.CompareTag("Enemy"))
-                {
-                    tile.ocupadoObj.GetComponent<EnemyController>().ReducirVida(5);
-                }
+                Debug.Log("detecta");
+                tile.ocupadoObj.GetComponent<EnemyController>().ReducirVida(5);
             }
-            switch (Player.carta.GetComponent<DisplayCard>().tipo)
-            {
-                case 0:
-                    player.GetComponent<PlayerController>().ReducirMana(Player.carta.GetComponent<DisplayCard>().coste);
-                    break;
-                case 1:
-                    player.GetComponent<PlayerController>().ReducirEnergia(Player.carta.GetComponent<DisplayCard>().coste);
-                    break;
-                case 2:
-                    player.GetComponent<PlayerController>().ReducirEnergia(Player.carta.GetComponent<DisplayCard>().coste);
-                    player.GetComponent<PlayerController>().ReducirMana(Player.carta.GetComponent<DisplayCard>().coste);
-                    break;
-                default:
-                    break;
-            }
-            Player.carta = null;
-            Player.cartaSeleccionada = false;
-            Destroy(gameObject);
         }
-        else
-        {
-            Debug.Log("noMas");
-            TurnManager.noMas.gameObject.SetActive(true);
-            Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
-        } 
-    }
-
-    
-    void OcultarMensaje()
-    {
-        TurnManager.noMas.gameObject.SetActive(false);
-    }
-
-    
-    bool SePuede() {
-        GameObject player = Player.carta.GetComponent<CardAction>().player;
-        if ((Player.carta.GetComponent<DisplayCard>().tipo == 0 && player.GetComponent<PlayerController>().manaPlayer > 0)
-            || (Player.carta.GetComponent<DisplayCard>().tipo == 1 && player.GetComponent<PlayerController>().energiaPlayer > 0)
-            || (Player.carta.GetComponent<DisplayCard>().tipo == 2 && player.GetComponent<PlayerController>().energiaPlayer
-            > 0 && player.GetComponent<PlayerController>().manaPlayer > 0))
-        {
-            return true;
-        }
-        else
-            return false;
+        Player.carta = null;
+        Player.cartaSeleccionada = false;
+        Destroy(gameObject);
     }
 
 }
