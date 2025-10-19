@@ -41,11 +41,13 @@ public class PlayerController : MonoBehaviour
     {
         if ((vidaActual -= vida) < 0) vidaActual = 0;
         JugadorReduceVida?.Invoke(vidaActual);
+        Debug.Log("Reduce vida jugador");
     }
     public void AumentarVida(int vida)
     {
         if ((vidaActual += vida) > vidaMaxima) vidaActual = vidaMaxima;
         JugadorAumentaVida?.Invoke(vidaActual);
+        Debug.Log("Aumenta vida jugador");
     }
 
     //Modificar energia del jugador
@@ -53,11 +55,13 @@ public class PlayerController : MonoBehaviour
     {
         if ((energiaActual -= energia) < 0) energiaActual = 0;
         JugadorReduceEnergia?.Invoke(energiaActual);
+        Debug.Log("Reduce energia jugador");
     }
     public void AumentarEnergia(int energia)
     {
         if ((energiaActual += energia) > energiaMaxima) energiaActual = energiaMaxima;
         JugadorAumentaEnergia?.Invoke(energiaActual);
+        Debug.Log("Aumenta energia jugador");
     }
 
     //Modificar mana del jugador
@@ -71,5 +75,6 @@ public class PlayerController : MonoBehaviour
     {
         if ((manaActual += mana) > manaMaxima) manaActual = manaMaxima;
         JugadorAumentaMana?.Invoke(manaActual);
+        Debug.Log("Aumenta mana jugador");
     }
 }

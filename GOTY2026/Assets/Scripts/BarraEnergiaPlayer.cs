@@ -35,10 +35,12 @@ public class BarraEnergiaPlayer : MonoBehaviour
     {
         sliderEnergiaPlayer.value = energiaActual;
         textoEnergia.text = energiaActual.ToString();
+        Debug.Log("Reduce barra energia");
     }
     public void AumentarBarraDeEnergiaPlayer(int energiaActual)
     {
         sliderEnergiaPlayer.value = energiaActual;
         textoEnergia.text = energiaActual.ToString();
+        Debug.Log("Aumenta barra energia");
     }
 }

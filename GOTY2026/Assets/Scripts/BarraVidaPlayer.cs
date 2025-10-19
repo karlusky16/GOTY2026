@@ -35,12 +35,13 @@ public class BarraVidaPlayer : MonoBehaviour
     {
         sliderVidaPlayer.value = vidaActual;
         textoVida.text = vidaActual.ToString();
+        Debug.Log("Reduce barra vida");
 
     }
     public void AumentarBarraDeVidaPlayer(int vidaActual)
     {
         sliderVidaPlayer.value = vidaActual;
         textoVida.text = vidaActual.ToString();
-
+        Debug.Log("Aumenta barra vida");
     }
 }
