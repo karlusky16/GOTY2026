@@ -3,7 +3,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Action<int> JugadorRecibeDaño;
+    public Action<int> JugadorReduceVida;
+    public Action<int> JugadorAumentaVida;
+
+    public Action<int> JugadorReduceEnergia;
+    public Action<int> JugadorAumentaEnergia;
+
+    public Action<int> JugadorReduceMana;
+    public Action<int> JugadorAumentaMana;
+
     [SerializeField] private int vidaMaxima;
     [SerializeField] private int vidaActual;
 
@@ -13,8 +21,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int manaMaxima;
     [SerializeField] private int manaActual;
 
-
-
     private void Awake()
     {
         vidaActual = vidaMaxima;
@@ -22,50 +28,48 @@ public class PlayerController : MonoBehaviour
         manaActual = manaMaxima;
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     //Getters
     public int GetVidaMaxima() => vidaMaxima;
     public int GetVidaActual() => vidaActual;
+    public int GetEnergiaMaxima() => energiaMaxima;
+    public int GetEnergiaActual() => energiaActual;
+    public int GetManaMaxima() => manaMaxima;
+    public int GetManaActual() => manaActual;
 
     //Modificar vida del jugador
     public void ReducirVida(int vida)
     {
         if ((vidaActual -= vida) < 0) vidaActual = 0;
-        JugadorRecibeDaño?.Invoke(vidaActual);
+        JugadorReduceVida?.Invoke(vidaActual);
     }
     public void AumentarVida(int vida)
     {
         if ((vidaActual += vida) > vidaMaxima) vidaActual = vidaMaxima;
+        JugadorAumentaVida?.Invoke(vidaActual);
     }
 
     //Modificar energia del jugador
     public void ReducirEnergia(int energia)
     {
         if ((energiaActual -= energia) < 0) energiaActual = 0;
+        JugadorReduceEnergia?.Invoke(energiaActual);
     }
     public void AumentarEnergia(int energia)
     {
         if ((energiaActual += energia) > energiaMaxima) energiaActual = energiaMaxima;
+        JugadorAumentaEnergia?.Invoke(energiaActual);
     }
 
     //Modificar mana del jugador
     public void ReducirMana(int mana)
     {
         if ((manaActual -= mana) < 0) manaActual = 0;
+        JugadorReduceMana?.Invoke(manaActual);
+        Debug.Log("Reduce mana jugador");
     }
     public void AumentarMana(int mana)
     {
         if ((manaActual += mana) > manaMaxima) manaActual = manaMaxima;
+        JugadorAumentaMana?.Invoke(manaActual);
     }
 }
