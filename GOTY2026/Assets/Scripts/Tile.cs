@@ -17,6 +17,8 @@ public class Tile : MonoBehaviour
     public GameObject ocupadoObj;
     //Variables para obtener la posicion del tile
     public int x, y;
+    private object direccionesEfecto;
+
 
     void Start() {
     }
@@ -53,8 +55,6 @@ public class Tile : MonoBehaviour
                 }
             }
         }
-
-    }
     void OnMouseExit()
     {
         if (Player.cartaSeleccionada == true)
@@ -103,13 +103,15 @@ public class Tile : MonoBehaviour
                 foreach (var dir in direcciones)
                 {
                     if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
+                    {
                         tile.UnHighlight();
-                    direccionesEfecto[i] = (new Vector2(x, y) + dir);
-                    i++;
+                        direccionesEfecto[i] = (new Vector2(x, y) + dir);
+                        i++; 
+                    }
                 }
              direccionesEfecto[4] = (new Vector2(x, y));
              Player.carta.GetComponent<CardAction>().Efecto(direccionesEfecto);
-        }
+            }
         }
     }
 
@@ -118,8 +120,10 @@ public class Tile : MonoBehaviour
         _highlight.SetActive(true);
     }
     
-     void UnHighlight() {
+    void UnHighlight() {
+
         _highlight.SetActive(false);
     }
-   
+
+
 }

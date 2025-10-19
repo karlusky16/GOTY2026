@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
     public GameObject prefabCarta;   // tu prefab de carta
     public Transform cardPanel;   // referencia al Canvas en la escena
     public GameObject prefabEnemigo;
-
+    public GameObject prefabPlayer;
+    public GameObject _image;
     void Start()
     {
         // Si la instancia no existe, crea una y marca el objeto para no ser destruido.
@@ -30,16 +31,13 @@ public class GameManager : MonoBehaviour
         System.Random rand = new();
         int cartas = Player.cartas.Count;
         GameObject[] mano = new GameObject[Player.longMano];
-        float xMin = -250f;
-        float xMax = 250f;
+        RectTransform imageRect = _image.GetComponent<RectTransform>();
+        float imageWidth = imageRect.rect.width;
+        float imageHeight = imageRect.rect.height;
         for (int i = 0; i < Player.longMano; i++)
         {
             int indiceAleatorio = rand.Next(cartas);
-            mano[i] = Instantiate(prefabCarta, cardPanel);
-            mano[i].GetComponent<DisplayCard>().displayID = Player.cartas[indiceAleatorio];
-            float xPos = xMin + i * (xMax - xMin) / (cartas - 1);
-            RectTransform rt = mano[i].GetComponent<RectTransform>();
-            rt.anchoredPosition = new Vector2(xPos, -100);
+            mano[i] = Instantiate(prefabCarta, _image.transform);
         }
   
     }

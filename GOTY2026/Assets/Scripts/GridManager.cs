@@ -15,7 +15,6 @@ public class GridManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(gameObject.GetType());
         GenerateGrid();
         pulso = false;
         
@@ -29,19 +28,19 @@ public class GridManager : MonoBehaviour
             for (int y = 0; y < _height; y++)
             {
                 var spawnedTile = Instantiate(_tilePrefab, new Vector3(x, y), Quaternion.identity, parent);
-                
+
                 spawnedTile.name = $"Tile {x} {y}";
-                spawnedTile.x = x;
-                spawnedTile.y = y;
+
                 var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
                 spawnedTile.Init(isOffset);
 
 
                 _tiles[new Vector2(x, y)] = spawnedTile;
+                spawnedTile.x = x;
+                spawnedTile.y = y;
             }
         }
-
-        _cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);//coloca la cámara.
+        _cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
     }
 
     void Update()
