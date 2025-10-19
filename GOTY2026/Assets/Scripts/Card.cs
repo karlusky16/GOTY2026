@@ -10,24 +10,20 @@ public class Card
     public int id;
     public String _name;
     public int coste;
-    public int tipo; // 0 para maná, 1 para energía  y 2 para los dos
+    public int tipo;
     public String descripcion;
     public String patron;
-    public Sprite sprite;
     public Card()
     {
 
     }
-    //Constructor carta ataque
-    public Card(int id, String _name, String patron, int coste, int tipo, String descripcion,
-    Sprite sprite)
+    public Card(int id, String _name,String patron, int coste, int tipo, String descripcion)
     {
         this.id = id;
         this._name = _name;
-        this.tipo = tipo;
         this.coste = coste;
+        this.tipo = tipo;
         this.patron = patron;
         this.descripcion = descripcion;
-        this.sprite = sprite;
     }
 }

@@ -1,7 +1,5 @@
 using System;
-using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,6 +7,7 @@ using UnityEngine.UI;
 public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Image borde;
+    public GameObject carta;
     Vector3 posicion;
     Vector3 scale;
     public GameObject centro;
@@ -23,52 +22,37 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         deck = GameObject.Find("InterfazJugador/CardPanel");
         scale = gameObject.GetComponent<RectTransform>().localScale;
     }
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        Destroy(copia);
         if (eventData.button == PointerEventData.InputButton.Left && !Player.cartaSeleccionada)
         {
-            Seleccionar();
+            Player.cartaSeleccionada = true;
+            borde.color = Color.red;
+            Player.carta = gameObject;
         }
 
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            DeSeleccionar();
+            Player.cartaSeleccionada = false;
+            borde.color = Color.blue;
         }
     }
-    void Seleccionar()
-    {
-        Player.cartaSeleccionada = true;
-        borde.color = Color.red;
-        Player.carta = gameObject;
-    }
-    void DeSeleccionar()
-    {
-        Player.cartaSeleccionada = false;
-        borde.color = Color.blue;
-    }
-
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!Player.cartaSeleccionada)
-        {
-            Destacar();
+        if (!Player.cartaSeleccionada) {
+           carta.transform.localScale = new Vector3(1f, 1f, 1f);
+          // carta.transform.position = new Vector3(posicion.x, posicion.y, posicion.z);
         }
-    }
-
-    void Destacar()
-    {
-        copia = Instantiate(gameObject);
-        copia.transform.localScale = new Vector3(2f, 2f, 2f);
-        copia.transform.SetParent(centro.transform, worldPositionStays: false);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Destroy(copia);
+        carta.transform.localScale = scale;
+        //carta.transform.position = posicion;
     }
-
+    
 
     internal void Efecto(Vector2[] tiles)
     {
@@ -122,8 +106,9 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         {
             return true;
         }
-        else
-            return false;
+        Player.carta = null;
+        Player.cartaSeleccionada = false;
+        Destroy(gameObject);
     }
     */
 }

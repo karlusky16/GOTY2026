@@ -1,12 +1,11 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public GameObject prefabCarta;   // prefab de carta
-    public Transform parentCanvas;   // referencia al Canvas en la escena
+    public GameObject prefabCarta;   // tu prefab de carta
+    public Transform cardPanel;   // referencia al Canvas en la escena
     public GameObject prefabEnemigo;
     public GameObject prefabPlayer;
     public GameObject _image;
@@ -24,10 +23,8 @@ public class GameManager : MonoBehaviour
         Player.cartas.Add(1);
         Player.cartas.Add(1);
         mano();
-        GridManager._tiles[new Vector2(1, 1)].ocupadoObj = Instantiate(prefabEnemigo, GridManager._tiles[new Vector2(1, 1)].transform.position, Quaternion.identity);
+        GridManager._tiles[new Vector2(1,1)].ocupadoObj = Instantiate(prefabEnemigo, GridManager._tiles[new Vector2(1,1)].transform.position,Quaternion.identity);
         GridManager._tiles[new Vector2(1, 1)].ocupado = true;
-        GridManager._tiles[new Vector2(0,0)].ocupadoObj = Instantiate(prefabPlayer, GridManager._tiles[new Vector2(0,0)].transform.position,Quaternion.identity);
-        GridManager._tiles[new Vector2(0, 0)].ocupado = true;
     }
     void mano()
     {
@@ -42,6 +39,7 @@ public class GameManager : MonoBehaviour
             int indiceAleatorio = rand.Next(cartas);
             mano[i] = Instantiate(prefabCarta, _image.transform);
         }
+  
     }
     
 }

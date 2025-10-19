@@ -46,8 +46,7 @@ public class Tile : MonoBehaviour
             {
                 lastPatron = "Cruz";
                 Highlight();
-                _highlight.SetActive(true);
-            }
+
             Vector2[] direcciones ={new Vector2(-1, 0),new Vector2(1, 0),new Vector2(0, -1),new Vector2(0, 1)};
             foreach (var dir in direcciones)
             {
@@ -77,7 +76,6 @@ public class Tile : MonoBehaviour
             UnHighlight();
             if (lastPatron == "Cruz")
             { 
-            {
                 Vector2[] direcciones = { new Vector2(-1, 0), new Vector2(1, 0), new Vector2(0, -1), new Vector2(0, 1) };
                 foreach (var dir in direcciones)
                 {
@@ -89,8 +87,9 @@ public class Tile : MonoBehaviour
            
     }
 
-    }
-    //Habria que mover todo lo del Highlight y Testeo de efecto a otro script
+    
+    
+
     void OnMouseDown()
     {
         if (Player.cartaSeleccionada == true)
