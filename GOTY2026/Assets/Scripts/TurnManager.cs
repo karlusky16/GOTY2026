@@ -1,11 +1,10 @@
-using TMPro;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
     public enum Turn { Player, Enemy }
     public Turn currentTurn = Turn.Player;
-    public static TextMeshProUGUI noMas;
+
     void Start()
     {
         /*noMas = GameObject.Find("InterfazJugador/Nomas").GetComponent<TextMeshProUGUI>();
