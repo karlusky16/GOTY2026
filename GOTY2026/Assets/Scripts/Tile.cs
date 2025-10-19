@@ -39,8 +39,8 @@ public class Tile : MonoBehaviour
 
     void OnMouseEnter()
     {
-        if (Player.cartaSeleccionada) {
-            if (Player.carta.GetComponent<DisplayCard>().patron == "Cruz") {
+        if (TurnManager.cartaSeleccionada) {
+            if (TurnManager.carta.GetComponent<DisplayCard>().patron == "Cruz") {
                 lastPatron = "Cruz";
                 Highlight();
                 Vector2[] direcciones ={new Vector2(-1, 0),new Vector2(1, 0),new Vector2(0, -1),new Vector2(0, 1)};
@@ -55,9 +55,9 @@ public class Tile : MonoBehaviour
 
     void OnMouseExit()
         {
-            if (Player.cartaSeleccionada == true)
+            if (TurnManager.cartaSeleccionada == true)
             {
-                if (Player.carta.GetComponent<DisplayCard>().patron == "Cruz")
+                if (TurnManager.carta.GetComponent<DisplayCard>().patron == "Cruz")
                 {
                     UnHighlight();
 
@@ -87,9 +87,9 @@ public class Tile : MonoBehaviour
     //Habria que mover todo lo del Highlight y Testeo de efecto a otro script
     void OnMouseDown()
     {
-        if (Player.cartaSeleccionada == true)
+        if (TurnManager.cartaSeleccionada == true)
         {
-            if (Player.carta.GetComponent<DisplayCard>().patron == "Cruz")
+            if (TurnManager.carta.GetComponent<DisplayCard>().patron == "Cruz")
             {
                 UnHighlight();
                 int i = 0;
@@ -105,7 +105,7 @@ public class Tile : MonoBehaviour
                     }
                 }
                 direccionesEfecto[4] = (new Vector2(x, y));
-                Player.carta.GetComponent<CardAction>().Efecto(direccionesEfecto);
+                TurnManager.carta.GetComponent<CardAction>().Efecto(direccionesEfecto);
             }
         }
     }

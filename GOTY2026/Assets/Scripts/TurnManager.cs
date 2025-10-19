@@ -1,9 +1,13 @@
+using System;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
     public enum Turn { Player, Enemy }
     public Turn currentTurn = Turn.Player;
+
+    public static Boolean cartaSeleccionada;
+    public static GameObject carta;
 
     void Start()
     {
