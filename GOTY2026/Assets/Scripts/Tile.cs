@@ -47,73 +47,74 @@ public class Tile : MonoBehaviour
                 lastPatron = "Cruz";
                 Highlight();
 
-            Vector2[] direcciones ={new Vector2(-1, 0),new Vector2(1, 0),new Vector2(0, -1),new Vector2(0, 1)};
-            foreach (var dir in direcciones)
-            {
-                if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
-                    tile.Highlight();
-                }
-            }
-        }
-    void OnMouseExit()
-    {
-        if (Player.cartaSeleccionada == true)
-        {
-            if (Player.carta.GetComponent<DisplayCard>().patron == "Cruz")
-        {
-            UnHighlight();
-
-            Vector2[] direcciones = { new Vector2(-1, 0), new Vector2(1, 0), new Vector2(0, -1), new Vector2(0, 1) };
-            foreach (var dir in direcciones)
-            {
-                if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
-                    tile.UnHighlight();
-            }
-        }
-        }
-        else
-        {
-            UnHighlight();
-            if (lastPatron == "Cruz")
-            { 
                 Vector2[] direcciones = { new Vector2(-1, 0), new Vector2(1, 0), new Vector2(0, -1), new Vector2(0, 1) };
                 foreach (var dir in direcciones)
                 {
                     if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
-                        tile.UnHighlight();
+                        tile.Highlight();
                 }
             }
         }
-           
     }
-
-    
-    
-
-    void OnMouseDown()
-    {
-        if (Player.cartaSeleccionada == true)
+        void OnMouseExit()
         {
-            if (Player.carta.GetComponent<DisplayCard>().patron == "Cruz")
+            if (Player.cartaSeleccionada == true)
             {
-                UnHighlight();
-                int i = 0;
-                Vector2[] direccionesEfecto = new Vector2[5];
-                Vector2[] direcciones = { new Vector2(-1, 0), new Vector2(1, 0), new Vector2(0, -1), new Vector2(0, 1) };
-                foreach (var dir in direcciones)
+                if (Player.carta.GetComponent<DisplayCard>().patron == "Cruz")
                 {
-                    if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
+                    UnHighlight();
+
+                    Vector2[] direcciones = { new Vector2(-1, 0), new Vector2(1, 0), new Vector2(0, -1), new Vector2(0, 1) };
+                    foreach (var dir in direcciones)
                     {
-                        tile.UnHighlight();
-                        direccionesEfecto[i] = (new Vector2(x, y) + dir);
-                        i++; 
+                        if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
+                            tile.UnHighlight();
                     }
                 }
-             direccionesEfecto[4] = (new Vector2(x, y));
-             Player.carta.GetComponent<CardAction>().Efecto(direccionesEfecto);
+            }
+            else
+            {
+                UnHighlight();
+                if (lastPatron == "Cruz")
+                {
+                    Vector2[] direcciones = { new Vector2(-1, 0), new Vector2(1, 0), new Vector2(0, -1), new Vector2(0, 1) };
+                    foreach (var dir in direcciones)
+                    {
+                        if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
+                            tile.UnHighlight();
+                    }
+                }
+            }
+
+        }
+
+
+
+
+        void OnMouseDown()
+        {
+            if (Player.cartaSeleccionada == true)
+            {
+                if (Player.carta.GetComponent<DisplayCard>().patron == "Cruz")
+                {
+                    UnHighlight();
+                    int i = 0;
+                    Vector2[] direccionesEfecto = new Vector2[5];
+                    Vector2[] direcciones = { new Vector2(-1, 0), new Vector2(1, 0), new Vector2(0, -1), new Vector2(0, 1) };
+                    foreach (var dir in direcciones)
+                    {
+                        if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
+                        {
+                            tile.UnHighlight();
+                            direccionesEfecto[i] = (new Vector2(x, y) + dir);
+                            i++;
+                        }
+                    }
+                    direccionesEfecto[4] = (new Vector2(x, y));
+                    Player.carta.GetComponent<CardAction>().Efecto(direccionesEfecto);
+                }
             }
         }
-    }
 
     void Highlight()
     {

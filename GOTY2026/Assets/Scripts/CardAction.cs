@@ -91,10 +91,10 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     }
 
     
-    void OcultarMensaje()
+    /*void OcultarMensaje()
     {
         TurnManager.noMas.gameObject.SetActive(false);
-    }
+    }*/
 
     
     /*bool SePuede() {
