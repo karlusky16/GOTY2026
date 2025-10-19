@@ -37,23 +37,22 @@ public class Tile : MonoBehaviour
 
     void OnMouseEnter()
     {
-
-        _highlight.SetActive(true);
-    }
-
-            Vector2[] direcciones ={new Vector2(-1, 0),new Vector2(1, 0),new Vector2(0, -1),new Vector2(0, 1)};
-            foreach (var dir in direcciones)
-            {
-                if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
-                    tile.Highlight();
+        if (Player.cartaSeleccionada) {
+            if (Player.carta.GetComponent<DisplayCard>().patron == "Cruz") {
+                lastPatron = "Cruz";
+                Highlight();
+                Vector2[] direcciones ={new Vector2(-1, 0),new Vector2(1, 0),new Vector2(0, -1),new Vector2(0, 1)};
+                foreach (var dir in direcciones)
+                {
+                    if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
+                        tile.Highlight();
                 }
             }
         }
-
     }
+
     void OnMouseExit()
     {
-        else
         {
             UnHighlight();
             if (lastPatron == "Cruz")

@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public Transform parentCanvas;   // referencia al Canvas en la escena
     public GameObject prefabEnemigo;
     public GameObject prefabPlayer;
-    public Image _image;
+    public GameObject _image;
     void Start()
     {
         // Si la instancia no existe, crea una y marca el objeto para no ser destruido.
