@@ -35,11 +35,12 @@ public class BarraManaPlayer : MonoBehaviour
     {
         sliderManaPlayer.value = manaActual;
         textoMana.text = manaActual.ToString();
-        Debug.Log("Reduce mana Barra");
+        Debug.Log("Reduce barra mana");
     }
     public void AumentarBarraDeManaPlayer(int manaActual)
     {
         sliderManaPlayer.value = manaActual;
         textoMana.text = manaActual.ToString();
+        Debug.Log("Aumenta barra mana");
     }
 }
