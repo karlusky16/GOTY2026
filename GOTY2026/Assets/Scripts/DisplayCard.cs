@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,9 +13,9 @@ public class DisplayCard : MonoBehaviour
     public int coste;
     public int tipo;
     public String descripcion;
-    public Text nameText;
-    public Text costText;
-    public Text descriptionText;
+    public TextMeshProUGUI nameText;
+    public TextMeshProUGUI costText;
+    public TextMeshProUGUI descriptionText;
     public String patron;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
