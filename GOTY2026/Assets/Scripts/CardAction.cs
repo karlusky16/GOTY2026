@@ -25,7 +25,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left && !Player.cartaSeleccionada)
+        if (eventData.button == PointerEventData.InputButton.Left && !TurnManager.cartaSeleccionada)
         {
             TurnManager.cartaSeleccionada = true;
             borde.color = Color.red;
@@ -67,68 +67,63 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
     internal void Efecto(Vector2[] tiles)
     {
-        /*if (SePuede())
-        {*/
-        Debug.Log($"--- DEBUG EFECTO ---");
-        Debug.Log($"TurnManager.carta: {TurnManager.carta}");
-        Debug.Log($"DisplayCard: {TurnManager.carta.GetComponent<DisplayCard>()}");
-        Debug.Log($"Player: {player}");
-        Debug.Log($"Tiene PlayerController: {player.GetComponent<PlayerController>()}");
-        Debug.Log($"Tiles: {GridManager._tiles}");
-        foreach (var dir in tiles)
+        if (SePuede())
         {
-            if (GridManager._tiles.TryGetValue(dir, out Tile tile) && tile.ocupado && tile.ocupadoObj.CompareTag("Enemy"))
+            foreach (var dir in tiles)
             {
-                tile.ocupadoObj.GetComponent<EnemyController>().ReducirVida(5);
+
+                if (GridManager._tiles.TryGetValue(dir, out Tile tile) && tile.ocupado && tile.ocupadoObj.CompareTag("Enemy"))
+                {
+                    tile.ocupadoObj.GetComponent<EnemyController>().ReducirVida(5);
+                }
+                switch (TurnManager.carta.GetComponent<DisplayCard>().tipo)
+                {
+                    case 0:
+                        player.GetComponent<PlayerController>().ReducirMana(TurnManager.carta.GetComponent<DisplayCard>().coste);
+                        break;
+                    case 1:
+                        player.GetComponent<PlayerController>().ReducirEnergia(TurnManager.carta.GetComponent<DisplayCard>().coste);
+                        break;
+                    case 2:
+                        player.GetComponent<PlayerController>().ReducirEnergia(TurnManager.carta.GetComponent<DisplayCard>().coste);
+                        player.GetComponent<PlayerController>().ReducirMana(TurnManager.carta.GetComponent<DisplayCard>().coste);
+                        break;
+                    default:
+                        break;
+                }
             }
-            switch (TurnManager.carta.GetComponent<DisplayCard>().tipo)
-            {
-                case 0:
-                    player.GetComponent<PlayerController>().ReducirMana(TurnManager.carta.GetComponent<DisplayCard>().coste);
-                    break;
-                case 1:
-                    player.GetComponent<PlayerController>().ReducirEnergia(TurnManager.carta.GetComponent<DisplayCard>().coste);
-                    break;
-                case 2:
-                    player.GetComponent<PlayerController>().ReducirEnergia(TurnManager.carta.GetComponent<DisplayCard>().coste);
-                    player.GetComponent<PlayerController>().ReducirMana(TurnManager.carta.GetComponent<DisplayCard>().coste);
-                    break;
-                default:
-                    break;
-            }
-            //}
-            /*else
-            {
-                Debug.Log("noMas");
-                TurnManager.noMas.gameObject.SetActive(true);
-                Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
-            }*/
+            TurnManager.carta = null;
+            TurnManager.cartaSeleccionada = false;
+            Destroy(gameObject);
         }
-        TurnManager.carta = null;
-        TurnManager.cartaSeleccionada = false;
-        Destroy(gameObject);
+        else
+        {
+            Debug.Log("noMas");
+            TurnManager.noMas.gameObject.SetActive(true);
+            Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
+        }
     }
 
     
-    /*void OcultarMensaje()
+    void OcultarMensaje()
     {
         TurnManager.noMas.gameObject.SetActive(false);
-    }*/
+    }
 
     
-    /*bool SePuede() {
-        GameObject player = Player.carta.GetComponent<CardAction>().player;
-        if ((Player.carta.GetComponent<DisplayCard>().tipo == 0 && player.GetComponent<PlayerController>().manaPlayer > 0)
-            || (Player.carta.GetComponent<DisplayCard>().tipo == 1 && player.GetComponent<PlayerController>().energiaPlayer > 0)
-            || (Player.carta.GetComponent<DisplayCard>().tipo == 2 && player.GetComponent<PlayerController>().energiaPlayer
-            > 0 && player.GetComponent<PlayerController>().manaPlayer > 0))
+    bool SePuede() {
+        GameObject player = TurnManager.carta.GetComponent<CardAction>().player;
+        int tipo = TurnManager.carta.GetComponent<DisplayCard>().tipo;
+        if (( tipo == 0 && player.GetComponent<PlayerController>().GetManaActual() > 0)
+            || (tipo == 1 && player.GetComponent<PlayerController>().GetEnergiaActual() > 0)
+            || (tipo == 2 && player.GetComponent<PlayerController>().GetEnergiaActual()
+            > 0 && player.GetComponent<PlayerController>().GetManaActual() > 0))
         {
             return true;
         }
         else
             return false;
-    }*/
-    //}
+    }
     
 }
 

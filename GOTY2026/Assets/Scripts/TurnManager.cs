@@ -1,5 +1,7 @@
 using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour
 {
@@ -9,10 +11,12 @@ public class TurnManager : MonoBehaviour
     public static Boolean cartaSeleccionada;
     public static GameObject carta;
 
+    public static TextMeshProUGUI noMas;
+
     void Start()
     {
-        /*noMas = GameObject.Find("InterfazJugador/Nomas").GetComponent<TextMeshProUGUI>();
-        noMas.gameObject.SetActive(false);*/
+        noMas = GameObject.Find("InterfazUsuario/NoMas").GetComponent<TextMeshProUGUI>();
+        noMas.gameObject.SetActive(false);
         Debug.Log("Comienza el combate. Turno del jugador.");
     }
 
