@@ -44,6 +44,7 @@ public class TurnManager : MonoBehaviour
         // Aquí podrías poner animaciones o efectos
         TurnManager.carta = null;
         TurnManager.cartaSeleccionada = false;
+        if (CardAction.carta != null) Destroy(CardAction.carta);
         currentTurn = Turn.Enemy;
         ManejoBaraja.DevolverMano();
         Debug.Log("Turno del enemigo.");

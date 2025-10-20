@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
     }
     public void AddCartaDescartes(int id)
     {
-        cartas.Add(id);
+        descartes.Add(id);
     }
     public void DescartesABaraja()
     {

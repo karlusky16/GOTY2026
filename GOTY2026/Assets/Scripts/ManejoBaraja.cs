@@ -27,7 +27,6 @@ public class ManejoBaraja : MonoBehaviour
         if (mazoInicializado) return;
         mazoInicializado = true;
         //Para meter cartas aleatorias en la baraja del jugador
-        Debug.Log("AñadimosCartas");
         for (int i = 0; i < 10; i++)
         {
             int carta = rand.Next(cartas);
@@ -39,8 +38,6 @@ public class ManejoBaraja : MonoBehaviour
     public static void ManoTurno()
     {
         System.Random rand = new();
-        Debug.Log(player == null);
-        var cartasLista = player.GetCartas();
         //Generamos la mano aleatoriamente desde la lista de cartas
         for (int i = 0; i < player.GetLongMano(); i++)
         {
@@ -48,13 +45,13 @@ public class ManejoBaraja : MonoBehaviour
             if (cartas == 0)
             {
                 player.DescartesABaraja();
+                cartas = player.GetCartasLength();
             }
             int indiceAleatorio = rand.Next(cartas);
-            Debug.Log(indiceAleatorio);
             mano.Add(Instantiate(prefabCarta, _image.transform));
             DisplayCard dc = mano[i].GetComponent<DisplayCard>();
-            dc.ActualizarID(cartasLista[indiceAleatorio]);
-            cartasLista.RemoveAt(indiceAleatorio);
+            dc.ActualizarID(player.GetCartas()[indiceAleatorio]);
+            player.GetCartas().RemoveAt(indiceAleatorio);
         }
 
     }

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Image borde;
-    public GameObject carta;
+    public static GameObject carta;
     Vector3 posicion;
     Vector3 scale;
     public GameObject centro;
