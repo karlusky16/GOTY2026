@@ -1,8 +1,12 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static List<int> cartas = new();
+    public static List<int> descartes = new();
+    public static int longMano = 5;
     public Action<int> JugadorReduceVida;
     public Action<int> JugadorAumentaVida;
 
@@ -27,8 +31,10 @@ public class PlayerController : MonoBehaviour
         energiaActual = energiaMaxima;
         manaActual = manaMaxima;
     }
-
     //Getters
+    public int getCartasLength() => cartas.Count;
+    public int getLongMano() => longMano;
+    public List<int> getCartas() => cartas;
     public int GetVidaMaxima() => vidaMaxima;
     public int GetVidaActual() => vidaActual;
     public int GetEnergiaMaxima() => energiaMaxima;
@@ -76,5 +82,17 @@ public class PlayerController : MonoBehaviour
         if ((manaActual += mana) > manaMaxima) manaActual = manaMaxima;
         JugadorAumentaMana?.Invoke(manaActual);
         Debug.Log("Aumenta mana jugador");
+    }
+    public void AddCarta(int id)
+    {
+        cartas.Add(id);
+    }
+    public void AddCartaDescartes(int id)
+    {
+        cartas.Add(id);
+    }
+    public void DescartesABaraja()
+    {
+        cartas = descartes;
     }
 }

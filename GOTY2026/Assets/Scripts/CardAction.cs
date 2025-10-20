@@ -94,6 +94,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             }
             TurnManager.carta = null;
             TurnManager.cartaSeleccionada = false;
+            ManejoBaraja.DevolverCarta(gameObject);
             Destroy(gameObject);
         }
         else

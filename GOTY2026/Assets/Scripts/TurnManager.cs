@@ -10,13 +10,14 @@ public class TurnManager : MonoBehaviour
 
     public static Boolean cartaSeleccionada;
     public static GameObject carta;
-
     public static TextMeshProUGUI noMas;
+    
 
     void Start()
     {
         noMas = GameObject.Find("InterfazUsuario/NoMas").GetComponent<TextMeshProUGUI>();
         noMas.gameObject.SetActive(false);
+        ManejoBaraja.ManoTurno();
         Debug.Log("Comienza el combate. Turno del jugador.");
     }
 
@@ -41,7 +42,10 @@ public class TurnManager : MonoBehaviour
     void EndPlayerTurn()
     {
         // Aquí podrías poner animaciones o efectos
+        TurnManager.carta = null;
+        TurnManager.cartaSeleccionada = false;
         currentTurn = Turn.Enemy;
+        ManejoBaraja.DevolverMano();
         Debug.Log("Turno del enemigo.");
     }
 
@@ -52,13 +56,15 @@ public class TurnManager : MonoBehaviour
 
         // Espera
         Invoke("EndEnemyTurn", 1.5f);
-        
+
         currentTurn = Turn.Player; //evita que ataque en cada frame
     }
 
     void EndEnemyTurn()
     {
         currentTurn = Turn.Player;
+        ManejoBaraja.ManoTurno();
         Debug.Log("Vuelve el turno del jugador.");
     }
+    
 }

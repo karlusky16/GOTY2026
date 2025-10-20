@@ -4,11 +4,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public GameObject prefabCarta;   // tu prefab de carta
-    public Transform cardPanel;   // referencia al Canvas en la escena
     public GameObject prefabEnemigo;
     public GameObject prefabPlayer;
-    public GameObject _image;
+    public GameObject prefabCarta;
     void Start()
     {
         // Si la instancia no existe, crea una y marca el objeto para no ser destruido.
@@ -17,29 +15,9 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        Player.cartas.Add(1);
-        Player.cartas.Add(1);
-        Player.cartas.Add(1);
-        Player.cartas.Add(1);
-        Player.cartas.Add(1);
-        mano();
-        GridManager._tiles[new Vector2(1,1)].ocupadoObj = Instantiate(prefabEnemigo, GridManager._tiles[new Vector2(1,1)].transform.position,Quaternion.identity);
+        GridManager._tiles[new Vector2(1, 1)].ocupadoObj = Instantiate(prefabEnemigo, GridManager._tiles[new Vector2(1, 1)].transform.position, Quaternion.identity);
         GridManager._tiles[new Vector2(1, 1)].ocupado = true;
     }
-    void mano()
-    {
-        System.Random rand = new();
-        int cartas = Player.cartas.Count;
-        GameObject[] mano = new GameObject[Player.longMano];
-        RectTransform imageRect = _image.GetComponent<RectTransform>();
-        float imageWidth = imageRect.rect.width;
-        float imageHeight = imageRect.rect.height;
-        for (int i = 0; i < Player.longMano; i++)
-        {
-            int indiceAleatorio = rand.Next(cartas);
-            mano[i] = Instantiate(prefabCarta, _image.transform);
-        }
-  
-    }
+    public GameObject GetPrefabCarta() => prefabCarta;
     
 }

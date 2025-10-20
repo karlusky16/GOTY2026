@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class DisplayCard : MonoBehaviour
 {
-    public Card card;
-    public int displayID;
+    public static Card card;
+    public static int displayID;
     public int id;
     public String _name;
     public int coste;
@@ -18,8 +18,9 @@ public class DisplayCard : MonoBehaviour
     public TextMeshProUGUI descriptionText;
     public String patron;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void ActualizarID(int nuevoDisplayID)
     {
+        displayID = nuevoDisplayID;
         card = CardDataBase.cardList[displayID - 1];
     }
 

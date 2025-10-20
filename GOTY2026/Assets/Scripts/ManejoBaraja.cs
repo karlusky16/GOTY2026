@@ -1,0 +1,76 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ManejoBaraja : MonoBehaviour
+{
+    public static GameObject prefabCarta;   // tu prefab de carta
+    public static GameObject _image; //referencia al CardPanel
+    public static PlayerController player;
+    public static List<GameObject> mano = new();
+    Boolean mazoInicializado;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        if (mazoInicializado) return;
+        mazoInicializado = true;
+        //Buscamos el atributo player controller
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        _image = GameObject.Find("InterfazUsuario/CardPanel");
+        prefabCarta = GameObject.Find("GameManager").GetComponent<GameManager>().GetPrefabCarta();
+        //copiamos la longitud de la dataBase
+        int cartas = CardDataBase.cardList.Count;
+        System.Random rand = new();
+        //Para meter cartas aleatorias en la baraja del jugador
+        Debug.Log("AñadimosCartas");
+        for (int i = 0; i < 10; i++)
+        {
+            int carta = rand.Next(cartas);
+            Debug.Log(carta);
+            player.AddCarta(carta + 1);
+        }
+    }
+    //Creación de la mano para cada turno
+    public static void ManoTurno()
+    {
+        System.Random rand = new();
+        List<int> cartasLista = player.getCartas();
+        //Generamos la mano aleatoriamente desde la lista de cartas
+        for (int i = 0; i < player.getLongMano(); i++)
+        {
+            int cartas = player.getCartasLength();
+            if (cartas == 0)
+            {
+                player.DescartesABaraja();
+            }
+            int indiceAleatorio = rand.Next(cartas);
+            Debug.Log(indiceAleatorio);
+            mano.Add(Instantiate(prefabCarta, _image.transform));
+            DisplayCard dc = mano[i].GetComponent<DisplayCard>();
+            dc.ActualizarID(cartasLista[indiceAleatorio]);
+            cartasLista.RemoveAt(indiceAleatorio);
+        }
+  
+    }
+    //Para devolver las cartas no usadas al final del turno
+    public static void DevolverMano()
+    {   
+        while (mano.Count > 0)
+        {
+            var carta = mano[0];
+            DevolverCarta(carta);
+            Destroy(carta);
+        }
+    }
+    //Para devolver la carta al usarse
+    public static void DevolverCarta(GameObject carta)
+    {
+        mano.Remove(carta);
+        player.AddCartaDescartes(carta.GetComponent<DisplayCard>().id);
+    }
+    // Update is called once per frame
+    public static void Update()
+    {
+        
+    }
+}
