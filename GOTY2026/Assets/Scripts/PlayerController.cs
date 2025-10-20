@@ -32,9 +32,9 @@ public class PlayerController : MonoBehaviour
         manaActual = manaMaxima;
     }
     //Getters
-    public int getCartasLength() => cartas.Count;
-    public int getLongMano() => longMano;
-    public List<int> getCartas() => cartas;
+    public int GetCartasLength() => cartas.Count;
+    public int GetLongMano() => longMano;
+    public List<int> GetCartas() => cartas;
     public int GetVidaMaxima() => vidaMaxima;
     public int GetVidaActual() => vidaActual;
     public int GetEnergiaMaxima() => energiaMaxima;
@@ -93,6 +93,7 @@ public class PlayerController : MonoBehaviour
     }
     public void DescartesABaraja()
     {
+        Debug.Log("DescartesABaraja");
         cartas = descartes;
     }
 }

@@ -56,7 +56,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     void Destacar()
     {
         carta = Instantiate(gameObject);
-        carta.transform.localScale = new Vector2(2f,2f);
+        carta.transform.localScale = new Vector3(2f,2f,2f);
         carta.transform.SetParent(centro.transform, false);
     }
      void NoDestacar()

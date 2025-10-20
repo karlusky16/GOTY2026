@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ManejoBaraja : MonoBehaviour
@@ -8,19 +9,23 @@ public class ManejoBaraja : MonoBehaviour
     public static GameObject _image; //referencia al CardPanel
     public static PlayerController player;
     public static List<GameObject> mano = new();
-    Boolean mazoInicializado;
+    static Boolean mazoInicializado = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (mazoInicializado) return;
-        mazoInicializado = true;
+
+    }
+    public static void Inicializar()
+    {
         //Buscamos el atributo player controller
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         _image = GameObject.Find("InterfazUsuario/CardPanel");
         prefabCarta = GameObject.Find("GameManager").GetComponent<GameManager>().GetPrefabCarta();
-        //copiamos la longitud de la dataBase
+                //copiamos la longitud de la dataBase
         int cartas = CardDataBase.cardList.Count;
         System.Random rand = new();
+        if (mazoInicializado) return;
+        mazoInicializado = true;
         //Para meter cartas aleatorias en la baraja del jugador
         Debug.Log("AñadimosCartas");
         for (int i = 0; i < 10; i++)
@@ -34,11 +39,12 @@ public class ManejoBaraja : MonoBehaviour
     public static void ManoTurno()
     {
         System.Random rand = new();
-        List<int> cartasLista = player.getCartas();
+        Debug.Log(player == null);
+        var cartasLista = player.GetCartas();
         //Generamos la mano aleatoriamente desde la lista de cartas
-        for (int i = 0; i < player.getLongMano(); i++)
+        for (int i = 0; i < player.GetLongMano(); i++)
         {
-            int cartas = player.getCartasLength();
+            int cartas = player.GetCartasLength();
             if (cartas == 0)
             {
                 player.DescartesABaraja();
@@ -50,7 +56,7 @@ public class ManejoBaraja : MonoBehaviour
             dc.ActualizarID(cartasLista[indiceAleatorio]);
             cartasLista.RemoveAt(indiceAleatorio);
         }
-  
+
     }
     //Para devolver las cartas no usadas al final del turno
     public static void DevolverMano()

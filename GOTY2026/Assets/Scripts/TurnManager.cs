@@ -7,7 +7,6 @@ public class TurnManager : MonoBehaviour
 {
     public enum Turn { Player, Enemy }
     public Turn currentTurn = Turn.Player;
-
     public static Boolean cartaSeleccionada;
     public static GameObject carta;
     public static TextMeshProUGUI noMas;
@@ -15,6 +14,7 @@ public class TurnManager : MonoBehaviour
 
     void Start()
     {
+        ManejoBaraja.Inicializar();
         noMas = GameObject.Find("InterfazUsuario/NoMas").GetComponent<TextMeshProUGUI>();
         noMas.gameObject.SetActive(false);
         ManejoBaraja.ManoTurno();
