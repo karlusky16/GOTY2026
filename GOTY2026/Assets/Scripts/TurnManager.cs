@@ -7,9 +7,8 @@ public class TurnManager : MonoBehaviour
 {
     public enum Turn { Player, Enemy }
     public Turn currentTurn = Turn.Player;
-    public static Boolean cartaSeleccionada;
-    public static GameObject carta;
     public static TextMeshProUGUI noMas;
+    public static GameObject botonNextTurn;
     
 
     void Start()
@@ -41,9 +40,9 @@ public class TurnManager : MonoBehaviour
 
     void EndPlayerTurn()
     {
-        // Aquí podrías poner animaciones o efectos
-        TurnManager.carta = null;
-        TurnManager.cartaSeleccionada = false;
+
+        GameManager.carta = null;
+        GameManager.cartaSeleccionada = false;
         if (CardAction.carta != null) Destroy(CardAction.carta);
         currentTurn = Turn.Enemy;
         ManejoBaraja.DevolverMano();
