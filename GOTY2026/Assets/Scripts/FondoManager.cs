@@ -12,7 +12,7 @@ public class FondoManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (TurnManager.cartaSeleccionada)
+        if (GameManager.cartaSeleccionada)
         {
             gridManager.SetActive(true);
         }

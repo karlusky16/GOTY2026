@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public static class ManejoBaraja 
+public class ManejoBaraja : MonoBehaviour
 {
     public static GameObject prefabCarta;   // tu prefab de carta
     public static GameObject _image; //referencia al CardPanel
