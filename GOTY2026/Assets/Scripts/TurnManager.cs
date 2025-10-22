@@ -10,6 +10,7 @@ public class TurnManager : MonoBehaviour
     public static Boolean cartaSeleccionada;
     public static GameObject carta;
     public static TextMeshProUGUI noMas;
+    public static GameObject botonNextTurn;
     
 
     void Start()
@@ -41,7 +42,7 @@ public class TurnManager : MonoBehaviour
 
     void EndPlayerTurn()
     {
-        // Aquí podrías poner animaciones o efectos
+
         TurnManager.carta = null;
         TurnManager.cartaSeleccionada = false;
         if (CardAction.carta != null) Destroy(CardAction.carta);
