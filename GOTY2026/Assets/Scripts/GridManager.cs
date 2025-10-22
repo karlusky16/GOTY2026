@@ -10,13 +10,13 @@ public class GridManager : MonoBehaviour
     public Tile _tilePrefab;
     public Transform parent;
     public Transform _cam;
-    private Boolean pulso;
+
     public static Dictionary<Vector2, Tile> _tiles;
 
     void Start()
     {
         GenerateGrid();
-        pulso = false;
+
         
     }
 
@@ -40,15 +40,12 @@ public class GridManager : MonoBehaviour
                 spawnedTile.y = y;
             }
         }
-        _cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
+        _cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 3 - 0.5f, -10);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Activar(pulso);
-        }
+        
     }
 
 
@@ -57,10 +54,6 @@ public class GridManager : MonoBehaviour
         if (_tiles.TryGetValue(pos, out var tile)) return tile;
         return null;
     }
-    public void Activar(Boolean pulso)
-    {
-        gameObject.SetActive(pulso);
-        pulso = !pulso;
-    }
+
 
 }

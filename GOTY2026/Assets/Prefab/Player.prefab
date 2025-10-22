@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1244365383692462862}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,4 +109,3 @@ MonoBehaviour:
   energiaActual: 0
   manaMaxima: 10
   manaActual: 0
-  barraVidaPlayer: {fileID: 5708531882639720642, guid: ae4663f3adae6e74aab494621654c82c, type: 3}

@@ -1,12 +1,24 @@
+using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour
 {
     public enum Turn { Player, Enemy }
     public Turn currentTurn = Turn.Player;
+    public static Boolean cartaSeleccionada;
+    public static GameObject carta;
+    public static TextMeshProUGUI noMas;
+    public static GameObject botonNextTurn;
+    
 
     void Start()
     {
+        ManejoBaraja.Inicializar();
+        noMas = GameObject.Find("InterfazUsuario/NoMas").GetComponent<TextMeshProUGUI>();
+        noMas.gameObject.SetActive(false);
+        ManejoBaraja.ManoTurno();
         Debug.Log("Comienza el combate. Turno del jugador.");
     }
 
@@ -30,8 +42,12 @@ public class TurnManager : MonoBehaviour
 
     void EndPlayerTurn()
     {
-        // Aquí podrías poner animaciones o efectos
+
+        TurnManager.carta = null;
+        TurnManager.cartaSeleccionada = false;
+        if (CardAction.carta != null) Destroy(CardAction.carta);
         currentTurn = Turn.Enemy;
+        ManejoBaraja.DevolverMano();
         Debug.Log("Turno del enemigo.");
     }
 
@@ -42,13 +58,15 @@ public class TurnManager : MonoBehaviour
 
         // Espera
         Invoke("EndEnemyTurn", 1.5f);
-        
+
         currentTurn = Turn.Player; //evita que ataque en cada frame
     }
 
     void EndEnemyTurn()
     {
         currentTurn = Turn.Player;
+        ManejoBaraja.ManoTurno();
         Debug.Log("Vuelve el turno del jugador.");
     }
+    
 }

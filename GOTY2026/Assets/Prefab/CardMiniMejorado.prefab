@@ -836,8 +836,8 @@ MonoBehaviour:
   tipo: 0
   descripcion: Disparas una bola de fuego que forma una cruz desde la casilla seleccionada
   nameText: {fileID: 5141011398720450753}
-  costText: {fileID: 7761672789537097137}
-  descriptionText: {fileID: 5276375593175388561}
+  costText: {fileID: 5276375593175388561}
+  descriptionText: {fileID: 7761672789537097137}
   patron: 
 --- !u!114 &8098496424188650309
 MonoBehaviour:
