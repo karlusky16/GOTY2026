@@ -108,6 +108,11 @@ MonoBehaviour:
   mainColor: {r: 0, g: 0, b: 0, a: 0}
   otherColor: {r: 1, g: 0, b: 0, a: 0}
   _highlight: {fileID: 6954617857524024668}
+  gridManager: {fileID: 0}
+  ocupado: 0
+  ocupadoObj: {fileID: 0}
+  x: 0
+  y: 0
 --- !u!61 &8215401838503235594
 BoxCollider2D:
   m_ObjectHideFlags: 0

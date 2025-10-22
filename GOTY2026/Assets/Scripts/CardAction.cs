@@ -27,6 +27,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     {
         if (eventData.button == PointerEventData.InputButton.Left && !TurnManager.cartaSeleccionada)
         {
+            GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");
             TurnManager.cartaSeleccionada = true;
             borde.color = Color.red;
             TurnManager.carta = gameObject;
@@ -34,6 +35,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
         if (eventData.button == PointerEventData.InputButton.Right)
         {
+            GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
             TurnManager.cartaSeleccionada = false;
             borde.color = Color.blue;
         }
