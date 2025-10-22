@@ -3,11 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\javie\\Fdv\\GOTY2026\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|C:\\Users\\javie\\Fdv\\GOTY2026\\assets\\scripts\\gridmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|c:\\users\\javie\\fdv\\goty2026\\assets\\scripts\\gridmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gridmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|c:\\users\\javie\\fdv\\goty2026\\assets\\scripts\\tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|c:\\users\\javie\\fdv\\goty2026\\assets\\scripts\\fondomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\fondomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|C:\\Users\\javie\\Fdv\\GOTY2026\\assets\\scripts\\tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -22,20 +26,33 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Tile.cs",
               "DocumentMoniker": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\Tile.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Tile.cs",
               "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\Tile.cs",
               "RelativeToolTip": "Assets\\Scripts\\Tile.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAIA7wCMAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-10T10:49:40.113Z",
               "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FondoManager.cs",
+              "DocumentMoniker": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\FondoManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\FondoManager.cs",
+              "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\FondoManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\FondoManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-22T08:46:06.848Z",
               "EditorCaption": ""
             },
             {
@@ -46,14 +63,14 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\GridManager.cs",
               "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\GridManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\GridManager.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAYwBsAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-10T10:48:08.422Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Player.cs",
               "DocumentMoniker": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\Player.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player.cs",
