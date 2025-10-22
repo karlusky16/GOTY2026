@@ -27,14 +27,16 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     {
         if (eventData.button == PointerEventData.InputButton.Left && !GameManager.cartaSeleccionada)
         {
-            GameManager.cartaSeleccionada = true;
+            GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");
+            TurnManager.cartaSeleccionada = true;
             borde.color = Color.red;
             GameManager.carta = gameObject;
         }
 
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            GameManager.cartaSeleccionada = false;
+            GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
+            TurnManager.cartaSeleccionada = false;
             borde.color = Color.blue;
         }
     }
