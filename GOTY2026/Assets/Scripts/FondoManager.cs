@@ -6,7 +6,7 @@ public class FondoManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -20,6 +20,10 @@ public class FondoManager : MonoBehaviour
         {
             gridManager.SetActive(false);
         }
-
     }
+
+    public void Aparecer() => gridManager.SetActive(true);
+
+    public void Desaparecer() => gridManager.SetActive(false);
+
 }
