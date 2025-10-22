@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     public GameObject prefabEnemigo;
     public GameObject prefabPlayer;
     public GameObject prefabCarta;
+    public static Boolean cartaSeleccionada;
+    public static GameObject carta;
+    public static GameObject player;
     void Start()
     {
         // Si la instancia no existe, crea una y marca el objeto para no ser destruido.
@@ -14,6 +17,8 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            player = GameObject.FindWithTag("Player");
+            DontDestroyOnLoad(player);
         }
         GridManager._tiles[new Vector2(1, 1)].ocupadoObj = Instantiate(prefabEnemigo, GridManager._tiles[new Vector2(1, 1)].transform.position, Quaternion.identity);
         GridManager._tiles[new Vector2(1, 1)].ocupado = true;

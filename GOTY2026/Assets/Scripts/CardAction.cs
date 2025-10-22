@@ -17,7 +17,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
+        player = GameManager.player;
         centro = GameObject.Find("Visual Centrado");
         deck = GameObject.Find("InterfazJugador/CardPanel");
         scale = gameObject.GetComponent<RectTransform>().localScale;
@@ -25,23 +25,23 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left && !TurnManager.cartaSeleccionada)
+        if (eventData.button == PointerEventData.InputButton.Left && !GameManager.cartaSeleccionada)
         {
-            TurnManager.cartaSeleccionada = true;
+            GameManager.cartaSeleccionada = true;
             borde.color = Color.red;
-            TurnManager.carta = gameObject;
+            GameManager.carta = gameObject;
         }
 
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            TurnManager.cartaSeleccionada = false;
+            GameManager.cartaSeleccionada = false;
             borde.color = Color.blue;
         }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!TurnManager.cartaSeleccionada)
+        if (!GameManager.cartaSeleccionada)
         {
             Destacar();
         }
@@ -76,24 +76,24 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 {
                     tile.ocupadoObj.GetComponent<EnemyController>().ReducirVida(5);
                 }
-                switch (TurnManager.carta.GetComponent<DisplayCard>().tipo)
+                switch (GameManager.carta.GetComponent<DisplayCard>().tipo)
                 {
                     case 0:
-                        player.GetComponent<PlayerController>().ReducirMana(TurnManager.carta.GetComponent<DisplayCard>().coste);
+                        player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().coste);
                         break;
                     case 1:
-                        player.GetComponent<PlayerController>().ReducirEnergia(TurnManager.carta.GetComponent<DisplayCard>().coste);
+                        player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().coste);
                         break;
                     case 2:
-                        player.GetComponent<PlayerController>().ReducirEnergia(TurnManager.carta.GetComponent<DisplayCard>().coste);
-                        player.GetComponent<PlayerController>().ReducirMana(TurnManager.carta.GetComponent<DisplayCard>().coste);
+                        player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().coste);
+                        player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().coste);
                         break;
                     default:
                         break;
                 }
             }
-            TurnManager.carta = null;
-            TurnManager.cartaSeleccionada = false;
+            GameManager.carta = null;
+            GameManager.cartaSeleccionada = false;
             ManejoBaraja.DevolverCarta(gameObject);
             Destroy(gameObject);
         }
@@ -113,8 +113,8 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
     
     bool SePuede() {
-        GameObject player = TurnManager.carta.GetComponent<CardAction>().player;
-        int tipo = TurnManager.carta.GetComponent<DisplayCard>().tipo;
+        GameObject player = GameManager.carta.GetComponent<CardAction>().player;
+        int tipo = GameManager.carta.GetComponent<DisplayCard>().tipo;
         if (( tipo == 0 && player.GetComponent<PlayerController>().GetManaActual() > 0)
             || (tipo == 1 && player.GetComponent<PlayerController>().GetEnergiaActual() > 0)
             || (tipo == 2 && player.GetComponent<PlayerController>().GetEnergiaActual()

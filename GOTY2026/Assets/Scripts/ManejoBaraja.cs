@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ManejoBaraja : MonoBehaviour
+public static class ManejoBaraja 
 {
     public static GameObject prefabCarta;   // tu prefab de carta
     public static GameObject _image; //referencia al CardPanel
@@ -11,10 +11,6 @@ public class ManejoBaraja : MonoBehaviour
     public static List<GameObject> mano = new();
     static Boolean mazoInicializado = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
     public static void Inicializar()
     {
         //Buscamos el atributo player controller
@@ -48,7 +44,7 @@ public class ManejoBaraja : MonoBehaviour
                 cartas = player.GetCartasLength();
             }
             int indiceAleatorio = rand.Next(cartas);
-            mano.Add(Instantiate(prefabCarta, _image.transform));
+            mano.Add(GameObject.Instantiate(prefabCarta, _image.transform));
             DisplayCard dc = mano[i].GetComponent<DisplayCard>();
             dc.ActualizarID(player.GetCartas()[indiceAleatorio]);
             player.GetCartas().RemoveAt(indiceAleatorio);
@@ -62,7 +58,7 @@ public class ManejoBaraja : MonoBehaviour
         {
             var carta = mano[0];
             DevolverCarta(carta);
-            Destroy(carta);
+            GameObject.Destroy(carta);
         }
     }
     //Para devolver la carta al usarse
