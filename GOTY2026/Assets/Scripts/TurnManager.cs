@@ -9,6 +9,8 @@ public class TurnManager : MonoBehaviour
     public Turn currentTurn = Turn.Player;
     public static TextMeshProUGUI noMas;
     public static GameObject botonNextTurn;
+
+    public bool pulsado = false;
     
 
     void Start()
@@ -25,8 +27,9 @@ public class TurnManager : MonoBehaviour
         if (currentTurn == Turn.Player)
         {
             // Pongo espacio pero realmente sería seleccionar la carta y luego al enemigo o la habilidad de la carta
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || pulsado == true)
             {
+                pulsado = false; // false para que deje de detectar como pulsado
                 //Aquí podriamos poner una llamada a un método para todo el proceso de seleccionar la carta y tal
                 Debug.Log("El jugador usa la carta");
                 EndPlayerTurn();
@@ -36,6 +39,11 @@ public class TurnManager : MonoBehaviour
         {
             EnemyTurn();
         }
+    }
+
+    public void pulsaBotonAvanzar()
+    {
+        pulsado = true;
     }
 
     void EndPlayerTurn()
