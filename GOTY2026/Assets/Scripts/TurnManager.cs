@@ -11,8 +11,7 @@ public class TurnManager : MonoBehaviour
     public static GameObject botonNextTurn;
     
 
-    void Start()
-    {
+    void Start(){
         ManejoBaraja.Inicializar();
         noMas = GameObject.Find("InterfazUsuario/NoMas").GetComponent<TextMeshProUGUI>();
         noMas.gameObject.SetActive(false);

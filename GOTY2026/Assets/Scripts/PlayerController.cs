@@ -1,11 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
+using UnityEditor.Analytics;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
     public static List<int> cartas = new();
     public static List<int> descartes = new();
+    public Tile posicion;
     public static int longMano = 5;
     public Action<int> JugadorReduceVida;
     public Action<int> JugadorAumentaVida;
@@ -31,7 +35,13 @@ public class PlayerController : MonoBehaviour
         energiaActual = energiaMaxima;
         manaActual = manaMaxima;
     }
+    public void Mover(UnityEngine.Vector2 pos)
+    {
+        posicion = GridManager._tiles[pos];
+        gameObject.transform.position = posicion.transform.position;  
+    }
     //Getters
+    public Tile GetPos() => posicion;
     public int GetCartasLength() => cartas.Count;
     public int GetLongMano() => longMano;
     public List<int> GetCartas() => cartas;

@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class DisplayCard : MonoBehaviour
 {
-    public static Card card;
-    public static int displayID;
+    public Card card;
+    public int displayID;
     public int id;
     public String _name;
     public int coste;
@@ -22,20 +22,18 @@ public class DisplayCard : MonoBehaviour
     {
         displayID = nuevoDisplayID;
         card = CardDataBase.cardList[displayID - 1];
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         this.id = card.id;
         this._name = card._name;
         this.coste = card.coste;
-        this.tipo = card.tipo;
         this.descripcion = card.descripcion;
-        this.patron = card.patron;
         nameText.text = " " + _name;
         costText.text = " " + coste;
         descriptionText.text = " " + descripcion;
-
     }
+    public Card GetCard() => card;
+    public int GetTipo() => card.tipo;
+    public String GetPatron() => card.patron;
+    public int GetRango() => card.rango;
+    public int GetArea() => card.area;
+    // Update is called once per frame
 }
