@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             player = GameObject.FindWithTag("Player");
             DontDestroyOnLoad(player);
+            player.GetComponent<PlayerController>().Mover(new Vector2 (0,2));
         }
         GridManager._tiles[new Vector2(1, 1)].ocupadoObj = Instantiate(prefabEnemigo, GridManager._tiles[new Vector2(1, 1)].transform.position, Quaternion.identity);
         GridManager._tiles[new Vector2(1, 1)].ocupado = true;

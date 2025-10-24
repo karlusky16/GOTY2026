@@ -13,11 +13,13 @@ public class Card
     public int tipo;
     public String descripcion;
     public String patron;
+    public int rango;
+    public int area;
     public Card()
     {
 
     }
-    public Card(int id, String _name,String patron, int coste, int tipo, String descripcion)
+    public Card(int id, String _name, String patron, int coste, int tipo, String descripcion, int rango, int area)
     {
         this.id = id;
         this._name = _name;
@@ -25,5 +27,7 @@ public class Card
         this.tipo = tipo;
         this.patron = patron;
         this.descripcion = descripcion;
+        this.rango = rango;
+        this.area = area;
     }
 }

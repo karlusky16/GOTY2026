@@ -46,6 +46,7 @@ public class ManejoBaraja : MonoBehaviour
             int indiceAleatorio = rand.Next(cartas);
             mano.Add(GameObject.Instantiate(prefabCarta, _image.transform));
             DisplayCard dc = mano[i].GetComponent<DisplayCard>();
+            Debug.Log(player.GetCartas()[indiceAleatorio]);
             dc.ActualizarID(player.GetCartas()[indiceAleatorio]);
             player.GetCartas().RemoveAt(indiceAleatorio);
         }

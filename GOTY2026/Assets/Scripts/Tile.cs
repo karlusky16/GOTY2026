@@ -12,6 +12,7 @@ public class Tile : MonoBehaviour
     private SpriteRenderer render;
     private String lastPatron;
     public GameObject _highlight;
+    public GameObject _highlightD;
     public GameObject gridManager;
     public Boolean ocupado = false;
     public GameObject ocupadoObj;
@@ -39,74 +40,24 @@ public class Tile : MonoBehaviour
 
     void OnMouseEnter()
     {
-        if (GameManager.cartaSeleccionada) {
-            if (GameManager.carta.GetComponent<DisplayCard>().patron == "Cruz") {
-                lastPatron = "Cruz";
-                Highlight();
-                Vector2[] direcciones ={new Vector2(-1, 0),new Vector2(1, 0),new Vector2(0, -1),new Vector2(0, 1)};
-                foreach (var dir in direcciones)
-                {
-                    if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
-                        tile.Highlight();
-                }
-            }
+        if (GameManager.cartaSeleccionada == true && GameObject.Find("GameManager").GetComponent<TileManager>().GetRango().Contains(this))
+        {
+            GameObject.Find("GameManager").gameObject.SendMessage("HighlightPatron",this);
         }
     }
 
     void OnMouseExit()
-        {
-            if (GameManager.cartaSeleccionada == true)
-            {
-                if (GameManager.carta.GetComponent<DisplayCard>().patron == "Cruz")
-                {
-                    UnHighlight();
-
-                    Vector2[] direcciones = { new Vector2(-1, 0), new Vector2(1, 0), new Vector2(0, -1), new Vector2(0, 1) };
-                    foreach (var dir in direcciones)
-                    {
-                        if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
-                            tile.UnHighlight();
-                    }
-                }
-            }
-            else
-            {
-                UnHighlight();
-                if (lastPatron == "Cruz")
-                {
-                    Vector2[] direcciones = { new Vector2(-1, 0), new Vector2(1, 0), new Vector2(0, -1), new Vector2(0, 1) };
-                    foreach (var dir in direcciones)
-                    {
-                        if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
-                            tile.UnHighlight();
-                    }
-                }
-            }
-
-        }
+    {
+        GameObject.Find("GameManager").gameObject.SendMessage("UnHighlightPatron",this);      
+    }
     //Habria que mover todo lo del Highlight y Testeo de efecto a otro script
     void OnMouseDown()
     {
-        if (GameManager.cartaSeleccionada == true)
+        if (GameManager.cartaSeleccionada == true && GameObject.Find("GameManager").GetComponent<TileManager>().GetRango().Contains(this))
         {
-            if (GameManager.carta.GetComponent<DisplayCard>().patron == "Cruz")
-            {
-                UnHighlight();
-                int i = 0;
-                Vector2[] direccionesEfecto = new Vector2[5];
-                Vector2[] direcciones = { new Vector2(-1, 0), new Vector2(1, 0), new Vector2(0, -1), new Vector2(0, 1) };
-                foreach (var dir in direcciones)
-                {
-                    if (GridManager._tiles.TryGetValue(new Vector2(x, y) + dir, out Tile tile))
-                    {
-                        tile.UnHighlight();
-                        direccionesEfecto[i] = (new Vector2(x, y) + dir);
-                        i++;
-                    }
-                }
-                direccionesEfecto[4] = (new Vector2(x, y));
-                GameManager.carta.GetComponent<CardAction>().Efecto(direccionesEfecto);
-            }
+            GameObject.Find("GameManager").gameObject.SendMessage("UnHighlightPatron", this);
+            GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", GameManager.player.GetComponent<PlayerController>().GetPos());
+            GameManager.carta.GetComponent<CardAction>().Efecto(GameObject.Find("GameManager").GetComponent<TileManager>().GetDireccionesAnt());
         }
     }
 
@@ -114,10 +65,18 @@ public class Tile : MonoBehaviour
     {
         _highlight.SetActive(true);
     }
-    
-    void UnHighlight() {
-
+    void UnHighlight()
+    {
         _highlight.SetActive(false);
+    }
+    void HighlightDaño()
+    {
+        _highlightD.SetActive(true);
+    }
+    
+    void UnHighlightDaño() {
+
+        _highlightD.SetActive(false);
     }
 
 
