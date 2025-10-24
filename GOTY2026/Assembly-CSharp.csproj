@@ -50,13 +50,16 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Tile.cs" />
     <Compile Include="Assets\Scripts\GridManager.cs" />
+    <Compile Include="Assets\Scripts\DisplayEnemy.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\BarraManaPlayer.cs" />
+    <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\TurnManager.cs" />
     <Compile Include="Assets\Scripts\DisplayCard.cs" />
     <Compile Include="Assets\Scripts\ManejoBaraja.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\BarraVidaPlayer.cs" />
+    <Compile Include="Assets\Scripts\EnemyDataBase.cs" />
     <Compile Include="Assets\Scripts\Card.cs" />
     <Compile Include="Assets\Scripts\BarraEnergiaPlayer.cs" />
     <Compile Include="Assets\Scripts\CardAction.cs" />

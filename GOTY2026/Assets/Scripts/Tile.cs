@@ -110,12 +110,13 @@ public class Tile : MonoBehaviour
         }
     }
 
-    void Highlight()
+    //Los he hecho públicos para poder utilizarlos desde el enemigo
+    public void Highlight()
     {
         _highlight.SetActive(true);
     }
     
-    void UnHighlight() {
+    public void UnHighlight() {
 
         _highlight.SetActive(false);
     }

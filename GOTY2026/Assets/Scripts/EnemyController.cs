@@ -5,10 +5,18 @@ public class EnemyController : MonoBehaviour
 {
     public int vidaEnemy = 3;
     public int dañoEnemy = 2;
+
+
+    private PlayerController player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
+    }
+
+    private void Awake()
+    {
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -29,10 +37,23 @@ public class EnemyController : MonoBehaviour
     }
     public void Ataque()
     {
+        player.ReducirVida(dañoEnemy); 
         
     }
-     public void Movimiento()
+    public void Movimiento()
     {
-        
+
     }
-}
+    
+    void mostrarHighlight()
+    {
+        if (GameManager.cartaSeleccionada) {
+            if(GameManager.enemy.GetComponent<DisplayEnemy>().patronAtaque == EnemyPattern.Cruz)
+            {
+                
+            }
+            
+            }
+        }
+    }
+

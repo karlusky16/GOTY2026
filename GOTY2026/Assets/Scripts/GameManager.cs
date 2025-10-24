@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static Boolean cartaSeleccionada;
     public static GameObject carta;
     public static GameObject player;
+    public static GameObject enemy; // De momento solo hay un enemigo
     void Start()
     {
         // Si la instancia no existe, crea una y marca el objeto para no ser destruido.
@@ -22,6 +23,9 @@ public class GameManager : MonoBehaviour
         }
         GridManager._tiles[new Vector2(1, 1)].ocupadoObj = Instantiate(prefabEnemigo, GridManager._tiles[new Vector2(1, 1)].transform.position, Quaternion.identity);
         GridManager._tiles[new Vector2(1, 1)].ocupado = true;
+
+        enemy = GameObject.FindWithTag("Enemy"); //De momento solo hay uno, cuando haya más igual hay que cambiarlo
+
     }
     public GameObject GetPrefabCarta() => prefabCarta;
     

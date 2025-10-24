@@ -1,16 +1,23 @@
 using System;
+using System.Runtime.Serialization;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour
 {
     public enum Turn { Player, Enemy }
-    public Turn currentTurn = Turn.Player;
+    public static Turn currentTurn = Turn.Player;
     public static TextMeshProUGUI noMas;
     public static GameObject botonNextTurn;
+    
 
     public bool pulsado = false;
+
+    //De momento esto es asi ya que solo hay un enemigo
+    public static GameObject enemy;
+    
     
 
     void Start()
@@ -20,16 +27,19 @@ public class TurnManager : MonoBehaviour
         noMas.gameObject.SetActive(false);
         ManejoBaraja.ManoTurno();
         Debug.Log("Comienza el combate. Turno del jugador.");
+
+        enemy = GameManager.enemy;
     }
 
     void Update()
+   
     {
         if (currentTurn == Turn.Player)
         {
             // Pongo espacio pero realmente sería seleccionar la carta y luego al enemigo o la habilidad de la carta
             if (Input.GetKeyDown(KeyCode.Space) || pulsado == true)
             {
-                pulsado = false; // false para que deje de detectar como pulsado
+                pulsado = false;
                 //Aquí podriamos poner una llamada a un método para todo el proceso de seleccionar la carta y tal
                 Debug.Log("El jugador usa la carta");
                 EndPlayerTurn();
@@ -40,6 +50,7 @@ public class TurnManager : MonoBehaviour
             EnemyTurn();
         }
     }
+    
 
     public void pulsaBotonAvanzar()
     {
@@ -60,12 +71,37 @@ public class TurnManager : MonoBehaviour
     void EnemyTurn()
     {
         // Aquí iría el ataque/movimiento del enemigo
-        Debug.Log("El enemigo ataca");
+        if (enemy == null)
+        {
+            enemy = GameManager.enemy;
+        }
+        if (enemy == null)
+        {
+            Debug.Log("El enemigo no ha podido atacar porque enemy sigue siendo null");
 
-        // Espera
-        Invoke("EndEnemyTurn", 1.5f);
+        }
+        else
+        {
+            if (enemy.GetComponent<EnemyController>() == null)
+            {
+                //Debug.Log("El enemigo ataca");
+                //enemy.GetComponent<EnemyController>().Ataque();
+                Debug.Log("enemy.GetComponent<EnemyController>() == null");
 
-        currentTurn = Turn.Player; //evita que ataque en cada frame
+                // Espera
+                Invoke("EndEnemyTurn", 1.5f);
+
+                currentTurn = Turn.Player; //evita que ataque en cada frame
+            }
+            else
+            {
+                enemy.GetComponent<EnemyController>().Ataque();
+                Debug.Log("El enemigo ataca");
+                Invoke("EndEnemyTurn", 1.5f);
+
+                currentTurn = Turn.Player; //evita que ataque en cada frame
+            }
+        }
     }
 
     void EndEnemyTurn()
