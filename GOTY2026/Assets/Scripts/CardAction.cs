@@ -31,10 +31,12 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             GameManager.cartaSeleccionada = true;
             borde.color = Color.red;
             GameManager.carta = gameObject;
+            GameObject.Find("GameManager").gameObject.SendMessage("MarcarRango",player.GetComponent<PlayerController>().GetPos());
         }
 
-        if (eventData.button == PointerEventData.InputButton.Right)
+        if (eventData.button == PointerEventData.InputButton.Right && GameManager.cartaSeleccionada)
         {
+            GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango",player.GetComponent<PlayerController>().GetPos());
             GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
             GameManager.cartaSeleccionada = false;
             borde.color = Color.blue;
