@@ -70,7 +70,7 @@ public class TileManager : MonoBehaviour
     public void MarcarRango(Tile tile)
     {
         int rango = GameManager.carta.GetComponent<DisplayCard>().GetRango();
-        List<Tile> tilesEnRango = ObtenerTilesEnRango(tile, rango);
+        tilesEnRango = ObtenerTilesEnRango(tile, rango);
         foreach (Tile t in tilesEnRango)
         {
             t.gameObject.SendMessage("Highlight");
