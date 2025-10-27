@@ -369,7 +369,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 165324289}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 797380315}
+        m_TargetAssemblyTypeName: TurnManager, Assembly-CSharp
+        m_MethodName: pulsaBotonAvanzar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &165324289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1196,7 +1208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5a2f3b526caf467e80a53cb17a1b4e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurnManager
-  currentTurn: 0
+  pulsado: 0
 --- !u!4 &797380316
 Transform:
   m_ObjectHideFlags: 0
@@ -1284,6 +1296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cbdf146aa79cf44b84f9c64cc05cfdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TileManager
+  tilesEnRango: []
 --- !u!1001 &1245317338
 PrefabInstance:
   m_ObjectHideFlags: 0
