@@ -103,9 +103,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 761ea27fdc707074ab3795b54592f412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  vidaMaxima: 10
+  posicion: {fileID: 0}
+  vidaMaxima: 20
   vidaActual: 0
-  energiaMaxima: 10
+  energiaMaxima: 4
   energiaActual: 0
-  manaMaxima: 10
+  manaMaxima: 4
   manaActual: 0

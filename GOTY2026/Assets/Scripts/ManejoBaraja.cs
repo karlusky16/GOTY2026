@@ -66,7 +66,7 @@ public class ManejoBaraja : MonoBehaviour
     public static void DevolverCarta(GameObject carta)
     {
         mano.Remove(carta);
-        player.AddCartaDescartes(carta.GetComponent<DisplayCard>().id);
+        player.AddCartaDescartes(carta.GetComponent<DisplayCard>().GetCard().id);
     }
     // Update is called once per frame
     public static void Update()
