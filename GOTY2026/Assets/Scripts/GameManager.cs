@@ -22,9 +22,9 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(player);
             player.GetComponent<PlayerController>().Mover(new Vector2 (0,2));
         }
-        GridManager._tiles[new Vector2(1, 1)].ocupadoObj = Instantiate(prefabEnemigo, GridManager._tiles[new Vector2(1, 1)].transform.position, Quaternion.identity);
-        GridManager._tiles[new Vector2(1, 1)].ocupado = true;
-
+        GridManager._tiles[new Vector2(4, 2)].ocupadoObj = Instantiate(prefabEnemigo, GridManager._tiles[new Vector2(4, 2)].transform.position, Quaternion.identity);
+        GridManager._tiles[new Vector2(4, 2)].ocupado = true;
+        TurnManager.playerController = player.GetComponent<PlayerController>();
         enemy = GameObject.FindWithTag("Enemy"); //De momento solo hay uno, cuando haya más igual hay que cambiarlo
 
     }

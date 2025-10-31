@@ -78,23 +78,23 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
                 if (GridManager._tiles.TryGetValue(dir, out Tile tile) && tile.ocupado && tile.ocupadoObj.CompareTag("Enemy"))
                 {
-                    tile.ocupadoObj.GetComponent<EnemyController>().ReducirVida(5);
+                    tile.ocupadoObj.GetComponent<EnemyController>().ReducirVida(gameObject.GetComponent<DisplayCard>().GetDaño());
                 }
-                switch (GameManager.carta.GetComponent<DisplayCard>().tipo)
-                {
-                    case 0:
-                        player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().coste);
-                        break;
-                    case 1:
-                        player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().coste);
-                        break;
-                    case 2:
-                        player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().coste);
-                        player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().coste);
-                        break;
-                    default:
-                        break;
-                }
+            }
+            switch (GameManager.carta.GetComponent<DisplayCard>().GetTipoCoste())
+            {
+                case 0:
+                    player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    break;
+                case 1:
+                    player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    break;
+                case 2:
+                    player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    break;
+                default:
+                    break;
             }
             GameManager.carta = null;
             GameManager.cartaSeleccionada = false;
@@ -118,7 +118,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     
     bool SePuede() {
         GameObject player = GameManager.carta.GetComponent<CardAction>().player;
-        int tipo = GameManager.carta.GetComponent<DisplayCard>().tipo;
+        int tipo = GameManager.carta.GetComponent<DisplayCard>().GetTipoCoste();
         if (( tipo == 0 && player.GetComponent<PlayerController>().GetManaActual() > 0)
             || (tipo == 1 && player.GetComponent<PlayerController>().GetEnergiaActual() > 0)
             || (tipo == 2 && player.GetComponent<PlayerController>().GetEnergiaActual()

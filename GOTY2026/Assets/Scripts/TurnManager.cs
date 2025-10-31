@@ -17,7 +17,7 @@ public class TurnManager : MonoBehaviour
 
     //De momento esto es asi ya que solo hay un enemigo
     public static GameObject enemy;
-    [SerializeField] private PlayerController playerController;
+    public static PlayerController playerController;
     
     
 
