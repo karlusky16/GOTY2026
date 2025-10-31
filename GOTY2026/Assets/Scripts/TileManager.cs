@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
+using System.Xml.Schema;
 using UnityEngine;
 
 public class TileManager : MonoBehaviour
@@ -49,6 +51,37 @@ public class TileManager : MonoBehaviour
                     c++;
                 }
                 break;
+                case "TresDirNP":
+                tile.gameObject.SendMessage("HighlightDaño");
+                var direccionesA = TresDir(GameManager.carta.GetComponent<DisplayCard>().GetArea(),tile);
+                int total = 0;
+                for (int i = 0; i < 3; i++)
+                {
+                    total += direccionesA[i].Length;
+                }
+                direccionesAnt = new Vector2[total];
+                c = 0;
+                seguir = true;
+                for (int i = 0; i< 3; i++) {
+                    seguir = true;
+                    foreach (var dir in direccionesA[i])
+                    {
+                        if (seguir)
+                        {
+                            direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
+                            if (GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
+                            {
+                                if (tile2.ocupado == true)
+                                {
+                                    seguir = false;
+                                }
+                                tile2.gameObject.SendMessage("HighlightDaño");
+                            }
+                        }
+                        c++;
+                    }
+                }
+                break;
             default:
                 break;
         }
@@ -94,6 +127,37 @@ public class TileManager : MonoBehaviour
                     c++;
                 }
                 break;
+                case "TresDirNP":
+                tile.gameObject.SendMessage("UnHighlightDaño");
+                var direccionesA = TresDir(GameManager.carta.GetComponent<DisplayCard>().GetArea(),tile);
+                int total = 0;
+                for (int i = 0; i < 3; i++)
+                {
+                    total += direccionesA[i].Length;
+                }
+                direccionesAnt = new Vector2[total];
+                c = 0;
+                seguir = true;
+                for (int i = 0; i< 3; i++) {
+                    seguir = true;
+                    foreach (var dir in direccionesA[i])
+                    {
+                        if (seguir)
+                        {
+                            direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
+                            if (GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
+                            {
+                                if (tile2.ocupado == true)
+                                {
+                                    seguir = false;
+                                }
+                                tile2.gameObject.SendMessage("UnHighlightDaño");
+                            }
+                        }
+                        c++;
+                    }
+                }
+                break;
             default:
                 break;
         }
@@ -115,11 +179,36 @@ public class TileManager : MonoBehaviour
     {
         Vector2[] direcciones = new Vector2[area];
         Tile t = GameManager.player.GetComponent<PlayerController>().GetPos();
-        Vector2 direccion = new Vector2(tile.x -t.x,tile.y -t.y);
-        Vector2 origen = new Vector2(0, 0);
+        Vector2 direccion = new(tile.x -t.x,tile.y -t.y);
+        Vector2 origen = new(0, 0);
         for (int i = 0; i < area; i++)
         {
             direcciones[i] = origen + (direccion * (i + 1));
+        }
+        return direcciones;
+    }
+    private static Vector2[][] TresDir(int area,Tile tile)
+    {
+        Vector2[][] direcciones = new Vector2[3][];
+        direcciones[0] = new Vector2[area]; // hacia adelante
+        direcciones[1] = new Vector2[area]; // lateral 1
+        direcciones[2] = new Vector2[area]; // lateral 2
+        Vector2 origen = new(0, 0);
+        Tile t = GameManager.player.GetComponent<PlayerController>().GetPos();
+        Vector2 direccion = new(tile.x -t.x,tile.y -t.y);
+        for (int i = 0; i < area; i++)
+        {
+            direcciones[0][i] = origen + (direccion * (i + 1));
+            if (direccion.x != 0)
+            {
+                direcciones[1][i] = origen + (direccion * (i + 1) + new Vector2(0, -i - 1));
+                direcciones[2][i] = origen + (direccion * (i + 1) + new Vector2(0, i + 1 ));
+            }
+            else
+            {
+                direcciones[1][i] = origen + (direccion * (i + 1) + new Vector2(-i - 1, 0 ));
+                direcciones[2][i] = origen + (direccion * (i + 1) + new Vector2(i + 1, 0));
+            }
         }
         return direcciones;
     }
@@ -148,7 +237,6 @@ public class TileManager : MonoBehaviour
     List<Tile> ObtenerTilesEnRango(Tile centro, int rango)
     {
         List<Tile> resultado = new List<Tile>();
-        resultado.Add(centro);
         Vector2 pos = new Vector2(centro.x, centro.y);
         for (int x = -rango; x <= rango; x++)
         {

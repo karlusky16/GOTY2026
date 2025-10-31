@@ -35,6 +35,7 @@ public class Card
         this.tipo = tipo; // 0 ataque, 1 movimiento, 2 ataque movimiento, 3 boosteo
         this.daño = daño;
     }
+    //Constructor movimiento
     public Card(int id, String _name, String patron, int coste, int tipoCoste, String descripcion, int rango, int area, int tipo)
     {
         this.id = id;
