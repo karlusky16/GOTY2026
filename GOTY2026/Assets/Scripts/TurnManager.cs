@@ -17,6 +17,7 @@ public class TurnManager : MonoBehaviour
 
     //De momento esto es asi ya que solo hay un enemigo
     public static GameObject enemy;
+    [SerializeField] private PlayerController playerController;
     
     
 
@@ -59,7 +60,6 @@ public class TurnManager : MonoBehaviour
 
     void EndPlayerTurn()
     {
-
         GameManager.carta = null;
         GameManager.cartaSeleccionada = false;
         if (CardAction.carta != null) Destroy(CardAction.carta);
@@ -100,6 +100,8 @@ public class TurnManager : MonoBehaviour
                 Invoke("EndEnemyTurn", 1.5f);
 
                 currentTurn = Turn.Player; //evita que ataque en cada frame
+                playerController.AumentarEnergia(playerController.GetEnergiaMaxima());
+                playerController.AumentarMana(playerController.GetManaMaxima());
             }
         }
     }
