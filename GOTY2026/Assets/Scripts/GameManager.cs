@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
     public static Boolean cartaSeleccionada;
     public static GameObject carta;
     public static GameObject player;
-    public static List<GameObject> enemigos = new List<GameObject>();
+    public static Dictionary<GameObject, Vector2> enemigos = new Dictionary<GameObject, Vector2>();
+    public static List<GameObject> enemigosLis = new List<GameObject>();
     public static GameObject enemy; // De momento solo hay un enemigo
     void Start()
     {
@@ -29,13 +30,22 @@ public class GameManager : MonoBehaviour
             player.GetComponent<PlayerController>().Mover(new Vector2 (0,2));
         }
         //añade enemigo al array de enemigos.
-        enemigos.Add(Instantiate(prefabEnemigo, GridManager._tiles[new Vector2(4, 2)].transform.position, Quaternion.identity));
-        GridManager._tiles[new Vector2(4, 2)].ocupadoObj = enemigos[0];
-        GridManager._tiles[new Vector2(4, 2)].ocupado = true;
+        InstanciateEnemy(new Vector2(2, 0));
+        InstanciateEnemy(new Vector2(2, 1));
+        InstanciateEnemy(new Vector2(2, 2));
+        InstanciateEnemy(new Vector2(3, 2));
         TurnManager.playerController = player.GetComponent<PlayerController>();
-       
+        
 
     }
     public GameObject GetPrefabCarta() => prefabCarta;
     
+    public void InstanciateEnemy(Vector2 pos)
+    {
+        enemigosLis.Add(Instantiate(prefabEnemigo, GridManager._tiles[pos].transform.position, Quaternion.identity));
+        enemigos.Add(Instantiate(prefabEnemigo, GridManager._tiles[pos].transform.position, Quaternion.identity), pos);
+        GridManager._tiles[pos].ocupadoObj = enemigosLis[enemigosLis.Count-1];
+        GridManager._tiles[pos].ocupado = true;
+    }
+
 }
