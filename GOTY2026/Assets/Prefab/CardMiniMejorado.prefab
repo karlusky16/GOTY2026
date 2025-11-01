@@ -822,23 +822,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5baa0ccd945a72a4a84acb52439fa0e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DisplayCard
-  card:
-    id: 1
-    _name: FireBall
-    coste: 1
-    tipo: 0
-    descripcion: Disparas una bola de fuego que forma una cruz desde la casilla seleccionada
-    patron: 
+  card: {fileID: 0}
   displayID: 1
-  id: 1
-  _name: FireBall
-  coste: 1
-  tipo: 0
-  descripcion: Disparas una bola de fuego que forma una cruz desde la casilla seleccionada
   nameText: {fileID: 5141011398720450753}
   costText: {fileID: 5276375593175388561}
   descriptionText: {fileID: 7761672789537097137}
   patron: 
+  cardImage: {fileID: 5521588848849833509}
 --- !u!114 &8098496424188650309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -852,7 +842,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardAction
   borde: {fileID: 661303946786031320}
-  carta: {fileID: 0}
   centro: {fileID: 0}
   deck: {fileID: 0}
   player: {fileID: 0}

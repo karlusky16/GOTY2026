@@ -18,7 +18,7 @@ public class ManejoBaraja : MonoBehaviour
         _image = GameObject.Find("InterfazUsuario/CardPanel");
         prefabCarta = GameObject.Find("GameManager").GetComponent<GameManager>().GetPrefabCarta();
                 //copiamos la longitud de la dataBase
-        int cartas = CardDataBase.cardList.Count;
+        int cartas = GameManager.cardList.Count;
         System.Random rand = new();
         if (mazoInicializado) return;
         mazoInicializado = true;
@@ -26,7 +26,6 @@ public class ManejoBaraja : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             int carta = rand.Next(cartas);
-            Debug.Log(carta);
             player.AddCarta(carta + 1);
         }
     }
@@ -46,7 +45,6 @@ public class ManejoBaraja : MonoBehaviour
             int indiceAleatorio = rand.Next(cartas);
             mano.Add(GameObject.Instantiate(prefabCarta, _image.transform));
             DisplayCard dc = mano[i].GetComponent<DisplayCard>();
-            Debug.Log(player.GetCartas()[indiceAleatorio]);
             dc.ActualizarID(player.GetCartas()[indiceAleatorio]);
             player.GetCartas().RemoveAt(indiceAleatorio);
         }
@@ -58,15 +56,16 @@ public class ManejoBaraja : MonoBehaviour
         while (mano.Count > 0)
         {
             var carta = mano[0];
-            DevolverCarta(carta);
+            int idCarta = carta.GetComponent<DisplayCard>().GetCard().id;
+            DevolverCarta(carta,idCarta);
             GameObject.Destroy(carta);
         }
     }
     //Para devolver la carta al usarse
-    public static void DevolverCarta(GameObject carta)
+    public static void DevolverCarta(GameObject carta, int id)
     {
+        player.AddCartaDescartes(id);
         mano.Remove(carta);
-        player.AddCartaDescartes(carta.GetComponent<DisplayCard>().GetCard().id);
     }
     // Update is called once per frame
     public static void Update()

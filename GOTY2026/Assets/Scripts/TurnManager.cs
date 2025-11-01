@@ -42,7 +42,6 @@ public class TurnManager : MonoBehaviour
             {
                 pulsado = false;
                 //Aquí podriamos poner una llamada a un método para todo el proceso de seleccionar la carta y tal
-                Debug.Log("El jugador usa la carta");
                 EndPlayerTurn();
             }
         }

@@ -1,0 +1,546 @@
+fileFormatVersion: 2
+guid: caab3e027f4e291468181479f7ed0b02
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8225630224201491135
+    second: pngtree-fireball-drop-effect-png-image_13029567_0
+  - first:
+      213: 3289050274112686242
+    second: pngtree-fireball-drop-effect-png-image_13029567_1
+  - first:
+      213: -4942113956000048872
+    second: pngtree-fireball-drop-effect-png-image_13029567_2
+  - first:
+      213: -1549249339823499373
+    second: pngtree-fireball-drop-effect-png-image_13029567_3
+  - first:
+      213: -6089479184121120768
+    second: pngtree-fireball-drop-effect-png-image_13029567_4
+  - first:
+      213: -8181156095661890745
+    second: pngtree-fireball-drop-effect-png-image_13029567_5
+  - first:
+      213: 1244536495960939398
+    second: pngtree-fireball-drop-effect-png-image_13029567_6
+  - first:
+      213: -7830851354116498274
+    second: pngtree-fireball-drop-effect-png-image_13029567_7
+  - first:
+      213: -2735617882530656253
+    second: pngtree-fireball-drop-effect-png-image_13029567_8
+  - first:
+      213: 6835037343320672132
+    second: pngtree-fireball-drop-effect-png-image_13029567_9
+  - first:
+      213: 1009308308491457045
+    second: pngtree-fireball-drop-effect-png-image_13029567_10
+  - first:
+      213: 8003130467372674233
+    second: pngtree-fireball-drop-effect-png-image_13029567_11
+  - first:
+      213: -5224017887935187326
+    second: pngtree-fireball-drop-effect-png-image_13029567_12
+  - first:
+      213: -887639190301076191
+    second: pngtree-fireball-drop-effect-png-image_13029567_13
+  - first:
+      213: -5791605542145961097
+    second: pngtree-fireball-drop-effect-png-image_13029567_14
+  - first:
+      213: -9102800776374257663
+    second: pngtree-fireball-drop-effect-png-image_13029567_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: pngtree-fireball-drop-effect-png-image_13029567_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 948
+        width: 245
+        height: 244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14dd0c074e0b8dd80800000000000000
+      internalID: -8225630224201491135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-fireball-drop-effect-png-image_13029567_1
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 153
+        width: 1044
+        height: 1039
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a843e45ccd05ad20800000000000000
+      internalID: 3289050274112686242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-fireball-drop-effect-png-image_13029567_2
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 699
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 819dd1d9a851a6bb0800000000000000
+      internalID: -4942113956000048872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-fireball-drop-effect-png-image_13029567_3
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 728
+        width: 52
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 397df470fe5ff7ae0800000000000000
+      internalID: -1549249339823499373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-fireball-drop-effect-png-image_13029567_4
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 668
+        width: 42
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 008335b02f2dd7ba0800000000000000
+      internalID: -6089479184121120768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-fireball-drop-effect-png-image_13029567_5
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 347
+        width: 244
+        height: 243
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7432d0a60e1b67e80800000000000000
+      internalID: -8181156095661890745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-fireball-drop-effect-png-image_13029567_6
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 127
+        width: 52
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68bd2c7695b754110800000000000000
+      internalID: 1244536495960939398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-fireball-drop-effect-png-image_13029567_7
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 18
+        width: 245
+        height: 244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9cdffcde2a335390800000000000000
+      internalID: -7830851354116498274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-fireball-drop-effect-png-image_13029567_8
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 148
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 300dd8e9702290ad0800000000000000
+      internalID: -2735617882530656253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-fireball-drop-effect-png-image_13029567_9
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 127
+        width: 52
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 487882b004eeade50800000000000000
+      internalID: 6835037343320672132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-fireball-drop-effect-png-image_13029567_10
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 18
+        width: 245
+        height: 287
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 512db7c1f88c10e00800000000000000
+      internalID: 1009308308491457045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-fireball-drop-effect-png-image_13029567_11
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 67
+        width: 42
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bcaad6f1c4d01f60800000000000000
+      internalID: 8003130467372674233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-fireball-drop-effect-png-image_13029567_12
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 98
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2863651b86f8087b0800000000000000
+      internalID: -5224017887935187326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-fireball-drop-effect-png-image_13029567_13
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 111
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 125936dfbd87ea3f0800000000000000
+      internalID: -887639190301076191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-fireball-drop-effect-png-image_13029567_14
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 67
+        width: 42
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 773d435d17510afa0800000000000000
+      internalID: -5791605542145961097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pngtree-fireball-drop-effect-png-image_13029567_15
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 98
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 108ff0f2cea5ca180800000000000000
+      internalID: -9102800776374257663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      pngtree-fireball-drop-effect-png-image_13029567_0: -8225630224201491135
+      pngtree-fireball-drop-effect-png-image_13029567_1: 3289050274112686242
+      pngtree-fireball-drop-effect-png-image_13029567_10: 1009308308491457045
+      pngtree-fireball-drop-effect-png-image_13029567_11: 8003130467372674233
+      pngtree-fireball-drop-effect-png-image_13029567_12: -5224017887935187326
+      pngtree-fireball-drop-effect-png-image_13029567_13: -887639190301076191
+      pngtree-fireball-drop-effect-png-image_13029567_14: -5791605542145961097
+      pngtree-fireball-drop-effect-png-image_13029567_15: -9102800776374257663
+      pngtree-fireball-drop-effect-png-image_13029567_2: -4942113956000048872
+      pngtree-fireball-drop-effect-png-image_13029567_3: -1549249339823499373
+      pngtree-fireball-drop-effect-png-image_13029567_4: -6089479184121120768
+      pngtree-fireball-drop-effect-png-image_13029567_5: -8181156095661890745
+      pngtree-fireball-drop-effect-png-image_13029567_6: 1244536495960939398
+      pngtree-fireball-drop-effect-png-image_13029567_7: -7830851354116498274
+      pngtree-fireball-drop-effect-png-image_13029567_8: -2735617882530656253
+      pngtree-fireball-drop-effect-png-image_13029567_9: 6835037343320672132
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
