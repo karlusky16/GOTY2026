@@ -18,9 +18,10 @@ public class GameManager : MonoBehaviour
     public static Dictionary<GameObject, Vector2> enemigos = new Dictionary<GameObject, Vector2>();
     public static List<GameObject> enemigosLis = new List<GameObject>();
     public static GameObject enemy; // De momento solo hay un enemigo
-    public static List<Card> cardList = new();
+    public static List<Card> cardList;
     void Start()
     {
+        cardList = new List<Card>(Resources.LoadAll<Card>("Cartas"));
         // Si la instancia no existe, crea una y marca el objeto para no ser destruido.
         if (instance == null)
         {
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             player = GameObject.FindWithTag("Player");
             DontDestroyOnLoad(player);
-            player.GetComponent<PlayerController>().Mover(new Vector2 (0,2));
+            player.GetComponent<PlayerController>().Mover(new Vector2(0, 2));
         }
         //añade enemigo al array de enemigos.
         InstanciateEnemy(new Vector2(2, 0));
