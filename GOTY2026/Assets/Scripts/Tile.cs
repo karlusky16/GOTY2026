@@ -48,7 +48,10 @@ public class Tile : MonoBehaviour
 
     void OnMouseExit()
     {
-        GameObject.Find("GameManager").gameObject.SendMessage("UnHighlightPatron",this);      
+        if (GameManager.cartaSeleccionada == true && GameObject.Find("GameManager").GetComponent<TileManager>().GetRango().Contains(this))
+        {
+            GameObject.Find("GameManager").gameObject.SendMessage("UnHighlightPatron",this);     
+        }
     }
     //Habria que mover todo lo del Highlight y Testeo de efecto a otro script
     void OnMouseDown()

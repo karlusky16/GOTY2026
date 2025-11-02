@@ -100,15 +100,19 @@ public class PlayerController : MonoBehaviour
     }
     public void AddCarta(int id)
     {
+        Debug.Log("AddCarta " + id);
         cartas.Add(id);
     }
     public void AddCartaDescartes(int id)
     {
+        Debug.Log("AddCartaDescartes: " + id);
         descartes.Add(id);
     }
     public void DescartesABaraja()
     {
         Debug.Log("DescartesABaraja");
-        cartas = descartes;
+        cartas = new List<int>(descartes); 
+        Debug.Log("Cartas en baraja: " + cartas.ToString());
+        descartes.Clear();  
     }
 }

@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public static Dictionary<GameObject, Vector2> enemigos = new Dictionary<GameObject, Vector2>();
     public static List<GameObject> enemigosLis = new List<GameObject>();
     public static GameObject enemy; // De momento solo hay un enemigo
+    public static List<Card> cardList = new();
     void Start()
     {
         // Si la instancia no existe, crea una y marca el objeto para no ser destruido.

@@ -77,7 +77,6 @@
     <Compile Include="Assets\Scripts\Card.cs" />
     <Compile Include="Assets\Scripts\BarraEnergiaPlayer.cs" />
     <Compile Include="Assets\Scripts\CardAction.cs" />
-    <Compile Include="Assets\Scripts\CardDataBase.cs" />
     <Compile Include="Assets\Scripts\FondoManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\TileManager.cs" />

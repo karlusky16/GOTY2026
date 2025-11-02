@@ -96,9 +96,9 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 default:
                     break;
             }
+            ManejoBaraja.DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id);
             GameManager.carta = null;
             GameManager.cartaSeleccionada = false;
-            ManejoBaraja.DevolverCarta(gameObject);
             Destroy(gameObject);
         }
         else
