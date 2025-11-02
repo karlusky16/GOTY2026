@@ -28,6 +28,15 @@ public class EnemyController : MonoBehaviour
         if (vidaActualEnemy == 0)
         {
             Destroy(gameObject);
+            GridManager._tiles[GameManager.enemigos[gameObject]].ocupadoObj = null;
+            GridManager._tiles[GameManager.enemigos[gameObject]].ocupado = false;
+            GameManager.enemigos.Remove(gameObject);
+            GameManager.enemigosLis.Remove(gameObject);
+            if (GameManager.enemigos.Count == 0)
+            {
+                GameManager.instance.victoryScreen.SetActive(true);
+                Time.timeScale = 0f;
+            }
             GridManager._tiles[new Vector2(1, 1)].ocupadoObj = null;
             GridManager._tiles[new Vector2(1, 1)].ocupado = false;
         }

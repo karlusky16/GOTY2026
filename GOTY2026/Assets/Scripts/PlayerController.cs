@@ -55,7 +55,12 @@ public class PlayerController : MonoBehaviour
     //Modificar vida del jugador
     public void ReducirVida(int vida)
     {
-        if ((vidaActual -= vida) < 0) vidaActual = 0;
+        if ((vidaActual -= vida) <= 0)
+        {
+            vidaActual = 0;
+            Debug.Log("Jugador muerto");
+            GameManager.instance.deathScreen.SetActive(true);
+        }
         JugadorReduceVida?.Invoke(vidaActual);
         Debug.Log("Reduce vida jugador");
     }
