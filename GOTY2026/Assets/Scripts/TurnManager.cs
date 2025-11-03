@@ -16,7 +16,7 @@ public class TurnManager : MonoBehaviour
     public bool pulsado = false;
 
     //De momento esto es asi ya que solo hay un enemigo
-    public static GameObject enemy;
+
     public static PlayerController playerController;
     
     
@@ -29,7 +29,7 @@ public class TurnManager : MonoBehaviour
         ManejoBaraja.ManoTurno();
         Debug.Log("Comienza el combate. Turno del jugador.");
 
-        enemy = GameManager.enemy;
+
     }
 
     void Update()
@@ -70,17 +70,10 @@ public class TurnManager : MonoBehaviour
     void EnemyTurn()
     {
         // Aquí iría el ataque/movimiento del enemigo
-        if (enemy == null)
-        {
-            enemy = GameManager.enemy;
-        }
-        if (enemy == null)
-        {
-            Debug.Log("El enemigo no ha podido atacar porque enemy sigue siendo null");
 
-        }
-        else
+        foreach (var enemy in GameManager.enemigosLis)
         {
+            Debug.Log("Ataca el enemigo en: "+ GameManager.enemigos[enemy]);
             if (enemy.GetComponent<EnemyController>() == null)
             {
                 //Debug.Log("El enemigo ataca");
@@ -96,13 +89,14 @@ public class TurnManager : MonoBehaviour
             {
                 enemy.GetComponent<EnemyController>().Ataque();
                 Debug.Log("El enemigo ataca");
-                Invoke("EndEnemyTurn", 1.5f);
-
-                currentTurn = Turn.Player; //evita que ataque en cada frame
-                playerController.AumentarEnergia(playerController.GetEnergiaMaxima());
-                playerController.AumentarMana(playerController.GetManaMaxima());
+                
             }
         }
+        Invoke("EndEnemyTurn", 1.5f);
+
+        currentTurn = Turn.Player; //evita que ataque en cada frame
+        playerController.AumentarEnergia(playerController.GetEnergiaMaxima());
+        playerController.AumentarMana(playerController.GetManaMaxima());
     }
 
     void EndEnemyTurn()
