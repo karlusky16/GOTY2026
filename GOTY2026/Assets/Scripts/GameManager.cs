@@ -34,23 +34,31 @@ public class GameManager : MonoBehaviour
             player.GetComponent<PlayerController>().Mover(new Vector2(0, 2));
         }
         //añade enemigo al array de enemigos.
-        InstanciateEnemy(new Vector2(2, 0),1);
-        InstanciateEnemy(new Vector2(2, 1),1);
-        InstanciateEnemy(new Vector2(2, 2),1);
-        InstanciateEnemy(new Vector2(3, 2),1);
+        InstanciateEnemy(new Vector2(2, 0), 1);
+        InstanciateEnemy(new Vector2(2, 1), 1);
+        InstanciateEnemy(new Vector2(2, 2), 1);
+        InstanciateEnemy(new Vector2(3, 2), 1);
         TurnManager.playerController = player.GetComponent<PlayerController>();
-        
+
 
     }
     public GameObject GetPrefabCarta() => prefabCarta;
-    
-    public void InstanciateEnemy(Vector2 pos,int id)
+
+    public void InstanciateEnemy(Vector2 pos, int id)
     {
         enemigosLis.Add(Instantiate(prefabEnemigo, GridManager._tiles[pos].transform.position, Quaternion.identity));
         enemigos.Add(enemigosLis[enemigosLis.Count - 1], pos);
         enemigosLis[enemigosLis.Count - 1].GetComponent<DisplayEnemy>().ActualizarID(id);
-        GridManager._tiles[pos].ocupadoObj = enemigosLis[enemigosLis.Count-1];
+        GridManager._tiles[pos].ocupadoObj = enemigosLis[enemigosLis.Count - 1];
         GridManager._tiles[pos].ocupado = true;
+    }
+    
+    public void TilesEnemigos()
+    {
+        foreach (var enemigo in enemigos)
+        {
+            enemigo.Key.GetComponent<TileManagerEnemigo>().CalculoTiles(enemigo.Key);
+        }
     }
 
 }

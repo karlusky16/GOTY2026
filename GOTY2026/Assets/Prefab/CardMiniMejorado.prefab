@@ -967,6 +967,8 @@ MonoBehaviour:
   descriptionText: {fileID: 7761672789537097137}
   patron: 
   cardImage: {fileID: 5521588848849833509}
+  borde: {fileID: 661303946786031320}
+  _color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &8098496424188650309
 MonoBehaviour:
   m_ObjectHideFlags: 0

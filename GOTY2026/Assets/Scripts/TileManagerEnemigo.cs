@@ -5,31 +5,27 @@ using UnityEngine;
 
 public class TileManagerEnemigo : MonoBehaviour
 {
-    private Vector2[] direccionesAnt;
+    public Vector2[] direccionesAnt;
     private String lastPatron;
     public Vector2[] GetRango() => direccionesAnt;
     public Boolean visto = false;
-    public void HighlightEnemyTiles(GameObject enemy)
+    public void CalculoTiles(GameObject enemy)
     {
-        Debug.Log("Entrando en HighlightEnemyTiles");
         lastPatron = enemy.GetComponent<DisplayEnemy>().GetPatron();
         switch (lastPatron)
         {
             case "Aleatorios":
-                if (!visto)
-                {
-                    Debug.Log("Entrando en HighlightEnemyTilesCambiandoLista");
-                    direccionesAnt = AleatoriosPatron(enemy.GetComponent<DisplayEnemy>().GetArea());
-                    visto = true;
-                }
-                foreach (Vector2 dir in direccionesAnt)
-                {
-                    if (GridManager._tiles.TryGetValue(dir, out Tile tile2))
-                        tile2.gameObject.SendMessage("HighlightEnemy");
-                }
+                direccionesAnt = AleatoriosPatron(enemy.GetComponent<DisplayEnemy>().GetArea());
                 break;
             default:
                 break;
+        }
+    }
+    public void HighlightEnemyTiles(GameObject enemy)
+    {
+        foreach (Vector2 dir in direccionesAnt){
+            if (GridManager._tiles.TryGetValue(dir, out Tile tile2))
+                tile2.gameObject.SendMessage("HighlightEnemy");
         }
     }
     public void UnHighlightEnemyTiles()

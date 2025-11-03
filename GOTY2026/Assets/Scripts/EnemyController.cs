@@ -8,8 +8,6 @@ public class EnemyController : MonoBehaviour
     public Action<int> EnemyReduceVida;
     [SerializeField] private int vidaMaximaEnemy;
     [SerializeField] private int vidaActualEnemy;
-    Vector2[] posicionesAtaqueEnemy;
-    public Vector2[] GetPosicionesAtaqueEnemy() => posicionesAtaqueEnemy;
     private PlayerController player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -69,19 +67,19 @@ public class EnemyController : MonoBehaviour
     void OnMouseEnter()
     {
         if (GameManager.cartaSeleccionada == false)
-            {
-                Debug.Log("Mouse encima enemy");
-                GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");
-                gameObject.SendMessage("HighlightEnemyTiles", gameObject);
-                posicionesAtaqueEnemy = gameObject.GetComponent<TileManagerEnemigo>().GetRango();
-            }
+        {
+            Debug.Log("Mouse encima enemy");
+            GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");
+            gameObject.SendMessage("HighlightEnemyTiles", gameObject);
+        }
     }
+    
     void OnMouseExit()
     {
         if (GameManager.cartaSeleccionada == false)
         {
-            GameObject.Find("GameManager").SendMessage("UnHighlightEnemyTiles");
-            posicionesAtaqueEnemy = gameObject.GetComponent<TileManagerEnemigo>().GetRango();
+            Debug.Log("Mouse Sale enemy");
+            gameObject.SendMessage("UnHighlightEnemyTiles");
             GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
         }
     }

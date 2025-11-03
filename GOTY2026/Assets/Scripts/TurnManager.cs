@@ -27,9 +27,9 @@ public class TurnManager : MonoBehaviour
         noMas = GameObject.Find("InterfazUsuario/NoMas").GetComponent<TextMeshProUGUI>();
         noMas.gameObject.SetActive(false);
         ManejoBaraja.ManoTurno();
+        GameObject.Find("GameManager").GetComponent<GameManager>().TilesEnemigos();
+        GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
         Debug.Log("Comienza el combate. Turno del jugador.");
-
-
     }
 
     void Update()
@@ -87,7 +87,7 @@ public class TurnManager : MonoBehaviour
             }
             else
             {
-                enemy.GetComponent<EnemyController>().Ataque(enemy.GetComponent<EnemyController>().GetPosicionesAtaqueEnemy() , enemy.GetComponent<DisplayEnemy>().GetDaño());
+                enemy.GetComponent<EnemyController>().Ataque(enemy.GetComponent<TileManagerEnemigo>().GetRango(), enemy.GetComponent<DisplayEnemy>().GetDaño());
                 Debug.Log("El enemigo ataca");
                 
             }
@@ -103,6 +103,9 @@ public class TurnManager : MonoBehaviour
     {
         currentTurn = Turn.Player;
         ManejoBaraja.ManoTurno();
+        GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");
+        GameObject.Find("GameManager").GetComponent<GameManager>().TilesEnemigos();
+        GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
         Debug.Log("Vuelve el turno del jugador.");
     }
     

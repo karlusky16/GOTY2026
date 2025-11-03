@@ -39,7 +39,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango",player.GetComponent<PlayerController>().GetPos());
             GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
             GameManager.cartaSeleccionada = false;
-            borde.color = Color.blue;
+            borde.color = gameObject.GetComponent<DisplayCard>().GetColor();
         }
     }
 
