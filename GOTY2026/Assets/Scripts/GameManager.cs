@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     public void InstanciateEnemy(Vector2 pos)
     {
         enemigosLis.Add(Instantiate(prefabEnemigo, GridManager._tiles[pos].transform.position, Quaternion.identity));
-        enemigos.Add(Instantiate(prefabEnemigo, GridManager._tiles[pos].transform.position, Quaternion.identity), pos);
+        enemigos.Add(enemigosLis[enemigosLis.Count - 1], pos);
         GridManager._tiles[pos].ocupadoObj = enemigosLis[enemigosLis.Count-1];
         GridManager._tiles[pos].ocupado = true;
     }
