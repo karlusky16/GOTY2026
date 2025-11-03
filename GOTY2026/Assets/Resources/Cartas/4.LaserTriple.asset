@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b64cfcac6d60124eb6d181656d30b58, type: 3}
-  m_Name: 1
+  m_Name: 4.LaserTriple
   m_EditorClassIdentifier: Assembly-CSharp::Card
-  id: 1
-  _name: FireBall
-  coste: 2
-  tipoCoste: 0
-  descripcion: Disparas una bola de fuego que forma una cruz desde la casilla seleccionada
-  patron: Cruz
-  rango: 4
-  area: 1
+  id: 4
+  _name: LaserTriple
+  coste: 1
+  tipoCoste: 1
+  descripcion: "Dispara con un laser en 3 direcciones que da\xF1a hasta a un enemigo"
+  patron: TresDirNP
+  rango: 1
+  area: 9
   area2: 0
   tipo: 0
-  "da\xF1o": 3
-  sprite: {fileID: 3289050274112686242, guid: caab3e027f4e291468181479f7ed0b02, type: 3}
+  "da\xF1o": 2
+  sprite: {fileID: -3966654026724937289, guid: 8e7d9f04ea13e1f4da48deb8a99d3bc9, type: 3}

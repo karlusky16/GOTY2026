@@ -22,7 +22,7 @@ public class FondoManager : MonoBehaviour
         }
     }
 
-    public void Aparecer() => gridManager.SetActive(true);
+    public void Aparecer() {  gridManager.SetActive(true); Debug.Log("gridManager activo: " + gridManager.activeSelf);}
 
     public void Desaparecer() => gridManager.SetActive(false);
 

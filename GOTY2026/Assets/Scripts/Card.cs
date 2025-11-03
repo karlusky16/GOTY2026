@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem.Utilities;
 using System;
 using UnityEngine.UI;
-[CreateAssetMenu(fileName = "New Card", menuName = "Cartas/Card")]
+[CreateAssetMenu(fileName = "New Card", menuName = "ScriptableObjects/Card")]
 public class Card : ScriptableObject
 {
     public int id;

@@ -12,6 +12,8 @@ public class GridManager : MonoBehaviour
     public Transform _cam;
 
     public static Dictionary<Vector2, Tile> _tiles;
+    public int GetWidth() => _width;
+    public int GetHeight() => _height;
 
     void Start()
     {

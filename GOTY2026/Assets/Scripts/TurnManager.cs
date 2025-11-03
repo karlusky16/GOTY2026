@@ -87,7 +87,7 @@ public class TurnManager : MonoBehaviour
             }
             else
             {
-                enemy.GetComponent<EnemyController>().Ataque();
+                enemy.GetComponent<EnemyController>().Ataque(enemy.GetComponent<EnemyController>().GetPosicionesAtaqueEnemy() , enemy.GetComponent<DisplayEnemy>().GetDaño());
                 Debug.Log("El enemigo ataca");
                 
             }

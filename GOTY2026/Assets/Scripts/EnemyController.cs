@@ -1,14 +1,15 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class EnemyController : MonoBehaviour
 {
     public Action<int> EnemyReduceVida;
     [SerializeField] private int vidaMaximaEnemy;
     [SerializeField] private int vidaActualEnemy;
-    public int dañoEnemy = 2;
-
-
+    Vector2[] posicionesAtaqueEnemy;
+    public Vector2[] GetPosicionesAtaqueEnemy() => posicionesAtaqueEnemy;
     private PlayerController player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -50,25 +51,39 @@ public class EnemyController : MonoBehaviour
         Debug.Log("Reduce vida enemy");
         Debug.Log(vidaActualEnemy);
     }
-    public void Ataque()
+    public void Ataque(Vector2[] posicionesAtaque, int dañoEnemy)
     {
-        player.ReducirVida(dañoEnemy); 
-        
+        List<Vector2> posicionesAtaqueList = new List<Vector2>(posicionesAtaque);
+        if (posicionesAtaqueList.Contains(new Vector2(player.GetPos().x, player.GetPos().y)))
+        {
+            player.ReducirVida(dañoEnemy);
+            Debug.Log("Player atacado por enemy");
+        }
+
     }
     public void Movimiento()
     {
 
     }
-    
-    void mostrarHighlight()
+
+    void OnMouseEnter()
     {
-        if (GameManager.cartaSeleccionada) {
-            if(GameManager.enemy.GetComponent<DisplayEnemy>().patronAtaque == EnemyPattern.Cruz)
+        if (GameManager.cartaSeleccionada == false)
             {
-                
+                Debug.Log("Mouse encima enemy");
+                GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");
+                gameObject.SendMessage("HighlightEnemyTiles", gameObject);
+                posicionesAtaqueEnemy = gameObject.GetComponent<TileManagerEnemigo>().GetRango();
             }
-            
-            }
+    }
+    void OnMouseExit()
+    {
+        if (GameManager.cartaSeleccionada == false)
+        {
+            GameObject.Find("GameManager").SendMessage("UnHighlightEnemyTiles");
+            posicionesAtaqueEnemy = gameObject.GetComponent<TileManagerEnemigo>().GetRango();
+            GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
         }
     }
+}
 

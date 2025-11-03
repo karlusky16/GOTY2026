@@ -1,18 +1,20 @@
 using System;
 using UnityEngine;
-
-public class Enemy
+[CreateAssetMenu(fileName = "New Enemy", menuName = "ScriptableObjects/Enemy")]
+public class Enemy : ScriptableObject 
 {
     public int id;
     public String _name;
     public int vida;
     public int daño;
-    public EnemyPattern patronAtaque;
+    public int rango;
+    public int area;
+    public String patronAtaque;
     public Enemy()
     {
 
     }
-    public Enemy(int id, String _name, int vida, int daño, EnemyPattern patronAtaque)
+    public Enemy(int id, String _name, int vida, int daño, String patronAtaque)
     {
         this.id = id;
         this._name = _name;
@@ -25,7 +27,3 @@ public class Enemy
 /*
 Aqui van los patrones de pueda tener cada enemigo
 */
-public enum EnemyPattern
-{
-    Cruz
-}

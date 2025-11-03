@@ -13,6 +13,7 @@ public class Tile : MonoBehaviour
     private String lastPatron;
     public GameObject _highlight;
     public GameObject _highlightD;
+    public GameObject _highlightE;
     public GameObject gridManager;
     public Boolean ocupado = false;
     public GameObject ocupadoObj;
@@ -21,7 +22,8 @@ public class Tile : MonoBehaviour
     private object direccionesEfecto;
 
 
-    void Start() {
+    void Start()
+    {
     }
     public void Init(bool isOffset)
     {
@@ -42,7 +44,7 @@ public class Tile : MonoBehaviour
     {
         if (GameManager.cartaSeleccionada == true && GameObject.Find("GameManager").GetComponent<TileManager>().GetRango().Contains(this))
         {
-            GameObject.Find("GameManager").gameObject.SendMessage("HighlightPatron",this);
+            GameObject.Find("GameManager").gameObject.SendMessage("HighlightPatron", this);
         }
     }
 
@@ -50,7 +52,7 @@ public class Tile : MonoBehaviour
     {
         if (GameManager.cartaSeleccionada == true && GameObject.Find("GameManager").GetComponent<TileManager>().GetRango().Contains(this))
         {
-            GameObject.Find("GameManager").gameObject.SendMessage("UnHighlightPatron",this);     
+            GameObject.Find("GameManager").gameObject.SendMessage("UnHighlightPatron", this);
         }
     }
     //Habria que mover todo lo del Highlight y Testeo de efecto a otro script
@@ -69,8 +71,9 @@ public class Tile : MonoBehaviour
     {
         _highlight.SetActive(true);
     }
-    
-    public void UnHighlight() {
+
+    public void UnHighlight()
+    {
 
         _highlight.SetActive(false);
     }
@@ -78,10 +81,20 @@ public class Tile : MonoBehaviour
     {
         _highlightD.SetActive(true);
     }
-    
-    void UnHighlightDaño() {
+
+    void UnHighlightDaño()
+    {
 
         _highlightD.SetActive(false);
+    }
+    void HighlightEnemy()
+    {
+        _highlightE.SetActive(true);
+    }
+    
+    void UnHighlightEnemy() {
+
+        _highlightE.SetActive(false);
     }
 
 

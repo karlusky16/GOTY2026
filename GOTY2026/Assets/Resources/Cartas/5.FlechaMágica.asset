@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b64cfcac6d60124eb6d181656d30b58, type: 3}
-  m_Name: 4
+  m_Name: "5.FlechaM\xE1gica"
   m_EditorClassIdentifier: Assembly-CSharp::Card
-  id: 4
-  _name: LaserTriple
-  coste: 1
-  tipoCoste: 1
-  descripcion: "Dispara con un laser en 3 direcciones que da\xF1a hasta a un enemigo"
-  patron: TresDirNP
+  id: 5
+  _name: "Flecha M\xE1gica"
+  coste: 4
+  tipoCoste: 0
+  descripcion: Dispara una flecha que atraviesa enemigos y alcanza hasta el final
+    de cualquier fila o columna
+  patron: Recta
   rango: 1
   area: 9
   area2: 0
   tipo: 0
-  "da\xF1o": 2
-  sprite: {fileID: -3966654026724937289, guid: 8e7d9f04ea13e1f4da48deb8a99d3bc9, type: 3}
+  "da\xF1o": 6
+  sprite: {fileID: 5892675015147953620, guid: ed884848ba7c82249ad0e529c1812a68, type: 3}

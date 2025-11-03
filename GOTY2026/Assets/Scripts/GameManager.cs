@@ -15,13 +15,15 @@ public class GameManager : MonoBehaviour
     public static Boolean cartaSeleccionada;
     public static GameObject carta;
     public static GameObject player;
-    public static Dictionary<GameObject, Vector2> enemigos = new Dictionary<GameObject, Vector2>();
-    public static List<GameObject> enemigosLis = new List<GameObject>();
+    public static Dictionary<GameObject, Vector2> enemigos = new();
+    public static List<GameObject> enemigosLis = new();
     public static GameObject enemy; // De momento solo hay un enemigo
     public static List<Card> cardList;
+    public static List<Enemy> enemyList;
     void Start()
     {
         cardList = new List<Card>(Resources.LoadAll<Card>("Cartas"));
+        enemyList = new List<Enemy>(Resources.LoadAll<Enemy>("Enemigos"));
         // Si la instancia no existe, crea una y marca el objeto para no ser destruido.
         if (instance == null)
         {
@@ -32,20 +34,21 @@ public class GameManager : MonoBehaviour
             player.GetComponent<PlayerController>().Mover(new Vector2(0, 2));
         }
         //añade enemigo al array de enemigos.
-        InstanciateEnemy(new Vector2(2, 0));
-        InstanciateEnemy(new Vector2(2, 1));
-        InstanciateEnemy(new Vector2(2, 2));
-        InstanciateEnemy(new Vector2(3, 2));
+        InstanciateEnemy(new Vector2(2, 0),1);
+        InstanciateEnemy(new Vector2(2, 1),1);
+        InstanciateEnemy(new Vector2(2, 2),1);
+        InstanciateEnemy(new Vector2(3, 2),1);
         TurnManager.playerController = player.GetComponent<PlayerController>();
         
 
     }
     public GameObject GetPrefabCarta() => prefabCarta;
     
-    public void InstanciateEnemy(Vector2 pos)
+    public void InstanciateEnemy(Vector2 pos,int id)
     {
         enemigosLis.Add(Instantiate(prefabEnemigo, GridManager._tiles[pos].transform.position, Quaternion.identity));
         enemigos.Add(enemigosLis[enemigosLis.Count - 1], pos);
+        enemigosLis[enemigosLis.Count - 1].GetComponent<DisplayEnemy>().ActualizarID(id);
         GridManager._tiles[pos].ocupadoObj = enemigosLis[enemigosLis.Count-1];
         GridManager._tiles[pos].ocupado = true;
     }
