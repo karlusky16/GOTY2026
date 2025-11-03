@@ -1,50 +1,49 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\javie\\Fdv\\GOTY2026\\",
+  "WorkspaceRootPath": "C:\\Fdv\\GOTY2026\\GOTY2026\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|c:\\users\\javie\\fdv\\goty2026\\assets\\scripts\\enemycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|C:\\Users\\javie\\Fdv\\GOTY2026\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|C:\\Fdv\\GOTY2026\\GOTY2026\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|c:\\users\\javie\\fdv\\goty2026\\assets\\scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|c:\\fdv\\goty2026\\goty2026\\assets\\scripts\\enemycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|C:\\Fdv\\GOTY2026\\GOTY2026\\assets\\scripts\\gridmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gridmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|C:\\Fdv\\GOTY2026\\GOTY2026\\assets\\scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|C:\\Users\\javie\\Fdv\\GOTY2026\\assets\\scripts\\fondomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\fondomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|C:\\Users\\javie\\Fdv\\GOTY2026\\assets\\scripts\\tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|C:\\Users\\javie\\Fdv\\GOTY2026\\assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|C:\\Fdv\\GOTY2026\\GOTY2026\\assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|c:\\users\\javie\\fdv\\goty2026\\assets\\scripts\\turnmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|C:\\Fdv\\GOTY2026\\GOTY2026\\assets\\scripts\\turnmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\turnmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|C:\\Users\\javie\\Fdv\\GOTY2026\\assets\\scripts\\manejobaraja.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|C:\\Fdv\\GOTY2026\\GOTY2026\\assets\\scripts\\fondomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\fondomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|C:\\Fdv\\GOTY2026\\GOTY2026\\assets\\scripts\\tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|C:\\Fdv\\GOTY2026\\GOTY2026\\assets\\scripts\\manejobaraja.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\manejobaraja.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|C:\\Users\\javie\\Fdv\\GOTY2026\\assets\\scripts\\cardaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|C:\\Fdv\\GOTY2026\\GOTY2026\\assets\\scripts\\cardaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\cardaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|C:\\Users\\javie\\Fdv\\GOTY2026\\assets\\scripts\\carddatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\carddatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|c:\\users\\javie\\fdv\\goty2026\\assets\\scripts\\gridmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{10AB3DC1-D693-6347-93EE-DFC2C2E0CB82}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gridmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\CardDataBase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,151 +53,142 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "Tile.cs",
-              "DocumentMoniker": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\Tile.cs",
+              "DocumentMoniker": "C:\\Fdv\\GOTY2026\\GOTY2026\\Assets\\Scripts\\Tile.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Tile.cs",
-              "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\Tile.cs",
+              "ToolTip": "C:\\Fdv\\GOTY2026\\GOTY2026\\Assets\\Scripts\\Tile.cs",
               "RelativeToolTip": "Assets\\Scripts\\Tile.cs",
               "ViewState": "AgIAAFQAAAAAAAAAAAAAAEEAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-10T10:49:40.113Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "EnemyController.cs",
-              "DocumentMoniker": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\EnemyController.cs",
+              "DocumentMoniker": "C:\\Fdv\\GOTY2026\\GOTY2026\\Assets\\Scripts\\EnemyController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\EnemyController.cs",
-              "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\EnemyController.cs",
+              "ToolTip": "C:\\Fdv\\GOTY2026\\GOTY2026\\Assets\\Scripts\\EnemyController.cs",
               "RelativeToolTip": "Assets\\Scripts\\EnemyController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwCIAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAYwB8AAABRAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-31T15:10:59.54Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Enemy.cs",
-              "DocumentMoniker": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\Enemy.cs",
+              "DocumentMoniker": "C:\\Fdv\\GOTY2026\\GOTY2026\\Assets\\Scripts\\Enemy.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy.cs",
-              "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\Enemy.cs",
+              "ToolTip": "C:\\Fdv\\GOTY2026\\GOTY2026\\Assets\\Scripts\\Enemy.cs",
               "RelativeToolTip": "Assets\\Scripts\\Enemy.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T15:10:47.522Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "TurnManager.cs",
-              "DocumentMoniker": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\TurnManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\TurnManager.cs",
-              "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\TurnManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\TurnManager.cs",
-              "ViewState": "AgIAAFYAAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T14:51:29.943Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "CardAction.cs",
-              "DocumentMoniker": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\CardAction.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\CardAction.cs",
-              "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\CardAction.cs",
-              "RelativeToolTip": "Assets\\Scripts\\CardAction.cs",
-              "ViewState": "AgIAAFIAAAAAAAAAAAAwwGoAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T13:35:26.406Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-31T15:10:47.522Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "PlayerController.cs",
-              "DocumentMoniker": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\PlayerController.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
-              "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\PlayerController.cs",
-              "RelativeToolTip": "Assets\\Scripts\\PlayerController.cs",
-              "ViewState": "AgIAAEYAAAAAAAAAAAAqwDoAAAAJAAAAAAAAAA==",
+              "Title": "TurnManager.cs",
+              "DocumentMoniker": "C:\\Fdv\\GOTY2026\\GOTY2026\\Assets\\Scripts\\TurnManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\TurnManager.cs",
+              "ToolTip": "C:\\Fdv\\GOTY2026\\GOTY2026\\Assets\\Scripts\\TurnManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\TurnManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T13:20:06.326Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-31T14:51:29.943Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
+              "Title": "PlayerController.cs",
+              "DocumentMoniker": "C:\\Fdv\\GOTY2026\\GOTY2026\\Assets\\Scripts\\PlayerController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
+              "ToolTip": "C:\\Fdv\\GOTY2026\\GOTY2026\\Assets\\Scripts\\PlayerController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PlayerController.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAADwvzoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-22T13:20:06.326Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "GameManager.cs",
-              "DocumentMoniker": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\GameManager.cs",
+              "DocumentMoniker": "C:\\Fdv\\GOTY2026\\GOTY2026\\Assets\\Scripts\\GameManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
-              "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\GameManager.cs",
+              "ToolTip": "C:\\Fdv\\GOTY2026\\GOTY2026\\Assets\\Scripts\\GameManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-22T13:19:39.699Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "CardDataBase.cs",
               "DocumentMoniker": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\CardDataBase.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\CardDataBase.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\CardDataBase.cs",
               "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\CardDataBase.cs",
-              "RelativeToolTip": "Assets\\Scripts\\CardDataBase.cs",
+              "RelativeToolTip": "..\\..\\..\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\CardDataBase.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T13:17:12.746Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-22T13:17:12.746Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
+              "Title": "GridManager.cs",
+              "DocumentMoniker": "C:\\Fdv\\GOTY2026\\GOTY2026\\Assets\\Scripts\\GridManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GridManager.cs",
+              "ToolTip": "C:\\Fdv\\GOTY2026\\GOTY2026\\Assets\\Scripts\\GridManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GridManager.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwAkAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T10:48:08.422Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CardAction.cs",
+              "DocumentMoniker": "C:\\Fdv\\GOTY2026\\GOTY2026\\Assets\\Scripts\\CardAction.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\CardAction.cs",
+              "ToolTip": "C:\\Fdv\\GOTY2026\\GOTY2026\\Assets\\Scripts\\CardAction.cs",
+              "RelativeToolTip": "Assets\\Scripts\\CardAction.cs",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAwwGoAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-22T13:35:26.406Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "ManejoBaraja.cs",
-              "DocumentMoniker": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\ManejoBaraja.cs",
+              "DocumentMoniker": "C:\\Fdv\\GOTY2026\\GOTY2026\\Assets\\Scripts\\ManejoBaraja.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\ManejoBaraja.cs",
-              "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\ManejoBaraja.cs",
+              "ToolTip": "C:\\Fdv\\GOTY2026\\GOTY2026\\Assets\\Scripts\\ManejoBaraja.cs",
               "RelativeToolTip": "Assets\\Scripts\\ManejoBaraja.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T13:16:26.083Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-22T13:16:26.083Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "FondoManager.cs",
-              "DocumentMoniker": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\FondoManager.cs",
+              "DocumentMoniker": "C:\\Fdv\\GOTY2026\\GOTY2026\\Assets\\Scripts\\FondoManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\FondoManager.cs",
-              "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\FondoManager.cs",
+              "ToolTip": "C:\\Fdv\\GOTY2026\\GOTY2026\\Assets\\Scripts\\FondoManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\FondoManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T08:46:06.848Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "GridManager.cs",
-              "DocumentMoniker": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\GridManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\GridManager.cs",
-              "ToolTip": "C:\\Users\\javie\\Fdv\\GOTY2026\\Assets\\Scripts\\GridManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\GridManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-10T10:48:08.422Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-22T08:46:06.848Z"
             }
           ]
         }
