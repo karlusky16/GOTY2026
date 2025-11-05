@@ -22,29 +22,30 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         deck = GameObject.Find("InterfazJugador/CardPanel");
         scale = gameObject.GetComponent<RectTransform>().localScale;
     }
-
+    //Metodo para gestionar los clicks en la carta
     public void OnPointerClick(PointerEventData eventData)
     {
+        //Si es click izquierdo y no hay ninguna carta seleccionada se selecciona la carta
         if (eventData.button == PointerEventData.InputButton.Left && !GameManager.cartaSeleccionada)
         {
-            GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");
-            GameManager.cartaSeleccionada = true;
-            borde.color = Color.red;
-            GameManager.carta = gameObject;
-            GameObject.Find("GameManager").gameObject.SendMessage("MarcarRango",player.GetComponent<PlayerController>().GetPos());
-            GameManager.CambiarLayerEnemy("Ignore Raycast");
+            GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");//Se muestra el fondo
+            GameManager.cartaSeleccionada = true;//Se marca la carta como seleccionada
+            borde.color = Color.red;//Se cambia el color del borde para indicar que está seleccionada
+            GameManager.carta = gameObject;//Se guarda la carta seleccionada en el GameManager
+            GameObject.Find("GameManager").gameObject.SendMessage("MarcarRango", player.GetComponent<PlayerController>().GetPos());//Se marcan las tiles en rango
+            GameManager.CambiarLayerEnemy("Ignore Raycast");//Se cambia la layer de los enemigos para que no interfieran con el click en las tiles
         }
-
+        //Si es click derecho y hay una carta seleccionada se deselecciona la carta
         if (eventData.button == PointerEventData.InputButton.Right && GameManager.cartaSeleccionada)
         {
-            GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango",player.GetComponent<PlayerController>().GetPos());
-            GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
-            GameManager.cartaSeleccionada = false;
-            borde.color = gameObject.GetComponent<DisplayCard>().GetColor();
-            GameManager.CambiarLayerEnemy("Default");
+            GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
+            GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
+            GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
+            borde.color = gameObject.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
+            GameManager.CambiarLayerEnemy("Default");//Se vuelve a poner la layer original de los enemigos
         }
     }
-
+    //Al poner el puntero encima de la carta se crea una copia para destacarla
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (!GameManager.cartaSeleccionada)
@@ -52,24 +53,25 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             Destacar();
         }
     }
-
+    //Al salir del puntero se destruye la copia de la carta destacada
     public void OnPointerExit(PointerEventData eventData)
     {
 
         NoDestacar();
     }
-
+    //Se crea una copia de la carta para destacarla
     void Destacar()
     {
         carta = Instantiate(gameObject);
         carta.transform.localScale = new Vector3(2f,2f,2f);
         carta.transform.SetParent(centro.transform, false);
     }
+    //Se destruye la copia de la carta destacada
      void NoDestacar()
     {
         Destroy(carta);
     }
-
+    //Metodo para aplicar el efecto de la carta dpendiendo de su tipo de efecto
     internal void Efecto(Vector2[] tiles)
     {
         switch (gameObject.GetComponent<DisplayCard>().GetTipo())
@@ -94,8 +96,10 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     //Se debe pasar como parametro el tile al que se quiere mover el jugador y un array con las posiciones de ataque
     internal void EfectoMovimiento(Vector2[] tiles, Tile tile)
     {
-        if (SePuede())
+        //Si se tiene suficiente recurso y la tile no está ocupada se realiza el efecto
+        if (SePuede() && !tile.ocupado)
         {
+            //Comprobación de enemigos en las tiles afectadas y reducción de vida
             foreach (var dir in tiles)
             {
 
@@ -104,7 +108,9 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                     tile2.ocupadoObj.GetComponent<EnemyController>().ReducirVida(gameObject.GetComponent<DisplayCard>().GetDaño());
                 }
             }
+            //Movimiento del jugador a la tile seleccionada
             player.GetComponent<PlayerController>().Mover(new(tile.x, tile.y));
+            //Comprobación de tipo de coste y reducción del recurso correspondiente
             switch (GameManager.carta.GetComponent<DisplayCard>().GetTipoCoste())
             {
                 case 0:
@@ -125,11 +131,21 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             GameManager.cartaSeleccionada = false;
             Destroy(gameObject);
         }
+        //Sino se muestra el mensaje correspondiente
         else
         {
-            Debug.Log("noMas");
-            TurnManager.noMas.gameObject.SetActive(true);
-            Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
+            if (tile.ocupado)
+            {
+                //TurnManager.tileOcupada.gameObject.SetActive(true); por hacer
+                Debug.Log("Tile ocupado");
+
+            }
+            else
+            {
+                Debug.Log("noMas");
+                TurnManager.noMas.gameObject.SetActive(true);
+                Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
+            }
         }
         GameManager.CambiarLayerEnemy("Default");
     }
@@ -137,9 +153,12 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     //Se debe pasar como parametro el tile al que se quiere mover el jugador
     internal void EfectoMovimiento(Tile tile)
     {
-        if (SePuede())
+        //Si se tiene suficiente recurso y la tile no está ocupada se realiza el efecto
+        if (SePuede() && !tile.ocupado)
         {
+            //Movimiento del jugador a la tile seleccionada
             player.GetComponent<PlayerController>().Mover(new(tile.x, tile.y));
+            //Comprobación de tipo de coste y reducción del recurso correspondiente
             switch (GameManager.carta.GetComponent<DisplayCard>().GetTipoCoste())
             {
                 case 0:
@@ -160,11 +179,21 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             GameManager.cartaSeleccionada = false;
             Destroy(gameObject);
         }
+        //Sino se muestra el mensaje correspondiente
         else
         {
-            Debug.Log("noMas");
-            TurnManager.noMas.gameObject.SetActive(true);
-            Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
+            if (tile.ocupado)
+            {
+                //TurnManager.tileOcupada.gameObject.SetActive(true); por hacer
+                Debug.Log("Tile ocupado");
+
+            }
+            else
+            {
+                Debug.Log("noMas");
+                TurnManager.noMas.gameObject.SetActive(true);
+                Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
+            }
         }
         GameManager.CambiarLayerEnemy("Default");
     }
@@ -172,8 +201,10 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     //Se debe pasar como parametro un array con las posiciones de ataque
     internal void EfectoAtaque(Vector2[] tiles)
     {
+        //Si se tiene suficiente recurso se realiza el efecto
         if (SePuede())
         {
+            //Comprobación de enemigos en las tiles afectadas y reducción de vida
             foreach (var dir in tiles)
             {
 
@@ -182,6 +213,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                     tile.ocupadoObj.GetComponent<EnemyController>().ReducirVida(gameObject.GetComponent<DisplayCard>().GetDaño());
                 }
             }
+            //Comprobación de tipo de coste y reducción del recurso correspondiente
             switch (GameManager.carta.GetComponent<DisplayCard>().GetTipoCoste())
             {
                 case 0:
@@ -202,6 +234,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             GameManager.cartaSeleccionada = false;
             Destroy(gameObject);
         }
+        //Sino se muestra el mensaje correspondiente
         else
         {
             Debug.Log("noMas");
