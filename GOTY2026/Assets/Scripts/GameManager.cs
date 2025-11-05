@@ -35,9 +35,9 @@ public class GameManager : MonoBehaviour
         }
         //añade enemigo al array de enemigos.
         InstanciateEnemy(new Vector2(4, 4), 1);
-        InstanciateEnemy(new Vector2(6, 4), 1);
-        InstanciateEnemy(new Vector2(8, 2), 1);
-        InstanciateEnemy(new Vector2(5, 1), 1);
+        InstanciateEnemy(new Vector2(2, 4), 1);
+        InstanciateEnemy(new Vector2(2, 2), 1);
+        InstanciateEnemy(new Vector2(2, 1), 1);
         TurnManager.playerController = player.GetComponent<PlayerController>();
 
 
@@ -58,6 +58,14 @@ public class GameManager : MonoBehaviour
         foreach (var enemigo in enemigos)
         {
             enemigo.Key.GetComponent<TileManagerEnemigo>().CalculoTiles(enemigo.Key);
+        }
+    }
+
+    public static void CambiarLayerEnemy(String layer)
+    {
+        foreach (GameObject enemy in GameManager.enemigosLis)
+        {
+            enemy.layer = LayerMask.NameToLayer(layer);
         }
     }
 

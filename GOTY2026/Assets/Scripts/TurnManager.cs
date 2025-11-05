@@ -59,12 +59,15 @@ public class TurnManager : MonoBehaviour
 
     void EndPlayerTurn()
     {
+        GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", GameManager.player.GetComponent<PlayerController>().GetPos());
         GameManager.carta = null;
         GameManager.cartaSeleccionada = false;
         if (CardAction.carta != null) Destroy(CardAction.carta);
         currentTurn = Turn.Enemy;
         ManejoBaraja.DevolverMano();
         Debug.Log("Turno del enemigo.");
+        GameManager.CambiarLayerEnemy("Default");
+
     }
 
     void EnemyTurn()
