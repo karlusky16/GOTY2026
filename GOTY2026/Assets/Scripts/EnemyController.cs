@@ -17,7 +17,11 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
+        
         vidaActualEnemy = vidaMaximaEnemy;
+        BarraVidaEnemy barra = GetComponentInChildren<BarraVidaEnemy>();
+        barra.ConectarEnemy(this);
+
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
     }
 
