@@ -26,16 +26,42 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             player = GameObject.FindWithTag("Player");
             DontDestroyOnLoad(player);
-            player.GetComponent<PlayerController>().Mover(new Vector2 (0,2));
+            player.GetComponent<PlayerController>().Mover(new Vector2(0, 2));
         }
         //añade enemigo al array de enemigos.
         enemigos.Add(Instantiate(prefabEnemigo, GridManager._tiles[new Vector2(4, 2)].transform.position, Quaternion.identity));
         GridManager._tiles[new Vector2(4, 2)].ocupadoObj = enemigos[0];
         GridManager._tiles[new Vector2(4, 2)].ocupado = true;
         TurnManager.playerController = player.GetComponent<PlayerController>();
-       
+
 
     }
     public GameObject GetPrefabCarta() => prefabCarta;
-    
+
+    public void ResetGame()
+    {
+        GridManager.ResetTablero();
+        ManejoBaraja.ResetBaraja();
+        foreach (var e in enemigos)
+        {
+            if (e != null)
+                Destroy(e);
+        }
+        enemigos.Clear();
+        enemigos.Add(Instantiate(prefabEnemigo, GridManager._tiles[new Vector2(4, 2)].transform.position, Quaternion.identity));
+        GridManager._tiles[new Vector2(4, 2)].ocupadoObj = enemigos[0];
+        GridManager._tiles[new Vector2(4, 2)].ocupado = true;
+        player.GetComponent<PlayerController>().ResetPlayer();
+        player.GetComponent<PlayerController>().Mover(new Vector2(0, 2));
+        TurnManager.ResetTurn();
+        victoryScreen.SetActive(false);
+        deathScreen.SetActive(false);
+    }
+
+    public void Salir()
+    {
+        UnityEditor.EditorApplication.isPlaying = false;
+        Application.Quit();
+    }
+
 }

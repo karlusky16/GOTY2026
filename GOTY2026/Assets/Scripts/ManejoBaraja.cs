@@ -17,7 +17,7 @@ public class ManejoBaraja : MonoBehaviour
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         _image = GameObject.Find("InterfazUsuario/CardPanel");
         prefabCarta = GameObject.Find("GameManager").GetComponent<GameManager>().GetPrefabCarta();
-                //copiamos la longitud de la dataBase
+        //copiamos la longitud de la dataBase
         int cartas = CardDataBase.cardList.Count;
         System.Random rand = new();
         if (mazoInicializado) return;
@@ -54,7 +54,7 @@ public class ManejoBaraja : MonoBehaviour
     }
     //Para devolver las cartas no usadas al final del turno
     public static void DevolverMano()
-    {   
+    {
         while (mano.Count > 0)
         {
             var carta = mano[0];
@@ -71,6 +71,26 @@ public class ManejoBaraja : MonoBehaviour
     // Update is called once per frame
     public static void Update()
     {
-        
+
+    }
+
+    public static void ResetBaraja()
+    {
+        foreach (var carta in mano)
+        {
+            if (carta != null)
+            {
+                Destroy(carta);
+            }
+        }
+        mano.Clear();
+
+        if (player != null)
+        {
+            player.ResetBaraja();
+        }
+        mazoInicializado = false;
+        Inicializar();
+        ManoTurno();
     }
 }

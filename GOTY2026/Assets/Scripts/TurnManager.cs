@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TurnManager : MonoBehaviour
 {
@@ -11,15 +12,15 @@ public class TurnManager : MonoBehaviour
     public static Turn currentTurn = Turn.Player;
     public static TextMeshProUGUI noMas;
     public static GameObject botonNextTurn;
-    
+
 
     public bool pulsado = false;
 
     //De momento esto es asi ya que solo hay un enemigo
     public static GameObject enemy;
     public static PlayerController playerController;
-    
-    
+
+
 
     void Start()
     {
@@ -33,7 +34,7 @@ public class TurnManager : MonoBehaviour
     }
 
     void Update()
-   
+
     {
         if (currentTurn == Turn.Player)
         {
@@ -51,7 +52,7 @@ public class TurnManager : MonoBehaviour
             EnemyTurn();
         }
     }
-    
+
 
     public void pulsaBotonAvanzar()
     {
@@ -112,5 +113,10 @@ public class TurnManager : MonoBehaviour
         ManejoBaraja.ManoTurno();
         Debug.Log("Vuelve el turno del jugador.");
     }
-    
+
+    public static void ResetTurn()
+    {
+        currentTurn = Turn.Player;
+    }
+
 }

@@ -56,5 +56,12 @@ public class GridManager : MonoBehaviour
         return null;
     }
 
-
+    public static void ResetTablero()
+    {
+        foreach (var tile in _tiles.Values)
+        {
+            tile.ocupado = false;
+            tile.ocupadoObj = null;
+        }
+    }
 }

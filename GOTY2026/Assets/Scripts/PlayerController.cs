@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     public void Mover(UnityEngine.Vector2 pos)
     {
         posicion = GridManager._tiles[pos];
-        gameObject.transform.position = posicion.transform.position;  
+        gameObject.transform.position = posicion.transform.position;
     }
     //Getters
     public Tile GetPos() => posicion;
@@ -110,5 +110,27 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("DescartesABaraja");
         cartas = descartes;
+    }
+
+    public void ResetBaraja()
+    {
+        if (cartas != null)
+        {
+            cartas.Clear();
+        }
+        if (descartes != null)
+        {
+            descartes.Clear();
+        }
+    }
+
+    public void ResetPlayer()
+    {
+        energiaActual = energiaMaxima;
+        JugadorAumentaEnergia?.Invoke(energiaActual);
+        manaActual = manaMaxima;
+        JugadorAumentaMana?.Invoke(manaActual);
+        vidaActual = vidaMaxima;
+        JugadorAumentaVida?.Invoke(vidaActual);
     }
 }
