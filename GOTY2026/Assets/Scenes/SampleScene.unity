@@ -2475,8 +2475,42 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6272993338110112559, guid: ae4663f3adae6e74aab494621654c82c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 947008022968879708}
   m_SourcePrefab: {fileID: 100100000, guid: ae4663f3adae6e74aab494621654c82c, type: 3}
+--- !u!1 &947008022968879706 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6272993338110112559, guid: ae4663f3adae6e74aab494621654c82c, type: 3}
+  m_PrefabInstance: {fileID: 947008022968879705}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &947008022968879707 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 443008694663156079, guid: ae4663f3adae6e74aab494621654c82c, type: 3}
+  m_PrefabInstance: {fileID: 947008022968879705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947008022968879706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+--- !u!114 &947008022968879708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947008022968879706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec6f0476bb3768546ad20e79de1a2116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BarraVidaPlayer
+  sliderVidaPlayer: {fileID: 947008022968879707}
+  playerController: {fileID: 0}
+  textoVida: {fileID: 1614425157}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
