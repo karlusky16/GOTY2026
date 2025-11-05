@@ -70,8 +70,107 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         Destroy(carta);
     }
 
-
     internal void Efecto(Vector2[] tiles)
+    {
+        switch (gameObject.GetComponent<DisplayCard>().GetTipo())
+        {
+            case 0: //ataque
+                EfectoAtaque(tiles);
+                break;
+            case 1: //movimiento
+                EfectoMovimiento(GameObject.Find("GameManager").GetComponent<TileManager>().GetTileMov()); //A medio hacer
+                break;
+            case 2: //ataque y movimiento
+                EfectoMovimiento(tiles, GameObject.Find("GameManager").GetComponent<TileManager>().GetTileMov()); //A medio hacer
+                break;
+            case 3: //boosteo
+                //EfectoBoosteo(tiles); //A medio hacer
+                break;
+            default:
+                break;
+        }
+    }
+    //Metodo para efecto de cartas que impliquen movimiento y ataque
+    //Se debe pasar como parametro el tile al que se quiere mover el jugador y un array con las posiciones de ataque
+    internal void EfectoMovimiento(Vector2[] tiles, Tile tile)
+    {
+        if (SePuede())
+        {
+            foreach (var dir in tiles)
+            {
+
+                if (GridManager._tiles.TryGetValue(dir, out Tile tile2) && tile2.ocupado && tile2.ocupadoObj.CompareTag("Enemy"))
+                {
+                    tile2.ocupadoObj.GetComponent<EnemyController>().ReducirVida(gameObject.GetComponent<DisplayCard>().GetDaño());
+                }
+            }
+            player.GetComponent<PlayerController>().Mover(new(tile.x, tile.y));
+            switch (GameManager.carta.GetComponent<DisplayCard>().GetTipoCoste())
+            {
+                case 0:
+                    player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    break;
+                case 1:
+                    player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    break;
+                case 2:
+                    player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    break;
+                default:
+                    break;
+            }
+            ManejoBaraja.DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id);
+            GameManager.carta = null;
+            GameManager.cartaSeleccionada = false;
+            Destroy(gameObject);
+        }
+        else
+        {
+            Debug.Log("noMas");
+            TurnManager.noMas.gameObject.SetActive(true);
+            Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
+        }
+        GameManager.CambiarLayerEnemy("Default");
+    }
+    //Metodo para efecto de cartas que impliquen solo movimiento
+    //Se debe pasar como parametro el tile al que se quiere mover el jugador
+    internal void EfectoMovimiento(Tile tile)
+    {
+        if (SePuede())
+        {
+            player.GetComponent<PlayerController>().Mover(new(tile.x, tile.y));
+            switch (GameManager.carta.GetComponent<DisplayCard>().GetTipoCoste())
+            {
+                case 0:
+                    player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    break;
+                case 1:
+                    player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    break;
+                case 2:
+                    player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    break;
+                default:
+                    break;
+            }
+            ManejoBaraja.DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id);
+            GameManager.carta = null;
+            GameManager.cartaSeleccionada = false;
+            Destroy(gameObject);
+        }
+        else
+        {
+            Debug.Log("noMas");
+            TurnManager.noMas.gameObject.SetActive(true);
+            Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
+        }
+        GameManager.CambiarLayerEnemy("Default");
+    }
+    //Metodo para efecto de cartas que impliquen solo ataque
+    //Se debe pasar como parametro un array con las posiciones de ataque
+    internal void EfectoAtaque(Vector2[] tiles)
     {
         if (SePuede())
         {

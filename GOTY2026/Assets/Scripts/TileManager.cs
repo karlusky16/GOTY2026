@@ -9,14 +9,17 @@ public class TileManager : MonoBehaviour
     private String lastPatron;
     private Vector2[] direccionesAnt;
     public List<Tile> tilesEnRango;
+    public Tile tileMov;//Calculad en el patrón la Tile a la que moverse y guardarla en esta variable
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public List<Tile> GetRango() => tilesEnRango;
+    public Tile GetTileMov() => tileMov; 
+    //Incluye patrones de daño y de movimiento, en los de movimiento se DEBE modificar la variable tileMov para saber a que tile moverse
     public void HighlightPatron(Tile tile)
     {
         lastPatron = GameManager.carta.GetComponent<DisplayCard>().GetPatron();
         switch (lastPatron)
         {
-            case "Cruz":
+            case "Cruz"://tipo Daño
                 var direcciones = Cruz(GameManager.carta.GetComponent<DisplayCard>().GetArea());
                 direccionesAnt = new Vector2[direcciones.Length];
                 int c = 0;
@@ -28,15 +31,16 @@ public class TileManager : MonoBehaviour
                     c++;
                 }
                 break;
-            case "RectaNP":
+            case "RectaNP"://Tipo Daño
                 tile.gameObject.SendMessage("HighlightDaño");
-                direcciones = Recta(GameManager.carta.GetComponent<DisplayCard>().GetArea(),tile);
+                direcciones = Recta(GameManager.carta.GetComponent<DisplayCard>().GetArea(), tile);
                 direccionesAnt = new Vector2[direcciones.Length];
                 c = 0;
                 bool seguir = true;
                 foreach (var dir in direcciones)
                 {
-                    if (seguir) {
+                    if (seguir)
+                    {
                         direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
                         if (GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
                         {
@@ -50,8 +54,8 @@ public class TileManager : MonoBehaviour
                     c++;
                 }
                 break;
-                case "Recta":
-                direcciones = Recta(GameManager.carta.GetComponent<DisplayCard>().GetArea(),tile);
+            case "Recta"://Tipo Daño
+                direcciones = Recta(GameManager.carta.GetComponent<DisplayCard>().GetArea(), tile);
                 direccionesAnt = new Vector2[direcciones.Length];
                 c = 0;
                 foreach (var dir in direcciones)
@@ -68,8 +72,8 @@ public class TileManager : MonoBehaviour
                     c++;
                 }
                 break;
-                case "TresDirNP":
-                var direccionesA = TresDir(GameManager.carta.GetComponent<DisplayCard>().GetArea(),tile);
+            case "TresDirNP"://Tipo Daño
+                var direccionesA = TresDir(GameManager.carta.GetComponent<DisplayCard>().GetArea(), tile);
                 int total = 0;
                 for (int i = 0; i < 3; i++)
                 {
@@ -78,7 +82,8 @@ public class TileManager : MonoBehaviour
                 direccionesAnt = new Vector2[total];
                 c = 0;
                 seguir = true;
-                for (int i = 0; i< 3; i++) {
+                for (int i = 0; i < 3; i++)
+                {
                     seguir = true;
                     foreach (var dir in direccionesA[i])
                     {
@@ -98,8 +103,8 @@ public class TileManager : MonoBehaviour
                     }
                 }
                 break;
-                case "Rectangulo":
-                direcciones = Rectangulo(GameManager.carta.GetComponent<DisplayCard>().GetArea(),GameManager.carta.GetComponent<DisplayCard>().GetArea2(),tile);
+            case "Rectangulo"://Tipo Daño
+                direcciones = Rectangulo(GameManager.carta.GetComponent<DisplayCard>().GetArea(), GameManager.carta.GetComponent<DisplayCard>().GetArea2(), tile);
                 direccionesAnt = new Vector2[direcciones.Length];
                 c = 0;
                 foreach (var dir in direcciones)
@@ -118,25 +123,28 @@ public class TileManager : MonoBehaviour
     }
     public void UnHighlightPatron(Tile tile)
     {
+        //Aqui se manda UnHighlight a todas las tiles en direccionesAnt, por lo tanto se debe haber calculado antes
         foreach (var dir in direccionesAnt)
         {
             if (GridManager._tiles.TryGetValue(dir, out Tile tile2))
-                {
-                    tile2.gameObject.SendMessage("UnHighlightDaño");
-                }
+            {
+                tile2.gameObject.SendMessage("UnHighlightDaño");
             }
+        }
     }
+    //Getter direcionesAnt
     public Vector2[] GetDireccionesAnt() => direccionesAnt;
+    //Calculo de patrones
     private static Vector2[] Cruz(int area)
     {
         Vector2[] direcciones = new Vector2[area * 4 + 1];
         direcciones[0] = new Vector2(0, 0);
         for (int i = 1; i <= area; i++)
         {
-            direcciones[0 + ((i-1) * 4)] = new Vector2(-1, 0);
-            direcciones[1 + ((i-1) * 4)] = new Vector2(1, 0);
-            direcciones[2 + ((i-1)* 4)] = new Vector2(0, -1);
-            direcciones[3 + ((i-1) * 4)] = new Vector2(0, 1);
+            direcciones[0 + ((i - 1) * 4)] = new Vector2(-1, 0);
+            direcciones[1 + ((i - 1) * 4)] = new Vector2(1, 0);
+            direcciones[2 + ((i - 1) * 4)] = new Vector2(0, -1);
+            direcciones[3 + ((i - 1) * 4)] = new Vector2(0, 1);
         }
         return direcciones;
     }
@@ -209,6 +217,7 @@ public class TileManager : MonoBehaviour
         }
         return direcciones;
     }
+    //Funcion Marcar Rango
     public void MarcarRango(Tile tile)
     {
         int rango = GameManager.carta.GetComponent<DisplayCard>().GetRango();
@@ -219,6 +228,7 @@ public class TileManager : MonoBehaviour
         }
 
     }
+    //Funcion Desmarcar Rango
     public void DesmarcarRango(Tile tile)
     {
         int rango = GameManager.carta.GetComponent<DisplayCard>().GetRango();
@@ -230,7 +240,7 @@ public class TileManager : MonoBehaviour
         }
 
     }
-    
+    //Funcion Obtener Tiles en Rango
     List<Tile> ObtenerTilesEnRango(Tile centro, int rango)
     {
         List<Tile> resultado = new List<Tile>();
@@ -251,11 +261,5 @@ public class TileManager : MonoBehaviour
         }
 
         return resultado;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
