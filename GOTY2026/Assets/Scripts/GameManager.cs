@@ -34,10 +34,10 @@ public class GameManager : MonoBehaviour
             player.GetComponent<PlayerController>().Mover(new Vector2(0, 2));
         }
         //añade enemigo al array de enemigos.
-        InstanciateEnemy(new Vector2(2, 0), 1);
-        InstanciateEnemy(new Vector2(2, 1), 1);
-        InstanciateEnemy(new Vector2(2, 2), 1);
-        InstanciateEnemy(new Vector2(3, 2), 1);
+        InstanciateEnemy(new Vector2(4, 4), 1);
+        InstanciateEnemy(new Vector2(6, 4), 1);
+        InstanciateEnemy(new Vector2(8, 2), 1);
+        InstanciateEnemy(new Vector2(5, 1), 1);
         TurnManager.playerController = player.GetComponent<PlayerController>();
 
 
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     public void InstanciateEnemy(Vector2 pos, int id)
     {
-        enemigosLis.Add(Instantiate(prefabEnemigo, GridManager._tiles[pos].transform.position, Quaternion.identity));
+        enemigosLis.Add(Instantiate(prefabEnemigo, new(GridManager._tiles[pos].transform.position.x, GridManager._tiles[pos].transform.position.y, -0.01f), Quaternion.identity));
         enemigos.Add(enemigosLis[enemigosLis.Count - 1], pos);
         enemigosLis[enemigosLis.Count - 1].GetComponent<DisplayEnemy>().ActualizarID(id);
         GridManager._tiles[pos].ocupadoObj = enemigosLis[enemigosLis.Count - 1];

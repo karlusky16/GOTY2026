@@ -76,7 +76,7 @@ public class EnemyController : MonoBehaviour
     
     void OnMouseExit()
     {
-        if (GameManager.cartaSeleccionada == false)
+        if (GameManager.cartaSeleccionada == false )
         {
             Debug.Log("Mouse Sale enemy");
             gameObject.SendMessage("UnHighlightEnemyTiles");

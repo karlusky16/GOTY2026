@@ -42,17 +42,19 @@ public class Tile : MonoBehaviour
 
     void OnMouseEnter()
     {
+        Debug.Log("Mouse encima tile");
         if (GameManager.cartaSeleccionada == true && GameObject.Find("GameManager").GetComponent<TileManager>().GetRango().Contains(this))
         {
-            GameObject.Find("GameManager").gameObject.SendMessage("HighlightPatron", this);
+            GameObject.Find("GameManager").SendMessage("HighlightPatron", this);
         }
     }
 
     void OnMouseExit()
     {
+        Debug.Log("Mouse encima tile");
         if (GameManager.cartaSeleccionada == true && GameObject.Find("GameManager").GetComponent<TileManager>().GetRango().Contains(this))
         {
-            GameObject.Find("GameManager").gameObject.SendMessage("UnHighlightPatron", this);
+            GameObject.Find("GameManager").SendMessage("UnHighlightPatron", this);
         }
     }
     //Habria que mover todo lo del Highlight y Testeo de efecto a otro script
@@ -60,8 +62,8 @@ public class Tile : MonoBehaviour
     {
         if (GameManager.cartaSeleccionada == true && GameObject.Find("GameManager").GetComponent<TileManager>().GetRango().Contains(this))
         {
-            GameObject.Find("GameManager").gameObject.SendMessage("UnHighlightPatron", this);
-            GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", GameManager.player.GetComponent<PlayerController>().GetPos());
+            GameObject.Find("GameManager").SendMessage("UnHighlightPatron", this);
+            GameObject.Find("GameManager").SendMessage("DesmarcarRango", GameManager.player.GetComponent<PlayerController>().GetPos());
             GameManager.carta.GetComponent<CardAction>().Efecto(GameObject.Find("GameManager").GetComponent<TileManager>().GetDireccionesAnt());
         }
     }
