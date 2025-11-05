@@ -32,6 +32,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             borde.color = Color.red;
             GameManager.carta = gameObject;
             GameObject.Find("GameManager").gameObject.SendMessage("MarcarRango",player.GetComponent<PlayerController>().GetPos());
+            GameManager.CambiarLayerEnemy("Ignore Raycast");
         }
 
         if (eventData.button == PointerEventData.InputButton.Right && GameManager.cartaSeleccionada)
@@ -40,6 +41,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
             GameManager.cartaSeleccionada = false;
             borde.color = gameObject.GetComponent<DisplayCard>().GetColor();
+            GameManager.CambiarLayerEnemy("Default");
         }
     }
 
@@ -107,6 +109,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             TurnManager.noMas.gameObject.SetActive(true);
             Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
         }
+        GameManager.CambiarLayerEnemy("Default");
     }
 
     

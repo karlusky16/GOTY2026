@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 8419421084141475470}
   - component: {fileID: 4517201630367746515}
   - component: {fileID: 6208548172327454278}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CanvasEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,6 +298,10 @@ PrefabInstance:
       propertyPath: textoVida
       value: 
       objectReference: {fileID: 5513955373222677690}
+    - target: {fileID: 387017391226391588, guid: ae4663f3adae6e74aab494621654c82c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 443008694663156079, guid: ae4663f3adae6e74aab494621654c82c, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 0
@@ -398,6 +402,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2605120044833937122, guid: ae4663f3adae6e74aab494621654c82c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3899211943014490577, guid: ae4663f3adae6e74aab494621654c82c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5843473127750621512, guid: ae4663f3adae6e74aab494621654c82c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -409,6 +421,14 @@ PrefabInstance:
     - target: {fileID: 6272993338110112559, guid: ae4663f3adae6e74aab494621654c82c, type: 3}
       propertyPath: m_Name
       value: BarraVidaEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6272993338110112559, guid: ae4663f3adae6e74aab494621654c82c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8226976279117268259, guid: ae4663f3adae6e74aab494621654c82c, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
