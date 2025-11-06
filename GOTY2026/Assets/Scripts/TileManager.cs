@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Xml.Schema;
 using UnityEngine;
@@ -32,7 +33,6 @@ public class TileManager : MonoBehaviour
                 }
                 break;
             case "RectaNP"://Tipo Daño
-                tile.gameObject.SendMessage("HighlightDaño");
                 direcciones = Recta(GameManager.carta.GetComponent<DisplayCard>().GetArea(), tile);
                 direccionesAnt = new Vector2[direcciones.Length];
                 c = 0;
@@ -63,11 +63,26 @@ public class TileManager : MonoBehaviour
                     direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
                     if (GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
                     {
-                        if (tile2.ocupado == true)
-                        {
-                            seguir = false;
-                        }
+                        tile2.gameObject.SendMessage("HighlightDaño"); 
+                    }
+                    c++;
+                }
+                break;
+            case "RectaM"://Tipo Movimiento + Daño
+                direcciones = Recta(GameManager.carta.GetComponent<DisplayCard>().GetArea(), tile);
+                direccionesAnt = new Vector2[direcciones.Length];
+                c = 0;
+                Boolean si = true;
+                foreach (var dir in direcciones)
+                {
+                    direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
+                    if (si = GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
+                    {
                         tile2.gameObject.SendMessage("HighlightDaño");
+                    }
+                    if (si)
+                    {
+                        tileMov = tile2;
                     }
                     c++;
                 }
@@ -117,6 +132,39 @@ public class TileManager : MonoBehaviour
                     c++;
                 }
                 break;
+            case "Tile":
+                direccionesAnt = new Vector2[1];
+                direccionesAnt[0] = new Vector2(tile.x, tile.y);
+                if (GameManager.carta.GetComponent<DisplayCard>().GetTipo() == 1 ||GameManager.carta.GetComponent<DisplayCard>().GetTipo() == 2 )
+                {
+                    tileMov = tile;
+                }
+                tile.gameObject.SendMessage("HighlightDaño");
+                break;
+            /*case "RectaC":
+                direcciones = Recta(GameManager.carta.GetComponent<DisplayCard>().GetArea(), tile);
+                direccionesAnt = new Vector2[direcciones.Length];
+                c = 0;
+                int seguirC = 0;
+                foreach (var dir in direcciones)
+                {
+                    if (seguirC < 2)
+                    {
+                        direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
+                        if (GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
+                        {
+                            if (tile2.ocupado == true)
+                            {
+                                seguirC++;
+                            }
+                            if (GameManager.carta.GetComponent<DisplayCard>().GetTipo() == 1 ||GameManager.carta.GetComponent<DisplayCard>().GetTipo() == 2)
+                                tileMov = tile2;   
+                            tile2.gameObject.SendMessage("HighlightDaño");
+                        }
+                    }
+                    c++;
+                }
+                break;*/
             default:
                 break;
         }
@@ -150,16 +198,25 @@ public class TileManager : MonoBehaviour
     }
     private static Vector2[] Recta(int area,Tile tile)
     {
-        Vector2[] direcciones = new Vector2[area + 1];
+        List<Vector2> direcciones = new();
         Tile t = GameManager.player.GetComponent<PlayerController>().GetPos();
         Vector2 direccion = new(tile.x -t.x,tile.y -t.y);
         Vector2 origen = new(0, 0);
-        direcciones[0] = origen;
+        direcciones.Add(origen);
         for (int i = 1; i < area; i++)
         {
-            direcciones[i] = origen + (direccion * (i));
+            direcciones.Add(direccion * (i));
         }
-        return direcciones;
+        if (GameManager.carta.GetComponent<DisplayCard>().GetTipo() == 1 ||GameManager.carta.GetComponent<DisplayCard>().GetTipo() == 2)
+        {
+            GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + direcciones[^1], out Tile tile2);
+            while (tile2 != null && tile2.ocupado && direcciones.Count > 0)
+            {
+                direcciones.RemoveAt(direcciones.Count - 1);
+                GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + direcciones[^1], out tile2);
+            }
+        }
+        return direcciones.ToArray();
     }
     private static Vector2[] Rectangulo(int area,int area2,Tile tile)
     {

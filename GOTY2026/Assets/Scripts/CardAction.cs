@@ -136,9 +136,9 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         {
             if (tile.ocupado)
             {
-                //TurnManager.tileOcupada.gameObject.SetActive(true); por hacer
                 Debug.Log("Tile ocupado");
-
+                TurnManager.tileOcupada.gameObject.SetActive(true);
+                Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
             }
             else
             {
@@ -184,7 +184,8 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         {
             if (tile.ocupado)
             {
-                //TurnManager.tileOcupada.gameObject.SetActive(true); por hacer
+                TurnManager.tileOcupada.gameObject.SetActive(true);
+                Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
                 Debug.Log("Tile ocupado");
 
             }
@@ -244,20 +245,22 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         GameManager.CambiarLayerEnemy("Default");
     }
 
-    
+
     void OcultarMensaje()
     {
         TurnManager.noMas.gameObject.SetActive(false);
+        TurnManager.tileOcupada.gameObject.SetActive(false);
     }
 
     
     bool SePuede() {
-        GameObject player = GameManager.carta.GetComponent<CardAction>().player;
+        GameObject player = GameManager.player;
+        int coste = GameManager.carta.GetComponent<DisplayCard>().GetCoste();
         int tipo = GameManager.carta.GetComponent<DisplayCard>().GetTipoCoste();
-        if (( tipo == 0 && player.GetComponent<PlayerController>().GetManaActual() > 0)
-            || (tipo == 1 && player.GetComponent<PlayerController>().GetEnergiaActual() > 0)
-            || (tipo == 2 && player.GetComponent<PlayerController>().GetEnergiaActual()
-            > 0 && player.GetComponent<PlayerController>().GetManaActual() > 0))
+        if (( tipo == 0 && player.GetComponent<PlayerController>().GetManaActual() - coste >= 0)
+            || (tipo == 1 && player.GetComponent<PlayerController>().GetEnergiaActual() - coste >= 0)
+            || (tipo == 2 && player.GetComponent<PlayerController>().GetEnergiaActual() - coste
+            >= 0 && player.GetComponent<PlayerController>().GetManaActual() - coste >= 0))
         {
             return true;
         }

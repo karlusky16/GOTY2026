@@ -10,22 +10,25 @@ public class TurnManager : MonoBehaviour
     public enum Turn { Player, Enemy }
     public static Turn currentTurn = Turn.Player;
     public static TextMeshProUGUI noMas;
+    public static TextMeshProUGUI tileOcupada;
     public static GameObject botonNextTurn;
-    
+
 
     public bool pulsado = false;
 
     //De momento esto es asi ya que solo hay un enemigo
 
     public static PlayerController playerController;
-    
-    
+
+
 
     void Start()
     {
         ManejoBaraja.Inicializar();
         noMas = GameObject.Find("InterfazUsuario/NoMas").GetComponent<TextMeshProUGUI>();
+        tileOcupada = GameObject.Find("InterfazUsuario/TileOcupada").GetComponent<TextMeshProUGUI>();
         noMas.gameObject.SetActive(false);
+        tileOcupada.gameObject.SetActive(false);
         ManejoBaraja.ManoTurno();
         GameObject.Find("GameManager").GetComponent<GameManager>().TilesEnemigos();
         GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
@@ -33,7 +36,7 @@ public class TurnManager : MonoBehaviour
     }
 
     void Update()
-   
+
     {
         if (currentTurn == Turn.Player)
         {
@@ -50,7 +53,7 @@ public class TurnManager : MonoBehaviour
             EnemyTurn();
         }
     }
-    
+
 
     public void pulsaBotonAvanzar()
     {
@@ -59,7 +62,10 @@ public class TurnManager : MonoBehaviour
 
     void EndPlayerTurn()
     {
-        GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", GameManager.player.GetComponent<PlayerController>().GetPos());
+        if (GameManager.cartaSeleccionada == true)
+        {
+            GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", GameManager.player.GetComponent<PlayerController>().GetPos());
+        }
         GameManager.carta = null;
         GameManager.cartaSeleccionada = false;
         if (CardAction.carta != null) Destroy(CardAction.carta);
@@ -76,7 +82,7 @@ public class TurnManager : MonoBehaviour
 
         foreach (var enemy in GameManager.enemigosLis)
         {
-            Debug.Log("Ataca el enemigo en: "+ GameManager.enemigos[enemy]);
+            Debug.Log("Ataca el enemigo en: " + GameManager.enemigos[enemy]);
             if (enemy.GetComponent<EnemyController>() == null)
             {
                 //Debug.Log("El enemigo ataca");
@@ -92,7 +98,7 @@ public class TurnManager : MonoBehaviour
             {
                 enemy.GetComponent<EnemyController>().Ataque(enemy.GetComponent<TileManagerEnemigo>().GetRango(), enemy.GetComponent<DisplayEnemy>().GetDaño());
                 Debug.Log("El enemigo ataca");
-                
+
             }
         }
         Invoke("EndEnemyTurn", 1.5f);
@@ -110,6 +116,11 @@ public class TurnManager : MonoBehaviour
         GameObject.Find("GameManager").GetComponent<GameManager>().TilesEnemigos();
         GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
         Debug.Log("Vuelve el turno del jugador.");
+    }
+    
+    public static void ResetTurn()
+    {
+        currentTurn = Turn.Player;
     }
     
 }

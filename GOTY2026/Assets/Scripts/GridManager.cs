@@ -19,7 +19,7 @@ public class GridManager : MonoBehaviour
     {
         GenerateGrid();
 
-        
+
     }
 
     void GenerateGrid()
@@ -47,7 +47,7 @@ public class GridManager : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
 
@@ -56,6 +56,13 @@ public class GridManager : MonoBehaviour
         if (_tiles.TryGetValue(pos, out var tile)) return tile;
         return null;
     }
-
+    public static void ResetTablero()
+    {
+        foreach (var tile in _tiles.Values)
+        {
+            tile.ocupado = false;
+            tile.ocupadoObj = null;
+        }
+    }
 
 }

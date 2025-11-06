@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int vidaMaximaEnemy;
     [SerializeField] private int vidaActualEnemy;
     private PlayerController player;
+    private Tile posicion;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -66,6 +67,13 @@ public class EnemyController : MonoBehaviour
     public void Movimiento()
     {
 
+    }
+
+    public void Mover(UnityEngine.Vector2 pos)
+    {
+        posicion = GridManager._tiles[pos];
+        gameObject.transform.position = posicion.transform.position;
+        GameManager.enemigos[gameObject] = pos;
     }
 
     void OnMouseEnter()
