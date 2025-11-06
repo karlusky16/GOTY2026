@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int vidaMaximaEnemy;
     [SerializeField] private int vidaActualEnemy;
     private PlayerController player;
+    private Tile posicion;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,7 +18,11 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
+        
         vidaActualEnemy = vidaMaximaEnemy;
+        BarraVidaEnemy barra = GetComponentInChildren<BarraVidaEnemy>();
+        barra.ConectarEnemy(this);
+
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
     }
 
@@ -64,6 +69,13 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    public void Mover(UnityEngine.Vector2 pos)
+    {
+        posicion = GridManager._tiles[pos];
+        gameObject.transform.position = posicion.transform.position;
+        GameManager.enemigos[gameObject] = pos;
+    }
+
     void OnMouseEnter()
     {
         if (GameManager.cartaSeleccionada == false)
@@ -76,7 +88,7 @@ public class EnemyController : MonoBehaviour
     
     void OnMouseExit()
     {
-        if (GameManager.cartaSeleccionada == false)
+        if (GameManager.cartaSeleccionada == false )
         {
             Debug.Log("Mouse Sale enemy");
             gameObject.SendMessage("UnHighlightEnemyTiles");

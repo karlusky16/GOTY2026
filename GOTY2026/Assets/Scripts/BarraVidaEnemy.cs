@@ -10,11 +10,11 @@ public class BarraVidaEnemy : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        enemyController = FindFirstObjectByType<EnemyController>();
+        /*enemyController = FindFirstObjectByType<EnemyController>();
 
         enemyController.EnemyReduceVida += ReducirBarraDeVidaEnemy;
 
-        IniciarBarraDeVidaEnemy(enemyController.GetVidaMaxima(), enemyController.GetVidaActual());
+        IniciarBarraDeVidaEnemy(enemyController.GetVidaMaxima(), enemyController.GetVidaActual());*/
     }
 
     void OnDisable()
@@ -22,6 +22,13 @@ public class BarraVidaEnemy : MonoBehaviour
         enemyController.EnemyReduceVida -= ReducirBarraDeVidaEnemy;
     }
     
+    public void ConectarEnemy(EnemyController enemy)
+    {
+        enemyController = enemy;
+        enemyController.EnemyReduceVida += ReducirBarraDeVidaEnemy;
+        IniciarBarraDeVidaEnemy(enemy.GetVidaMaxima(), enemy.GetVidaActual());
+    }
+
     private void IniciarBarraDeVidaEnemy(int vidaMaximaEnemy, int vidaActualEnemy)
     {
         sliderVidaEnemy.maxValue = vidaMaximaEnemy;

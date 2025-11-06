@@ -10,6 +10,7 @@ public class ManejoBaraja : MonoBehaviour
     public static PlayerController player;
     public static List<GameObject> mano = new();
     static Boolean mazoInicializado = false;
+    public static int[] mazoDefault = {7,7,8,8,9,9,10,1,2,3,3,4,5,6};
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public static void Inicializar()
     {
@@ -17,16 +18,15 @@ public class ManejoBaraja : MonoBehaviour
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         _image = GameObject.Find("InterfazUsuario/CardPanel");
         prefabCarta = GameObject.Find("GameManager").GetComponent<GameManager>().GetPrefabCarta();
-                //copiamos la longitud de la dataBase
+        //copiamos la longitud de la dataBase
         int cartas = GameManager.cardList.Count;
         System.Random rand = new();
         if (mazoInicializado) return;
         mazoInicializado = true;
         //Para meter cartas aleatorias en la baraja del jugador
-        for (int i = 0; i < 10; i++)
+        foreach (var id in mazoDefault)
         {
-            int carta = rand.Next(cartas);
-            player.AddCarta(carta + 1);
+            player.AddCarta(id);
         }
     }
     //Creación de la mano para cada turno
@@ -68,8 +68,23 @@ public class ManejoBaraja : MonoBehaviour
         mano.Remove(carta);
     }
     // Update is called once per frame
-    public static void Update()
+    public static void ResetBaraja()
     {
-        
+        foreach (var carta in mano)
+        {
+            if (carta != null)
+            {
+                Destroy(carta);
+            }
+        }
+        mano.Clear();
+
+        if (player != null)
+        {
+            player.ResetBaraja();
+        }
+        mazoInicializado = false;
+        Inicializar();
+        ManoTurno();
     }
 }
