@@ -36,7 +36,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             GameManager.CambiarLayerEnemy("Ignore Raycast");//Se cambia la layer de los enemigos para que no interfieran con el click en las tiles
         }
         //Si es click derecho y hay una carta seleccionada se deselecciona la carta
-        if (eventData.button == PointerEventData.InputButton.Right && GameManager.cartaSeleccionada)
+        if (eventData.button == PointerEventData.InputButton.Right && GameManager.cartaSeleccionada && GameManager.carta == gameObject)
         {
             GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
             GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
