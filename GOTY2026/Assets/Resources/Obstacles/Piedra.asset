@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ba78fb963c8a2498f1a24ec5b8d0ed, type: 3}
   m_Name: Piedra
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  id: 0
-  _name: 
-  obstacle: {fileID: 0}
+  id: 1
+  _name: Piedra
