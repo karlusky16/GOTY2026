@@ -110,10 +110,6 @@ public class TurnManager : MonoBehaviour
 
     void EndEnemyTurn()
     {
-        playerController = GameManager.player.GetComponent<PlayerController>();//Lo hago aquí en vez de en start o awake porque solo lo uso aquí y asi no hay que ponerlo en el start o awake y evita que no lo encuentre por haberlo inciado antes en un script que en otro
-        playerController.ResetearEnergia();
-        playerController.ResetearMana();
-
         currentTurn = Turn.Player;
         ManejoBaraja.ManoTurno();
         GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");

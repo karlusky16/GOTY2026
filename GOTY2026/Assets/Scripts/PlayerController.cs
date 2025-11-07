@@ -84,12 +84,6 @@ public class PlayerController : MonoBehaviour
         JugadorAumentaEnergia?.Invoke(energiaActual);
         Debug.Log("Aumenta energia jugador");
     }
-    public void ResetearEnergia()
-    {
-        ReducirEnergia(energiaActual);
-        AumentarEnergia(energiaMaxima);
-         
-    }
 
     //Modificar mana del jugador
     public void ReducirMana(int mana)
@@ -103,11 +97,6 @@ public class PlayerController : MonoBehaviour
         if ((manaActual += mana) > manaMaxima) manaActual = manaMaxima;
         JugadorAumentaMana?.Invoke(manaActual);
         Debug.Log("Aumenta mana jugador");
-    }
-    public void ResetearMana()
-    {
-        ReducirMana(manaActual);
-        AumentarMana(manaMaxima);
     }
     public void AddCarta(int id)
     {
