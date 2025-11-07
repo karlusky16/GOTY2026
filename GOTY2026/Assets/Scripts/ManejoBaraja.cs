@@ -48,6 +48,7 @@ public class ManejoBaraja : MonoBehaviour
             dc.ActualizarID(player.GetCartas()[indiceAleatorio]);
             player.GetCartas().RemoveAt(indiceAleatorio);
         }
+        TurnManager.interfaz.SetActive(true);
 
     }
     //Para devolver las cartas no usadas al final del turno

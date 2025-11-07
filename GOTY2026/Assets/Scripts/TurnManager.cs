@@ -11,7 +11,7 @@ public class TurnManager : MonoBehaviour
     public static Turn currentTurn = Turn.Player;
     public static TextMeshProUGUI noMas;
     public static TextMeshProUGUI tileOcupada;
-    public static GameObject botonNextTurn;
+    public static GameObject interfaz;
 
 
     public bool pulsado = false;
@@ -27,6 +27,7 @@ public class TurnManager : MonoBehaviour
         ManejoBaraja.Inicializar();
         noMas = GameObject.Find("InterfazUsuario/NoMas").GetComponent<TextMeshProUGUI>();
         tileOcupada = GameObject.Find("InterfazUsuario/TileOcupada").GetComponent<TextMeshProUGUI>();
+        interfaz = GameObject.Find("InterfazUsuario/NextTurn");
         noMas.gameObject.SetActive(false);
         tileOcupada.gameObject.SetActive(false);
         ManejoBaraja.ManoTurno();
@@ -41,7 +42,8 @@ public class TurnManager : MonoBehaviour
         if (currentTurn == Turn.Player)
         {
             // Pongo espacio pero realmente sería seleccionar la carta y luego al enemigo o la habilidad de la carta
-            if (Input.GetKeyDown(KeyCode.Space) || pulsado == true)
+            //if (Input.GetKeyDown(KeyCode.Space) || pulsado == true)
+            if (pulsado)
             {
                 pulsado = false;
                 //Aquí podriamos poner una llamada a un método para todo el proceso de seleccionar la carta y tal
@@ -58,6 +60,8 @@ public class TurnManager : MonoBehaviour
     public void pulsaBotonAvanzar()
     {
         pulsado = true;
+        interfaz.SetActive(false);
+
     }
 
     void EndPlayerTurn()
@@ -102,7 +106,6 @@ public class TurnManager : MonoBehaviour
             }
         }
         Invoke("EndEnemyTurn", 1.5f);
-
         currentTurn = Turn.Player; //evita que ataque en cada frame
         playerController.AumentarEnergia(playerController.GetEnergiaMaxima());
         playerController.AumentarMana(playerController.GetManaMaxima());
@@ -121,6 +124,10 @@ public class TurnManager : MonoBehaviour
     public static void ResetTurn()
     {
         currentTurn = Turn.Player;
+    }
+    public void ActivarAvanzar()
+    {
+        interfaz.SetActive(true);
     }
     
 }
