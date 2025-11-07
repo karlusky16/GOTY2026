@@ -109,6 +109,9 @@ public class GameManager : MonoBehaviour
         GenerarEnemigos();
         player.GetComponent<PlayerController>().ResetPlayer();
         player.GetComponent<PlayerController>().Mover(new Vector2(0, 2));
+        GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");
+        TilesEnemigos();
+        GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
         TurnManager.ResetTurn();
         victoryScreen.SetActive(false);
         deathScreen.SetActive(false);

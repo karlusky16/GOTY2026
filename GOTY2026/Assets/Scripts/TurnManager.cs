@@ -11,7 +11,7 @@ public class TurnManager : MonoBehaviour
     public static Turn currentTurn = Turn.Player;
     public static TextMeshProUGUI noMas;
     public static TextMeshProUGUI tileOcupada;
-    public static GameObject botonNextTurn;
+    public static GameObject interfaz;
 
 
     public bool pulsado = false;
@@ -27,7 +27,7 @@ public class TurnManager : MonoBehaviour
         ManejoBaraja.Inicializar();
         noMas = GameObject.Find("InterfazUsuario/NoMas").GetComponent<TextMeshProUGUI>();
         tileOcupada = GameObject.Find("InterfazUsuario/TileOcupada").GetComponent<TextMeshProUGUI>();
-        botonNextTurn = GameObject.Find("InterfazUsuario/NextTurnButton");
+        interfaz = GameObject.Find("InterfazUsuario/NextTurn");
         noMas.gameObject.SetActive(false);
         tileOcupada.gameObject.SetActive(false);
         ManejoBaraja.ManoTurno();
@@ -60,7 +60,7 @@ public class TurnManager : MonoBehaviour
     public void pulsaBotonAvanzar()
     {
         pulsado = true;
-        //botonNextTurn.GetComponent<Button>().interactable = false;
+        interfaz.SetActive(false);
 
     }
 
@@ -106,7 +106,6 @@ public class TurnManager : MonoBehaviour
             }
         }
         Invoke("EndEnemyTurn", 1.5f);
-
         currentTurn = Turn.Player; //evita que ataque en cada frame
         playerController.AumentarEnergia(playerController.GetEnergiaMaxima());
         playerController.AumentarMana(playerController.GetManaMaxima());
@@ -119,13 +118,16 @@ public class TurnManager : MonoBehaviour
         GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");
         GameObject.Find("GameManager").GetComponent<GameManager>().TilesEnemigos();
         GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
-        //botonNextTurn.GetComponent<Button>().interactable = true;
         Debug.Log("Vuelve el turno del jugador.");
     }
     
     public static void ResetTurn()
     {
         currentTurn = Turn.Player;
+    }
+    public void ActivarAvanzar()
+    {
+        interfaz.SetActive(true);
     }
     
 }
