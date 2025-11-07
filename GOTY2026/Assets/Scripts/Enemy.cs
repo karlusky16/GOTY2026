@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 [CreateAssetMenu(fileName = "New Enemy", menuName = "ScriptableObjects/Enemy")]
 public class Enemy : ScriptableObject 
@@ -10,18 +11,7 @@ public class Enemy : ScriptableObject
     public int rango;
     public int area;
     public String patronAtaque;
-    public Enemy()
-    {
-
-    }
-    public Enemy(int id, String _name, int vida, int daño, String patronAtaque)
-    {
-        this.id = id;
-        this._name = _name;
-        this.vida = vida;
-        this.daño = daño;
-        this.patronAtaque = patronAtaque;
-    }
+    public Sprite sprite;
 }
 
 /*

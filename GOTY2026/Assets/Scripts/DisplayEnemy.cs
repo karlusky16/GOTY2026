@@ -16,6 +16,7 @@ public class DisplayEnemy : MonoBehaviour
             Debug.LogError($" Enemy ID {displayID} no encontrado en EnemyDataBase");
             return;
         }
+        gameObject.GetComponent<SpriteRenderer>().sprite = enemy.sprite;
     }
 
 
