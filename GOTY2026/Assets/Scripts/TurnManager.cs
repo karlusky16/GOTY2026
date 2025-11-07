@@ -27,6 +27,7 @@ public class TurnManager : MonoBehaviour
         ManejoBaraja.Inicializar();
         noMas = GameObject.Find("InterfazUsuario/NoMas").GetComponent<TextMeshProUGUI>();
         tileOcupada = GameObject.Find("InterfazUsuario/TileOcupada").GetComponent<TextMeshProUGUI>();
+        botonNextTurn = GameObject.Find("InterfazUsuario/NextTurnButton");
         noMas.gameObject.SetActive(false);
         tileOcupada.gameObject.SetActive(false);
         ManejoBaraja.ManoTurno();
@@ -41,7 +42,8 @@ public class TurnManager : MonoBehaviour
         if (currentTurn == Turn.Player)
         {
             // Pongo espacio pero realmente sería seleccionar la carta y luego al enemigo o la habilidad de la carta
-            if (Input.GetKeyDown(KeyCode.Space) || pulsado == true)
+            //if (Input.GetKeyDown(KeyCode.Space) || pulsado == true)
+            if (pulsado)
             {
                 pulsado = false;
                 //Aquí podriamos poner una llamada a un método para todo el proceso de seleccionar la carta y tal
@@ -58,6 +60,8 @@ public class TurnManager : MonoBehaviour
     public void pulsaBotonAvanzar()
     {
         pulsado = true;
+        //botonNextTurn.GetComponent<Button>().interactable = false;
+
     }
 
     void EndPlayerTurn()
@@ -115,6 +119,7 @@ public class TurnManager : MonoBehaviour
         GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");
         GameObject.Find("GameManager").GetComponent<GameManager>().TilesEnemigos();
         GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
+        //botonNextTurn.GetComponent<Button>().interactable = true;
         Debug.Log("Vuelve el turno del jugador.");
     }
     

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
 public class GameManager : MonoBehaviour
@@ -97,7 +98,7 @@ public class GameManager : MonoBehaviour
     public void ResetGame()
     {
         GridManager.ResetTablero();
-        ManejoBaraja.ResetBaraja();
+        //ManejoBaraja.ResetBaraja();
         foreach (var e in enemigos)
         {
             enemigosLis.Remove(e.Key);
@@ -111,19 +112,22 @@ public class GameManager : MonoBehaviour
         TurnManager.ResetTurn();
         victoryScreen.SetActive(false);
         deathScreen.SetActive(false);
+        /*Destroy(GameManager.instance.gameObject);
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.buildIndex);*/
     }
     public void GenerarEnemigos()
     {
-        InstanciateEnemy(new Vector2(4, 4), 1);
-        InstanciateEnemy(new Vector2(2, 4), 1);
-        InstanciateEnemy(new Vector2(2, 2), 1);
-        InstanciateEnemy(new Vector2(2, 1), 1);
+        InstanciateEnemy(new Vector2(8, 4), 1);
+        InstanciateEnemy(new Vector2(8, 0), 1);
+        InstanciateEnemy(new Vector2(3, 3), 1);
+        InstanciateEnemy(new Vector2(3, 1), 1);
     }
     
     public void GenerarObstaculos()
     {
-        InstanciateObstacle(new Vector2(2, 3), 1);
-        InstanciateObstacle(new Vector2(4, 3), 1);
+        InstanciateObstacle(new Vector2(7, 0), 1);
+        InstanciateObstacle(new Vector2(7, 4), 1);
 
     }
     public void Salir()
