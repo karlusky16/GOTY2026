@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public static List<int> cartas = new();
     public static List<int> descartes = new();
     public Tile posicion;
-    public static int longMano = 5;
+    public static int longMano = 6;
     public Action<int> JugadorReduceVida;
     public Action<int> JugadorAumentaVida;
 
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     public void Mover(UnityEngine.Vector2 pos)
     {
         posicion = GridManager._tiles[pos];
-        gameObject.transform.position = posicion.transform.position;  
+        gameObject.transform.position = posicion.transform.position;
     }
     //Getters
     public Tile GetPos() => posicion;
@@ -55,7 +55,12 @@ public class PlayerController : MonoBehaviour
     //Modificar vida del jugador
     public void ReducirVida(int vida)
     {
-        if ((vidaActual -= vida) < 0) vidaActual = 0;
+        if ((vidaActual -= vida) <= 0)
+        {
+            vidaActual = 0;
+            Debug.Log("Jugador muerto");
+            GameManager.instance.deathScreen.SetActive(true);
+        }
         JugadorReduceVida?.Invoke(vidaActual);
         Debug.Log("Reduce vida jugador");
     }
@@ -95,15 +100,41 @@ public class PlayerController : MonoBehaviour
     }
     public void AddCarta(int id)
     {
+        Debug.Log("AddCarta " + id);
         cartas.Add(id);
     }
     public void AddCartaDescartes(int id)
     {
+        Debug.Log("AddCartaDescartes: " + id);
         descartes.Add(id);
     }
     public void DescartesABaraja()
     {
         Debug.Log("DescartesABaraja");
-        cartas = descartes;
+        cartas = new List<int>(descartes);
+        Debug.Log("Cartas en baraja: " + cartas.ToString());
+        descartes.Clear();
+    }
+    
+    public void ResetBaraja()
+    {
+        if (cartas != null)
+        {
+            cartas.Clear();
+        }
+        if (descartes != null)
+        {
+            descartes.Clear();
+        }
+    }
+
+    public void ResetPlayer()
+    {
+        energiaActual = energiaMaxima;
+        JugadorAumentaEnergia?.Invoke(energiaActual);
+        manaActual = manaMaxima;
+        JugadorAumentaMana?.Invoke(manaActual);
+        vidaActual = vidaMaxima;
+        JugadorAumentaVida?.Invoke(vidaActual);
     }
 }

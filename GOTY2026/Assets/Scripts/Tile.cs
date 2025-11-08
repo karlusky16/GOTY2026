@@ -13,6 +13,7 @@ public class Tile : MonoBehaviour
     private String lastPatron;
     public GameObject _highlight;
     public GameObject _highlightD;
+    public GameObject _highlightE;
     public GameObject gridManager;
     public Boolean ocupado = false;
     public GameObject ocupadoObj;
@@ -21,7 +22,8 @@ public class Tile : MonoBehaviour
     private object direccionesEfecto;
 
 
-    void Start() {
+    void Start()
+    {
     }
     public void Init(bool isOffset)
     {
@@ -40,43 +42,61 @@ public class Tile : MonoBehaviour
 
     void OnMouseEnter()
     {
+        Debug.Log("Mouse encima tile");
         if (GameManager.cartaSeleccionada == true && GameObject.Find("GameManager").GetComponent<TileManager>().GetRango().Contains(this))
         {
-            GameObject.Find("GameManager").gameObject.SendMessage("HighlightPatron",this);
+            GameObject.Find("GameManager").SendMessage("HighlightPatron", this);
         }
     }
 
     void OnMouseExit()
     {
-        GameObject.Find("GameManager").gameObject.SendMessage("UnHighlightPatron",this);      
+        Debug.Log("Mouse encima tile");
+        if (GameManager.cartaSeleccionada == true && GameObject.Find("GameManager").GetComponent<TileManager>().GetRango().Contains(this))
+        {
+            GameObject.Find("GameManager").SendMessage("UnHighlightPatron", this);
+        }
     }
     //Habria que mover todo lo del Highlight y Testeo de efecto a otro script
     void OnMouseDown()
     {
         if (GameManager.cartaSeleccionada == true && GameObject.Find("GameManager").GetComponent<TileManager>().GetRango().Contains(this))
         {
-            GameObject.Find("GameManager").gameObject.SendMessage("UnHighlightPatron", this);
-            GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", GameManager.player.GetComponent<PlayerController>().GetPos());
+            GameObject.Find("GameManager").SendMessage("UnHighlightPatron", this);
+            GameObject.Find("GameManager").SendMessage("DesmarcarRango", GameManager.player.GetComponent<PlayerController>().GetPos());
             GameManager.carta.GetComponent<CardAction>().Efecto(GameObject.Find("GameManager").GetComponent<TileManager>().GetDireccionesAnt());
         }
     }
 
-    void Highlight()
+    //Los he hecho públicos para poder utilizarlos desde el enemigo
+    public void Highlight()
     {
         _highlight.SetActive(true);
     }
-    void UnHighlight()
+
+    public void UnHighlight()
     {
+
         _highlight.SetActive(false);
     }
     void HighlightDaño()
     {
         _highlightD.SetActive(true);
     }
-    
-    void UnHighlightDaño() {
+
+    void UnHighlightDaño()
+    {
 
         _highlightD.SetActive(false);
+    }
+    void HighlightEnemy()
+    {
+        _highlightE.SetActive(true);
+    }
+    
+    void UnHighlightEnemy() {
+
+        _highlightE.SetActive(false);
     }
 
 

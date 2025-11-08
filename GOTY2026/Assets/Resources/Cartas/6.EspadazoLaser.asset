@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b64cfcac6d60124eb6d181656d30b58, type: 3}
+  m_Name: 6.EspadazoLaser
+  m_EditorClassIdentifier: Assembly-CSharp::Card
+  id: 6
+  _name: "Espadazo L\xE1ser"
+  coste: 2
+  tipoCoste: 1
+  descripcion: Das un espadazo en un area 3x2
+  patron: Rectangulo
+  rango: 1
+  area: 3
+  area2: 2
+  tipo: 0
+  "da\xF1o": 4
+  sprite: {fileID: 3093130058741019465, guid: 48023d83516e6914ca7db15b3f674a22, type: 3}

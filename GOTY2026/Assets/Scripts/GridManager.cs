@@ -12,12 +12,14 @@ public class GridManager : MonoBehaviour
     public Transform _cam;
 
     public static Dictionary<Vector2, Tile> _tiles;
+    public int GetWidth() => _width;
+    public int GetHeight() => _height;
 
     void Start()
     {
         GenerateGrid();
 
-        
+
     }
 
     void GenerateGrid()
@@ -41,12 +43,11 @@ public class GridManager : MonoBehaviour
             }
         }
         _cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 3 - 0.5f, -10);
-        GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
     }
 
     void Update()
     {
-        
+
     }
 
 
@@ -55,6 +56,13 @@ public class GridManager : MonoBehaviour
         if (_tiles.TryGetValue(pos, out var tile)) return tile;
         return null;
     }
-
+    public static void ResetTablero()
+    {
+        foreach (var tile in _tiles.Values)
+        {
+            tile.ocupado = false;
+            tile.ocupadoObj = null;
+        }
+    }
 
 }
