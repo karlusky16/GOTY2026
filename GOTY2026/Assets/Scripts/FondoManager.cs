@@ -12,18 +12,10 @@ public class FondoManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.cartaSeleccionada)
-        {
-            gridManager.SetActive(true);
-        }
-        else
-        {
-            gridManager.SetActive(false);
-        }
     }
 
-    public void Aparecer() => gridManager.SetActive(true);
+    public void Aparecer() {gridManager.SetActive(true); Debug.Log("gridManager activo: " + gridManager.activeSelf);}
 
-    public void Desaparecer() => gridManager.SetActive(false);
+    public void Desaparecer() {gridManager.SetActive(false); Debug.Log("gridManager activo: " + gridManager.activeSelf);}
 
 }

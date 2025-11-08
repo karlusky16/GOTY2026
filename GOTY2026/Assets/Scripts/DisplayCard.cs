@@ -3,34 +3,25 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Windows;
 
 public class DisplayCard : MonoBehaviour
-{
+{  
     public Card card;
     public int displayID;
-    public int id;
-    public String _name;
-    public int coste;
-    public int tipo;
-    public String descripcion;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI costText;
+    public TextMeshProUGUI DañoText;
     public TextMeshProUGUI descriptionText;
     public String patron;
+    public Image cardImage;
+    public Image borde;
+    public Color _color;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void ActualizarID(int nuevoDisplayID)
     {
         displayID = nuevoDisplayID;
-<<<<<<< Updated upstream
         card = CardDataBase.cardList[displayID - 1];
-        this.id = card.id;
-        this._name = card._name;
-        this.coste = card.coste;
-        this.descripcion = card.descripcion;
-        nameText.text = " " + _name;
-        costText.text = " " + coste;
-        descriptionText.text = " " + descripcion;
-=======
         Debug.Log("ActualizarID llamado con ID: " + (displayID - 1));
         Debug.Log("CardList Count: " + GameManager.cardList.Count);
         card = GameManager.cardList[displayID - 1];
@@ -56,12 +47,16 @@ public class DisplayCard : MonoBehaviour
             borde.color =  Color.Lerp(mana, energia, 0.5f);
             _color = borde.color;
         }
->>>>>>> Stashed changes
     }
     public Card GetCard() => card;
     public int GetTipo() => card.tipo;
+    public int GetDaño() => card.daño;
+    public int GetTipoCoste() => card.tipoCoste;
+    public int GetCoste() => card.coste;
     public String GetPatron() => card.patron;
     public int GetRango() => card.rango;
     public int GetArea() => card.area;
+    public int GetArea2() => card.area2;
+    public Color GetColor() => _color;
     // Update is called once per frame
 }

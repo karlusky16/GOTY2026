@@ -48,19 +48,24 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.6f2\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Obstacle.cs" />
     <Compile Include="Assets\Scripts\Tile.cs" />
     <Compile Include="Assets\Scripts\GridManager.cs" />
+    <Compile Include="Assets\Scripts\DisplayEnemy.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\BarraManaPlayer.cs" />
+    <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\TurnManager.cs" />
+    <Compile Include="Assets\Scripts\DisplayObstacle.cs" />
     <Compile Include="Assets\Scripts\DisplayCard.cs" />
     <Compile Include="Assets\Scripts\ManejoBaraja.cs" />
+    <Compile Include="Assets\Scripts\BarraVidaEnemy.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\BarraVidaPlayer.cs" />
     <Compile Include="Assets\Scripts\Card.cs" />
     <Compile Include="Assets\Scripts\BarraEnergiaPlayer.cs" />
+    <Compile Include="Assets\Scripts\TileManagerEnemigo.cs" />
     <Compile Include="Assets\Scripts\CardAction.cs" />
-    <Compile Include="Assets\Scripts\CardDataBase.cs" />
     <Compile Include="Assets\Scripts\FondoManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\TileManager.cs" />
