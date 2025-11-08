@@ -21,12 +21,10 @@ public class DisplayCard : MonoBehaviour
     public void ActualizarID(int nuevoDisplayID)
     {
         displayID = nuevoDisplayID;
-        Debug.Log("ActualizarID llamado con ID: " + (displayID - 1));
-        Debug.Log("CardList Count: " + GameManager.cardList.Count);
         card = GameManager.cardList[displayID - 1];
         nameText.text = " " + card._name;
         costText.text = " " + card.coste;
-        DañoText.text = "Daño " + card.daño + "\n" + "Rango" + card.rango + "\n";
+        DañoText.text = "Daño " + card.daño + "\n" + "Rango " + card.rango + "\n";
         descriptionText.text = " " + card.descripcion;
         cardImage.sprite = card.sprite;
         Color32 mana = new(95, 16, 120, 255);
