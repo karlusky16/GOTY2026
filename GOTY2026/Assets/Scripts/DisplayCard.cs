@@ -21,9 +21,6 @@ public class DisplayCard : MonoBehaviour
     public void ActualizarID(int nuevoDisplayID)
     {
         displayID = nuevoDisplayID;
-        card = CardDataBase.cardList[displayID - 1];
-        Debug.Log("ActualizarID llamado con ID: " + (displayID - 1));
-        Debug.Log("CardList Count: " + GameManager.cardList.Count);
         card = GameManager.cardList[displayID - 1];
         nameText.text = " " + card._name;
         costText.text = " " + card.coste;
