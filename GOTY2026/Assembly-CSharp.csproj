@@ -104,6 +104,7 @@
     <Compile Include="Assets\Scripts\ScriptsMapa\UI Lines\Utilities\SetPropertyUtility.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\ShufflingExtension.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\LineConnection.cs" />
+    <Compile Include="Assets\Scripts\RecompensasScript.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Tests\Scripts\ExtendedClassTest.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\BarraVidaPlayer.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Assets\Scripts\ScriptsMapa\NodeBlueprint.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\MapConfig.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Details\Scripts\NestedArrayExample.cs" />
+    <Compile Include="Assets\Scripts\CardActionRec.cs" />
     <Compile Include="Assets\OneLine\OneLine\Attributes\ArrayLengthAttribute.cs" />
     <Compile Include="Assets\Scripts\Card.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\DottedLineRenderer.cs" />

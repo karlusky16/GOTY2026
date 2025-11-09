@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     public static List<Obstacle> obstacleList;
 
-    
+
     void Start()
     {
         cardList = new List<Card>(Resources.LoadAll<Card>("Cartas"));
@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
             enemy.layer = LayerMask.NameToLayer(layer);
         }
     }
-    
+
     public void ResetGame()
     {
         GridManager.ResetTablero();
@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
         InstanciateEnemy(new Vector2(3, 3), 1);
         InstanciateEnemy(new Vector2(3, 1), 1);
     }
-    
+
     public void GenerarObstaculos()
     {
         InstanciateObstacle(new Vector2(7, 0), 1);
@@ -136,6 +136,10 @@ public class GameManager : MonoBehaviour
     public void Salir()
     {
         Application.Quit();
+    }
+    public void VolverMapa()
+    {
+        
     }
 
 }

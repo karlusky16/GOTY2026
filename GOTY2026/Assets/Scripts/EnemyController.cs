@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
 {
@@ -38,11 +39,8 @@ public class EnemyController : MonoBehaviour
             GameManager.enemigosLis.Remove(gameObject);
             if (GameManager.enemigos.Count == 0)
             {
-                GameManager.instance.victoryScreen.SetActive(true);
-                Time.timeScale = 0f;
+                SceneManager.LoadScene("Recompensas");
             }
-            GridManager._tiles[new Vector2(1, 1)].ocupadoObj = null;
-            GridManager._tiles[new Vector2(1, 1)].ocupado = false;
         }
     }
     public int GetVidaMaxima() => vidaMaximaEnemy;
