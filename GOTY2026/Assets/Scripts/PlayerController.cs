@@ -8,7 +8,6 @@ using UnityEngine.UIElements;
 public class PlayerController : MonoBehaviour
 {
     public static List<int> cartas = new();
-    public static List<int> descartes = new();
     public Tile posicion;
     public static int longMano = 6;
     public Action<int> JugadorReduceVida;
@@ -102,30 +101,6 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("AddCarta " + id);
         cartas.Add(id);
-    }
-    public void AddCartaDescartes(int id)
-    {
-        Debug.Log("AddCartaDescartes: " + id);
-        descartes.Add(id);
-    }
-    public void DescartesABaraja()
-    {
-        Debug.Log("DescartesABaraja");
-        cartas = new List<int>(descartes);
-        Debug.Log("Cartas en baraja: " + cartas.ToString());
-        descartes.Clear();
-    }
-    
-    public void ResetBaraja()
-    {
-        if (cartas != null)
-        {
-            cartas.Clear();
-        }
-        if (descartes != null)
-        {
-            descartes.Clear();
-        }
     }
 
     public void ResetPlayer()
