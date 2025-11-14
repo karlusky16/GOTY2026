@@ -126,10 +126,9 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 default:
                     break;
             }
-            ManejoBaraja.DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id);
+            GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id);
             GameManager.carta = null;
             GameManager.cartaSeleccionada = false;
-            Destroy(gameObject);
         }
         //Sino se muestra el mensaje correspondiente
         else
@@ -174,10 +173,9 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 default:
                     break;
             }
-            ManejoBaraja.DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id);
+            GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id);
             GameManager.carta = null;
             GameManager.cartaSeleccionada = false;
-            Destroy(gameObject);
         }
         //Sino se muestra el mensaje correspondiente
         else
@@ -230,10 +228,9 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 default:
                     break;
             }
-            ManejoBaraja.DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id);
+            GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id);
             GameManager.carta = null;
             GameManager.cartaSeleccionada = false;
-            Destroy(gameObject);
         }
         //Sino se muestra el mensaje correspondiente
         else
