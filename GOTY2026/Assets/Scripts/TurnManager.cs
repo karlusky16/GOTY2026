@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour
@@ -55,7 +56,10 @@ public class TurnManager : MonoBehaviour
             EnemyTurn();
         }
     }
-
+    
+    public void cargarEscena(){
+        SceneManager.LoadScene("Recompensas");
+    }
 
     public void pulsaBotonAvanzar()
     {
