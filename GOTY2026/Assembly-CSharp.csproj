@@ -81,6 +81,7 @@
     <Compile Include="Assets\OneLine\RectEx\MiscellaniousExtensions.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Benchmark\Scripts\SeparateFieldsBenchmark.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\MapView.cs" />
+    <Compile Include="Assets\Scripts\Campfire.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\UI Lines\Utilities\CableCurve.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Details\Scripts\WidthExample.cs" />
