@@ -103,6 +103,36 @@ public class PlayerController : MonoBehaviour
         cartas.Add(id);
     }
 
+    public void RemoveCarta(int id)
+    {
+        Debug.Log("RemoveCarta " + id);
+        cartas.Remove(id);
+    }
+    public void AddCartaDescartes(int id)
+    {
+        Debug.Log("AddCartaDescartes: " + id);
+        descartes.Add(id);
+    }
+    public void DescartesABaraja()
+    {
+        Debug.Log("DescartesABaraja");
+        cartas = new List<int>(descartes);
+        Debug.Log("Cartas en baraja: " + cartas.ToString());
+        descartes.Clear();
+    }
+    
+    public void ResetBaraja()
+    {
+        if (cartas != null)
+        {
+            cartas.Clear();
+        }
+        if (descartes != null)
+        {
+            descartes.Clear();
+        }
+    }
+
     public void ResetPlayer()
     {
         energiaActual = energiaMaxima;
