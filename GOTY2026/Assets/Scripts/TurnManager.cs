@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TMPro;
 using Unity.VisualScripting;
@@ -13,10 +14,12 @@ public class TurnManager : MonoBehaviour
     public static TextMeshProUGUI noMas;
     public static TextMeshProUGUI tileOcupada;
     public static GameObject interfaz;
-
-
+    public static List<GameObject> robo = new();
+    public static List<GameObject> descartes = new();
+    public GameObject prefabCarta; // tu prefab de carta
+    public static GameObject _image; //referencia al CardPanel
     public bool pulsado = false;
-
+    public GameObject descartesPadre, roboPadre;
     //De momento esto es asi ya que solo hay un enemigo
 
     public static PlayerController playerController;
@@ -26,12 +29,13 @@ public class TurnManager : MonoBehaviour
     void Start()
     {
         ManejoBaraja.Inicializar();
+        InstanciarCartas();
         noMas = GameObject.Find("InterfazUsuario/NoMas").GetComponent<TextMeshProUGUI>();
         tileOcupada = GameObject.Find("InterfazUsuario/TileOcupada").GetComponent<TextMeshProUGUI>();
         interfaz = GameObject.Find("InterfazUsuario/NextTurn");
         noMas.gameObject.SetActive(false);
         tileOcupada.gameObject.SetActive(false);
-        ManejoBaraja.ManoTurno();
+        GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().ManoTurno();
         GameObject.Find("GameManager").GetComponent<GameManager>().TilesEnemigos();
         GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
         Debug.Log("Comienza el combate. Turno del jugador.");
@@ -56,8 +60,9 @@ public class TurnManager : MonoBehaviour
             EnemyTurn();
         }
     }
-    
-    public void cargarEscena(){
+
+    public void cargarEscena()
+    {
         SceneManager.LoadScene("Recompensas");
     }
 
@@ -78,7 +83,7 @@ public class TurnManager : MonoBehaviour
         GameManager.cartaSeleccionada = false;
         if (CardAction.carta != null) Destroy(CardAction.carta);
         currentTurn = Turn.Enemy;
-        ManejoBaraja.DevolverMano();
+        GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverMano(); ;
         Debug.Log("Turno del enemigo.");
         GameManager.CambiarLayerEnemy("Default");
 
@@ -118,13 +123,13 @@ public class TurnManager : MonoBehaviour
     void EndEnemyTurn()
     {
         currentTurn = Turn.Player;
-        ManejoBaraja.ManoTurno();
+        GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().ManoTurno();
         GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");
         GameObject.Find("GameManager").GetComponent<GameManager>().TilesEnemigos();
         GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
         Debug.Log("Vuelve el turno del jugador.");
     }
-    
+
     public static void ResetTurn()
     {
         currentTurn = Turn.Player;
@@ -133,5 +138,17 @@ public class TurnManager : MonoBehaviour
     {
         interfaz.SetActive(true);
     }
-    
+
+    void InstanciarCartas()
+    {
+        System.Random rand = new();
+        int cartas = GameManager.player.GetComponent<PlayerController>().GetCartasLength();
+        List<int> cardList = GameManager.player.GetComponent<PlayerController>().GetCartas();
+        for (int i = 0; i < cartas; i++)
+        {
+            robo.Add(Instantiate(prefabCarta, roboPadre.transform));
+            robo[i].GetComponent<DisplayCard>().ActualizarID(cardList[i]);
+        }
+    }
+
 }

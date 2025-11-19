@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\OneLine\RectEx\CutFromExtensions.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Tests\Scripts\ExtendedGenericTest.cs" />
+    <Compile Include="Assets\Scripts\CharacterSelect.cs" />
     <Compile Include="Assets\Scripts\BarraManaPlayer.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\UI Lines\Utilities\BezierPath.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Details\Scripts\OneLineExample.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="Assets\Scripts\CardAction.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\Map.cs" />
     <Compile Include="Assets\Scripts\FondoManager.cs" />
+    <Compile Include="Assets\Scripts\SceneManager1.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Overview\Scripts\StandartTypesOverview.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\MapManager.cs" />
