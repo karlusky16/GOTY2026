@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 [CreateAssetMenu(fileName = "New Enemy", menuName = "ScriptableObjects/Enemy")]
-public class Enemy : ScriptableObject 
+public class Enemy : ScriptableObject
 {
     public int id;
     public String _name;
@@ -11,6 +11,7 @@ public class Enemy : ScriptableObject
     public int area;
     public String patronAtaque;
     public Sprite sprite;
+    
 }
 
 /*

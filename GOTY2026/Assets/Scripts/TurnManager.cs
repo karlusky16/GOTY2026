@@ -150,5 +150,4 @@ public class TurnManager : MonoBehaviour
             robo[i].GetComponent<DisplayCard>().ActualizarID(cardList[i]);
         }
     }
-
 }

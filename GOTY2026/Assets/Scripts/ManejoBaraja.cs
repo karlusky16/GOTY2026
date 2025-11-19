@@ -84,5 +84,4 @@ public class ManejoBaraja : MonoBehaviour
         Debug.Log("Cartas en baraja: " + TurnManager.robo.ToString());
         TurnManager.descartes.Clear();
     }
-
 }

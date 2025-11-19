@@ -8,7 +8,6 @@ using UnityEngine.UIElements;
 public class PlayerController : MonoBehaviour
 {
     public static List<int> cartas = new();
-    public static List<int> descartes = new();
     public Tile posicion;
     public static int longMano = 6;
     public Action<int> JugadorReduceVida;
