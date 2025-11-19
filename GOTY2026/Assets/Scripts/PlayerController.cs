@@ -103,6 +103,12 @@ public class PlayerController : MonoBehaviour
         Debug.Log("AddCarta " + id);
         cartas.Add(id);
     }
+
+    public void RemoveCarta(int id)
+    {
+        Debug.Log("RemoveCarta " + id);
+        cartas.Remove(id);
+    }
     public void AddCartaDescartes(int id)
     {
         Debug.Log("AddCartaDescartes: " + id);

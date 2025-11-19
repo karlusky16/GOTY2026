@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Campfire : MonoBehaviour
 {
@@ -18,12 +19,30 @@ public class Campfire : MonoBehaviour
     public void DestroyCard()
     {
         panelCartas.SetActive(true);
-        for (int i = 0; i < GameManager.cardList.Count; i++)
+        for (int i = 0; i < GameManager.player.GetComponent<PlayerController>().GetCartasLength(); i++)
         {
-            GameObject carta = Instantiate(prefabCarta, panelCartas.transform);
+            var carta = Instantiate(prefabCarta, panelCartas.transform);
             DisplayCard dc = carta.GetComponent<DisplayCard>();
-            dc.ActualizarID(GameManager.cardList[i].id);
+            int idLocal = GameManager.player.GetComponent<PlayerController>().GetCartas()[i];
+            dc.ActualizarID(idLocal);
+
+            Button btn = carta.GetComponentInChildren<Button>();
+            btn.onClick.RemoveAllListeners();
+            Debug.Log("Asignando listener a la carta con ID: " + i);
+            btn.onClick.AddListener(() => MatarCarta(idLocal));
         }
+    }
+
+    public void MatarCarta(int id)
+    {
+        Debug.Log("Carta eliminada: " + id);
+        GameManager.player.GetComponent<PlayerController>().GetCartas().Remove(id);
+        panelCartas.SetActive(false);
+
+    }
+    public void SigEscena()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MapUi");
     }
     // Update is called once per frame
     void Update()
