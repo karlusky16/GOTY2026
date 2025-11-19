@@ -71,11 +71,12 @@ namespace Map
             switch (mapNode.Node.nodeType)
             {
                 case NodeType.MinorEnemy:
-                    SceneManager.LoadScene("SampleScene");
+                    // SceneManager.LoadScene("SampleScene");
                     break;
                 case NodeType.EliteEnemy:
                     break;
                 case NodeType.RestSite:
+                    SceneManager.LoadScene("CampFire");
                     break;
                 case NodeType.Treasure:
                     break;
