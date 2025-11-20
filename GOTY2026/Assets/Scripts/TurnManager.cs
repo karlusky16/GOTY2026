@@ -29,6 +29,8 @@ public class TurnManager : MonoBehaviour
     void Start()
     {
         ManejoBaraja.Inicializar();
+        robo = new();
+        descartes = new();
         InstanciarCartas();
         noMas = GameObject.Find("InterfazUsuario/NoMas").GetComponent<TextMeshProUGUI>();
         tileOcupada = GameObject.Find("InterfazUsuario/TileOcupada").GetComponent<TextMeshProUGUI>();
@@ -150,4 +152,5 @@ public class TurnManager : MonoBehaviour
             robo[i].GetComponent<DisplayCard>().ActualizarID(cardList[i]);
         }
     }
+
 }

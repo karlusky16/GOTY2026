@@ -8,6 +8,10 @@ public class SceneManager1 : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        GameManager.enemigos.Clear();
+        GameManager.obstacles.Clear();
+        GameManager.enemigosLis.Clear();
+        GameManager.obstaclesLis.Clear();
         GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         GameManager.player.GetComponent<PlayerController>().Mover(new Vector2(0, 2));
         GenerarEnemigos();

@@ -15,6 +15,7 @@ public class ManejoBaraja : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public static void Inicializar()
     {
+        mano = new();
         //Buscamos el atributo player controller
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         _image = GameObject.Find("InterfazUsuario/CardPanel");
@@ -84,4 +85,5 @@ public class ManejoBaraja : MonoBehaviour
         Debug.Log("Cartas en baraja: " + TurnManager.robo.ToString());
         TurnManager.descartes.Clear();
     }
+
 }
