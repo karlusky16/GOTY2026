@@ -36,7 +36,12 @@ public class Campfire : MonoBehaviour
     public void MatarCarta(int id)
     {
         Debug.Log("Carta eliminada: " + id);
-        GameManager.player.GetComponent<PlayerController>().GetCartas().Remove(id);
+        GameManager.player.GetComponent<PlayerController>().RemoveCarta(id);
+        Debug.Log("Cartas restantes: " + GameManager.player.GetComponent<PlayerController>().GetCartasLength());
+        for (int i = panelCartas.transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(panelCartas.transform.GetChild(i).gameObject);
+        }
         panelCartas.SetActive(false);
 
     }
