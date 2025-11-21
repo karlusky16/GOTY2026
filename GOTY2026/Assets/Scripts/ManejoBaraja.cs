@@ -10,11 +10,12 @@ public class ManejoBaraja : MonoBehaviour
     public static PlayerController player;
     public static List<GameObject> mano = new();
     static Boolean mazoInicializado = false;
-    public  GameObject descartesPadre,roboPadre;
+    public GameObject descartesPadre, roboPadre;
     public static int[] mazoDefault = { 7, 7, 8, 8, 9, 9, 10, 1, 2, 3, 3, 4, 5, 6 };
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public static void Inicializar()
     {
+        mano = new();
         //Buscamos el atributo player controller
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         _image = GameObject.Find("InterfazUsuario/CardPanel");
@@ -70,18 +71,19 @@ public class ManejoBaraja : MonoBehaviour
 
     public void AddCartaDescartes(GameObject carta)
     {
-        carta.transform.SetParent(descartesPadre.transform,false);
+        carta.transform.SetParent(descartesPadre.transform, false);
         TurnManager.descartes.Add(carta);
     }
     public void DescartesABaraja()
     {
         Debug.Log("DescartesABaraja");
         TurnManager.robo = new List<GameObject>(TurnManager.descartes);
-        for (int i = 0; i< TurnManager.robo.Count;i++) {
-            TurnManager.robo[i].transform.SetParent(descartesPadre.transform,false);
+        for (int i = 0; i < TurnManager.robo.Count; i++)
+        {
+            TurnManager.robo[i].transform.SetParent(descartesPadre.transform, false);
         }
         Debug.Log("Cartas en baraja: " + TurnManager.robo.ToString());
         TurnManager.descartes.Clear();
     }
-    
+
 }

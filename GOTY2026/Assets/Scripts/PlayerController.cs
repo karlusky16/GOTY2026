@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 public class PlayerController : MonoBehaviour
 {
     public static List<int> cartas = new();
+    public static List<int> descartes = new();
     public Tile posicion;
     public static int longMano = 6;
     public Action<int> JugadorReduceVida;
@@ -58,10 +59,13 @@ public class PlayerController : MonoBehaviour
         {
             vidaActual = 0;
             Debug.Log("Jugador muerto");
-            GameManager.instance.deathScreen.SetActive(true);
+
         }
         JugadorReduceVida?.Invoke(vidaActual);
         Debug.Log("Reduce vida jugador");
+        var DeathScreen = GameObject.Find("Death Screen");
+        DeathScreen.SetActive(true);
+
     }
     public void AumentarVida(int vida)
     {
