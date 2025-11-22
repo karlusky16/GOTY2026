@@ -58,6 +58,8 @@ public class GameManager : MonoBehaviour
         enemigosLis[enemigosLis.Count - 1].GetComponent<DisplayEnemy>().ActualizarID(id);
         GridManager._tiles[pos].ocupadoObj = enemigosLis[enemigosLis.Count - 1];
         GridManager._tiles[pos].ocupado = true;
+
+        enemigosLis[enemigosLis.Count - 1].GetComponent<EnemyController>().Mover(pos); // le asigna al enemigo su posición        
     }
 
     public void InstanciateObstacle(Vector2 pos, int id)
@@ -113,7 +115,6 @@ public class GameManager : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.buildIndex);*/
     }
-  
     public void Salir()
     {
         Application.Quit();

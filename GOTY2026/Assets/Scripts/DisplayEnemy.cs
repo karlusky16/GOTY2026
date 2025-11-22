@@ -29,5 +29,7 @@ public class DisplayEnemy : MonoBehaviour
     public String GetPatron() => enemy.patronAtaque;
     public int GetRango() => enemy.rango;
     public int GetArea() => enemy.area;
+    public int GetMovimiento() => enemy.movimiento;
+    public String GetName() => enemy._name;
 
 }
