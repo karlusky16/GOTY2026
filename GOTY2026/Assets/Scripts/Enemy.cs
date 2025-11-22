@@ -9,6 +9,7 @@ public class Enemy : ScriptableObject
     public int daño;
     public int rango;
     public int area;
+    public int movimiento;
     public String patronAtaque;
     public Sprite sprite;
 }

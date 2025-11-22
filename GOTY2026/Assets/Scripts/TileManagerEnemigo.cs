@@ -17,6 +17,9 @@ public class TileManagerEnemigo : MonoBehaviour
             case "Aleatorios":
                 direccionesAnt = AleatoriosPatron(enemy.GetComponent<DisplayEnemy>().GetArea());
                 break;
+            case "RectaHorizontal":
+                direccionesAnt = RectaHorizontal(enemy.GetComponent<DisplayEnemy>().GetArea(), enemy);
+                break;
             default:
                 break;
         }
@@ -53,4 +56,41 @@ public class TileManagerEnemigo : MonoBehaviour
         direccionesAnt = direcciones.ToArray();
         return direccionesAnt;
     }
+    /*Para el robot, ya que ataca solo en su fila*/
+    private static Vector2[] RectaHorizontal(int area, GameObject enemy) // tile la casilla seleccionada
+    {
+        
+        List<Vector2> direcciones = new();
+        Tile t = enemy.GetComponent<EnemyController>().GetPos(); //t = pos enemigo
+        int playerx = GameManager.player.GetComponent<PlayerController>().GetPos().x; // para atacar hacia el enemigo
+        int enemyx = enemy.GetComponent<EnemyController>().GetPos().x;
+        bool plaDer = false;
+        int x = GameObject.Find("GridManager").GetComponent<GridManager>().GetWidth();
+        if(enemyx < 0 || enemyx >= x) {Debug.Log("Posición del enemy en RectaHorizontal en TileMEnemigo"); return null;}
+        if(playerx < 0 || playerx >= x) {Debug.Log("Posición del player en RectaHorizontal en TileMEnemigo"); return null;}
+
+        if(playerx - enemyx > 0) plaDer = true;
+        int cont = 0;
+
+        if (plaDer)
+        {
+            for(int i = enemyx + 1; i < x && i >= 0; i++)
+            {
+                direcciones.Add(new(i, t.y));
+                cont ++;
+                if(cont == area) break;
+            }
+        }
+        else
+        {
+            for(int i = enemyx - 1; i < x && i >= 0; i--)
+            {
+                direcciones.Add(new(i, t.y));
+                cont ++;
+                if(cont == area) break;
+            }
+        }
+        return direcciones.ToArray();
+    }
+    
 }

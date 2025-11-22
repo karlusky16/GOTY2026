@@ -10,7 +10,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int vidaMaximaEnemy;
     [SerializeField] private int vidaActualEnemy;
     private PlayerController player;
-    private Tile posicion;
+    public Tile posicion;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -45,6 +45,7 @@ public class EnemyController : MonoBehaviour
     }
     public int GetVidaMaxima() => vidaMaximaEnemy;
     public int GetVidaActual() => vidaActualEnemy;
+    public Tile GetPos() => posicion;
     public void ReducirVida(int vida)
     {
         if ((vidaActualEnemy -= vida) < 0) vidaActualEnemy = 0;
@@ -62,10 +63,20 @@ public class EnemyController : MonoBehaviour
         }
 
     }
-    public void Movimiento()
+    public void Movimiento(GameObject enemy)
     {
+        int movimientos = enemy.GetComponent<DisplayEnemy>().GetMovimiento();
+        String name = enemy.GetComponent<DisplayEnemy>().GetName();
 
-    }
+        switch (name)
+        {
+            case "Robot":
+                Mover(MoverAFila(enemy));
+                break;
+            default:
+                break;
+        }
+        }
 
     public void Mover(UnityEngine.Vector2 pos)
     {
@@ -92,6 +103,39 @@ public class EnemyController : MonoBehaviour
             gameObject.SendMessage("UnHighlightEnemyTiles");
             GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
         }
+    }
+/*Se mueve a la fila del player*/
+    Vector2 MoverAFila(GameObject enemy)
+    {
+        int playery =  GameManager.player.GetComponent<PlayerController>().GetPos().y;
+        int enemyx = enemy.GetComponent<EnemyController>().GetPos().x;
+        if(playery == enemy.GetComponent<EnemyController>().GetPos().y) return new Vector2(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y); // si ya está en la fila del player se queda donde estaba
+        Vector2 nuevaPos = new Vector2(enemyx, playery);
+        Tile tile;
+        GridManager._tiles.TryGetValue(nuevaPos, out tile);
+        if(tile.ocupado == false) return nuevaPos; // moverlo desde el método Movimiento
+        else
+        {
+            int ancho = GameObject.Find("GridManager").GetComponent<GridManager>().GetWidth();
+            for(int i = 0; i < ancho - 1; i++)
+            {
+                if(enemyx == 0) enemyx = ancho;
+                enemyx--;
+                nuevaPos = new Vector2(enemyx, playery);
+                GridManager._tiles.TryGetValue(nuevaPos, out tile);
+                if(tile.ocupado == false) return nuevaPos;
+            }
+            return new Vector2(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y) ; // aqui solo llega si ha acabado el for, por tanto i = ancho y como no se ha podido mover se queda en su posición original
+            
+        }
+
+    }
+
+    
+
+    void CalcularRutaMasCorta()
+    {
+        
     }
 }
 
