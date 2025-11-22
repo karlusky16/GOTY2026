@@ -59,10 +59,13 @@ public class PlayerController : MonoBehaviour
         {
             vidaActual = 0;
             Debug.Log("Jugador muerto");
-            GameManager.instance.deathScreen.SetActive(true);
+
         }
         JugadorReduceVida?.Invoke(vidaActual);
         Debug.Log("Reduce vida jugador");
+        var DeathScreen = GameObject.Find("Death Screen");
+        DeathScreen.SetActive(true);
+
     }
     public void AumentarVida(int vida)
     {
@@ -102,6 +105,12 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("AddCarta " + id);
         cartas.Add(id);
+    }
+
+    public void RemoveCarta(int id)
+    {
+        Debug.Log("RemoveCarta " + id);
+        cartas.Remove(id);
     }
     public void AddCartaDescartes(int id)
     {

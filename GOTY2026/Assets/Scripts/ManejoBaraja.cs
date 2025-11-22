@@ -10,10 +10,12 @@ public class ManejoBaraja : MonoBehaviour
     public static PlayerController player;
     public static List<GameObject> mano = new();
     static Boolean mazoInicializado = false;
-    public static int[] mazoDefault = {7,7,8,8,9,9,10,1,2,3,3,4,5,6};
+    public GameObject descartesPadre, roboPadre;
+    public static int[] mazoDefault = { 7, 7, 8, 8, 9, 9, 10, 1, 2, 3, 3, 4, 5, 6 };
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public static void Inicializar()
     {
+        mano = new();
         //Buscamos el atributo player controller
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         _image = GameObject.Find("InterfazUsuario/CardPanel");
@@ -30,62 +32,58 @@ public class ManejoBaraja : MonoBehaviour
         }
     }
     //Creación de la mano para cada turno
-    public static void ManoTurno()
+    public void ManoTurno()
     {
         System.Random rand = new();
         //Generamos la mano aleatoriamente desde la lista de cartas
         for (int i = 0; i < player.GetLongMano(); i++)
         {
-            int cartas = player.GetCartasLength();
+            int cartas = TurnManager.robo.Count;
             if (cartas == 0)
             {
-                player.DescartesABaraja();
+                DescartesABaraja();
                 cartas = player.GetCartasLength();
             }
             int indiceAleatorio = rand.Next(cartas);
-            mano.Add(GameObject.Instantiate(prefabCarta, _image.transform));
-            DisplayCard dc = mano[i].GetComponent<DisplayCard>();
-            dc.ActualizarID(player.GetCartas()[indiceAleatorio]);
-            player.GetCartas().RemoveAt(indiceAleatorio);
+            mano.Add(TurnManager.robo[indiceAleatorio]);
+            mano[i].transform.SetParent(_image.transform);
+            TurnManager.robo.RemoveAt(indiceAleatorio);
         }
         TurnManager.interfaz.SetActive(true);
-
     }
     //Para devolver las cartas no usadas al final del turno
-    public static void DevolverMano()
-    {   
+    public void DevolverMano()
+    {
         while (mano.Count > 0)
         {
             var carta = mano[0];
             int idCarta = carta.GetComponent<DisplayCard>().GetCard().id;
-            DevolverCarta(carta,idCarta);
-            GameObject.Destroy(carta);
+            DevolverCarta(carta, idCarta);
         }
     }
     //Para devolver la carta al usarse
-    public static void DevolverCarta(GameObject carta, int id)
+    public void DevolverCarta(GameObject carta, int id)
     {
-        player.AddCartaDescartes(id);
+        AddCartaDescartes(carta);
         mano.Remove(carta);
     }
     // Update is called once per frame
-    public static void ResetBaraja()
-    {
-        foreach (var carta in mano)
-        {
-            if (carta != null)
-            {
-                Destroy(carta);
-            }
-        }
-        mano.Clear();
 
-        if (player != null)
-        {
-            player.ResetBaraja();
-        }
-        mazoInicializado = false;
-        Inicializar();
-        ManoTurno();
+    public void AddCartaDescartes(GameObject carta)
+    {
+        carta.transform.SetParent(descartesPadre.transform, false);
+        TurnManager.descartes.Add(carta);
     }
+    public void DescartesABaraja()
+    {
+        Debug.Log("DescartesABaraja");
+        TurnManager.robo = new List<GameObject>(TurnManager.descartes);
+        for (int i = 0; i < TurnManager.robo.Count; i++)
+        {
+            TurnManager.robo[i].transform.SetParent(descartesPadre.transform, false);
+        }
+        Debug.Log("Cartas en baraja: " + TurnManager.robo.ToString());
+        TurnManager.descartes.Clear();
+    }
+
 }

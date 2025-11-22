@@ -13,8 +13,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject prefabObstaculo;
     // UI
-    public GameObject deathScreen;
-    public GameObject victoryScreen;
+    
 
     public static Boolean cartaSeleccionada;
     public static GameObject carta;
@@ -43,12 +42,10 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             player = GameObject.FindWithTag("Player");
             DontDestroyOnLoad(player);
-            player.GetComponent<PlayerController>().Mover(new Vector2(0, 2));
+            //
         }
         //añade enemigo al array de enemigos.
-        GenerarEnemigos();
-        TurnManager.playerController = player.GetComponent<PlayerController>();
-        GenerarObstaculos();
+        
 
 
     }
@@ -108,34 +105,15 @@ public class GameManager : MonoBehaviour
                 Destroy(e.Key);
         }
         enemigos.Clear();
-        GenerarEnemigos();
         player.GetComponent<PlayerController>().ResetPlayer();
         player.GetComponent<PlayerController>().Mover(new Vector2(0, 2));
         GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");
         TilesEnemigos();
         GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
         TurnManager.ResetTurn();
-        victoryScreen.SetActive(false);
-        deathScreen.SetActive(false);
         /*Destroy(GameManager.instance.gameObject);
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.buildIndex);*/
-    }
-    public void GenerarEnemigos()
-    {
-        InstanciateEnemy(new Vector2(8, 4), 1);
-        InstanciateEnemy(new Vector2(8, 0), 1);
-        InstanciateEnemy(new Vector2(3, 3), 1);
-        InstanciateEnemy(new Vector2(3, 1), 1);
-        InstanciateEnemy(new Vector2(7, 4), 2);
-
-    }
-
-    public void GenerarObstaculos()
-    {
-        InstanciateObstacle(new Vector2(7, 0), 1);
-        InstanciateObstacle(new Vector2(7, 4), 1);
-
     }
     public void Salir()
     {

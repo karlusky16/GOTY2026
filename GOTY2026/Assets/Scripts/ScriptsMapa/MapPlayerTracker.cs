@@ -76,6 +76,7 @@ namespace Map
                 case NodeType.EliteEnemy:
                     break;
                 case NodeType.RestSite:
+                    SceneManager.LoadScene("CampFire");
                     break;
                 case NodeType.Treasure:
                     break;

@@ -63,11 +63,11 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     void Destacar()
     {
         carta = Instantiate(gameObject);
-        carta.transform.localScale = new Vector3(2f,2f,2f);
+        carta.transform.localScale = new Vector3(2f, 2f, 2f);
         carta.transform.SetParent(centro.transform, false);
     }
     //Se destruye la copia de la carta destacada
-     void NoDestacar()
+    void NoDestacar()
     {
         Destroy(carta);
     }
@@ -126,10 +126,9 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 default:
                     break;
             }
-            ManejoBaraja.DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id);
+            GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id);
             GameManager.carta = null;
             GameManager.cartaSeleccionada = false;
-            Destroy(gameObject);
         }
         //Sino se muestra el mensaje correspondiente
         else
@@ -174,10 +173,9 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 default:
                     break;
             }
-            ManejoBaraja.DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id);
+            GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id);
             GameManager.carta = null;
             GameManager.cartaSeleccionada = false;
-            Destroy(gameObject);
         }
         //Sino se muestra el mensaje correspondiente
         else
@@ -230,10 +228,9 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 default:
                     break;
             }
-            ManejoBaraja.DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id);
+            GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id);
             GameManager.carta = null;
             GameManager.cartaSeleccionada = false;
-            Destroy(gameObject);
         }
         //Sino se muestra el mensaje correspondiente
         else
@@ -252,12 +249,13 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         TurnManager.tileOcupada.gameObject.SetActive(false);
     }
 
-    
-    bool SePuede() {
+
+    bool SePuede()
+    {
         GameObject player = GameManager.player;
         int coste = GameManager.carta.GetComponent<DisplayCard>().GetCoste();
         int tipo = GameManager.carta.GetComponent<DisplayCard>().GetTipoCoste();
-        if (( tipo == 0 && player.GetComponent<PlayerController>().GetManaActual() - coste >= 0)
+        if ((tipo == 0 && player.GetComponent<PlayerController>().GetManaActual() - coste >= 0)
             || (tipo == 1 && player.GetComponent<PlayerController>().GetEnergiaActual() - coste >= 0)
             || (tipo == 2 && player.GetComponent<PlayerController>().GetEnergiaActual() - coste
             >= 0 && player.GetComponent<PlayerController>().GetManaActual() - coste >= 0))
@@ -267,6 +265,6 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         else
             return false;
     }
-    
+
 }
 
