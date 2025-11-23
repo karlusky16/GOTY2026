@@ -73,6 +73,25 @@ public class EnemyController : MonoBehaviour
             case "Robot":
                 Mover(MoverAFila(enemy));
                 break;
+            case "Caballero":
+                if (TurnManager.numTurno == 0)
+                {
+                    GridManager._tiles.TryGetValue(new(0, 2), out Tile tile2);
+                    if (!tile2.ocupado)
+                    {
+                        Mover(new(0, 2));
+                    }
+                    else
+                    {
+                        Mover(new(1, 2));
+                    }
+
+                }
+                else
+                {
+                    //RutaMasCorta
+                }
+                break;
             default:
                 break;
         }

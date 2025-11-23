@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class TurnManager : MonoBehaviour
 {
     public enum Turn { Player, Enemy }
+    public static int numTurno;
     public static Turn currentTurn = Turn.Player;
     public static TextMeshProUGUI noMas;
     public static TextMeshProUGUI tileOcupada;
@@ -28,6 +29,7 @@ public class TurnManager : MonoBehaviour
 
     void Start()
     {
+        numTurno = 0;
         ManejoBaraja.Inicializar();
         robo = new();
         descartes = new();
@@ -125,6 +127,7 @@ public class TurnManager : MonoBehaviour
 
     void EndEnemyTurn()
     {
+        numTurno += 1;
         currentTurn = Turn.Player;
         GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().ManoTurno();
         GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");

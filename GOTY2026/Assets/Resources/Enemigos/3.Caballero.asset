@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d1d71a68552b4c46912092ec073739a, type: 3}
+  m_Name: 3.Caballero
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  id: 3
+  _name: Caballero
+  vida: 20
+  "da\xF1o": 5
+  rango: 1
+  area: 1
+  movimiento: 5
+  patronAtaque: Caballero
+  sprite: {fileID: 0}
