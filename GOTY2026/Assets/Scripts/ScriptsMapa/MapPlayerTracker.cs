@@ -81,6 +81,7 @@ namespace Map
                 case NodeType.Treasure:
                     break;
                 case NodeType.Store:
+                    SceneManager.LoadScene("Store");
                     break;
                 case NodeType.Boss:
                     break;
