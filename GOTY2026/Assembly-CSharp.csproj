@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\Tile.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
     <Compile Include="Assets\Scripts\GridManager.cs" />
+    <Compile Include="Assets\Scripts\ShopManager.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Benchmark\Scripts\ArrayBenchmark.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\Node.cs" />
