@@ -9,6 +9,7 @@ public class TileManagerEnemigo : MonoBehaviour
     private String lastPatron;
     public Vector2[] GetRango() => direccionesAnt;
     public Boolean visto = false;
+    public Vector2[] circulo = { new(1,0),new(-1,0),new(1,-1),new(1,1),new(-1,1),new(-1,-1),new(0,1),new(0,-1) };
     public void CalculoTiles(GameObject enemy)
     {
         lastPatron = enemy.GetComponent<DisplayEnemy>().GetPatron();
@@ -20,13 +21,24 @@ public class TileManagerEnemigo : MonoBehaviour
             case "RectaHorizontal":
                 direccionesAnt = RectaHorizontal(enemy.GetComponent<DisplayEnemy>().GetArea(), enemy);
                 break;
+            case "Caballero":
+                if (TurnManager.numTurno == 0)
+                {
+                    direccionesAnt = Caballero1(enemy.GetComponent<DisplayEnemy>().GetArea(), enemy);
+                }
+                else
+                {
+                    direccionesAnt = Circulo(enemy.GetComponent<DisplayEnemy>().GetArea(), enemy);
+                }
+                break;
             default:
                 break;
         }
     }
     public void HighlightEnemyTiles(GameObject enemy)
     {
-        foreach (Vector2 dir in direccionesAnt){
+        foreach (Vector2 dir in direccionesAnt)
+        {
             if (GridManager._tiles.TryGetValue(dir, out Tile tile2))
                 tile2.gameObject.SendMessage("HighlightEnemy");
         }
@@ -59,38 +71,59 @@ public class TileManagerEnemigo : MonoBehaviour
     /*Para el robot, ya que ataca solo en su fila*/
     private static Vector2[] RectaHorizontal(int area, GameObject enemy) // tile la casilla seleccionada
     {
-        
+
         List<Vector2> direcciones = new();
         Tile t = enemy.GetComponent<EnemyController>().GetPos(); //t = pos enemigo
         int playerx = GameManager.player.GetComponent<PlayerController>().GetPos().x; // para atacar hacia el enemigo
         int enemyx = enemy.GetComponent<EnemyController>().GetPos().x;
         bool plaDer = false;
         int x = GameObject.Find("GridManager").GetComponent<GridManager>().GetWidth();
-        if(enemyx < 0 || enemyx >= x) {Debug.Log("Posición del enemy en RectaHorizontal en TileMEnemigo"); return null;}
-        if(playerx < 0 || playerx >= x) {Debug.Log("Posición del player en RectaHorizontal en TileMEnemigo"); return null;}
+        if (enemyx < 0 || enemyx >= x) { Debug.Log("Posición del enemy en RectaHorizontal en TileMEnemigo"); return null; }
+        if (playerx < 0 || playerx >= x) { Debug.Log("Posición del player en RectaHorizontal en TileMEnemigo"); return null; }
 
-        if(playerx - enemyx > 0) plaDer = true;
+        if (playerx - enemyx > 0) plaDer = true;
         int cont = 0;
 
         if (plaDer)
         {
-            for(int i = enemyx + 1; i < x && i >= 0; i++)
+            for (int i = enemyx + 1; i < x && i >= 0; i++)
             {
                 direcciones.Add(new(i, t.y));
-                cont ++;
-                if(cont == area) break;
+                cont++;
+                if (cont == area) break;
             }
         }
         else
         {
-            for(int i = enemyx - 1; i < x && i >= 0; i--)
+            for (int i = enemyx - 1; i < x && i >= 0; i--)
             {
                 direcciones.Add(new(i, t.y));
-                cont ++;
-                if(cont == area) break;
+                cont++;
+                if (cont == area) break;
             }
         }
         return direcciones.ToArray();
     }
+    private static Vector2[] Caballero1(int area, GameObject enemy)
+    {
+        int largo = GameObject.Find("GridManager").GetComponent<GridManager>().GetWidth();
+        List<Vector2> direcciones = new();
+        Vector2 pos = new(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y);
+        for (int x = (int)pos.x - 1; x >= 0; x--)
+        {
+            direcciones.Add(new Vector2(x, pos.y));     // centro
+            direcciones.Add(new Vector2(x, pos.y - 1)); // abajo
+            direcciones.Add(new Vector2(x, pos.y + 1)); // arriba
+        }
+        return direcciones.ToArray();
+    }
+    private Vector2[] Circulo(int area, GameObject enemy)
+    {
+        List<Vector2> direcciones = new();
+        Vector2 pos = new(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y);
+        foreach (var dir in circulo) direcciones.Add(pos + dir);
+        return direcciones.ToArray();
+    }
+    
     
 }

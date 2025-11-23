@@ -17,6 +17,11 @@ public class GridManager : MonoBehaviour
 
     void Start()
     {
+        if (_tilePrefab == null)
+        {
+            Debug.LogWarning("GridManager: _tilePrefab is null — skipping GenerateGrid. Set _tilePrefab in tests or inspector.");
+            return;
+        }
         GenerateGrid();
 
 
