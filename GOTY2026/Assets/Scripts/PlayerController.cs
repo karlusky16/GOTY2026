@@ -7,7 +7,6 @@ using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
-    //public int Money;
     public static List<int> cartas = new();
     public static List<int> descartes = new();
     public Tile posicion;
@@ -29,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private int manaMaxima;
     [SerializeField] private int manaActual;
+    [SerializeField] private int monedas;
 
     private void Awake()
     {
@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     public int GetEnergiaActual() => energiaActual;
     public int GetManaMaxima() => manaMaxima;
     public int GetManaActual() => manaActual;
+    public int GetMonedas() => monedas;
 
     //Modificar vida del jugador
     public void ReducirVida(int vida)
@@ -101,6 +102,15 @@ public class PlayerController : MonoBehaviour
         if ((manaActual += mana) > manaMaxima) manaActual = manaMaxima;
         JugadorAumentaMana?.Invoke(manaActual);
         Debug.Log("Aumenta mana jugador");
+    }
+    public void AumentarMonedas(int cantidad)
+    {
+        monedas += cantidad;
+    }
+    public void ReducirMonedas(int cantidad)
+    {
+        monedas -= cantidad;
+        if (monedas < 0) monedas = 0;
     }
     public void AddCarta(int id)
     {

@@ -348,6 +348,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1244365383692462862, guid: 182d3e4f9485a6446b5e4bf2b98d254c, type: 3}
+      propertyPath: monedas
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2894417978753471228, guid: 182d3e4f9485a6446b5e4bf2b98d254c, type: 3}
       propertyPath: m_Name
       value: Player

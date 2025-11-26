@@ -109,6 +109,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb8fee1619f005a41b11db4036ba090a, type: 3}
+--- !u!114 &3042948374149649315 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3679212978106090637, guid: eb8fee1619f005a41b11db4036ba090a, type: 3}
+  m_PrefabInstance: {fileID: 1816509591325742894}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5baa0ccd945a72a4a84acb52439fa0e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DisplayCard
 --- !u!224 &7443278852922684721 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9114827662205755935, guid: eb8fee1619f005a41b11db4036ba090a, type: 3}
@@ -218,10 +229,55 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3210113144171075820, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7443278852922684721}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2182053060665806547, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7746391997504643979}
   m_SourcePrefab: {fileID: 100100000, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+--- !u!1 &392296298868921792 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2182053060665806547, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+  m_PrefabInstance: {fileID: 1961742965626002195}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7746391997504643979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392296298868921792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64f839352c1e7c841811f4afa11a5294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardShopTemplate
+  displayCard: {fileID: 3042948374149649315}
+  buyButton: {fileID: 8360001205491488722}
+  priceText: {fileID: 4431328554515968518}
 --- !u!224 &4014147837899260927 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3210113144171075820, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
   m_PrefabInstance: {fileID: 1961742965626002195}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4431328554515968518 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2758101840481118485, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+  m_PrefabInstance: {fileID: 1961742965626002195}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &8360001205491488722 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8015617993703296193, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+  m_PrefabInstance: {fileID: 1961742965626002195}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
