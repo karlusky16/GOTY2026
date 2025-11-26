@@ -39,13 +39,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Mover(UnityEngine.Vector2 pos)
     {
-        if (posicion != null){
-            posicion.ocupado = false;
-            posicion.ocupadoObj = null; 
-        }
         posicion = GridManager._tiles[pos];
-        posicion.ocupado = true;
-        posicion.ocupadoObj = this.gameObject;
         gameObject.transform.position = posicion.transform.position;
     }
     //Getters
@@ -165,10 +159,12 @@ public class PlayerController : MonoBehaviour
     }
     public void Mirilla()
     {
+        Debug.Log("Activar mirilla");
         mirilla.SetActive(true);
     }
     public void ResetMirilla()
     {
+        Debug.Log("Desactivar mirilla");
         mirilla.SetActive(false);
     }
 }
