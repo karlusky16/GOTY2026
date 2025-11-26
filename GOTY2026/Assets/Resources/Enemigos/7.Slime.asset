@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d1d71a68552b4c46912092ec073739a, type: 3}
-  m_Name: 7.Sniper
+  m_Name: 7.Slime
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   id: 7
-  _name: Sniper
+  _name: Slime
   vida: 10
-  "da\xF1o": 3
+  "da\xF1o": 4
   rango: 0
-  area: 0
-  movimiento: 0
-  patronAtaque: Sniper
-  sprite: {fileID: 0}
+  area: 1
+  movimiento: 1
+  patronAtaque: Cruz
+  sprite: {fileID: -1823966767952768194, guid: 844f30ea37b14ad4da4a05a943ad3e76, type: 3}

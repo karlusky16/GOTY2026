@@ -97,6 +97,10 @@ public class EnemyController : MonoBehaviour
                     //RutaMasCorta
                 }
                 break;
+            case "Slime":
+                Mover(CalcularRutaMasCorta(enemy, movimientos));
+                Debug.Log("Movimiento Terminado");
+                break;
             default:
                 break;
         }
@@ -164,71 +168,78 @@ public class EnemyController : MonoBehaviour
     /*Calcula la ruta más corta y devulve la casilla a la que se mueve con sus x movimientos*/
     Vector2 CalcularRutaMasCorta(GameObject enemy, int movimientos)
     {
-    Vector2 start = new Vector2(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y);
-    Vector2 fin = new Vector2(GameManager.player.GetComponent<PlayerController>().GetPos().x, GameManager.player.GetComponent<PlayerController>().GetPos().y);
-    if (start == fin) return start;
-    Dictionary<Vector2, int> dist = new Dictionary<Vector2, int>();
-    Dictionary<Vector2, Vector2> parent = new Dictionary<Vector2, Vector2>();
-    List<Vector2> open = new List<Vector2>();
-    dist[start] = 0;
-    open.Add(start);
+        int enemyx =enemy.GetComponent<EnemyController>().GetPos().x;
+        int enemyy = enemy.GetComponent<EnemyController>().GetPos().y;
+        int playerx = GameManager.player.GetComponent<PlayerController>().GetPos().x;
+        int playery = GameManager.player.GetComponent<PlayerController>().GetPos().y;
 
-    Vector2[] dirs = new Vector2[]
-    {
-        new Vector2(1,0),
-        new Vector2(-1,0),
-        new Vector2(0,1),
-        new Vector2(0,-1)
-    };
-    /*Dijkstra*/
-    while (open.Count > 0)
-    {
-        Vector2 current = open[0];
-        int bestDist = dist[current];
-        for (int i = 1; i < open.Count; i++)
+        Vector2 start = new Vector2(enemyx, enemyy);
+        Vector2 fin = new Vector2(playerx, playery);
+        if (start == fin) return start;
+        if (enemyx == playerx && (playery == enemyy - 1) || (playery == enemyy + 1)) return start;
+        if (enemyy == playery && (playerx == enemyx - 1) || (playerx == enemyx + 1)) return start;
+        Dictionary<Vector2, int> dist = new Dictionary<Vector2, int>();
+        Dictionary<Vector2, Vector2> parent = new Dictionary<Vector2, Vector2>();
+        List<Vector2> open = new List<Vector2>();
+        dist[start] = 0;
+        open.Add(start);
+
+        Vector2[] dirs = new Vector2[]
         {
-            if (dist[open[i]] < bestDist)
+            new Vector2(1,0),
+            new Vector2(-1,0),
+            new Vector2(0,1),
+            new Vector2(0,-1)
+        };
+        /*Dijkstra*/
+        while (open.Count > 0)
+        {
+            Vector2 current = open[0];
+            int bestDist = dist[current];
+            for (int i = 1; i < open.Count; i++)
             {
-                current = open[i];
-                bestDist = dist[current];
+                if (dist[open[i]] < bestDist)
+                {
+                    current = open[i];
+                    bestDist = dist[current];
+                }
+            }
+            open.Remove(current);
+            if (current == fin) break;
+            foreach (Vector2 dir in dirs)
+            {
+                Vector2 neighbor = current + dir;
+                if (!GridManager._tiles.ContainsKey(neighbor)) continue;
+                Tile tile = GridManager._tiles[neighbor];
+                if (tile.ocupado && neighbor != fin) continue;
+                int newDist = dist[current] + 1;
+                if (!dist.ContainsKey(neighbor) || newDist < dist[neighbor])
+                {
+                    dist[neighbor] = newDist;
+                    parent[neighbor] = current;
+                    if (!open.Contains(neighbor))
+                        open.Add(neighbor);
+                }
             }
         }
-        open.Remove(current);
-        if (current == fin) break;
-        foreach (Vector2 dir in dirs)
+        if (!parent.ContainsKey(fin))
         {
-            Vector2 neighbor = current + dir;
-            if (!GridManager._tiles.ContainsKey(neighbor)) continue;
-            Tile tile = GridManager._tiles[neighbor];
-            if (tile.ocupado && neighbor != fin) continue;
-            int newDist = dist[current] + 1;
-            if (!dist.ContainsKey(neighbor) || newDist < dist[neighbor])
-            {
-                dist[neighbor] = newDist;
-                parent[neighbor] = current;
-                if (!open.Contains(neighbor))
-                    open.Add(neighbor);
-            }
+            return start;
         }
-    }
-    if (!parent.ContainsKey(fin))
-    {
-        return start;
-    }
-    List<Vector2> path = new List<Vector2>();
-    Vector2 aux = fin;
-    path.Add(aux);
-    while (aux != start)
-    {
-        aux = parent[aux];
+        List<Vector2> path = new List<Vector2>();
+        Vector2 aux = fin;
         path.Add(aux);
-    }
-    path.Reverse(); 
-    if (movimientos <= 0)
-        return start;
-    if (movimientos >= path.Count)
-        return path[path.Count - 2];
-    return path[movimientos];   
-    }
+        while (aux != start)
+        {
+            aux = parent[aux];
+            path.Add(aux);
+        }
+        path.Reverse(); 
+        if (movimientos <= 0)
+            return start;
+        if (movimientos >= path.Count)
+            return path[path.Count - 2];
+        return path[movimientos];   
+        }
 }
 
