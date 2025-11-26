@@ -35,8 +35,17 @@ public class ManejoBaraja : MonoBehaviour
     public void ManoTurno()
     {
         System.Random rand = new();
+        int manoC;
         //Generamos la mano aleatoriamente desde la lista de cartas
-        for (int i = 0; i < player.GetLongMano(); i++)
+        if (player.GetLongMano() < player.GetCartasLength())
+        {
+            manoC = player.GetLongMano();
+        }
+        else
+        {
+            manoC = player.GetCartasLength();
+        }
+        for (int i = 0; i < manoC ; i++)
         {
             int cartas = TurnManager.robo.Count;
             if (cartas == 0)
