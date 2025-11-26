@@ -32,7 +32,6 @@ public class TileManagerEnemigo : MonoBehaviour
                 }
                 break;
             case "Sniper":
-                Sniper(enemy.GetComponent<DisplayEnemy>().GetArea(), enemy);
                 break;
             case "Mortero":
                 direccionesAnt = Mortero(enemy.GetComponent<DisplayEnemy>().GetArea(), enemy);
@@ -52,21 +51,36 @@ public class TileManagerEnemigo : MonoBehaviour
     }
     public void HighlightEnemyTiles(GameObject enemy)
     {
-        foreach (Vector2 dir in direccionesAnt)
+        if (enemy.GetComponent<DisplayEnemy>().GetPatron() == "Sniper")
         {
-            if (GridManager._tiles.TryGetValue(dir, out Tile tile2))
-                tile2.gameObject.SendMessage("HighlightEnemy");
+            GameObject.Find("Player").GetComponent<PlayerController>().Mirilla();
+        }
+        else
+        {
+            foreach (Vector2 dir in direccionesAnt)
+            {
+                if (GridManager._tiles.TryGetValue(dir, out Tile tile2))
+                    tile2.gameObject.SendMessage("HighlightEnemy");
+            }
         }
     }
     public void UnHighlightEnemyTiles()
     {
-        foreach (var dir in direccionesAnt)
+        if (direccionesAnt == null)
         {
-            if (GridManager._tiles.TryGetValue(dir, out Tile tile2))
-            {
-                tile2.gameObject.SendMessage("UnHighlightEnemy");
-            }
+            GameObject.Find("Player").GetComponent<PlayerController>().ResetMirilla();
         }
+        else
+        {
+           foreach (var dir in direccionesAnt)
+            {
+                if (GridManager._tiles.TryGetValue(dir, out Tile tile2))
+                {
+                    tile2.gameObject.SendMessage("UnHighlightEnemy");
+                }
+            } 
+        }
+        
     }
     public Vector2[] AleatoriosPatron(int area)
     {
@@ -138,10 +152,6 @@ public class TileManagerEnemigo : MonoBehaviour
         Vector2 pos = new(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y);
         foreach (var dir in circulo) direcciones.Add(pos + dir);
         return direcciones.ToArray();
-    }
-    public void Sniper(int area, GameObject enemy)
-    {
-        GameObject.Find("Player").GetComponent<PlayerController>().Mirilla();
     }
     public Vector2[] Mortero(int area, GameObject enemy)
     {
