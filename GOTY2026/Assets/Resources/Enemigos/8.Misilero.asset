@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   id: 8
   _name: Mislero
-  vida: 10
+  vida: 20
   "da\xF1o": 4
   rango: 0
   area: 0
