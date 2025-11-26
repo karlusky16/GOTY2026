@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public static List<int> cartas = new();
     public static List<int> descartes = new();
     public Tile posicion;
+    public GameObject mirilla;
     public static int longMano = 6;
     public Action<int> JugadorReduceVida;
     public Action<int> JugadorAumentaVida;
@@ -38,7 +39,13 @@ public class PlayerController : MonoBehaviour
     }
     public void Mover(UnityEngine.Vector2 pos)
     {
+        if (posicion != null){
+            posicion.ocupado = false;
+            posicion.ocupadoObj = null; 
+        }
         posicion = GridManager._tiles[pos];
+        posicion.ocupado = true;
+        posicion.ocupadoObj = this.gameObject;
         gameObject.transform.position = posicion.transform.position;
     }
     //Getters
@@ -60,13 +67,12 @@ public class PlayerController : MonoBehaviour
         if ((vidaActual -= vida) <= 0)
         {
             vidaActual = 0;
+            GameObject.Find("SceneManager").SendMessage("LoadGameOver");
             Debug.Log("Jugador muerto");
 
         }
         JugadorReduceVida?.Invoke(vidaActual);
         Debug.Log("Reduce vida jugador");
-        var DeathScreen = GameObject.Find("Death Screen");
-        DeathScreen.SetActive(true);
 
     }
     public void AumentarVida(int vida)
@@ -159,10 +165,10 @@ public class PlayerController : MonoBehaviour
     }
     public void Mirilla()
     {
-        GameObject.Find("Mirilla").SetActive(true);
+        mirilla.SetActive(true);
     }
     public void ResetMirilla()
     {
-        GameObject.Find("Mirilla").SetActive(false);
+        mirilla.SetActive(false);
     }
 }

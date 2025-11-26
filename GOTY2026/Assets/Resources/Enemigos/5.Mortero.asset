@@ -20,4 +20,4 @@ MonoBehaviour:
   area: 3
   movimiento: 0
   patronAtaque: Mortero
-  sprite: {fileID: 0}
+  sprite: {fileID: -7810322051171577720, guid: 61e65d4cfe7b19640be1aa1e284ef087, type: 3}
