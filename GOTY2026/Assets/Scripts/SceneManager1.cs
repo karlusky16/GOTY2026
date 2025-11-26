@@ -25,10 +25,10 @@ public class SceneManager1 : MonoBehaviour
     public void GenerarEnemigos()
     {
         GameManager.InstanciateEnemy(new Vector2(8, 4), 1);
-        GameManager.InstanciateEnemy(new Vector2(8, 0), 1);
-        GameManager.InstanciateEnemy(new Vector2(3, 3), 1);
-        GameManager.InstanciateEnemy(new Vector2(3, 1), 1);
-        GameManager.InstanciateEnemy(new Vector2(7, 3), 2);
+        GameManager.InstanciateEnemy(new Vector2(8, 0), 2);
+        GameManager.InstanciateEnemy(new Vector2(3, 3), 3);
+        GameManager.InstanciateEnemy(new Vector2(3, 1), 5);
+        GameManager.InstanciateEnemy(new Vector2(7, 3), 8);
     }
 
     public void GenerarObstaculos()
@@ -40,6 +40,10 @@ public class SceneManager1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+    public void LoadGameOver()
+    {
+        deathScreen.SetActive(true);
     }
 }

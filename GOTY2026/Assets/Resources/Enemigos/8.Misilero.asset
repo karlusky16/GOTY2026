@@ -20,4 +20,4 @@ MonoBehaviour:
   area: 0
   movimiento: 0
   patronAtaque: Misilero
-  sprite: {fileID: 0}
+  sprite: {fileID: -6755893110898524868, guid: ecd33070d6d81ac4abd3b01e7fc17b33, type: 3}

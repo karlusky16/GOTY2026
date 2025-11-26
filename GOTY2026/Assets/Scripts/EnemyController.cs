@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -19,12 +20,15 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
-        
+
         vidaActualEnemy = vidaMaximaEnemy;
         BarraVidaEnemy barra = GetComponentInChildren<BarraVidaEnemy>();
         barra.ConectarEnemy(this);
 
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        if (player == null) {
+            Debug.Log("Player no encontrado por EnemyController");
+        }
     }
 
     // Update is called once per frame
@@ -84,7 +88,7 @@ public class EnemyController : MonoBehaviour
                     }
                     else
                     {
-                        Mover(new(1, 2));
+                        Mover(new(1, 2));;
                     }
 
                 }
@@ -100,8 +104,14 @@ public class EnemyController : MonoBehaviour
 
     public void Mover(UnityEngine.Vector2 pos)
     {
+        if (posicion != null){
+            posicion.ocupado = false;
+            posicion.ocupadoObj = null; 
+        }
         posicion = GridManager._tiles[pos];
-        gameObject.transform.position = posicion.transform.position;
+        posicion.ocupado = true;
+        posicion.ocupadoObj = this.gameObject;
+        gameObject.transform.position = new(posicion.transform.position.x,posicion.transform.position.y,-0.01f);
         GameManager.enemigos[gameObject] = pos;
     }
 

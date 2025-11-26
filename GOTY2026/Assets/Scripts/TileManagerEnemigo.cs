@@ -35,13 +35,13 @@ public class TileManagerEnemigo : MonoBehaviour
                 Sniper(enemy.GetComponent<DisplayEnemy>().GetArea(), enemy);
                 break;
             case "Mortero":
-                Mortero(enemy.GetComponent<DisplayEnemy>().GetArea(), enemy);
+                direccionesAnt = Mortero(enemy.GetComponent<DisplayEnemy>().GetArea(), enemy);
                 break;
             case "Golem":
-                Golem();
+                direccionesAnt = Golem();
                 break;
             case "Misilero":
-                Misilero(enemy.GetComponent<DisplayEnemy>().GetArea(), enemy);
+                direccionesAnt = Misilero(enemy.GetComponent<DisplayEnemy>().GetArea(), enemy);
                 break;
             default:
                 break;
@@ -170,9 +170,9 @@ public class TileManagerEnemigo : MonoBehaviour
     public Vector2[] Misilero(int area, GameObject enemy)
     {
         List<Vector2> direcciones = new();
-        Vector2 enemyPos = new(enemy.GetComponent<EnemyController>().GetPos().x, GameObject.Find("Player").GetComponent<PlayerController>().GetPos().y);
+        Vector2 enemyPos = new(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y);
         direcciones.Add(enemyPos + new Vector2(-1, 0));
-        direcciones.Add(enemyPos + new Vector2(-2, 0));
+        direcciones.Add(enemyPos + new Vector2(-2,0));
         direcciones.Add(enemyPos + new Vector2(-3, 0));
         int c = 1;
         for (int i = (int)enemyPos.x - 4; i >= 0; i--)

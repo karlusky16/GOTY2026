@@ -20,4 +20,4 @@ MonoBehaviour:
   area: 8
   movimiento: 0
   patronAtaque: RectaHorizontal
-  sprite: {fileID: 4022489767020471705, guid: 1d37106da20a53845acec874e1e3b7fb, type: 3}
+  sprite: {fileID: 5839569561631017189, guid: 0edf6754330e1724cae4f78bc74ae06c, type: 3}

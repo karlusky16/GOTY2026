@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
 
     public void InstanciateEnemy(Vector2 pos, int id)
     {
-        enemigosLis.Add(Instantiate(prefabEnemigo, new(GridManager._tiles[pos].transform.position.x, GridManager._tiles[pos].transform.position.y, -0.01f), Quaternion.identity));
+        enemigosLis.Add(Instantiate(prefabEnemigo, new(GridManager._tiles[pos].transform.position.x, GridManager._tiles[pos].transform.position.y, -0.1f), Quaternion.identity));
         enemigos.Add(enemigosLis[enemigosLis.Count - 1], pos);
         enemigosLis[enemigosLis.Count - 1].GetComponent<DisplayEnemy>().ActualizarID(id);
         GridManager._tiles[pos].ocupadoObj = enemigosLis[enemigosLis.Count - 1];
