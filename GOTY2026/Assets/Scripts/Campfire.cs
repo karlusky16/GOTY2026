@@ -33,13 +33,13 @@ public class Campfire : MonoBehaviour
     }
 
     public void DestroyCard()
-    {   if (matado)
+    {   /*if (matado)
         {
             Debug.Log("Ya se ha eliminado una carta en esta fogata.");
             yaCurado.SetActive(false);
             yaRoto.SetActive(true);
             return;
-        }
+        }*/
         panelCartas.SetActive(true);
         for (int i = 0; i < GameManager.player.GetComponent<PlayerController>().GetCartasLength(); i++)
         {
