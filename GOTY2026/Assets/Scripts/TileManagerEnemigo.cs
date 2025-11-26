@@ -43,6 +43,9 @@ public class TileManagerEnemigo : MonoBehaviour
             case "Misilero":
                 direccionesAnt = Misilero(enemy.GetComponent<DisplayEnemy>().GetArea(), enemy);
                 break;
+            case "Cruz":
+                direccionesAnt = Cruz(enemy.GetComponent<DisplayEnemy>().GetArea(), enemy);
+                break;
             default:
                 break;
         }
@@ -184,6 +187,37 @@ public class TileManagerEnemigo : MonoBehaviour
         }
         return direcciones.ToArray();
     }
-    
-    
+    private static Vector2[] Cruz(int area, GameObject enemy)
+    {
+        var direcciones = new List<Vector2>();
+        Tile t = enemy.GetComponent<EnemyController>().GetPos();
+        int ancho = GameObject.Find("GridManager").GetComponent<GridManager>().GetWidth();
+        int alto = GameObject.Find("GridManager").GetComponent<GridManager>().GetHeight();
+
+        for (int i = 1; i <= area; i++)
+        {
+            int y = t.y + i;
+            if (y >= alto) break;
+            direcciones.Add(new Vector2(t.x, y));
+        }
+        for (int i = 1; i <= area; i++)
+        {
+            int y = t.y - i;
+            if (y < 0) break;
+            direcciones.Add(new Vector2(t.x, y));
+        }
+        for (int i = 1; i <= area; i++)
+        {
+            int x = t.x + i;
+            if (x >= ancho) break;
+            direcciones.Add(new Vector2(x, t.y));
+        }
+        for (int i = 1; i <= area; i++)
+        {
+            int x = t.x - i;
+            if (x < 0) break;
+            direcciones.Add(new Vector2(x, t.y));
+        }
+        return direcciones.ToArray();
+        }
 }
