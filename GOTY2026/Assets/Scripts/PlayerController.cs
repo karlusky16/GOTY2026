@@ -159,10 +159,12 @@ public class PlayerController : MonoBehaviour
     }
     public void Mirilla()
     {
+        Debug.Log("Activar mirilla");
         mirilla.SetActive(true);
     }
     public void ResetMirilla()
     {
+        Debug.Log("Desactivar mirilla");
         mirilla.SetActive(false);
     }
 }
