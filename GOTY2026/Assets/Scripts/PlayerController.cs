@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Cartas en baraja: " + cartas.ToString());
         descartes.Clear();
     }
-    
+
     public void ResetBaraja()
     {
         if (cartas != null)
@@ -156,5 +156,13 @@ public class PlayerController : MonoBehaviour
         JugadorAumentaMana?.Invoke(manaActual);
         vidaActual = vidaMaxima;
         JugadorAumentaVida?.Invoke(vidaActual);
+    }
+    public void Mirilla()
+    {
+        GameObject.Find("Mirilla").SetActive(true);
+    }
+    public void ResetMirilla()
+    {
+        GameObject.Find("Mirilla").SetActive(false);
     }
 }

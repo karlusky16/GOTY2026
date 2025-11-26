@@ -42,6 +42,7 @@ public class TurnManager : MonoBehaviour
         GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().ManoTurno();
         GameObject.Find("GameManager").GetComponent<GameManager>().TilesEnemigos();
         GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
+        GameObject.Find("Player").GetComponent<PlayerController>().ResetMirilla();
         Debug.Log("Comienza el combate. Turno del jugador.");
     }
 
@@ -113,7 +114,14 @@ public class TurnManager : MonoBehaviour
             }
             else
             {
-                enemy.GetComponent<EnemyController>().Ataque(enemy.GetComponent<TileManagerEnemigo>().GetRango(), enemy.GetComponent<DisplayEnemy>().GetDaño());
+                if (enemy.GetComponent<DisplayEnemy>().enemy.id == 4)
+                {
+                    GameObject.Find("Player").GetComponent<PlayerController>().ReducirVida(enemy.GetComponent<DisplayEnemy>().GetDaño());
+                }
+                else
+                {
+                    enemy.GetComponent<EnemyController>().Ataque(enemy.GetComponent<TileManagerEnemigo>().GetRango(), enemy.GetComponent<DisplayEnemy>().GetDaño());
+                }
                 enemy.GetComponent<EnemyController>().Movimiento(enemy);
                 Debug.Log("El enemigo ataca");
 
@@ -127,6 +135,7 @@ public class TurnManager : MonoBehaviour
 
     void EndEnemyTurn()
     {
+        GameObject.Find("Player").GetComponent<PlayerController>().ResetMirilla();
         numTurno += 1;
         currentTurn = Turn.Player;
         GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().ManoTurno();
