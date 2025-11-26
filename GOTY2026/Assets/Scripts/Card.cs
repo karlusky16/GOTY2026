@@ -18,5 +18,6 @@ public class Card : ScriptableObject
     public int area2;
     public int tipo;// 0 ataque, 1 movimiento, 2 ataque movimiento,3 boosteo
     public int daño;
+    public int precio;
     public Sprite sprite;
 }

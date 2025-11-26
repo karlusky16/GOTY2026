@@ -23,4 +23,5 @@ MonoBehaviour:
   area2: 0
   tipo: 2
   "da\xF1o": 4
+  precio: 18
   sprite: {fileID: 0}
