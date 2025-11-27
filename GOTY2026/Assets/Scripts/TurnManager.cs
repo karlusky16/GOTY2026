@@ -43,6 +43,8 @@ public class TurnManager : MonoBehaviour
         GameObject.Find("GameManager").GetComponent<GameManager>().TilesEnemigos();
         GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
         GameObject.Find("Player").GetComponent<PlayerController>().ResetMirilla();
+        playerController.AumentarEnergia(playerController.GetEnergiaMaxima());
+        playerController.AumentarMana(playerController.GetManaMaxima());
         Debug.Log("Comienza el combate. Turno del jugador.");
     }
 
