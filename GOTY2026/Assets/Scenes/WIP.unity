@@ -232,10 +232,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 682761300}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6454b0a9904c92a478d7e9809dc28fe0, type: 3}
+  m_Script: {fileID: 11500000, guid: 52e4a0f0f8ccd0941a65a0e8df95bc28, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RecompensasScript
-  prefabCarta: {fileID: 5472946008042992240, guid: eb8fee1619f005a41b11db4036ba090a, type: 3}
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterSelect
 --- !u!1 &691186605
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,7 +411,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 682761305}
-        m_TargetAssemblyTypeName: RecompensasScript, Assembly-CSharp
+        m_TargetAssemblyTypeName: CharacterSelect, Assembly-CSharp
         m_MethodName: SigEscena
         m_Mode: 1
         m_Arguments:
