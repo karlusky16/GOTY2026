@@ -30,6 +30,7 @@ public class Campfire : MonoBehaviour
             return;
         }
         GameManager.player.GetComponent<PlayerController>().SendMessage("AumentarVida", GameManager.player.GetComponent<PlayerController>().GetVidaMaxima()/2);
+        curado = true;
     }
 
     public void DestroyCard()
