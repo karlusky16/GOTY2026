@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   posicion: {fileID: 0}
   mirilla: {fileID: 5756457132144798374}
-  vidaMaxima: 200
+  vidaMaxima: 20
   vidaActual: 0
   energiaMaxima: 4
   energiaActual: 0

@@ -270,16 +270,18 @@ public class TileManager : MonoBehaviour
         int index = 0;
         for (int i = 0; i < area; i++)
         {
-            for (int j = -areaD2; j <= areaD2; j++)
+            int offsetX = i;
+            for (int j = 0; j < area2; j++)
             {
+                int offsetY = j - areaD2;
                 if (direccion == Vector2.up)
-                    direcciones[index++] = new Vector2(j, i);
+                    direcciones[index++] = new Vector2(offsetY, offsetX);
                 else if (direccion == Vector2.down)
-                    direcciones[index++] = new Vector2(-j, -i);
+                    direcciones[index++] = new Vector2(-offsetY, -offsetX);
                 else if (direccion == Vector2.left)
-                    direcciones[index++] = new Vector2(-i, -j);
+                    direcciones[index++] = new Vector2(-offsetX, -offsetY);
                 else if (direccion == Vector2.right)
-                    direcciones[index++] = new Vector2(i, j);
+                    direcciones[index++] = new Vector2(offsetX, offsetY);
             }
         }
         return direcciones;

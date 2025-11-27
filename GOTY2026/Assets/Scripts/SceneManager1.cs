@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneManager1 : MonoBehaviour
 {
@@ -48,5 +49,8 @@ public class SceneManager1 : MonoBehaviour
     public void Reset()
     {
         GameManager.reset = true;
+        Destroy(GameManager.player);
+        Destroy(GameManager);
+        SceneManager.LoadScene("SelectCharacter");
     }
 }

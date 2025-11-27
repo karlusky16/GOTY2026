@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneManagerBoss : MonoBehaviour
 {
@@ -52,5 +53,8 @@ public class SceneManagerBoss : MonoBehaviour
     public void LoadVictory()
     {
         victoryScreen.SetActive(true);
+        Destroy(GameManager.player);
+        Destroy(GameManager);
+        SceneManager.LoadScene("SelectCharacter");
     }
 }

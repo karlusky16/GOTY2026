@@ -22,7 +22,7 @@ public class DisplayCard : MonoBehaviour
     {
         Debug.Log("ActualizarID en DisplayCard llamado con ID: " + nuevoDisplayID);
         displayID = nuevoDisplayID;
-        card = GameManager.cardList[displayID - 1];
+        card = GameManager.cardList.Find(c => c.id == displayID);
         nameText.text = " " + card._name;
         costText.text = " " + card.coste;
         DañoText.text = "Daño " + card.daño + "\n" + "Rango " + card.rango + "\n";
