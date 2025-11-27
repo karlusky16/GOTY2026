@@ -21,14 +21,18 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
 
-        vidaActualEnemy = vidaMaximaEnemy;
-        BarraVidaEnemy barra = GetComponentInChildren<BarraVidaEnemy>();
-        barra.ConectarEnemy(this);
+       
 
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         if (player == null) {
             Debug.Log("Player no encontrado por EnemyController");
         }
+    }
+    public void Vida()
+    {
+        vidaActualEnemy = vidaMaximaEnemy;
+        BarraVidaEnemy barra = GetComponentInChildren<BarraVidaEnemy>();
+        barra.ConectarEnemy(this);
     }
 
     // Update is called once per frame
