@@ -51,4 +51,8 @@ public class SceneManager2 : MonoBehaviour
         Destroy(GameManager);
         SceneManager.LoadScene("SelectCharacter");
     }
+    public void Salir()
+    {
+        Application.Quit();
+    }
 }
