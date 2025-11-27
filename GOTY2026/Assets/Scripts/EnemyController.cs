@@ -45,7 +45,7 @@ public class EnemyController : MonoBehaviour
             {
                 SceneManager.LoadScene("Recompensas");
             }
-            if (GameManager.enemigos.Count == 0)
+            if (GameManager.enemigos.Count == 0 && SceneManager.GetActiveScene().name=="CombateBoss")
             {
                 GameObject.Find("SceneManager").SendMessage("LoadVictory");
             }
