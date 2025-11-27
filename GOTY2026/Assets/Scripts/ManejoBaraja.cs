@@ -52,7 +52,10 @@ public class ManejoBaraja : MonoBehaviour
             if (cartas == 0)
             {
                 DescartesABaraja();
-                cartas = player.GetCartasLength();
+                // After moving discards into the draw pile, use the actual
+                // count of `TurnManager.robo` (UI objects), not the player's
+                // logical card count to avoid mismatches.
+                cartas = TurnManager.robo.Count;
             }
             int indiceAleatorio = rand.Next(cartas);
             mano.Add(TurnManager.robo[indiceAleatorio]);
@@ -87,10 +90,14 @@ public class ManejoBaraja : MonoBehaviour
     public void DescartesABaraja()
     {
         Debug.Log("DescartesABaraja");
+        // Move all discard GameObjects into the draw pile list and
+        // reparent them under the `roboPadre` (draw pile parent) so the
+        // UI/ hierarchy reflects the move.
         TurnManager.robo = new List<GameObject>(TurnManager.descartes);
         for (int i = 0; i < TurnManager.robo.Count; i++)
         {
-            TurnManager.robo[i].transform.SetParent(descartesPadre.transform, false);
+            // parent under roboPadre and preserve local transform
+            TurnManager.robo[i].transform.SetParent(roboPadre.transform);
         }
         Debug.Log("Cartas en baraja: " + TurnManager.robo.Count);
         TurnManager.descartes.Clear();

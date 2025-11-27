@@ -95,6 +95,7 @@
     <Compile Include="Assets\OneLine\OneLine\Example\Tests\Scripts\ExtendedGenericTest.cs" />
     <Compile Include="Assets\Scripts\CharacterSelect.cs" />
     <Compile Include="Assets\Scripts\BarraManaPlayer.cs" />
+    <Compile Include="Assets\Scripts\Tests\TestCaballero.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\UI Lines\Utilities\BezierPath.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Details\Scripts\OneLineExample.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\UI Lines\UILineRenderer.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Assets\Scripts\SceneManagerBoss.cs" />
     <Compile Include="Assets\Scripts\DisplayCard.cs" />
     <Compile Include="Assets\Scripts\Tests\TestPatronesCarta.cs" />
+    <Compile Include="Assets\Scripts\Tests\TestMortero.cs" />
     <Compile Include="Assets\OneLine\OneLine\Attributes\OneLineAttribute.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\MapGenerator.cs" />
     <Compile Include="Assets\OneLine\OneLine\Attributes\SeparatorAttribute.cs" />

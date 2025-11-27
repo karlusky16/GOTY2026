@@ -80,14 +80,15 @@ public class EnemyController : MonoBehaviour
         switch (name)
         {
             case "Robot":
-                Mover(MoverAFila(enemy)); // esta es la línea real de robot
-                //Mover(CalcularRutaMasCorta(enemy, movimientos)); // esta la he usado para probar el algoritmo de la ruta
+                Mover(MoverAFila(enemy));
                 break;
             case "Caballero":
                 if (TurnManager.numTurno == 0)
                 {
+
                     GridManager._tiles.TryGetValue(new(0, 2), out Tile tile2);
-                    if (!tile2.ocupado)
+                    int playerx =  GameManager.player.GetComponent<PlayerController>().GetPos().x;
+                    if (!tile2.ocupado && playerx != 0)
                     {
                         Mover(new(0, 2));
                     }
@@ -99,14 +100,11 @@ public class EnemyController : MonoBehaviour
                 }
                 else
                 {
-                    //RutaMasCorta
+                    Mover(CalcularRutaMasCorta(enemy, movimientos));
                 }
                 break;
-            case "Slime":
-                Mover(CalcularRutaMasCorta(enemy, movimientos));
-                Debug.Log("Movimiento Terminado");
-                break;
             default:
+                if(movimientos > 0) Mover(CalcularRutaMasCorta(enemy, movimientos));
                 break;
         }
         }
@@ -147,12 +145,13 @@ public class EnemyController : MonoBehaviour
     Vector2 MoverAFila(GameObject enemy)
     {
         int playery =  GameManager.player.GetComponent<PlayerController>().GetPos().y;
+        int playerx =  GameManager.player.GetComponent<PlayerController>().GetPos().x;
         int enemyx = enemy.GetComponent<EnemyController>().GetPos().x;
         if(playery == enemy.GetComponent<EnemyController>().GetPos().y) return new Vector2(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y); // si ya está en la fila del player se queda donde estaba
         Vector2 nuevaPos = new Vector2(enemyx, playery);
         Tile tile;
         GridManager._tiles.TryGetValue(nuevaPos, out tile);
-        if(tile.ocupado == false) return nuevaPos; // moverlo desde el método Movimiento
+        if(tile.ocupado == false && enemyx != playerx) return nuevaPos; // moverlo desde el método Movimiento
         else
         {
             int ancho = GameObject.Find("GridManager").GetComponent<GridManager>().GetWidth();
@@ -162,7 +161,7 @@ public class EnemyController : MonoBehaviour
                 enemyx--;
                 nuevaPos = new Vector2(enemyx, playery);
                 GridManager._tiles.TryGetValue(nuevaPos, out tile);
-                if(tile.ocupado == false) return nuevaPos;
+                if(tile.ocupado == false && enemyx != playerx) return nuevaPos;
             }
             return new Vector2(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y) ; // aqui solo llega si ha acabado el for, por tanto i = ancho y como no se ha podido mover se queda en su posición original
             
