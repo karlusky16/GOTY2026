@@ -8,11 +8,17 @@ namespace Map
     {
         public MapConfig config;
         public MapView view;
+        
 
         public Map CurrentMap { get; private set; }
 
         private void Start()
-        {
+        {   
+            if (GameManager.reset)
+            {
+                PlayerPrefs.DeleteKey("Map");
+                GameManager.reset = false;
+            }
             if (PlayerPrefs.HasKey("Map"))
             {
                 string mapJson = PlayerPrefs.GetString("Map");
