@@ -9,6 +9,7 @@ TagManager:
   - Background
   - Obstacle
   - New tag
+  - MensajeCompraSatisfactoria
   layers:
   - Default
   - TransparentFX

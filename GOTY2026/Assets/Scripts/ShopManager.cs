@@ -1,53 +1,54 @@
+using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
-    
-    public TextMeshProUGUI Shop;
     public GameObject ItemsPanel;
     public GameObject CardsPanel;
     public Button ItemsBtn;
     public Button CardsBtn;
     
     public GameObject shopCardTemplate;
+    public GameObject inventoryCardTemplate;
 
     public Transform panelCartasTienda;
+    public Transform panelCartasInventario;
     public ScrollRect scrollRectCartasTienda;
+    public ScrollRect scrollRectCartasInventario;
     public TMP_Text monedasText;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        ActualizarMonedasUI();
-        ItemsActivate();
-    }
+    public GameObject homePanel;
+    public GameObject shopPanel;
+    public GameObject inventoryPanel;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void ActualizarMonedasUI()
-    {
-        int monedasJugador = GameManager.player.GetComponent<PlayerController>().GetMonedas();
-        monedasText.text = "Monedas: " + monedasJugador.ToString();
-        RefrescarInteractividadDeTodos();
-    }
-    
-    public void CardsActivate()
+    public GameObject MensajeCompraSatisfactoria;
+    public TMP_Text textoMensajeCompraSatisfactoria;
+   
+    public void CardsPanelActivate()
     {
         ItemsBtn.interactable = true;
         CardsBtn.interactable = false;
         CardsPanel.SetActive(true);
         ItemsPanel.SetActive(false);
-        MostrarCartasEnTienda();
-        //Canvas.ForceUpdateCanvases();
-        scrollRectCartasTienda.verticalNormalizedPosition = 1f;
+        if(shopPanel.activeSelf)
+        {
+            MensajeCompraSatisfactoria.SetActive(false);
+            MostrarCartasEnTienda();
+            Canvas.ForceUpdateCanvases();
+            scrollRectCartasTienda.verticalNormalizedPosition = 1f;
+        }
+        else if(inventoryPanel.activeSelf)
+        {
+            MostrarCartasEnInventario();
+            Canvas.ForceUpdateCanvases();
+            scrollRectCartasInventario.verticalNormalizedPosition = 1f;
+        }
+        
     }
-    public void ItemsActivate()
+    public void ItemsPanelActivate()
     {
         ItemsBtn.interactable = false;
         CardsBtn.interactable = true;
@@ -96,15 +97,69 @@ public class ShopManager : MonoBehaviour
         RefrescarInteractividadDeTodos();
     }
 
-    public void ComprarCarta(int cardId, int precio)
+    public void MostrarCartasEnInventario()
+    {
+        if (PlayerController.cartas == null || PlayerController.cartas.Count == 0)
+        {
+            Debug.LogWarning("La lista de cartas de player está vacía o no inicializada.");
+            return;
+        }
+
+        if (GameManager.cardList == null || GameManager.cardList.Count == 0)
+        {
+            Debug.LogError("La lista de cartas del manager está vacía o no inicializada.");
+            return;
+        }
+
+        if (inventoryCardTemplate == null || panelCartasInventario == null)
+        {
+            Debug.LogError("Prefab o panel no asignados en el Inspector.");
+            return;
+        }
+
+        // Limpiar el panel
+        for (int i = panelCartasInventario.childCount - 1; i >= 0; i--)
+        {
+            Destroy(panelCartasInventario.GetChild(i).gameObject);
+        }
+        
+        // Agrupar cartas por ID y contar cantidades
+        var grupos = PlayerController.cartas.GroupBy(id => id).OrderBy(g => g.Key); // Key es el ID
+
+        foreach (var grupo in grupos)
+        {
+            int cardId = grupo.Key;
+            int cantidad = grupo.Count();
+
+            var carta = GameManager.cardList.Find(c => c.id == cardId);
+            if (carta == null)
+            {
+                Debug.LogError("Carta no encontrada con ID: " + cardId);
+                continue;
+            }
+
+            GameObject nuevoItem = Instantiate(inventoryCardTemplate, panelCartasInventario);
+            var inventoryItem = nuevoItem.GetComponent<InventoryCardTemplate>();
+            if (inventoryItem != null)
+            {
+                inventoryItem.Setup(cardId, cantidad);
+            }
+        }
+    }
+
+    public void ComprarCarta(int cardId, int precio, String nombreCarta)
     {
         PlayerController player = GameManager.player.GetComponent<PlayerController>();
         if (player.GetMonedas() >= precio)
         {
+            Debug.Log(nombreCarta);
             player.ReducirMonedas(precio);
             player.AddCarta(cardId);
+
+            textoMensajeCompraSatisfactoria.text ="La carta " + nombreCarta + " comprada por " + precio + " monedas ha sido añadida a tu inventario.";
+            MensajeCompraSatisfactoria.SetActive(true);
+
             ActualizarMonedasUI();
-            Debug.Log("Carta comprada por " + precio + " monedas.");
         }
     }
 
@@ -123,8 +178,10 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    public void SigEscena()
+    public void ActualizarMonedasUI()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MapUi");
+        int monedasJugador = GameManager.player.GetComponent<PlayerController>().GetMonedas();
+        monedasText.text = "Monedas: " + monedasJugador.ToString();
+        RefrescarInteractividadDeTodos();
     }
 }
