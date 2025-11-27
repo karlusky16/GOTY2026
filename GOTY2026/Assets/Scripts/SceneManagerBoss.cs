@@ -49,12 +49,13 @@ public class SceneManagerBoss : MonoBehaviour
     public void Reset()
     {
         GameManager.reset = true;
+        Destroy(GameManager.player);
+        Destroy(GameManager);
+        SceneManager.LoadScene("SelectCharacter");
     }
     public void LoadVictory()
     {
         victoryScreen.SetActive(true);
-        Destroy(GameManager.player);
-        Destroy(GameManager);
-        SceneManager.LoadScene("SelectCharacter");
+        
     }
 }
