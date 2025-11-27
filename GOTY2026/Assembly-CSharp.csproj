@@ -101,6 +101,7 @@
     <Compile Include="Assets\OneLine\OneLine\Attributes\SeparatorAttribute.cs" />
     <Compile Include="Assets\OneLine\RectEx\RowExtensions.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Details\Scripts\RootArrayExample.cs" />
+    <Compile Include="Assets\Scripts\Wip.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\MapViewUI.cs" />
     <Compile Include="Assets\OneLine\OneLine\Attributes\HideButtonsAttribute.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Overview\Scripts\Overview.cs" />
