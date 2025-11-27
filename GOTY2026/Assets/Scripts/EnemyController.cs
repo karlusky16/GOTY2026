@@ -159,7 +159,18 @@ public class EnemyController : MonoBehaviour
         if(tile.ocupado == false && enemyx != playerx) return nuevaPos; // moverlo desde el método Movimiento
         else
         {
-            int ancho = GameObject.Find("GridManager").GetComponent<GridManager>().GetWidth();
+            int ancho ;
+            if(GameObject.Find("GridManager") == null)
+            {
+                FondoManager fondo = GameObject.Find("Fondo").GetComponent<FondoManager>();
+                fondo.Aparecer();
+                ancho = GameObject.Find("GridManager").GetComponent<GridManager>().GetWidth();
+            }
+            else
+            {
+                ancho = GameObject.Find("GridManager").GetComponent<GridManager>().GetWidth();
+            }
+            
             for(int i = 0; i < ancho - 1; i++)
             {
                 if(enemyx == 0) enemyx = ancho;
