@@ -24,11 +24,10 @@ public class SceneManager2 : MonoBehaviour
 
     public void GenerarEnemigos()
     {
-        GameManager.InstanciateEnemy(new Vector2(10, 4), 1);
+        GameManager.InstanciateEnemy(new Vector2(10, 4), 4);
         GameManager.InstanciateEnemy(new Vector2(9, 0), 5);
-        GameManager.InstanciateEnemy(new Vector2(3, 3), 1);
-        GameManager.InstanciateEnemy(new Vector2(6, 1), 5);
-        GameManager.InstanciateEnemy(new Vector2(7, 3), 5);
+        GameManager.InstanciateEnemy(new Vector2(6, 1), 7);
+        GameManager.InstanciateEnemy(new Vector2(6, 3), 7);
     }
 
     public void GenerarObstaculos()

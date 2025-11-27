@@ -734,8 +734,8 @@ Transform:
   m_GameObject: {fileID: 258635988}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 1.501, z: 0}
-  m_LocalScale: {x: 12.31, y: 6.629187, z: 1}
+  m_LocalPosition: {x: 4, y: 1.5, z: 0}
+  m_LocalScale: {x: 19.927431, y: 12.083549, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 762374117}
@@ -1707,7 +1707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ffada215b0563488c6dc7f21807f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridManager
-  _width: 9
+  _width: 11
   _height: 5
   _tilePrefab: {fileID: 1175473000211192314, guid: 644896875f8106d41b54120976a8493d, type: 3}
   parent: {fileID: 762374117}
@@ -2207,6 +2207,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2213321825822908640, guid: ae4663f3adae6e74aab494621654c82c, type: 3}
+      propertyPath: textoMana
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 443008694663156079, guid: dcf129c7fc31c4a41b55ff3abd3525ff, type: 3}
       propertyPath: m_Value
       value: 10
@@ -2222,10 +2226,6 @@ PrefabInstance:
     - target: {fileID: 1901400988361195394, guid: dcf129c7fc31c4a41b55ff3abd3525ff, type: 3}
       propertyPath: m_Color.r
       value: 0.37178847
-      objectReference: {fileID: 0}
-    - target: {fileID: 2213321825822908640, guid: ae4663f3adae6e74aab494621654c82c, type: 3}
-      propertyPath: textoMana
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2516696543600074666, guid: dcf129c7fc31c4a41b55ff3abd3525ff, type: 3}
       propertyPath: m_Pivot.x
