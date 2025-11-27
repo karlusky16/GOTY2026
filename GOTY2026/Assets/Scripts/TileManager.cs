@@ -141,6 +141,20 @@ public class TileManager : MonoBehaviour
                 }
                 tile.gameObject.SendMessage("HighlightDaño");
                 break;
+            case "RectaH":
+                direcciones = RectaH(GameManager.carta.GetComponent<DisplayCard>().GetArea(), tile);
+                direccionesAnt = new Vector2[direcciones.Length];
+                c = 0;
+                foreach (var dir in direcciones)
+                {
+                    direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
+                    if (GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
+                    {
+                        tile2.gameObject.SendMessage("HighlightDaño");
+                    }
+                    c++;
+                }
+                break;
             /*case "RectaC":
                 direcciones = Recta(GameManager.carta.GetComponent<DisplayCard>().GetArea(), tile);
                 direccionesAnt = new Vector2[direcciones.Length];
@@ -218,14 +232,30 @@ public class TileManager : MonoBehaviour
         }
         return direcciones.ToArray();
     }
-    private static Vector2[] Rectangulo(int area,int area2,Tile tile)
+    private static Vector2[] RectaH(int area,Tile tile)
     {
-        Vector2[] direcciones = new Vector2[area * area2];
+        List<Vector2> direcciones = new();
         Tile t = GameManager.player.GetComponent<PlayerController>().GetPos();
-        Vector2 direccion = new(tile.x -t.x,tile.y -t.y);
+        Vector2 origen = new(0, 0);
+        direcciones.Add(origen);
+        for (int i = 1; i < area / 2; i++)
+        {
+            direcciones.Add(origen + new Vector2(0, i));
+            direcciones.Add(origen + new Vector2(0,-i));
+        }
+        return direcciones.ToArray();
+    }
+    
+    private static Vector2[] Rectangulo(int area, int area2, Tile tile)
+    {
+        // area = number of columns, area2 = number of rows
+        Tile t = GameManager.player.GetComponent<PlayerController>().GetPos();
+        Vector2 direccion = new(tile.x - t.x, tile.y - t.y);
         int areaD2 = area2 / 2;
+        int innerLen = areaD2 * 2 + 1; // number of elements per column
+        Vector2[] direcciones = new Vector2[area * innerLen];
         int index = 0;
-        for (int i = 0; i < area2; i++)
+        for (int i = 0; i < area; i++)
         {
             for (int j = -areaD2; j <= areaD2; j++)
             {

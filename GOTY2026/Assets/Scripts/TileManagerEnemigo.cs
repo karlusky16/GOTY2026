@@ -19,28 +19,33 @@ public class TileManagerEnemigo : MonoBehaviour
                 direccionesAnt = AleatoriosPatron(enemy.GetComponent<DisplayEnemy>().GetArea());
                 break;
             case "RectaHorizontal":
-                direccionesAnt = RectaHorizontal(enemy.GetComponent<DisplayEnemy>().GetArea(), enemy);
+                direccionesAnt = RectaHorizontal(enemy.GetComponent<DisplayEnemy>().GetArea(),
+                new(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y),
+                new(GameObject.Find("Player").GetComponent<PlayerController>().GetPos().x, GameObject.Find("Player").GetComponent<PlayerController>().GetPos().y));
                 break;
             case "Caballero":
                 if (TurnManager.numTurno == 0)
                 {
-                    direccionesAnt = Caballero1(enemy.GetComponent<DisplayEnemy>().GetArea(), enemy);
+                    direccionesAnt = Caballero1(enemy.GetComponent<DisplayEnemy>().GetArea(),
+                    new(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y));
                 }
                 else
                 {
-                    direccionesAnt = Circulo(enemy.GetComponent<DisplayEnemy>().GetArea(), enemy);
+                    direccionesAnt = Circulo(enemy.GetComponent<DisplayEnemy>().GetArea(),
+                    new(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y));
                 }
                 break;
             case "Sniper":
                 break;
             case "Mortero":
-                direccionesAnt = Mortero(enemy.GetComponent<DisplayEnemy>().GetArea(), enemy);
+                direccionesAnt = Mortero(new(GameObject.Find("Player").GetComponent<PlayerController>().GetPos().x, GameObject.Find("Player").GetComponent<PlayerController>().GetPos().y));
                 break;
             case "Golem":
-                direccionesAnt = Golem();
+                direccionesAnt = Golem(new(GameObject.Find("Player").GetComponent<PlayerController>().GetPos().x, GameObject.Find("Player").GetComponent<PlayerController>().GetPos().y));
                 break;
             case "Misilero":
-                direccionesAnt = Misilero(enemy.GetComponent<DisplayEnemy>().GetArea(), enemy);
+                direccionesAnt = Misilero(enemy.GetComponent<DisplayEnemy>().GetArea(),
+                new(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y));
                 break;
             case "Cruz":
                 direccionesAnt = Cruz(enemy.GetComponent<DisplayEnemy>().GetArea(), enemy);
@@ -98,13 +103,12 @@ public class TileManagerEnemigo : MonoBehaviour
         return direccionesAnt;
     }
     /*Para el robot, ya que ataca solo en su fila*/
-    private static Vector2[] RectaHorizontal(int area, GameObject enemy) // tile la casilla seleccionada
+    private static Vector2[] RectaHorizontal(int area, Vector2 enemy,Vector2 player) // tile la casilla seleccionada
     {
 
         List<Vector2> direcciones = new();
-        Tile t = enemy.GetComponent<EnemyController>().GetPos(); //t = pos enemigo
-        int playerx = GameManager.player.GetComponent<PlayerController>().GetPos().x; // para atacar hacia el enemigo
-        int enemyx = enemy.GetComponent<EnemyController>().GetPos().x;
+        int playerx = (int)player.x; // para atacar hacia el enemigo
+        int enemyx = (int)enemy.x;
         bool plaDer = false;
         int x = GameObject.Find("GridManager").GetComponent<GridManager>().GetWidth();
         if (enemyx < 0 || enemyx >= x) { Debug.Log("Posición del enemy en RectaHorizontal en TileMEnemigo"); return null; }
@@ -117,7 +121,7 @@ public class TileManagerEnemigo : MonoBehaviour
         {
             for (int i = enemyx + 1; i < x && i >= 0; i++)
             {
-                direcciones.Add(new(i, t.y));
+                direcciones.Add(new(i, enemy.y));
                 cont++;
                 if (cont == area) break;
             }
@@ -126,18 +130,18 @@ public class TileManagerEnemigo : MonoBehaviour
         {
             for (int i = enemyx - 1; i < x && i >= 0; i--)
             {
-                direcciones.Add(new(i, t.y));
+                direcciones.Add(new(i, enemy.y));
                 cont++;
                 if (cont == area) break;
             }
         }
         return direcciones.ToArray();
     }
-    private static Vector2[] Caballero1(int area, GameObject enemy)
+    public static Vector2[] Caballero1(int area, Vector2 enemy)
     {
-        int largo = GameObject.Find("GridManager").GetComponent<GridManager>().GetWidth();
+        // Removed GridManager lookup: not needed for computing the pattern
         List<Vector2> direcciones = new();
-        Vector2 pos = new(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y);
+        Vector2 pos = enemy;
         for (int x = (int)pos.x - 1; x >= 0; x--)
         {
             direcciones.Add(new Vector2(x, pos.y));     // centro
@@ -146,17 +150,17 @@ public class TileManagerEnemigo : MonoBehaviour
         }
         return direcciones.ToArray();
     }
-    private Vector2[] Circulo(int area, GameObject enemy)
+    public Vector2[] Circulo(int area, Vector2 enemy)
     {
         List<Vector2> direcciones = new();
-        Vector2 pos = new(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y);
+        Vector2 pos = enemy;
         foreach (var dir in circulo) direcciones.Add(pos + dir);
         return direcciones.ToArray();
     }
-    public Vector2[] Mortero(int area, GameObject enemy)
+    public Vector2[] Mortero(Vector2 player)
     {
         List<Vector2> direcciones = new();
-        Vector2 playerPos = new(GameObject.Find("Player").GetComponent<PlayerController>().GetPos().x, GameObject.Find("Player").GetComponent<PlayerController>().GetPos().y);
+        Vector2 playerPos = player;
         System.Random rand = new();
         for (int i = 0; i < 4; i++)
         {
@@ -169,10 +173,10 @@ public class TileManagerEnemigo : MonoBehaviour
         }
         return direcciones.ToArray();
     }
-    public Vector2[] Golem()
+    public Vector2[] Golem(Vector2 player)
     {
         List<Vector2> direcciones = new();
-        Vector2 playerPos = new(GameObject.Find("Player").GetComponent<PlayerController>().GetPos().x, GameObject.Find("Player").GetComponent<PlayerController>().GetPos().y);
+        Vector2 playerPos = player;
         Vector2[] direccionesA = { new(0, 0), new(1, 0), new(1, 1), new(1, -1), new(-1, 0), new(-1, 1), new(-1, -1), new(0, 1), new(0, -1) };
         foreach (var dir in direccionesA)
         {
@@ -180,10 +184,10 @@ public class TileManagerEnemigo : MonoBehaviour
         }
         return direcciones.ToArray();
     }
-    public Vector2[] Misilero(int area, GameObject enemy)
+    public Vector2[] Misilero(int area, Vector2 enemy)
     {
         List<Vector2> direcciones = new();
-        Vector2 enemyPos = new(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y);
+        Vector2 enemyPos = enemy;
         direcciones.Add(enemyPos + new Vector2(-1, 0));
         direcciones.Add(enemyPos + new Vector2(-2,0));
         direcciones.Add(enemyPos + new Vector2(-3, 0));

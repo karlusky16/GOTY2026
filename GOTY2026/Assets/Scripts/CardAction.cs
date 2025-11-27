@@ -74,6 +74,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     //Metodo para aplicar el efecto de la carta dpendiendo de su tipo de efecto
     internal void Efecto(Vector2[] tiles)
     {
+        borde.color = gameObject.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
         switch (gameObject.GetComponent<DisplayCard>().GetTipo())
         {
             case 0: //ataque

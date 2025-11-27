@@ -20,4 +20,4 @@ MonoBehaviour:
   area: 1
   movimiento: 0
   patronAtaque: Sniper
-  sprite: {fileID: 2558840038423844172, guid: 2a1b48d0e7cae8a43903a28dc1dff8ad, type: 3}
+  sprite: {fileID: -2193531703648604724, guid: 767d21ec93aad0e4083077aadda98b99, type: 3}
