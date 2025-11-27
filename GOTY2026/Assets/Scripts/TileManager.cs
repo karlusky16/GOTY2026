@@ -265,28 +265,27 @@ public class TileManager : MonoBehaviour
         // area = number of columns, area2 = number of rows
         Tile t = GameManager.player.GetComponent<PlayerController>().GetPos();
         Vector2 direccion = new(tile.x - t.x, tile.y - t.y);
-        // Determine whether the main direction is horizontal or vertical
+        // Decide primary axis and sign (horizontal=true if x dominates)
         bool horizontal = Mathf.Abs(direccion.x) > Mathf.Abs(direccion.y);
-        // Determine if the main direction is towards positive axis (right or up)
         bool positivo = horizontal ? direccion.x > 0 : direccion.y > 0;
 
-        int areaD2 = area2 / 2;
+        int halfLateral = area2 / 2;
         Vector2[] direcciones = new Vector2[area * area2];
         int index = 0;
         for (int i = 0; i < area; i++)
         {
-            int offsetY= i; // forward distance from origin
             for (int j = 0; j < area2; j++)
             {
-                int offsetX = j - areaD2; // lateral offset centered
+                int offsetX = j - halfLateral;
+                int offsetY = i;
 
-                if (!horizontal && positivo) // facing up
-                    direcciones[index++] = new Vector2(offsetY, offsetX);
-                else if (!horizontal && positivo) // facing down
+                if (!horizontal && positivo)
+                    direcciones[index++] = new Vector2(offsetX, offsetY);
+                else if (!horizontal && !positivo)
+                    direcciones[index++] = new Vector2(-offsetX, -offsetY);
+                else if (horizontal && !positivo)
                     direcciones[index++] = new Vector2(-offsetY, -offsetX);
-                else if (horizontal && positivo) // facing left
-                    direcciones[index++] = new Vector2(-offsetY, -offsetX);
-                else // horizontal && toPositive => facing right
+                else
                     direcciones[index++] = new Vector2(offsetY, offsetX);
             }
         }
