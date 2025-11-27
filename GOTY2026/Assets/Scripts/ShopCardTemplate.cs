@@ -5,8 +5,8 @@ using TMPro;
 public class CardShopTemplate : MonoBehaviour
 {
     public DisplayCard displayCard;   // Componente que muestra la carta
-    public Button buyButton;          // Botón de compra
-    public TMP_Text priceText;        // Texto del precio en el botón
+    public Button buyButton;          
+    public TMP_Text priceText;        
 
     private int cardId;
     private int price;
@@ -19,14 +19,20 @@ public class CardShopTemplate : MonoBehaviour
         manager = shopManager;
 
         if (displayCard != null)
-            displayCard.ActualizarID(id);
+            displayCard.ActualizarID(cardId);
 
         if (priceText != null)
+        {
+            if (price == 0)
+            {
+                priceText.text = "Comprado";
+                return;
+            }
             priceText.text = " Monedas: " + price.ToString();
-
+        }
         
         buyButton.onClick.RemoveAllListeners();
-        buyButton.onClick.AddListener(() => manager.ComprarCarta(cardId, price));
+        buyButton.onClick.AddListener(() => manager.ComprarCarta(cardId, price, displayCard.card._name));
 
         int dineroActual = GameManager.player.GetComponent<PlayerController>().GetMonedas();
         UpdateInteractivity(dineroActual);
