@@ -198,4 +198,31 @@ public class TestPatronesCarta
         GridManager._tiles = null;
         UnityEngine.Object.DestroyImmediate(goTM);
     }
+
+    [Test]
+    public void Rectangulo2_GeneratesCenteredGrid()
+    {
+        // create a dummy tile (Rectangulo2 returns offsets, independent of tile position)
+        var tileGO = new GameObject("tileRect2");
+        var tile = tileGO.AddComponent<Tile>();
+        tile.x = 5; tile.y = 5;
+
+        Type t = typeof(TileManager);
+        MethodInfo rect2 = t.GetMethod("Rectangulo2", BindingFlags.NonPublic | BindingFlags.Static);
+        Assert.IsNotNull(rect2, "Rectangulo2 method not found");
+
+        // area=3, area2=3 should produce 9 offsets centered around (0,0)
+        var res = (Vector2[])rect2.Invoke(null, new object[] { 3, 3, tile });
+
+        Vector2[] expected = {
+            new Vector2(-1, -1), new Vector2(-1, 0), new Vector2(-1, 1),
+            new Vector2(0, -1), new Vector2(0, 0), new Vector2(0, 1),
+            new Vector2(1, -1), new Vector2(1, 0), new Vector2(1, 1)
+        };
+
+        // verify exact order and values
+        CollectionAssert.AreEqual(expected, res);
+
+        UnityEngine.Object.DestroyImmediate(tileGO);
+    }
 }

@@ -11,7 +11,7 @@ public class ManejoBaraja : MonoBehaviour
     public static List<GameObject> mano = new();
     static Boolean mazoInicializado = false;
     public GameObject descartesPadre, roboPadre;
-    public static int[] mazoDefault = { 7, 7, 8, 8, 9, 11, 10, 1, 2, 3, 3, 4, 5, 6 };
+    public static int[] mazoDefault = { 7, 7, 8, 8, 9, 11, 12, 1, 2, 3, 3, 4, 5, 6 };
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public static void Inicializar()
     {
@@ -91,7 +91,7 @@ public class ManejoBaraja : MonoBehaviour
         {
             TurnManager.robo[i].transform.SetParent(descartesPadre.transform, false);
         }
-        Debug.Log("Cartas en baraja: " + TurnManager.robo.ToString());
+        Debug.Log("Cartas en baraja: " + TurnManager.robo.Count);
         TurnManager.descartes.Clear();
     }
 
