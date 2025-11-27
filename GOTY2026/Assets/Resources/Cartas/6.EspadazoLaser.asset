@@ -19,8 +19,8 @@ MonoBehaviour:
   descripcion: Das un espadazo en un area 3x2
   patron: Rectangulo
   rango: 1
-  area: 3
-  area2: 2
+  area: 2
+  area2: 3
   tipo: 0
   "da\xF1o": 4
   precio: 15

@@ -19,9 +19,9 @@ MonoBehaviour:
   descripcion: "Invocas un muro de fuego que hace da\xF1o a los enemigos en una recta"
   patron: RectaH
   rango: 5
-  area: 5
+  area: 6
   area2: 0
   tipo: 0
   "da\xF1o": 5
   precio: 25
-  sprite: {fileID: 0}
+  sprite: {fileID: 2364548444959629529, guid: a65153612bbe8ea4c9a08970f0a5ba57, type: 3}
