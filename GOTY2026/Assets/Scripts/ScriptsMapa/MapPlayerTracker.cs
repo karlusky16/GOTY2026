@@ -71,7 +71,9 @@ namespace Map
             switch (mapNode.Node.nodeType)
             {
                 case NodeType.MinorEnemy:
-                    SceneManager.LoadScene(GameManager.combatSceneList[GameManager.indexScene]);
+                    string sceneName = GameManager.combatSceneList[GameManager.indexScene];
+                    GameManager.indexScene++;
+                    SceneManager.LoadScene(sceneName);
                     break;
                 case NodeType.EliteEnemy:
                     break;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SceneManager2 : MonoBehaviour
+public class SceneManager3 : MonoBehaviour
 {
     public GameObject deathScreen;
     public GameObject victoryScreen;
@@ -16,7 +16,7 @@ public class SceneManager2 : MonoBehaviour
         GameManager.player.GetComponent<PlayerController>().Mover(new Vector2(0, 2));
         GenerarEnemigos();
         TurnManager.playerController = GameManager.player.GetComponent<PlayerController>();
-        GenerarObstaculos();
+        //GenerarObstaculos();
         deathScreen.SetActive(false);
         victoryScreen.SetActive(false);
     }
@@ -24,16 +24,14 @@ public class SceneManager2 : MonoBehaviour
 
     public void GenerarEnemigos()
     {
-        GameManager.InstanciateEnemy(new Vector2(10, 4), 1);
-        GameManager.InstanciateEnemy(new Vector2(9, 0), 5);
-        GameManager.InstanciateEnemy(new Vector2(3, 3), 1);
-        GameManager.InstanciateEnemy(new Vector2(6, 1), 5);
-        GameManager.InstanciateEnemy(new Vector2(7, 3), 5);
+        GameManager.InstanciateEnemy(new Vector2(8, 3), 8);
+        GameManager.InstanciateEnemy(new Vector2(8, 0), 8);
+        GameManager.InstanciateEnemy(new Vector2(6, 2), 3);
     }
 
     public void GenerarObstaculos()
     {
-        GameManager.InstanciateObstacle(new Vector2(9, 4), 1);
+        
     }
     // Update is called once per frame
     void Update()

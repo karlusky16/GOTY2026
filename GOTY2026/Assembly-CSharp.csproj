@@ -74,7 +74,9 @@
     <Compile Include="Assets\Scripts\GridManager.cs" />
     <Compile Include="Assets\Scripts\ShopManager.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
+    <Compile Include="Assets\Scripts\SceneManager3.cs" />
     <Compile Include="Assets\Scripts\Tests\TestMisilero.cs" />
+    <Compile Include="Assets\Scripts\SceneManagerSample.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Benchmark\Scripts\ArrayBenchmark.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\Node.cs" />
     <Compile Include="Assets\OneLine\RectEx\MoveToExtensions.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="Assets\OneLine\OneLine\Example\Details\Scripts\ExpandableExample.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\MapNode.cs" />
     <Compile Include="Assets\Scripts\DisplayObstacle.cs" />
+    <Compile Include="Assets\Scripts\SceneManagerBoss.cs" />
     <Compile Include="Assets\Scripts\DisplayCard.cs" />
     <Compile Include="Assets\Scripts\Tests\TestMortero.cs" />
     <Compile Include="Assets\OneLine\OneLine\Attributes\OneLineAttribute.cs" />
