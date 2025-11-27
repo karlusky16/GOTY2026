@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   id: 3
   _name: Caballero
-  vida: 20
+  vida: 30
   "da\xF1o": 5
   rango: 1
   area: 1
-  movimiento: 5
+  movimiento: 4
   patronAtaque: Caballero
   sprite: {fileID: 2558840038423844172, guid: 2a1b48d0e7cae8a43903a28dc1dff8ad, type: 3}

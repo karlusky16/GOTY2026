@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   id: 6
   _name: Golem
-  vida: 20
-  "da\xF1o": 3
+  vida: 40
+  "da\xF1o": 5
   rango: 3
   area: 3
   movimiento: 1
   patronAtaque: Golem
-  sprite: {fileID: 0}
+  sprite: {fileID: -5815501924927439300, guid: 630bb26265bb7054f9d135171e774eb1, type: 3}

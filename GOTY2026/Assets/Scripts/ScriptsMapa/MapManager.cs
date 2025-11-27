@@ -13,7 +13,7 @@ namespace Map
 
         private void Start()
         {
-            if (PlayerPrefs.HasKey("Map"))
+            /*if (PlayerPrefs.HasKey("Map"))
             {
                 string mapJson = PlayerPrefs.GetString("Map");
                 Map map = JsonConvert.DeserializeObject<Map>(mapJson);
@@ -29,8 +29,8 @@ namespace Map
                     // player has not reached the boss yet, load the current map
                     view.ShowMap(map);
                 }
-            }
-            else
+            }*/
+            if (true)
             {
                 GenerateNewMap();
             }

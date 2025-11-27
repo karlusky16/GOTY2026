@@ -76,11 +76,13 @@ namespace Map
                     SceneManager.LoadScene(sceneName);
                     break;
                 case NodeType.EliteEnemy:
+                    SceneManager.LoadScene("SampleScene");
                     break;
                 case NodeType.RestSite:
                     SceneManager.LoadScene("CampFire");
                     break;
                 case NodeType.Treasure:
+                    SceneManager.LoadScene("CampFire");
                     break;
                 case NodeType.Store:
                     SceneManager.LoadScene("Store");
@@ -88,6 +90,7 @@ namespace Map
                 case NodeType.Boss:
                     break;
                 case NodeType.Mystery:
+                    SceneManager.LoadScene("SampleScene");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
