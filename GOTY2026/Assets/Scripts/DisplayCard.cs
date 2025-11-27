@@ -20,6 +20,7 @@ public class DisplayCard : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void ActualizarID(int nuevoDisplayID)
     {
+        Debug.Log("ActualizarID en DisplayCard llamado con ID: " + nuevoDisplayID);
         displayID = nuevoDisplayID;
         card = GameManager.cardList[displayID - 1];
         nameText.text = " " + card._name;

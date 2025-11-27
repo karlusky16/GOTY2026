@@ -132,6 +132,20 @@ public class TileManager : MonoBehaviour
                     c++;
                 }
                 break;
+            case "Rectangulo2":
+                direcciones = Rectangulo2(GameManager.carta.GetComponent<DisplayCard>().GetArea(), GameManager.carta.GetComponent<DisplayCard>().GetArea2(), tile);
+                direccionesAnt = new Vector2[direcciones.Length];
+                c = 0;
+                foreach (var dir in direcciones)
+                {
+                    direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
+                    if (GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
+                    {
+                        tile2.gameObject.SendMessage("HighlightDaño");
+                    }
+                    c++;
+                }
+                break;
             case "Tile":
                 direccionesAnt = new Vector2[1];
                 direccionesAnt[0] = new Vector2(tile.x, tile.y);
@@ -252,8 +266,7 @@ public class TileManager : MonoBehaviour
         Tile t = GameManager.player.GetComponent<PlayerController>().GetPos();
         Vector2 direccion = new(tile.x - t.x, tile.y - t.y);
         int areaD2 = area2 / 2;
-        int innerLen = areaD2 * 2 + 1; // number of elements per column
-        Vector2[] direcciones = new Vector2[area * innerLen];
+        Vector2[] direcciones = new Vector2[area * area2];
         int index = 0;
         for (int i = 0; i < area; i++)
         {
@@ -271,6 +284,26 @@ public class TileManager : MonoBehaviour
         }
         return direcciones;
     }
+    private static Vector2[] Rectangulo2(int area, int area2, Tile tile)
+    {
+        // Generate a centered rectangle of size (area x area2) around the tile
+        // Returns relative offsets (to be added to the tile position by the caller)
+        Vector2[] direcciones = new Vector2[area * area2];
+        int c = 0;
+        int halfX = area / 2;
+        int halfY = area2 / 2;
+        for (int i = 0; i < area; i++)
+        {
+            int offsetX = i - halfX;
+            for (int j = 0; j < area2; j++)
+            {
+                int offsetY = j - halfY;
+                direcciones[c++] = new Vector2(offsetX, offsetY);
+            }
+        }
+        return direcciones;
+    }
+    
     private static Vector2[][] TresDir(int area, Tile tile)
     {
         Vector2[][] direcciones = new Vector2[3][];
@@ -285,7 +318,7 @@ public class TileManager : MonoBehaviour
             if (i == 0)
             {
                 direcciones[0][i] = origen;
-                direcciones[0][i + 1] = origen + (direccion * (i + 1));  
+                direcciones[0][i + 1] = origen + (direccion * (i + 1));
             }
             else
             {
