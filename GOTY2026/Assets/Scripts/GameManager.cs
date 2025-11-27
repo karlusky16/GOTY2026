@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        reset = false;
+        reset = true;
         cardList = new List<Card>(Resources.LoadAll<Card>("Cartas"));
         enemyList = new List<Enemy>(Resources.LoadAll<Enemy>("Enemigos"));
         obstacleList = new List<Obstacle>(Resources.LoadAll<Obstacle>("Obstacles"));
