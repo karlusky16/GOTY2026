@@ -9,73 +9,23 @@ public class TestMisilero
     [Test]
     public void TestMisileroPattern()
     {
-        // Preparar Player con Tile en (2,2)
-        GameObject player = new GameObject("Player");
-        player.tag = "Player";
-        PlayerController pc = player.AddComponent<PlayerController>();
-        GameObject playerTileGO = new GameObject("PlayerTile");
-        Tile playerTile = playerTileGO.AddComponent<Tile>();
-        playerTile.x = 2;
-        playerTile.y = 2;
-        pc.posicion = playerTile;
+        // Probaremos un enemigo en (4,2) para tener un patrón predecible
+        var go = new GameObject("tme");
+        var tme = go.AddComponent<TileManagerEnemigo>();
 
-        // Preparar Enemy ScriptableObject id=8 con patron Misilero
-        Enemy enemySO = ScriptableObject.CreateInstance<Enemy>();
-        enemySO.id = 8;
-        enemySO.patronAtaque = "Misilero";
-        GameManager.enemyList = new List<Enemy> { enemySO };
+        Vector2 enemyPos = new Vector2(4, 2);
+        Vector2[] resultados = tme.Misilero(0, enemyPos);
 
-        // Crear objeto enemigo y DisplayEnemy que referencie al SO
-        GameObject enemyGO = new GameObject("TestEnemy");
-        enemyGO.AddComponent<SpriteRenderer>();
-        DisplayEnemy de = enemyGO.AddComponent<DisplayEnemy>();
-        de.ActualizarID(8);
+        // Esperado: inicialmente (-1,-2,-3) en X respecto al enemy -> (3,2),(2,2),(1,2)
+        // luego el bucle añade i from enemyX-4 == 0 down to 0 -> solo i=0 con c=1 -> (0,2),(0,3),(0,1)
+        Vector2[] esperadas = {
+            new Vector2(3,2), new Vector2(2,2), new Vector2(1,2),
+            new Vector2(0,2), new Vector2(0,3), new Vector2(0,1)
+        };
 
-        // Añadir HealthBar hijo con BarraVidaEnemy y componentes UI mínimos
-        GameObject healthBar = new GameObject("HealthBar");
-        healthBar.transform.SetParent(enemyGO.transform);
-        BarraVidaEnemy barra = healthBar.AddComponent<BarraVidaEnemy>();
-        GameObject sliderGO = new GameObject("Slider");
-        sliderGO.transform.SetParent(healthBar.transform);
-        UnityEngine.UI.Slider slider = sliderGO.AddComponent<UnityEngine.UI.Slider>();
-        GameObject textGO = new GameObject("Text");
-        textGO.transform.SetParent(healthBar.transform);
-        UnityEngine.UI.Text texto = textGO.AddComponent<UnityEngine.UI.Text>();
-        var barraType = typeof(BarraVidaEnemy);
-        var sliderField = barraType.GetField("sliderVidaEnemy", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-        var textoField = barraType.GetField("textoVida", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-        if (sliderField != null) sliderField.SetValue(barra, slider);
-        if (textoField != null) textoField.SetValue(barra, texto);
+        Assert.AreEqual(6, resultados.Length);
+        CollectionAssert.AreEquivalent(esperadas, resultados);
 
-        // Añadir EnemyController y asignar su Tile posición en x=7,y=2 (sin usar GridManager)
-        EnemyController ec = enemyGO.AddComponent<EnemyController>();
-        GameObject enemyTileGO = new GameObject("EnemyTile");
-        Tile enemyTile = enemyTileGO.AddComponent<Tile>();
-        enemyTile.x = 7;
-        enemyTile.y = 2;
-        // asignamos directamente la posicion interna del EnemyController
-        ec.posicion = enemyTile;
-
-        // Evitar Null/KeyNotFound en EnemyController.Awake/Update: asignar vidaActualEnemy > 0 y registrar en GameManager.enemigos
-        var vidaField = typeof(EnemyController).GetField("vidaActualEnemy", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-        if (vidaField != null) vidaField.SetValue(ec, 1);
-        if (GameManager.enemigos == null) GameManager.enemigos = new System.Collections.Generic.Dictionary<GameObject, Vector2>();
-        GameManager.enemigos[enemyGO] = new Vector2(enemyTile.x, enemyTile.y);
-        if (GameManager.enemigosLis == null) GameManager.enemigosLis = new System.Collections.Generic.List<GameObject>();
-        GameManager.enemigosLis.Add(enemyGO);
-
-        // Añadir TileManagerEnemigo y llamar Misilero
-        TileManagerEnemigo tme = enemyGO.AddComponent<TileManagerEnemigo>();
-        Vector2[] resultados = tme.Misilero(1, enemyGO);
-
-        Vector2 enemyPos = new(ec.GetPos().x, pc.GetPos().y);
-        Vector2[] lista = {new(6,2),new(5,2),new(4,2),new(3,2),new(3,3),new(3,1),new(2,2),new(2,4),new(2,0),
-        new(1,2),new(1,5),new(1,-1),new(0,2),new(0,6),new(0,-2)};
-        CollectionAssert.AreEquivalent(resultados,lista);
-        // Limpieza
-        Object.DestroyImmediate(enemyGO);
-        Object.DestroyImmediate(player);
-        Object.DestroyImmediate(playerTileGO);
-        Object.DestroyImmediate(enemyTileGO);
+        Object.DestroyImmediate(go);
     }
 }

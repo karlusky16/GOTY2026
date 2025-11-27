@@ -7,6 +7,7 @@ public class DisplayEnemy : MonoBehaviour
     public Enemy enemy;
     public int displayID;
     public int id;
+    public TextMeshProUGUI enemyDamageText;
     public void ActualizarID(int nuevoDisplayID)
     {
         displayID = nuevoDisplayID;
@@ -16,6 +17,7 @@ public class DisplayEnemy : MonoBehaviour
             Debug.LogError($" Enemy ID {displayID} no encontrado en EnemyDataBase");
             return;
         }
+        enemyDamageText.text = "Daño : " + enemy.daño;
         gameObject.GetComponent<SpriteRenderer>().sprite = enemy.sprite;
     }
 
