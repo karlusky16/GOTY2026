@@ -42,4 +42,8 @@ public class SceneManager3 : MonoBehaviour
     {
         deathScreen.SetActive(true);
     }
+    public void Reset()
+    {
+        GameManager.reset = true;
+    }
 }

@@ -72,11 +72,20 @@ namespace Map
             {
                 case NodeType.MinorEnemy:
                     string sceneName = GameManager.combatSceneList[GameManager.indexScene];
-                    GameManager.indexScene++;
-                    SceneManager.LoadScene(sceneName);
+                    if (GameManager.indexScene >= 1)
+                    {
+                        System.Random rand = new();
+                        GameManager.indexScene = rand.Next(1,3) ;
+                    }
+                    else
+                    {
+                        sceneName = GameManager.combatSceneList[GameManager.indexScene];
+                        GameManager.indexScene=1;
+                    }
+                        SceneManager.LoadScene(sceneName);
                     break;
                 case NodeType.EliteEnemy:
-                    SceneManager.LoadScene("SampleScene");
+                    SceneManager.LoadScene("WIP");
                     break;
                 case NodeType.RestSite:
                     SceneManager.LoadScene("CampFire");
@@ -88,6 +97,7 @@ namespace Map
                     SceneManager.LoadScene("Store");
                     break;
                 case NodeType.Boss:
+                    SceneManager.LoadScene(GameManager.combatSceneList[4]);
                     break;
                 case NodeType.Mystery:
                     SceneManager.LoadScene("WIP");

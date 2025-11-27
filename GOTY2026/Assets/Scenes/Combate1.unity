@@ -539,7 +539,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 315, y: 220}
+  m_AnchoredPosition: {x: 377, y: -241}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &165324288
@@ -715,7 +715,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: f6d9b928ea7f07642b1d11dedc9fcc2e, type: 3}
-  m_Color: {r: 0.6301887, g: 0.18758722, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1707,7 +1707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ffada215b0563488c6dc7f21807f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridManager
-  _width: 9
+  _width: 11
   _height: 5
   _tilePrefab: {fileID: 1175473000211192314, guid: 50dbacad7fc66414ba5da2af461d641b, type: 3}
   parent: {fileID: 762374117}
@@ -2207,6 +2207,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2213321825822908640, guid: ae4663f3adae6e74aab494621654c82c, type: 3}
+      propertyPath: textoMana
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 443008694663156079, guid: 4aa1d5b5e393df24a809061b5d2c888b, type: 3}
       propertyPath: m_Value
       value: 10
@@ -2222,10 +2226,6 @@ PrefabInstance:
     - target: {fileID: 1901400988361195394, guid: 4aa1d5b5e393df24a809061b5d2c888b, type: 3}
       propertyPath: m_Color.r
       value: 0.37178847
-      objectReference: {fileID: 0}
-    - target: {fileID: 2213321825822908640, guid: ae4663f3adae6e74aab494621654c82c, type: 3}
-      propertyPath: textoMana
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2516696543600074666, guid: 4aa1d5b5e393df24a809061b5d2c888b, type: 3}
       propertyPath: m_Pivot.x

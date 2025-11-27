@@ -22,24 +22,24 @@ public class Campfire : MonoBehaviour
     public GameObject prefabCarta;
     public void Heal()
     {
-        if (curado || (GameManager.player.GetComponent<PlayerController>().GetVidaActual() == GameManager.player.GetComponent<PlayerController>().GetVidaMaxima()))
+        if (curado || (GameManager.player.GetComponent<PlayerController>().GetVidaActual() == GameManager.player.GetComponent<PlayerController>().GetVidaMaxima()) || matado)
         {
             Debug.Log("La vida ya está al máximo");
             yaRoto.SetActive(false);
             yaCurado.SetActive(true);
             return;
         }
-        GameManager.player.GetComponent<PlayerController>().SendMessage("AumentarVida", 100);
+        GameManager.player.GetComponent<PlayerController>().SendMessage("AumentarVida", GameManager.player.GetComponent<PlayerController>().GetVidaMaxima()/2);
     }
 
     public void DestroyCard()
-    {   /*if (matado)
+    {   if (matado || curado)
         {
             Debug.Log("Ya se ha eliminado una carta en esta fogata.");
             yaCurado.SetActive(false);
             yaRoto.SetActive(true);
             return;
-        }*/
+        }
         panelCartas.SetActive(true);
         for (int i = 0; i < GameManager.player.GetComponent<PlayerController>().GetCartasLength(); i++)
         {
