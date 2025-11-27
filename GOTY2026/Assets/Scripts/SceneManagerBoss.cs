@@ -58,4 +58,8 @@ public class SceneManagerBoss : MonoBehaviour
         victoryScreen.SetActive(true);
         
     }
+    public void Salir()
+    {
+        Application.Quit();
+    }
 }
