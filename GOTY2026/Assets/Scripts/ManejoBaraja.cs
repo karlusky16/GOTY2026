@@ -97,7 +97,7 @@ public class ManejoBaraja : MonoBehaviour
         for (int i = 0; i < TurnManager.robo.Count; i++)
         {
             // parent under roboPadre and preserve local transform
-            TurnManager.robo[i].transform.SetParent(roboPadre.transform, false);
+            TurnManager.robo[i].transform.SetParent(roboPadre.transform);
         }
         Debug.Log("Cartas en baraja: " + TurnManager.robo.Count);
         TurnManager.descartes.Clear();
