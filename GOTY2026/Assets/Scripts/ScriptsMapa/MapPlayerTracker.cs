@@ -75,7 +75,7 @@ namespace Map
                     if (GameManager.indexScene >= 1)
                     {
                         System.Random rand = new();
-                        GameManager.indexScene = rand.Next(1,3) ;
+                        GameManager.indexScene = rand.Next(1,4) ;
                     }
                     else
                     {

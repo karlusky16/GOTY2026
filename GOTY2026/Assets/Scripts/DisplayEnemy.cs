@@ -19,7 +19,7 @@ public class DisplayEnemy : MonoBehaviour
         }
         enemyDamageText.text = "Daño : " + enemy.daño;
         gameObject.GetComponent<SpriteRenderer>().sprite = enemy.sprite;
-        gameObject.GetComponent<EnemyController>().Vida();
+        gameObject.GetComponent<EnemyController>().Vida(enemy.vida);
     }
 
 

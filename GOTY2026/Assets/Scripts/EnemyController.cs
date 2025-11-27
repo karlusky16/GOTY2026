@@ -28,9 +28,10 @@ public class EnemyController : MonoBehaviour
             Debug.Log("Player no encontrado por EnemyController");
         }
     }
-    public void Vida()
+    public void Vida(int vida)
     {
-        vidaActualEnemy = vidaMaximaEnemy;
+        vidaMaximaEnemy = vida;
+        vidaActualEnemy = vida;
         BarraVidaEnemy barra = GetComponentInChildren<BarraVidaEnemy>();
         barra.ConectarEnemy(this);
     }
