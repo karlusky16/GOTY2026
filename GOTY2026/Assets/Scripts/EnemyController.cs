@@ -196,8 +196,8 @@ public class EnemyController : MonoBehaviour
         Vector2 start = new Vector2(enemyx, enemyy);
         Vector2 fin = new Vector2(playerx, playery);
         if (start == fin) return start;
-        if (enemyx == playerx && (playery == enemyy - 1) || (playery == enemyy + 1)) return start;
-        if (enemyy == playery && (playerx == enemyx - 1) || (playerx == enemyx + 1)) return start;
+        if (enemyx == playerx && ((playery == enemyy - 1) || (playery == enemyy + 1))) return start;
+        if (enemyy == playery && ((playerx == enemyx - 1) || (playerx == enemyx + 1))) return start;
         Dictionary<Vector2, int> dist = new Dictionary<Vector2, int>();
         Dictionary<Vector2, Vector2> parent = new Dictionary<Vector2, Vector2>();
         List<Vector2> open = new List<Vector2>();
