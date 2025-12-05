@@ -4,11 +4,48 @@ using UnityEngine.UIElements;
 
 public class RecompensasScript : MonoBehaviour
 {
-    GameObject panelCartas;
+    [SerializeField]GameObject panelCartas;
     void Start()
     {
-        panelCartas = GameObject.Find("DisplayCartas");
-        panelCartas.SetActive(false);
+        // If not assigned in inspector, try to find the panel in-scene (including inactive objects)
+        if (panelCartas == null)
+        {
+            panelCartas = FindInSceneByName("DisplayCartas") ?? FindInSceneByName("PanelCartas");
+        }
+
+        if (panelCartas == null)
+        {
+            Debug.LogWarning("RecompensasScript: panelCartas not found. Assign it in the inspector or name it 'DisplayCartas' or 'PanelCartas'.");
+        }
+        else
+        {
+            panelCartas.SetActive(false);
+        }
+    }
+
+    // Recursively search scene root objects for a child/gameobject with the given name.
+    GameObject FindInSceneByName(string name)
+    {
+        var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+        var roots = scene.GetRootGameObjects();
+        foreach (var root in roots)
+        {
+            var found = FindRecursive(root.transform, name);
+            if (found != null) return found;
+        }
+        return null;
+    }
+
+    GameObject FindRecursive(Transform parent, string name)
+    {
+        if (parent.name == name) return parent.gameObject;
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            var c = parent.GetChild(i);
+            var r = FindRecursive(c, name);
+            if (r != null) return r;
+        }
+        return null;
     }
     public GameObject prefabCarta;   // tu prefab de carta
     public void SigEscena()

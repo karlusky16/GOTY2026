@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using NUnit.Framework;
 using UnityEngine;
 
@@ -45,3 +46,4 @@ public class TestCaballeroMethods
         Object.DestroyImmediate(go);
     }
 }
+#endif
