@@ -28,7 +28,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         //Si es click izquierdo y no hay ninguna carta seleccionada se selecciona la carta
         if ((eventData.button == PointerEventData.InputButton.Left || eventData.button == PointerEventData.InputButton.Right) && !GameManager.cartaSeleccionada)
         {
-            GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");//Se muestra el fondo
+            //GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");//Se muestra el fondo
             GameManager.cartaSeleccionada = true;//Se marca la carta como seleccionada
             borde.color = Color.red;//Se cambia el color del borde para indicar que está seleccionada
             GameManager.carta = gameObject;//Se guarda la carta seleccionada en el GameManager
@@ -39,7 +39,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         else if ((eventData.button == PointerEventData.InputButton.Left || eventData.button == PointerEventData.InputButton.Right) && GameManager.cartaSeleccionada && GameManager.carta == gameObject)
         {
             GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
-            GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
+            //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
             GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
             borde.color = gameObject.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
             GameManager.CambiarLayerEnemy("Default");//Se vuelve a poner la layer original de los enemigos
@@ -160,7 +160,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                
             }
             GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
-            GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
+            //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
             GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
             borde.color = gameObject.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
             GameManager.CambiarLayerEnemy("Default");//Se vuelve a poner la layer original de los enemigos
@@ -213,7 +213,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
             }
             GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
-            GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
+            //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
             GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
             borde.color = gameObject.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
             GameManager.CambiarLayerEnemy("Default");//Se vuelve a poner la layer original de los enemigos
@@ -262,7 +262,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             Debug.Log("noMas");
             TurnManager.noMas.gameObject.SetActive(true);
             GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
-            GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
+            //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
             GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
             borde.color = gameObject.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
             GameManager.CambiarLayerEnemy("Default");//Se vuelve a poner la layer original de los enemigos
