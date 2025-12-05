@@ -18,7 +18,7 @@ public class HomeStoreScene : MonoBehaviour
         homePanel.SetActive(false);
         inventoryPanel.SetActive(false);
         shopPanel.GetComponent<ShopManager>().ActualizarMonedasUI();
-        shopPanel.GetComponent<ShopManager>().ItemsPanelActivate();
+        shopPanel.GetComponent<ShopManager>().CardsPanelActivate();
     }
     public void AbrirInventario()
     {
@@ -26,7 +26,7 @@ public class HomeStoreScene : MonoBehaviour
         homePanel.SetActive(false);
         shopPanel.SetActive(false);
         inventoryPanel.GetComponent<ShopManager>().ActualizarMonedasUI();
-        inventoryPanel.GetComponent<ShopManager>().ItemsPanelActivate();
+        inventoryPanel.GetComponent<ShopManager>().CardsPanelActivate();
     }
     public void AbrirInicio()
     {

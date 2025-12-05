@@ -533,7 +533,7 @@ GameObject:
   - component: {fileID: 79148484}
   - component: {fileID: 79148483}
   m_Layer: 5
-  m_Name: Items txt
+  m_Name: Cartas txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -578,7 +578,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Objetos
+  m_text: Cartas
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -873,7 +873,7 @@ GameObject:
   - component: {fileID: 266575109}
   - component: {fileID: 266575108}
   m_Layer: 5
-  m_Name: Cards txt
+  m_Name: Objetos txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -918,7 +918,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cartas
+  m_text: Objetos
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1851,7 +1851,7 @@ GameObject:
   - component: {fileID: 671590389}
   - component: {fileID: 671590388}
   m_Layer: 5
-  m_Name: Items btn
+  m_Name: Cartas btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1923,7 +1923,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 951648612}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
-        m_MethodName: ItemsPanelActivate
+        m_MethodName: CardsPanelActivate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2717,8 +2717,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopManager
   ItemsPanel: {fileID: 2020880763}
   CardsPanel: {fileID: 1173797261}
-  ItemsBtn: {fileID: 671590388}
-  CardsBtn: {fileID: 1634089415}
+  ItemsBtn: {fileID: 1634089415}
+  CardsBtn: {fileID: 671590388}
   shopCardTemplate: {fileID: 392296298868921792, guid: 2228f2203afe96b4cb64f25834fa6ee6, type: 3}
   inventoryCardTemplate: {fileID: 2291647133608997811, guid: 4f1bd688a97d74945ba12da9521d11d4, type: 3}
   panelCartasTienda: {fileID: 1836354440}
@@ -3263,7 +3263,7 @@ GameObject:
   - component: {fileID: 1193637291}
   - component: {fileID: 1193637290}
   m_Layer: 5
-  m_Name: Cards txt
+  m_Name: Objetos txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3308,7 +3308,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cartas
+  m_text: Objetos
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3560,8 +3560,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopManager
   ItemsPanel: {fileID: 1091368089}
   CardsPanel: {fileID: 435303814}
-  ItemsBtn: {fileID: 1333107492}
-  CardsBtn: {fileID: 1896385098}
+  ItemsBtn: {fileID: 1896385098}
+  CardsBtn: {fileID: 1333107492}
   shopCardTemplate: {fileID: 392296298868921792, guid: 2228f2203afe96b4cb64f25834fa6ee6, type: 3}
   inventoryCardTemplate: {fileID: 2291647133608997811, guid: 4f1bd688a97d74945ba12da9521d11d4, type: 3}
   panelCartasTienda: {fileID: 1882865728}
@@ -3886,7 +3886,7 @@ GameObject:
   - component: {fileID: 1333107493}
   - component: {fileID: 1333107492}
   m_Layer: 5
-  m_Name: Items btn
+  m_Name: Cartas btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3958,7 +3958,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1229502071}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
-        m_MethodName: ItemsPanelActivate
+        m_MethodName: CardsPanelActivate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4446,7 +4446,7 @@ GameObject:
   - component: {fileID: 1481459626}
   - component: {fileID: 1481459625}
   m_Layer: 5
-  m_Name: Items txt
+  m_Name: Cartas txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4491,7 +4491,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Objetos
+  m_text: Cartas
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5110,7 +5110,7 @@ GameObject:
   - component: {fileID: 1634089416}
   - component: {fileID: 1634089415}
   m_Layer: 5
-  m_Name: Cards btn
+  m_Name: Objetos btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5162,7 +5162,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 951648612}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
-        m_MethodName: CardsPanelActivate
+        m_MethodName: ItemsPanelActivate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5913,7 +5913,7 @@ GameObject:
   - component: {fileID: 1896385099}
   - component: {fileID: 1896385098}
   m_Layer: 5
-  m_Name: Cards btn
+  m_Name: Objetos btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5985,7 +5985,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1229502071}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
-        m_MethodName: CardsPanelActivate
+        m_MethodName: ItemsPanelActivate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
