@@ -290,7 +290,7 @@ public class EnemyController : MonoBehaviour
         path.Reverse(); 
         if (movimientos <= 0)
             return start;
-        if (movimientos >= path.Count)
+        if (movimientos >= path.Count - 1)
             return path[path.Count - 2];
         return path[movimientos];   
         }
