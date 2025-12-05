@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7919753755112363022}
   - component: {fileID: 4265764776249367448}
+  - component: {fileID: 8922444995338796263}
   m_Layer: 0
   m_Name: highLightEnemy
   m_TagString: Untagged
@@ -17,14 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &7919753755112363022
-Transform:
+--- !u!224 &7919753755112363022
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2805726663332699686}
-  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,6 +32,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5915010471334066546}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &4265764776249367448
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -80,7 +85,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.9843137, g: 0.9401045, b: 0.0039215395, a: 0.5411765}
+  m_Color: {r: 0.9924528, g: 0, b: 0, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -90,6 +95,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!222 &8922444995338796263
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2805726663332699686}
+  m_CullTransparentMesh: 1
 --- !u!1 &6370229133310906682
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,9 +131,9 @@ Transform:
   m_GameObject: {fileID: 6370229133310906682}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.61127, y: -0.05697, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7919753755112363022}
   - {fileID: 4461329261292612674}
@@ -197,8 +210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8394e703356665a45942a2e435adfcef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
-  mainColor: {r: 0, g: 0, b: 0, a: 0}
-  otherColor: {r: 1, g: 0, b: 0, a: 0}
+  _mainColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
+  _otherColor: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
   _highlight: {fileID: 6954617857524024668}
   _highlightD: {fileID: 8306249231823860675}
   _highlightE: {fileID: 2805726663332699686}
@@ -333,7 +346,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5411765}
+  m_Color: {r: 0, g: 0.5882353, b: 0.65882355, a: 0.5411765}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -423,7 +436,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0.23346962, b: 0.6603774, a: 0.5411765}
+  m_Color: {r: 0, g: 0.23529412, b: 0.65882355, a: 0.5411765}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

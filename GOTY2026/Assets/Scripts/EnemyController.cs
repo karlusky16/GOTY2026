@@ -175,7 +175,8 @@ public class EnemyController : MonoBehaviour
         {
             Debug.Log("Mouse Sale enemy");
             gameObject.SendMessage("UnHighlightEnemyTiles");
-            GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
+            //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
+            //GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");
         }
     }
 /*Se mueve a la fila del player*/

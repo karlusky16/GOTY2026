@@ -41,7 +41,7 @@ public class TurnManager : MonoBehaviour
         tileOcupada.gameObject.SetActive(false);
         GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().ManoTurno();
         GameObject.Find("GameManager").GetComponent<GameManager>().TilesEnemigos();
-        GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
+        //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
         GameObject.Find("Player").GetComponent<PlayerController>().ResetMirilla();
         playerController.AumentarEnergia(playerController.GetEnergiaMaxima());
         playerController.AumentarMana(playerController.GetManaMaxima());
@@ -149,7 +149,7 @@ public class TurnManager : MonoBehaviour
         GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().ManoTurno();
         GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");
         GameObject.Find("GameManager").GetComponent<GameManager>().TilesEnemigos();
-        GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
+        //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
         Debug.Log("Vuelve el turno del jugador.");
         foreach (var enemy in GameManager.enemigosLis)
         {

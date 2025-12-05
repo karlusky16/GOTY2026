@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    [SerializeField] private Color mainColor, otherColor;
+    public Color _mainColor, _otherColor;
     private SpriteRenderer render;
     private String lastPatron;
     public GameObject _highlight;
@@ -27,16 +27,16 @@ public class Tile : MonoBehaviour
     }
     public void Init(bool isOffset)
     {
-        Debug.Log(mainColor);
+
         render = GetComponent<SpriteRenderer>();
         if (isOffset)
         {
-            render.color = Color.black;
+            render.color = _mainColor;
         }
 
         else
         {
-            render.color = Color.red;
+            render.color = _otherColor;
         }
     }
 
