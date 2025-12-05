@@ -234,6 +234,8 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 if (GridManager._tiles.TryGetValue(dir, out Tile tile) && tile.ocupado && tile.ocupadoObj.CompareTag("Enemy"))
                 {
                     tile.ocupadoObj.GetComponent<EnemyController>().ReducirVida(gameObject.GetComponent<DisplayCard>().GetDaño());
+                    tile.ocupadoObj.GetComponent<EnemyController>().AddFuego(gameObject.GetComponent<DisplayCard>().GetDaño());
+                    tile.ocupadoObj.GetComponent<EnemyController>().AddShock(gameObject.GetComponent<DisplayCard>().GetDaño());
                 }
             }
             //Comprobación de tipo de coste y reducción del recurso correspondiente

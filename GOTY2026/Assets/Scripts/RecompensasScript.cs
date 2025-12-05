@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 public class RecompensasScript : MonoBehaviour
 {
-    [SerializeField]GameObject panelCartas;
+    [SerializeField] GameObject panelCartas;
     void Start()
     {
         // If not assigned in inspector, try to find the panel in-scene (including inactive objects)
@@ -77,6 +77,10 @@ public class RecompensasScript : MonoBehaviour
     {
         Debug.Log(carta.GetComponent<DisplayCard>().displayID);
         GameManager.player.GetComponent<PlayerController>().AddCarta(carta.GetComponent<DisplayCard>().displayID);
+        panelCartas.SetActive(false);
+    }
+    public void CerrarPanelSinCarta()
+    {
         panelCartas.SetActive(false);
     }
 
