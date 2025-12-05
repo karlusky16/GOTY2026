@@ -12,6 +12,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int vidaActualEnemy;
     private PlayerController player;
     public Tile posicion;
+    public int danoFuego;
+    public Boolean shock;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -67,15 +69,45 @@ public class EnemyController : MonoBehaviour
         Debug.Log("Reduce vida enemy");
         Debug.Log(vidaActualEnemy);
     }
+    public void AddFuego(int dano)
+    {
+        danoFuego += dano;
+        Debug.Log("Enemy recibe fuego");
+    }
+    public void AddShock(int valor)
+    {
+        System.Random rand = new System.Random();
+        int probabilidad = rand.Next(0, 100);
+        if (probabilidad < valor)
+        {
+            shock = true;
+            Debug.Log("Enemy aturdido");
+        }
+    }
+    public void Fuego()
+    {
+        if (danoFuego > 0)
+        {
+            ReducirVida(danoFuego--);
+            Debug.Log("Enemy recibe daño por fuego");
+        }
+    }
     public void Ataque(Vector2[] posicionesAtaque, int dañoEnemy)
     {
-        List<Vector2> posicionesAtaqueList = new List<Vector2>(posicionesAtaque);
-        if (posicionesAtaqueList.Contains(new Vector2(player.GetPos().x, player.GetPos().y)))
+        if (shock)
         {
-            player.ReducirVida(dañoEnemy);
-            Debug.Log("Player atacado por enemy");
+            Debug.Log("Enemy aturdido, no puede atacar");
+            shock = false;
         }
-
+        else
+        {
+            List<Vector2> posicionesAtaqueList = new List<Vector2>(posicionesAtaque);
+            if (posicionesAtaqueList.Contains(new Vector2(player.GetPos().x, player.GetPos().y)))
+            {
+                player.ReducirVida(dañoEnemy);
+                Debug.Log("Player atacado por enemy");
+            }
+        }
     }
     public void Movimiento(GameObject enemy)
     {
@@ -129,7 +161,7 @@ public class EnemyController : MonoBehaviour
 
     void OnMouseEnter()
     {
-        if (GameManager.cartaSeleccionada == false)
+        if (GameManager.cartaSeleccionada == false && !shock)
         {
             Debug.Log("Mouse encima enemy");
             GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");
@@ -139,7 +171,7 @@ public class EnemyController : MonoBehaviour
     
     void OnMouseExit()
     {
-        if (GameManager.cartaSeleccionada == false )
+        if (GameManager.cartaSeleccionada == false && !shock)
         {
             Debug.Log("Mouse Sale enemy");
             gameObject.SendMessage("UnHighlightEnemyTiles");

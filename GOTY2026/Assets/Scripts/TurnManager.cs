@@ -129,6 +129,7 @@ public class TurnManager : MonoBehaviour
                     Debug.Log("Rango enemigo: " + enemy.GetComponent<TileManagerEnemigo>().GetRango());
                     enemy.GetComponent<EnemyController>().Ataque(enemy.GetComponent<TileManagerEnemigo>().GetRango(), enemy.GetComponent<DisplayEnemy>().GetDaño());
                 }
+                enemy.GetComponent<EnemyController>().Fuego();
                 enemy.GetComponent<EnemyController>().Movimiento(enemy);
                 Debug.Log("El enemigo ataca");
 
