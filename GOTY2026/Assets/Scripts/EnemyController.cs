@@ -76,7 +76,7 @@ public class EnemyController : MonoBehaviour
     }
     public void AddShock(int valor)
     {
-        System.Random rand = new System.Random();
+        System.Random rand = new();
         int probabilidad = rand.Next(0, 100);
         if (probabilidad < valor)
         {
