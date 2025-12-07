@@ -1265,6 +1265,8 @@ MonoBehaviour:
   patron: 
   cardImage: {fileID: 5521588848849833509}
   borde: {fileID: 661303946786031320}
+  energiaImage: {fileID: 1353125585327721713}
+  manaImage: {fileID: 5708093805568237188}
   _color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &8098496424188650309
 MonoBehaviour:

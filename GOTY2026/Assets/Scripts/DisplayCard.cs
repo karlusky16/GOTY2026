@@ -16,6 +16,8 @@ public class DisplayCard : MonoBehaviour
     public String patron;
     public Image cardImage;
     public Image borde;
+    public Image energiaImage;
+    public Image manaImage;
     public Color _color;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void ActualizarID(int nuevoDisplayID)
@@ -33,11 +35,13 @@ public class DisplayCard : MonoBehaviour
         if (GetTipoCoste() == 0)
         {
             borde.color = mana;
+            energiaImage.gameObject.SetActive(false);
             _color = mana;
         }
         else if (GetTipoCoste() == 1)
         {
             borde.color = energia;
+            manaImage.gameObject.SetActive(false);
             _color = energia;
         }
         else if (GetTipoCoste() == 2)

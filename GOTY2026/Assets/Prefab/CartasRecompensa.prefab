@@ -12,6 +12,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: CartasRecompensa
       objectReference: {fileID: 0}
+    - target: {fileID: 6514084315277486063, guid: 741d61d5f59091b4d8811a35e5f00207, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6514084315277486063, guid: 741d61d5f59091b4d8811a35e5f00207, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6514084315277486063, guid: 741d61d5f59091b4d8811a35e5f00207, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6514084315277486063, guid: 741d61d5f59091b4d8811a35e5f00207, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7059618935261830455, guid: 741d61d5f59091b4d8811a35e5f00207, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -111,6 +127,22 @@ PrefabInstance:
     - target: {fileID: 8317927798191716440, guid: 741d61d5f59091b4d8811a35e5f00207, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8589538729150023072, guid: 741d61d5f59091b4d8811a35e5f00207, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8589538729150023072, guid: 741d61d5f59091b4d8811a35e5f00207, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8589538729150023072, guid: 741d61d5f59091b4d8811a35e5f00207, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8589538729150023072, guid: 741d61d5f59091b4d8811a35e5f00207, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8098496424188650309, guid: 741d61d5f59091b4d8811a35e5f00207, type: 3}
