@@ -175,7 +175,8 @@ public class EnemyController : MonoBehaviour
         {
             Debug.Log("Mouse Sale enemy");
             gameObject.SendMessage("UnHighlightEnemyTiles");
-            GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
+            //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
+            //GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");
         }
     }
 /*Se mueve a la fila del player*/
@@ -289,7 +290,7 @@ public class EnemyController : MonoBehaviour
         path.Reverse(); 
         if (movimientos <= 0)
             return start;
-        if (movimientos >= path.Count)
+        if (movimientos >= path.Count - 1)
             return path[path.Count - 2];
         return path[movimientos];   
         }
