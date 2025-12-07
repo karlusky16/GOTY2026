@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Numerics;
+using TMPro;
 using UnityEditor.Analytics;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -30,6 +31,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int manaMaxima;
     [SerializeField] private int manaActual;
     [SerializeField] private int monedas;
+    public Image fuego;
+    public Image aturdido;
+    private int danoFuego = 0;
+    public bool shock = false;
 
     private void Awake()
     {
@@ -39,8 +44,15 @@ public class PlayerController : MonoBehaviour
     }
     public void Mover(UnityEngine.Vector2 pos)
     {
+        if (posicion != null){
+            posicion.ocupado = false;
+            posicion.ocupadoObj = null; 
+        }
         posicion = GridManager._tiles[pos];
-        gameObject.transform.position = posicion.transform.position;
+        posicion.ocupado = true;
+        posicion.ocupadoObj = this.gameObject;
+        gameObject.transform.position = new(posicion.transform.position.x,posicion.transform.position.y,0);
+        GameManager.enemigos[gameObject] = pos;
     }
     //Getters
     public Tile GetPos() => posicion;
@@ -166,5 +178,43 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Desactivar mirilla");
         mirilla.SetActive(false);
+    }
+    public void AddFuego(int dano)
+    {
+        danoFuego += dano;
+        if(!fuego.gameObject.activeSelf) fuego.gameObject.SetActive(true);
+        fuego.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = danoFuego.ToString();
+        Debug.Log("Enemy recibe fuego");
+    }
+    public void AddShock(int valor)
+    {
+        System.Random rand = new();
+        int probabilidad = rand.Next(0, 100);
+        if (probabilidad < valor)
+        {
+            aturdido.gameObject.SetActive(true);
+            shock = true;
+            Debug.Log("Enemy aturdido");
+        }
+    }
+    public void Fuego()
+    {
+        if (danoFuego > 0)
+        {
+            ReducirVida(danoFuego--);
+            if (danoFuego == 0)
+            {
+                fuego.gameObject.SetActive(false);
+            }
+            else
+            {
+                fuego.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = danoFuego.ToString();
+            }
+            Debug.Log("Enemy recibe daño por fuego");
+        }
+        else
+        {
+            fuego.gameObject.SetActive(false);
+        }
     }
 }

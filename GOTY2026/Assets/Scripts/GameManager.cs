@@ -62,7 +62,6 @@ public class GameManager : MonoBehaviour
         enemigosLis[enemigosLis.Count - 1].GetComponent<DisplayEnemy>().ActualizarID(id);
         GridManager._tiles[pos].ocupadoObj = enemigosLis[enemigosLis.Count - 1];
         GridManager._tiles[pos].ocupado = true;
-
         enemigosLis[enemigosLis.Count - 1].GetComponent<EnemyController>().Mover(pos); // le asigna al enemigo su posición        
     }
 
@@ -83,12 +82,35 @@ public class GameManager : MonoBehaviour
     }
 
     public void TilesEnemigos()
+{
+    Debug.Log($"TilesEnemigos: enemigos.Count = {enemigos.Count}");
+    foreach (var kv in enemigos)
     {
-        foreach (var enemigo in enemigos)
+        var go = kv.Key;
+        if (go == null)
         {
-            enemigo.Key.GetComponent<TileManagerEnemigo>().CalculoTiles(enemigo.Key);
+            Debug.LogWarning("TilesEnemigos: encontrado key NULL en GameManager.enemigos");
+            continue;
+        }
+
+        Debug.Log($"TilesEnemigos: key='{go.name}' instanceId={go.GetInstanceID()} active={go.activeSelf} scene='{go.scene.name}'");
+
+        var tme = go.GetComponent<TileManagerEnemigo>();
+        if (tme == null)
+        {
+            Debug.LogError($"TilesEnemigos: GameObject '{go.name}' en GameManager.enemigos NO tiene TileManagerEnemigo. Componentes:");
+            foreach (var c in go.GetComponents<Component>())
+            {
+                Debug.Log($" - {c.GetType().Name}");
+            }
+        }
+        else
+        {
+            Debug.Log($"TilesEnemigos: '{go.name}' tiene TileManagerEnemigo, llamando CalculoTiles");
+            tme.CalculoTiles(go);
         }
     }
+}
 
     public static void CambiarLayerEnemy(String layer)
     {

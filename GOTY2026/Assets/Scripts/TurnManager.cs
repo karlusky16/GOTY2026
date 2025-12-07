@@ -100,6 +100,7 @@ public class TurnManager : MonoBehaviour
     {
         foreach (var enemy in GameManager.enemigosLis)
         {
+            enemy.GetComponent<EnemyController>().Fuego();
             enemy.GetComponent<BoxCollider2D>().enabled = false; 
         }
         // Aquí iría el ataque/movimiento del enemigo
@@ -129,10 +130,8 @@ public class TurnManager : MonoBehaviour
                     Debug.Log("Rango enemigo: " + enemy.GetComponent<TileManagerEnemigo>().GetRango());
                     enemy.GetComponent<EnemyController>().Ataque(enemy.GetComponent<TileManagerEnemigo>().GetRango(), enemy.GetComponent<DisplayEnemy>().GetDaño());
                 }
-                enemy.GetComponent<EnemyController>().Fuego();
                 enemy.GetComponent<EnemyController>().Movimiento(enemy);
                 Debug.Log("El enemigo ataca");
-
             }
         }
         Invoke("EndEnemyTurn", 1.5f);
@@ -155,6 +154,7 @@ public class TurnManager : MonoBehaviour
         {
             enemy.GetComponent<BoxCollider2D>().enabled = true;
         }
+        playerController.Fuego();
     }
 
     public static void ResetTurn()

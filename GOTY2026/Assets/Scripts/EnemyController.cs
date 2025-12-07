@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class EnemyController : MonoBehaviour
 {
@@ -14,6 +16,8 @@ public class EnemyController : MonoBehaviour
     public Tile posicion;
     public int danoFuego;
     public Boolean shock;
+    public Image fuego;
+    public Image aturdido;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,13 +26,14 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
-
-       
-
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-        if (player == null) {
+        if (player == null)
+        {
             Debug.Log("Player no encontrado por EnemyController");
         }
+        shock = false;
+        fuego.gameObject.SetActive(false);
+        aturdido.gameObject.SetActive(false);
     }
     public void Vida(int vida)
     {
@@ -71,7 +76,10 @@ public class EnemyController : MonoBehaviour
     }
     public void AddFuego(int dano)
     {
+        if (dano <= 0) return;
         danoFuego += dano;
+        if(!fuego.gameObject.activeSelf) fuego.gameObject.SetActive(true);
+        fuego.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = danoFuego.ToString();
         Debug.Log("Enemy recibe fuego");
     }
     public void AddShock(int valor)
@@ -80,6 +88,7 @@ public class EnemyController : MonoBehaviour
         int probabilidad = rand.Next(0, 100);
         if (probabilidad < valor)
         {
+            aturdido.gameObject.SetActive(true);
             shock = true;
             Debug.Log("Enemy aturdido");
         }
@@ -89,7 +98,19 @@ public class EnemyController : MonoBehaviour
         if (danoFuego > 0)
         {
             ReducirVida(danoFuego--);
+            if (danoFuego == 0)
+            {
+                fuego.gameObject.SetActive(false);
+            }
+            else
+            {
+                fuego.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = danoFuego.ToString();
+            }
             Debug.Log("Enemy recibe daño por fuego");
+        }
+        else
+        {
+            fuego.gameObject.SetActive(false);
         }
     }
     public void Ataque(Vector2[] posicionesAtaque, int dañoEnemy)
@@ -155,7 +176,7 @@ public class EnemyController : MonoBehaviour
         posicion = GridManager._tiles[pos];
         posicion.ocupado = true;
         posicion.ocupadoObj = this.gameObject;
-        gameObject.transform.position = new(posicion.transform.position.x,posicion.transform.position.y,-0.01f);
+        gameObject.transform.position = new(posicion.transform.position.x,posicion.transform.position.y,-0.1f);
         GameManager.enemigos[gameObject] = pos;
     }
 

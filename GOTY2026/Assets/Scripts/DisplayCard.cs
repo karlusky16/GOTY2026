@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using System.Windows;
 
 public class DisplayCard : MonoBehaviour
-{  
+{
     public Card card;
     public int displayID;
     public TextMeshProUGUI nameText;
@@ -31,7 +31,7 @@ public class DisplayCard : MonoBehaviour
         descriptionText.text = " " + card.descripcion;
         cardImage.sprite = card.sprite;
         Color32 mana = new(95, 16, 120, 255);
-        Color32 energia = new(29, 115, 0,255);
+        Color32 energia = new(29, 115, 0, 255);
         if (GetTipoCoste() == 0)
         {
             borde.color = mana;
@@ -46,7 +46,7 @@ public class DisplayCard : MonoBehaviour
         }
         else if (GetTipoCoste() == 2)
         {
-            borde.color =  Color.Lerp(mana, energia, 0.5f);
+            borde.color = Color.Lerp(mana, energia, 0.5f);
             _color = borde.color;
         }
     }
@@ -60,5 +60,7 @@ public class DisplayCard : MonoBehaviour
     public int GetArea() => card.area;
     public int GetArea2() => card.area2;
     public Color GetColor() => _color;
+    public int GetDañoFuego() => card.dañoFuego;
+    public int GetValorAturdido() => card.shockValue;
     // Update is called once per frame
 }

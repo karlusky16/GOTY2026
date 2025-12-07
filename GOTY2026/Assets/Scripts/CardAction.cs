@@ -231,11 +231,20 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             foreach (var dir in tiles)
             {
 
-                if (GridManager._tiles.TryGetValue(dir, out Tile tile) && tile.ocupado && tile.ocupadoObj.CompareTag("Enemy"))
+                if (GridManager._tiles.TryGetValue(dir, out Tile tile) && tile.ocupado)
                 {
-                    tile.ocupadoObj.GetComponent<EnemyController>().ReducirVida(gameObject.GetComponent<DisplayCard>().GetDaño());
-                    tile.ocupadoObj.GetComponent<EnemyController>().AddFuego(gameObject.GetComponent<DisplayCard>().GetDaño());
-                    tile.ocupadoObj.GetComponent<EnemyController>().AddShock(gameObject.GetComponent<DisplayCard>().GetDaño());
+                    if (tile.ocupadoObj.CompareTag("Enemy"))
+                    {
+                        tile.ocupadoObj.GetComponent<EnemyController>().ReducirVida(gameObject.GetComponent<DisplayCard>().GetDaño());
+                        tile.ocupadoObj.GetComponent<EnemyController>().AddFuego(gameObject.GetComponent<DisplayCard>().GetDañoFuego());
+                        tile.ocupadoObj.GetComponent<EnemyController>().AddShock(gameObject.GetComponent<DisplayCard>().GetValorAturdido());
+                    }
+                    else if (tile.ocupadoObj.CompareTag("Player"))
+                    {
+                        tile.ocupadoObj.GetComponent<PlayerController>().ReducirVida(gameObject.GetComponent<DisplayCard>().GetDaño());
+                        tile.ocupadoObj.GetComponent<PlayerController>().AddFuego(gameObject.GetComponent<DisplayCard>().GetDañoFuego());
+                        tile.ocupadoObj.GetComponent<PlayerController>().AddShock(gameObject.GetComponent<DisplayCard>().GetValorAturdido());
+                    }
                 }
             }
             //Comprobación de tipo de coste y reducción del recurso correspondiente
