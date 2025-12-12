@@ -36,7 +36,6 @@ public class TurnManager : MonoBehaviour
         InstanciarCartas();
         noMas = GameObject.Find("InterfazUsuario/NoMas").GetComponent<TextMeshProUGUI>();
         interfaz = GameObject.Find("InterfazUsuario/NextTurn");
-        noMas.gameObject.SetActive(false);
         GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().ManoTurno();
         GameObject.Find("GameManager").GetComponent<GameManager>().TilesEnemigos();
         //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
