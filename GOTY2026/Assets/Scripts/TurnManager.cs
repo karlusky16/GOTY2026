@@ -20,6 +20,7 @@ public class TurnManager : MonoBehaviour
     public GameObject prefabCarta; // tu prefab de carta
     public static GameObject _image; //referencia al CardPanel
     public bool pulsado = false;
+    public bool viendoTE = false;
     public GameObject descartesPadre, roboPadre;
     //De momento esto es asi ya que solo hay un enemigo
 
@@ -100,7 +101,7 @@ public class TurnManager : MonoBehaviour
         foreach (var enemy in GameManager.enemigosLis)
         {
             enemy.GetComponent<EnemyController>().Fuego();
-            enemy.GetComponent<BoxCollider2D>().enabled = false; 
+            enemy.GetComponent<BoxCollider2D>().enabled = false;
         }
         // Aquí iría el ataque/movimiento del enemigo
 
@@ -177,4 +178,24 @@ public class TurnManager : MonoBehaviour
         }
     }
 
+    public void VerTilesEnemigos()
+    {
+        if (!viendoTE)
+        {
+            viendoTE = true;
+            foreach (var enemigo in GameManager.enemigosLis)
+            {
+                enemigo.GetComponent<TileManagerEnemigo>().HighlightEnemyTiles(gameObject);
+            }
+        }
+        else
+        {
+            viendoTE = false;
+            foreach (var enemigo in GameManager.enemigosLis)
+            {
+                enemigo.GetComponent<TileManagerEnemigo>().UnHighlightEnemyTiles();
+            }
+        }
+        
+    }
 }

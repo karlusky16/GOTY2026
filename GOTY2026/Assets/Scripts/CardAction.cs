@@ -25,36 +25,38 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     //Metodo para gestionar los clicks en la carta
     public void OnPointerClick(PointerEventData eventData)
     {
-        //Si es click izquierdo y no hay ninguna carta seleccionada se selecciona la carta
-        if ((eventData.button == PointerEventData.InputButton.Left || eventData.button == PointerEventData.InputButton.Right) && !GameManager.cartaSeleccionada)
-        {
-            //GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");//Se muestra el fondo
-            GameManager.cartaSeleccionada = true;//Se marca la carta como seleccionada
-            borde.color = Color.red;//Se cambia el color del borde para indicar que está seleccionada
-            GameManager.carta = gameObject;//Se guarda la carta seleccionada en el GameManager
-            GameObject.Find("GameManager").gameObject.SendMessage("MarcarRango", player.GetComponent<PlayerController>().GetPos());//Se marcan las tiles en rango
-            GameManager.CambiarLayerEnemy("Ignore Raycast");//Se cambia la layer de los enemigos para que no interfieran con el click en las tiles
-        }
-        //Si es click derecho y hay una carta seleccionada se deselecciona la carta
-        else if ((eventData.button == PointerEventData.InputButton.Left || eventData.button == PointerEventData.InputButton.Right) && GameManager.cartaSeleccionada && GameManager.carta == gameObject)
-        {
-            GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
-            //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
-            GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
-            borde.color = gameObject.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
-            GameManager.CambiarLayerEnemy("Default");//Se vuelve a poner la layer original de los enemigos
-        }
-        else if ((eventData.button == PointerEventData.InputButton.Left || eventData.button == PointerEventData.InputButton.Right) && GameManager.cartaSeleccionada && GameManager.carta != gameObject)
-        {
-            GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
-            GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
-            GameManager.carta.GetComponent<CardAction>().borde.color = GameManager.carta.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
-            GameManager.CambiarLayerEnemy("Default");//Se vuelve a poner la layer original de los enemigos
-            GameManager.cartaSeleccionada = true;//Se marca la carta como seleccionada
-            borde.color = Color.red;//Se cambia el color del borde para indicar que está seleccionada
-            GameManager.carta = gameObject;//Se guarda la carta seleccionada en el GameManager
-            GameObject.Find("GameManager").gameObject.SendMessage("MarcarRango", player.GetComponent<PlayerController>().GetPos());//Se marcan las tiles en rango
-            GameManager.CambiarLayerEnemy("Ignore Raycast");//Se cambia la layer de los enemigos para que no interfieran con el click en las tiles
+        if (!GameObject.Find("TurnManager").GetComponent<TurnManager>().viendoTE) {
+              //Si es click izquierdo y no hay ninguna carta seleccionada se selecciona la carta
+            if ((eventData.button == PointerEventData.InputButton.Left || eventData.button == PointerEventData.InputButton.Right) && !GameManager.cartaSeleccionada)
+            {
+                //GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");//Se muestra el fondo
+                GameManager.cartaSeleccionada = true;//Se marca la carta como seleccionada
+                borde.color = Color.red;//Se cambia el color del borde para indicar que está seleccionada
+                GameManager.carta = gameObject;//Se guarda la carta seleccionada en el GameManager
+                GameObject.Find("GameManager").gameObject.SendMessage("MarcarRango", player.GetComponent<PlayerController>().GetPos());//Se marcan las tiles en rango
+                GameManager.CambiarLayerEnemy("Ignore Raycast");//Se cambia la layer de los enemigos para que no interfieran con el click en las tiles
+            }
+            //Si es click derecho y hay una carta seleccionada se deselecciona la carta
+            else if ((eventData.button == PointerEventData.InputButton.Left || eventData.button == PointerEventData.InputButton.Right) && GameManager.cartaSeleccionada && GameManager.carta == gameObject)
+            {
+                GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
+                //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
+                GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
+                borde.color = gameObject.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
+                GameManager.CambiarLayerEnemy("Default");//Se vuelve a poner la layer original de los enemigos
+            }
+            else if ((eventData.button == PointerEventData.InputButton.Left || eventData.button == PointerEventData.InputButton.Right) && GameManager.cartaSeleccionada && GameManager.carta != gameObject)
+            {
+                GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
+                GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
+                GameManager.carta.GetComponent<CardAction>().borde.color = GameManager.carta.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
+                GameManager.CambiarLayerEnemy("Default");//Se vuelve a poner la layer original de los enemigos
+                GameManager.cartaSeleccionada = true;//Se marca la carta como seleccionada
+                borde.color = Color.red;//Se cambia el color del borde para indicar que está seleccionada
+                GameManager.carta = gameObject;//Se guarda la carta seleccionada en el GameManager
+                GameObject.Find("GameManager").gameObject.SendMessage("MarcarRango", player.GetComponent<PlayerController>().GetPos());//Se marcan las tiles en rango
+                GameManager.CambiarLayerEnemy("Ignore Raycast");//Se cambia la layer de los enemigos para que no interfieran con el click en las tiles
+            }
         }
     }
     //Al poner el puntero encima de la carta se crea una copia para destacarla

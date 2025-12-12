@@ -13,7 +13,6 @@ public class DisplayCard : MonoBehaviour
     public TextMeshProUGUI costText;
     public TextMeshProUGUI DañoText;
     public TextMeshProUGUI descriptionText;
-    public String patron;
     public Image cardImage;
     public Image borde;
     public Image energiaImage;

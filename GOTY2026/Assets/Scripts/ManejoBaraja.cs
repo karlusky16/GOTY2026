@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ManejoBaraja : MonoBehaviour
 {
-    public static GameObject prefabCarta;   // tu prefab de carta
+    public GameObject prefabCarta;   // tu prefab de carta
     public static GameObject _image; //referencia al CardPanel
     public static PlayerController player;
     public static List<GameObject> mano = new();
@@ -20,7 +20,6 @@ public class ManejoBaraja : MonoBehaviour
         //Buscamos el atributo player controller
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         _image = GameObject.Find("InterfazUsuario/CardPanel");
-        prefabCarta = GameObject.Find("GameManager").GetComponent<GameManager>().GetPrefabCarta();
         //copiamos la longitud de la dataBase
         int cartas = GameManager.cardList.Count;
         System.Random rand = new();
