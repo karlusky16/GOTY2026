@@ -36,7 +36,7 @@ public class HomeStoreScene : MonoBehaviour
     }
     public void CerrarInicio()
     {
-        homePanel.SetActive(false);
+        homePanel.SetActive(true);
     }
     public void SigEscena()
     {
