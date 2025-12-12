@@ -18,7 +18,12 @@ public class InventoryManager : MonoBehaviour
     public TMP_Text monedasText;
     public GameObject inventoryPanel;
 
-   public void AbrirInventario()
+    public void Start()
+    {
+        CerrarInventario();
+    }
+
+    public void AbrirInventario()
     {
         inventoryPanel.SetActive(true);
         inventoryPanel.GetComponent<InventoryManager>().ActualizarMonedasUI();

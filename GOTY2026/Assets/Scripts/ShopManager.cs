@@ -21,8 +21,12 @@ public class ShopManager : MonoBehaviour
 
     public GameObject MensajeCompraSatisfactoria;
     public TMP_Text textoMensajeCompraSatisfactoria;
-   
-   public void AbrirTienda()
+
+    public void Start()
+    {
+        CerrarTienda();
+    }
+    public void AbrirTienda()
     {
         shopPanel.SetActive(true);
         shopPanel.GetComponent<ShopManager>().ActualizarMonedasUI();
