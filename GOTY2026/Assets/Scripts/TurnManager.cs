@@ -35,16 +35,15 @@ public class TurnManager : MonoBehaviour
         descartes = new();
         InstanciarCartas();
         noMas = GameObject.Find("InterfazUsuario/NoMas").GetComponent<TextMeshProUGUI>();
-        tileOcupada = GameObject.Find("InterfazUsuario/TileOcupada").GetComponent<TextMeshProUGUI>();
         interfaz = GameObject.Find("InterfazUsuario/NextTurn");
-        noMas.gameObject.SetActive(false);
-        tileOcupada.gameObject.SetActive(false);
         GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().ManoTurno();
         GameObject.Find("GameManager").GetComponent<GameManager>().TilesEnemigos();
         //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
         GameObject.Find("Player").GetComponent<PlayerController>().ResetMirilla();
         playerController.AumentarEnergia(playerController.GetEnergiaMaxima());
         playerController.AumentarMana(playerController.GetManaMaxima());
+        playerController.fuego.gameObject.SetActive(false);
+        playerController.aturdido.gameObject.SetActive(false);
         Debug.Log("Comienza el combate. Turno del jugador.");
     }
 

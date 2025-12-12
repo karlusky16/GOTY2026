@@ -52,7 +52,6 @@ public class PlayerController : MonoBehaviour
         posicion.ocupado = true;
         posicion.ocupadoObj = this.gameObject;
         gameObject.transform.position = new(posicion.transform.position.x,posicion.transform.position.y,0);
-        GameManager.enemigos[gameObject] = pos;
     }
     //Getters
     public Tile GetPos() => posicion;
@@ -182,9 +181,10 @@ public class PlayerController : MonoBehaviour
     public void AddFuego(int dano)
     {
         danoFuego += dano;
-        if(!fuego.gameObject.activeSelf) fuego.gameObject.SetActive(true);
+        if(!fuego.gameObject.activeSelf)
+            fuego.gameObject.SetActive(true);
         fuego.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = danoFuego.ToString();
-        Debug.Log("Enemy recibe fuego");
+        Debug.Log("Player recibe fuego");
     }
     public void AddShock(int valor)
     {

@@ -265,8 +265,8 @@ MonoBehaviour:
   manaMaxima: 4
   manaActual: 0
   monedas: 0
-  fuego: {fileID: 0}
-  aturdido: {fileID: 0}
+  fuego: {fileID: 7118404482228517687}
+  aturdido: {fileID: 1605324875299091404}
   shock: 0
 --- !u!1 &4697949862208568550
 GameObject:
