@@ -12,41 +12,37 @@ public class ShopManager : MonoBehaviour
     public Button CardsBtn;
     
     public GameObject shopCardTemplate;
-    public GameObject inventoryCardTemplate;
 
     public Transform panelCartasTienda;
-    public Transform panelCartasInventario;
     public ScrollRect scrollRectCartasTienda;
-    public ScrollRect scrollRectCartasInventario;
     public TMP_Text monedasText;
 
-    public GameObject homePanel;
     public GameObject shopPanel;
-    public GameObject inventoryPanel;
 
     public GameObject MensajeCompraSatisfactoria;
     public TMP_Text textoMensajeCompraSatisfactoria;
    
+   public void AbrirTienda()
+    {
+        shopPanel.SetActive(true);
+        shopPanel.GetComponent<ShopManager>().ActualizarMonedasUI();
+        shopPanel.GetComponent<ShopManager>().CardsPanelActivate();
+    }
+    public void CerrarTienda()
+    {
+        shopPanel.SetActive(false);
+    }
     public void CardsPanelActivate()
     {
         ItemsBtn.interactable = true;
         CardsBtn.interactable = false;
         CardsPanel.SetActive(true);
         ItemsPanel.SetActive(false);
-        if(shopPanel.activeSelf)
-        {
-            MensajeCompraSatisfactoria.SetActive(false);
-            MostrarCartasEnTienda();
-            Canvas.ForceUpdateCanvases();
-            scrollRectCartasTienda.verticalNormalizedPosition = 1f;
-        }
-        else if(inventoryPanel.activeSelf)
-        {
-            MostrarCartasEnInventario();
-            Canvas.ForceUpdateCanvases();
-            scrollRectCartasInventario.verticalNormalizedPosition = 1f;
-        }
-        
+
+        MensajeCompraSatisfactoria.SetActive(false);
+        MostrarCartasEnTienda();
+        Canvas.ForceUpdateCanvases();
+        scrollRectCartasTienda.verticalNormalizedPosition = 1f;
     }
     public void ItemsPanelActivate()
     {
@@ -97,56 +93,6 @@ public class ShopManager : MonoBehaviour
         RefrescarInteractividadDeTodos();
     }
 
-    public void MostrarCartasEnInventario()
-    {
-        if (PlayerController.cartas == null || PlayerController.cartas.Count == 0)
-        {
-            Debug.LogWarning("La lista de cartas de player está vacía o no inicializada.");
-            return;
-        }
-
-        if (GameManager.cardList == null || GameManager.cardList.Count == 0)
-        {
-            Debug.LogError("La lista de cartas del manager está vacía o no inicializada.");
-            return;
-        }
-
-        if (inventoryCardTemplate == null || panelCartasInventario == null)
-        {
-            Debug.LogError("Prefab o panel no asignados en el Inspector.");
-            return;
-        }
-
-        // Limpiar el panel
-        for (int i = panelCartasInventario.childCount - 1; i >= 0; i--)
-        {
-            Destroy(panelCartasInventario.GetChild(i).gameObject);
-        }
-        
-        // Agrupar cartas por ID y contar cantidades
-        var grupos = PlayerController.cartas.GroupBy(id => id).OrderBy(g => g.Key); // Key es el ID
-
-        foreach (var grupo in grupos)
-        {
-            int cardId = grupo.Key;
-            int cantidad = grupo.Count();
-
-            var carta = GameManager.cardList.Find(c => c.id == cardId);
-            if (carta == null)
-            {
-                Debug.LogError("Carta no encontrada con ID: " + cardId);
-                continue;
-            }
-
-            GameObject nuevoItem = Instantiate(inventoryCardTemplate, panelCartasInventario);
-            var inventoryItem = nuevoItem.GetComponent<InventoryCardTemplate>();
-            if (inventoryItem != null)
-            {
-                inventoryItem.Setup(cardId, cantidad);
-            }
-        }
-    }
-
     public void ComprarCarta(int cardId, int precio, String nombreCarta)
     {
         PlayerController player = GameManager.player.GetComponent<PlayerController>();
@@ -163,7 +109,6 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    
     /// Recalcula la interactividad de todos los items según el dinero actual.
     private void RefrescarInteractividadDeTodos()
     {
