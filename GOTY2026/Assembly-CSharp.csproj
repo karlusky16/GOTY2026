@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\InventoryCardTemplate.cs" />
     <Compile Include="Assets\OneLine\RectEx\CutFromExtensions.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Tests\Scripts\ExtendedGenericTest.cs" />
+    <Compile Include="Assets\Scripts\ApuntadoImagen.cs" />
     <Compile Include="Assets\Scripts\CharacterSelect.cs" />
     <Compile Include="Assets\Scripts\BarraManaPlayer.cs" />
     <Compile Include="Assets\Scripts\Tests\TestCaballero.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Assets\Scripts\ScriptsMapa\LineConnection.cs" />
     <Compile Include="Assets\Scripts\RecompensasScript.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Tests\Scripts\ExtendedClassTest.cs" />
+    <Compile Include="Assets\Scripts\AturdidoImagen.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\BarraVidaPlayer.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Details\Scripts\HideLabelExample.cs" />
@@ -141,6 +143,7 @@
     <Compile Include="Assets\Scripts\Card.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\DottedLineRenderer.cs" />
     <Compile Include="Assets\Scripts\BarraEnergiaPlayer.cs" />
+    <Compile Include="Assets\Scripts\FuegoImagen.cs" />
     <Compile Include="Assets\Scripts\Tests\TestCaballeroMethods.cs" />
     <Compile Include="Assets\Scripts\ShopCardTemplate.cs" />
     <Compile Include="Assets\Scripts\SceneManager2.cs" />
