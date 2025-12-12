@@ -45,6 +45,8 @@ public class TurnManager : MonoBehaviour
         GameObject.Find("Player").GetComponent<PlayerController>().ResetMirilla();
         playerController.AumentarEnergia(playerController.GetEnergiaMaxima());
         playerController.AumentarMana(playerController.GetManaMaxima());
+        playerController.fuego.gameObject.SetActive(false);
+        playerController.aturdido.gameObject.SetActive(false);
         Debug.Log("Comienza el combate. Turno del jugador.");
     }
 
