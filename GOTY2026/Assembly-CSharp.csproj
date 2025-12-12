@@ -183,6 +183,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Demigiant\DOTween\DOTween.XML" />
+    <None Include="Assets\Sprites\TileMaps\tiles_laboratory_LandOfPixels\README.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
@@ -196,6 +197,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Shaders\MADFINGER-Unlit-Scroll2Layers-Sine-AlphaBlend-No-Amp.shader" />
+    <None Include="Assets\Sprites\TileMaps\tiles_laboratory_LandOfPixels\LICENSE.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Demigiant\DOTween\readme.txt" />
     <None Include="Assets\OneLine\OneLine\readme.txt" />
