@@ -185,7 +185,7 @@ public class TurnManager : MonoBehaviour
             viendoTE = true;
             foreach (var enemigo in GameManager.enemigosLis)
             {
-                enemigo.GetComponent<TileManagerEnemigo>().HighlightEnemyTiles(gameObject);
+                enemigo.GetComponent<TileManagerEnemigo>().HighlightEnemyTiles(enemigo);
             }
         }
         else
