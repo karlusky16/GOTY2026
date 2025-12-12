@@ -52,7 +52,6 @@ public class PlayerController : MonoBehaviour
         posicion.ocupado = true;
         posicion.ocupadoObj = this.gameObject;
         gameObject.transform.position = new(posicion.transform.position.x,posicion.transform.position.y,0);
-        GameManager.enemigos[gameObject] = pos;
     }
     //Getters
     public Tile GetPos() => posicion;

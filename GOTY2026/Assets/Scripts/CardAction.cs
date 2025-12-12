@@ -149,13 +149,13 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             if (tile.ocupado)
             {
                 Debug.Log("Tile ocupado");
-                TurnManager.tileOcupada.gameObject.SetActive(true);
+                TurnManager.noMas.text = "La casilla ya está ocupada";
                 Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
             }
             else
             {
                 Debug.Log("noMas");
-                TurnManager.noMas.gameObject.SetActive(true);
+                TurnManager.noMas.text = "No hay recurso suficiente para usar esa carta";
                 Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
                
             }
@@ -201,7 +201,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         {
             if (tile.ocupado)
             {
-                TurnManager.tileOcupada.gameObject.SetActive(true);
+                TurnManager.noMas.text = "La casilla ya está ocupada";
                 Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
                 Debug.Log("Tile ocupado");
 
@@ -209,7 +209,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             else
             {
                 Debug.Log("noMas");
-                TurnManager.noMas.gameObject.SetActive(true);
+                TurnManager.noMas.text = "No hay recurso suficiente para usar esa carta";
                 Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
             }
             GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
@@ -271,7 +271,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         else
         {
             Debug.Log("noMas");
-            TurnManager.noMas.gameObject.SetActive(true);
+            TurnManager.noMas.text = "No hay recurso suficiente para usar esa carta";
             GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
             //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
             GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
@@ -285,8 +285,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
     void OcultarMensaje()
     {
-        TurnManager.noMas.gameObject.SetActive(false);
-        TurnManager.tileOcupada.gameObject.SetActive(false);
+        TurnManager.noMas.text = "";
     }
 
 
