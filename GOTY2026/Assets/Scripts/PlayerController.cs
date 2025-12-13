@@ -33,8 +33,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int monedas;
     public Image fuego;
     public Image aturdido;
-    private int danoFuego = 0;
+    public int danoFuego = 0;
     public bool shock = false;
+    public bool apuntado = false;
 
     private void Awake()
     {
@@ -44,14 +45,15 @@ public class PlayerController : MonoBehaviour
     }
     public void Mover(UnityEngine.Vector2 pos)
     {
-        if (posicion != null){
+        if (posicion != null)
+        {
             posicion.ocupado = false;
-            posicion.ocupadoObj = null; 
+            posicion.ocupadoObj = null;
         }
         posicion = GridManager._tiles[pos];
         posicion.ocupado = true;
         posicion.ocupadoObj = this.gameObject;
-        gameObject.transform.position = new(posicion.transform.position.x,posicion.transform.position.y,0);
+        gameObject.transform.position = new(posicion.transform.position.x, posicion.transform.position.y, 0);
     }
     //Getters
     public Tile GetPos() => posicion;
@@ -171,17 +173,19 @@ public class PlayerController : MonoBehaviour
     public void Mirilla()
     {
         Debug.Log("Activar mirilla");
+        apuntado = true;
         mirilla.SetActive(true);
     }
     public void ResetMirilla()
     {
         Debug.Log("Desactivar mirilla");
+        apuntado = false;
         mirilla.SetActive(false);
     }
     public void AddFuego(int dano)
     {
         danoFuego += dano;
-        if(!fuego.gameObject.activeSelf)
+        if (!fuego.gameObject.activeSelf)
             fuego.gameObject.SetActive(true);
         fuego.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = danoFuego.ToString();
         Debug.Log("Player recibe fuego");
@@ -216,5 +220,11 @@ public class PlayerController : MonoBehaviour
         {
             fuego.gameObject.SetActive(false);
         }
+    }
+    public void OnMouseDown()
+    {
+        Debug.Log("Mouse click enemy");
+        GameObject.Find("PanelInfo").SendMessage("CambiarEstado");
+        GameObject.Find("PanelInfo").SendMessage("DisplayDatos",this.gameObject);
     }
 }

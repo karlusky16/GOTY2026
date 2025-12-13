@@ -51,9 +51,6 @@ public class ManejoBaraja : MonoBehaviour
             if (cartas == 0)
             {
                 DescartesABaraja();
-                // After moving discards into the draw pile, use the actual
-                // count of `TurnManager.robo` (UI objects), not the player's
-                // logical card count to avoid mismatches.
                 cartas = TurnManager.robo.Count;
             }
             int indiceAleatorio = rand.Next(cartas);
