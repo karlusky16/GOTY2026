@@ -9,7 +9,6 @@ public class ManejoBaraja : MonoBehaviour
     public static GameObject _image; //referencia al CardPanel
     public static PlayerController player;
     public static List<GameObject> mano = new();
-    static Boolean mazoInicializado = false;
     public GameObject descartesPadre, roboPadre;
 
     public static int[] mazoDefault = {7,8,8,1,7,3,3}; //1 fireballs,dos saltos, 1 espadazo y dos disparos
@@ -23,8 +22,9 @@ public class ManejoBaraja : MonoBehaviour
         //copiamos la longitud de la dataBase
         int cartas = GameManager.cardList.Count;
         System.Random rand = new();
-        if (mazoInicializado) return;
-        mazoInicializado = true;
+        if (player.stats.inicializado && player.GetCartasLength() > 0)
+        return; // Ya hay cartas, no inicializamos
+        GameManager.player.GetComponent<PlayerController>().inicializado = true;
         //Para meter cartas aleatorias en la baraja del jugador
         foreach (var id in mazoDefault)
         {

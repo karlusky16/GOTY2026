@@ -10,12 +10,9 @@ public class GameManager : MonoBehaviour
     public GameObject prefabEnemigo;
     public GameObject prefabPlayer;
     public GameObject prefabCarta;
-
     public GameObject prefabObstaculo;
-    // UI
-    
-
-    public static Boolean cartaSeleccionada;
+    public static bool estamina;
+    public static bool cartaSeleccionada;
     public static GameObject carta;
     public static GameObject player;
     public static Dictionary<GameObject, Vector2> enemigos = new();

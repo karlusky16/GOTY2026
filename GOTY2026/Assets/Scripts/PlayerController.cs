@@ -9,10 +9,10 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public static List<int> cartas = new();
-    public static List<int> descartes = new();
+    public PlayerStats stats;
     public Tile posicion;
     public GameObject mirilla;
-    public static int longMano = 6;
+    public static int longMano;
     public Action<int> JugadorReduceVida;
     public Action<int> JugadorAumentaVida;
 
@@ -36,12 +36,46 @@ public class PlayerController : MonoBehaviour
     public int danoFuego = 0;
     public bool shock = false;
     public bool apuntado = false;
+    public Boolean inicializado;
 
     private void Awake()
     {
-        vidaActual = vidaMaxima;
+        stats ??= new PlayerStats();
+        inicializado = stats.inicializado;
+        longMano = stats.longMano;
+        vidaMaxima = stats.vidaMaxima;
+        vidaActual = stats.vidaActual;
+        energiaMaxima = stats.energiaMaxima;
+        manaMaxima = stats.manaMaxima;
+        monedas = stats.monedas;
+        cartas = stats.cartas;
         energiaActual = energiaMaxima;
         manaActual = manaMaxima;
+    }
+    public void CargarStats(PlayerStats stats2)
+    {
+        this.stats = stats2;
+        inicializado = stats.inicializado;
+        longMano = stats.longMano;
+        vidaMaxima = stats.vidaMaxima;
+        vidaActual = stats.vidaActual;
+        energiaMaxima = stats.energiaMaxima;
+        manaMaxima = stats.manaMaxima;
+        monedas = stats.monedas;
+        cartas = stats.cartas;
+        energiaActual = energiaMaxima;
+        manaActual = manaMaxima;
+    }
+    public void GuardarStats()
+    {
+        stats.inicializado = this.inicializado;
+        stats.longMano = longMano;
+        stats.vidaMaxima = vidaMaxima;
+        stats.vidaActual = vidaActual;
+        stats.energiaMaxima = energiaMaxima;
+        stats.manaMaxima = manaMaxima;
+        stats.monedas = monedas;
+        stats.cartas = cartas;
     }
     public void Mover(UnityEngine.Vector2 pos)
     {
@@ -134,31 +168,7 @@ public class PlayerController : MonoBehaviour
     public void RemoveCarta(int id)
     {
         Debug.Log("RemoveCarta " + id);
-        cartas.Remove(id);
-    }
-    public void AddCartaDescartes(int id)
-    {
-        Debug.Log("AddCartaDescartes: " + id);
-        descartes.Add(id);
-    }
-    public void DescartesABaraja()
-    {
-        Debug.Log("DescartesABaraja");
-        cartas = new List<int>(descartes);
-        Debug.Log("Cartas en baraja: " + cartas.ToString());
-        descartes.Clear();
-    }
-
-    public void ResetBaraja()
-    {
-        if (cartas != null)
-        {
-            cartas.Clear();
-        }
-        if (descartes != null)
-        {
-            descartes.Clear();
-        }
+        cartas.Remove(id);  
     }
 
     public void ResetPlayer()
