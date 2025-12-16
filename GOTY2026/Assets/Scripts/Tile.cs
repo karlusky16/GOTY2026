@@ -43,7 +43,7 @@ public class Tile : MonoBehaviour
     void OnMouseEnter()
     {
         Debug.Log("Mouse encima tile");
-        if (GameManager.cartaSeleccionada == true && GameObject.Find("GameManager").GetComponent<TileManager>().GetRango().Contains(this))
+        if (GameManager.cartaSeleccionada == true && !GameObject.Find("TurnManager").GetComponent<TurnManager>().viendoTE && GameObject.Find("GameManager").GetComponent<TileManager>().GetRango().Contains(this))
         {
             GameObject.Find("GameManager").SendMessage("HighlightPatron", this);
         }

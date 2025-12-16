@@ -1,35 +1,40 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Campfire : MonoBehaviour
 {
     GameObject panelCartas;
-    GameObject yaCurado;
-    GameObject yaRoto;
+    GameObject textoAlerta;
     GameObject noDestruir;
     bool matado;
     bool curado;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {   
+    {
         matado = false;
         noDestruir = GameObject.Find("NoDestroy");
-        yaCurado = GameObject.Find("YaCurado");
-        yaRoto = GameObject.Find("YaDestroy");
+        textoAlerta = GameObject.Find("TextoAlerta");
         panelCartas = GameObject.Find("DisplayCartas");
         noDestruir.SetActive(false);
         panelCartas.SetActive(false);
-        yaRoto.SetActive(false);
-        yaCurado.SetActive(false); 
+        textoAlerta.GetComponent<TextMeshProUGUI>().text = "";
     }
     public GameObject prefabCarta;
     public void Heal()
     {
-        if (curado || (GameManager.player.GetComponent<PlayerController>().GetVidaActual() == GameManager.player.GetComponent<PlayerController>().GetVidaMaxima()) || matado)
+        if (curado)
         {
-            Debug.Log("La vida ya est· al m·ximo");
-            yaRoto.SetActive(false);
-            yaCurado.SetActive(true);
+            textoAlerta.GetComponent<TextMeshProUGUI>().text = "El jugador ya se ha curado";
+            Invoke(nameof(OcultarMensaje), 1f);
+            return;
+        }
+        else if (matado) {
+            textoAlerta.GetComponent<TextMeshProUGUI>().text = "El jugador ha eliminado una carta y por tanto no puede curar";
+        }
+        else if (GameManager.player.GetComponent<PlayerController>().GetVidaActual() == GameManager.player.GetComponent<PlayerController>().GetVidaMaxima())
+        {
+            textoAlerta.GetComponent<TextMeshProUGUI>().text = "El jugador tiene la vida al m√°ximo";
             Invoke(nameof(OcultarMensaje), 1f);
             return;
         }
@@ -38,11 +43,15 @@ public class Campfire : MonoBehaviour
     }
 
     public void DestroyCard()
-    {   if (matado || curado)
+    {   if (matado)
         {
-            Debug.Log("Ya se ha eliminado una carta en esta fogata.");
-            yaCurado.SetActive(false);
-            yaRoto.SetActive(true);
+            textoAlerta.GetComponent<TextMeshProUGUI>().text = "El jugador ya ha eliminado una carta";
+            Invoke(nameof(OcultarMensaje), 1f);
+            return;
+        }
+        else if (curado)
+        {
+            textoAlerta.GetComponent<TextMeshProUGUI>().text = "El jugador ya se ha curado y por tanto no puedes eliminar carta";
             Invoke(nameof(OcultarMensaje), 1f);
             return;
         }
@@ -50,7 +59,7 @@ public class Campfire : MonoBehaviour
         noDestruir.SetActive(true);
         for (int i = 0; i < GameManager.player.GetComponent<PlayerController>().GetCartasLength(); i++)
         {
-            var carta = Instantiate(prefabCarta, panelCartas.transform);
+            var carta = Instantiate(prefabCarta,panelCartas.transform);
             DisplayCard dc = carta.GetComponent<DisplayCard>();
             int idLocal = GameManager.player.GetComponent<PlayerController>().GetCartas()[i];
             dc.ActualizarID(idLocal);
@@ -92,8 +101,7 @@ public class Campfire : MonoBehaviour
     // Update is called once per frame
     void OcultarMensaje()
     {
-        yaCurado.SetActive(false);
-        yaRoto.SetActive(false);
+        textoAlerta.GetComponent<TextMeshProUGUI>().text = "";
     }
     void Update()
     {
