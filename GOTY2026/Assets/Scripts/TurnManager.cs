@@ -44,7 +44,8 @@ public class TurnManager : MonoBehaviour
         playerController.AumentarMana(playerController.GetManaMaxima());
         playerController.fuego.gameObject.SetActive(false);
         playerController.aturdido.gameObject.SetActive(false);
-        playerController.escudo = 0;
+        playerController.escudoS.gameObject.SetActive(false);
+        playerController.RedEscudo(playerController.escudo);
         Debug.Log("Comienza el combate. Turno del jugador.");
     }
 
@@ -155,7 +156,7 @@ public class TurnManager : MonoBehaviour
             enemy.GetComponent<BoxCollider2D>().enabled = true;
         }
         playerController.Fuego();
-        playerController.escudo = 0;
+        playerController.RedEscudo(playerController.escudo);
     }
 
     public static void ResetTurn()

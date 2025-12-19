@@ -157,7 +157,6 @@
     <Compile Include="Assets\Scripts\ScriptsMapa\UI Lines\UIPrimitiveBase.cs" />
     <Compile Include="Assets\Scripts\TileManagerEnemigo.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs" />
-    <Compile Include="Assets\Scripts\ScriptsSaves\SaveData.cs" />
     <Compile Include="Assets\Scripts\ScriptsSaves\PlayerStats.cs" />
     <Compile Include="Assets\OneLine\OneLine\Attributes\ExpandableAttribute.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />

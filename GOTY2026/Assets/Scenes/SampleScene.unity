@@ -4322,6 +4322,7 @@ MonoBehaviour:
   fuegoS: {fileID: -3821933466149153230, guid: a76ebe82fd26c8e42921fd595dbb5bd1, type: 3}
   aturdidoS: {fileID: 6269152315407706914, guid: ab9494103b2711549ad6885b8494e7a4, type: 3}
   mirillaS: {fileID: 110063094613122208, guid: 29c5ccdd4b9703442acd3440566735df, type: 3}
+  escudoS: {fileID: -3803196367135801590, guid: cbe9803b15f8c314b886aa4150266bb6, type: 3}
 --- !u!114 &787889576
 MonoBehaviour:
   m_ObjectHideFlags: 0

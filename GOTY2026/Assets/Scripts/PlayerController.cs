@@ -31,13 +31,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int manaMaxima;
     [SerializeField] private int manaActual;
     [SerializeField] private int monedas;
-    public Image fuego;
-    public Image aturdido;
+    public Image fuego,aturdido,escudoS;
     public int danoFuego = 0;
+    public int escudo = 0;
     public bool shock = false;
     public bool apuntado = false;
     public Boolean inicializado;
-    public int escudo;
 
     private void Awake()
     {
@@ -106,10 +105,10 @@ public class PlayerController : MonoBehaviour
     //Modificar vida del jugador
     public void ReducirVida(int vida)
     {
-        if ((escudo -= vida) < 0)
+        int vidDE = 0;
+        if ((vidDE = RedEscudo(vida)) < 0)
         {
-            vida = -escudo;
-            escudo = 0;
+            vida = -vidDE;
         }
         else
         {
@@ -133,6 +132,25 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Aumenta vida jugador");
     }
 
+    public void AddEscudo(int escudo)
+    {
+        escudo += escudo;
+        if (!escudoS.gameObject.activeSelf)
+            escudoS.gameObject.SetActive(true);
+        escudoS.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = escudo.ToString();
+        Debug.Log("Player recibe fuego");
+    }
+    public int RedEscudo(int daño)
+    {
+        int res = escudo - daño;
+        if ((escudo -= daño) < 0)
+        {
+            escudo = 0;
+            escudoS.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "";
+            escudoS.gameObject.SetActive(false);
+        }
+        return res;
+    }
     //Modificar energia del jugador
     public void ReducirEnergia(int energia)
     {
@@ -257,6 +275,9 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Mouse click Player");
         GameObject.Find("PanelInfo").SendMessage("CambiarEstado");
-        GameObject.Find("PanelInfo").SendMessage("DisplayDatos",this.gameObject);
+        if (GameObject.Find("PanelInfo").GetComponent<BestiarioManager>().RetEnP())
+        {
+            GameObject.Find("PanelInfo").SendMessage("DisplayDatos",this.gameObject);  
+        }
     }
 }

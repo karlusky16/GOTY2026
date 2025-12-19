@@ -199,7 +199,10 @@ public class EnemyController : MonoBehaviour
     {
         Debug.Log("Mouse click enemy");
         GameObject.Find("PanelInfo").SendMessage("CambiarEstado");
-        GameObject.Find("PanelInfo").SendMessage("DisplayDatos",this.gameObject);
+        if (GameObject.Find("PanelInfo").GetComponent<BestiarioManager>().RetEnP())
+        {
+            GameObject.Find("PanelInfo").SendMessage("DisplayDatos",this.gameObject);  
+        }
     }
 /*Se mueve a la fila del player*/
     Vector2 MoverAFila(GameObject enemy)
