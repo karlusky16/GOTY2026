@@ -14,6 +14,7 @@ public class TileManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public List<Tile> GetRango() => tilesEnRango;
     public Tile GetTileMov() => tileMov; 
+    public Vector2[] circulo = { new(1, 0), new(-1, 0), new(1, -1), new(1, 1), new(-1, 1), new(-1, -1), new(0, 1), new(0, -1) };
     //Incluye patrones de daño y de movimiento, en los de movimiento se DEBE modificar la variable tileMov para saber a que tile moverse
     public void HighlightPatron(Tile tile)
     {
@@ -63,7 +64,7 @@ public class TileManager : MonoBehaviour
                     direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
                     if (GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
                     {
-                        tile2.gameObject.SendMessage("HighlightDaño"); 
+                        tile2.gameObject.SendMessage("HighlightDaño");
                     }
                     c++;
                 }
@@ -73,6 +74,24 @@ public class TileManager : MonoBehaviour
                 direccionesAnt = new Vector2[direcciones.Length];
                 c = 0;
                 Boolean si = true;
+                foreach (var dir in direcciones)
+                {
+                    direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
+                    if (si = GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
+                    {
+                        tile2.gameObject.SendMessage("HighlightDaño");
+                    }
+                    if (si)
+                    {
+                        tileMov = tile2;
+                    }
+                    c++;
+                }
+                break;
+            case "CirculoM":
+                direcciones = Circulo(GameManager.carta.GetComponent<DisplayCard>().GetArea());
+                direccionesAnt = new Vector2[direcciones.Length];
+                c = 0;
                 foreach (var dir in direcciones)
                 {
                     direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
@@ -149,7 +168,7 @@ public class TileManager : MonoBehaviour
             case "Tile":
                 direccionesAnt = new Vector2[1];
                 direccionesAnt[0] = new Vector2(tile.x, tile.y);
-                if (GameManager.carta.GetComponent<DisplayCard>().GetTipo() == 1 ||GameManager.carta.GetComponent<DisplayCard>().GetTipo() == 2 )
+                if (GameManager.carta.GetComponent<DisplayCard>().GetTipo() == 1 || GameManager.carta.GetComponent<DisplayCard>().GetTipo() == 2)
                 {
                     tileMov = tile;
                 }
@@ -211,6 +230,13 @@ public class TileManager : MonoBehaviour
     //Getter direcionesAnt
     public Vector2[] GetDireccionesAnt() => direccionesAnt;
     //Calculo de patrones
+    public Vector2[] Circulo(int area)
+    {
+        List<Vector2> direcciones = new();
+        foreach (var dir in circulo) direcciones.Add(dir);
+        direcciones.Add(new(0,0));
+        return direcciones.ToArray();
+    }
     private static Vector2[] Cruz(int area)
     {
         Vector2[] direcciones = new Vector2[area * 4 + 1];
@@ -371,22 +397,28 @@ public class TileManager : MonoBehaviour
     List<Tile> ObtenerTilesEnRango(Tile centro, int rango)
     {
         List<Tile> resultado = new List<Tile>();
-        Vector2 pos = new Vector2(centro.x, centro.y);
-        for (int x = -rango; x <= rango; x++)
+        if (rango == -1)
         {
-            for (int y = -rango; y <= rango; y++)
+            resultado.Add(centro);
+        }
+        else
+        {
+            Vector2 pos = new(centro.x, centro.y);
+            for (int x = -rango; x <= rango; x++)
             {
-                if (Mathf.Abs(x) + Mathf.Abs(y) <= rango)
+                for (int y = -rango; y <= rango; y++)
                 {
-                    GridManager._tiles.TryGetValue(new Vector2(pos.x + x, pos.y + y), out Tile t);
-                    if (t != null && t != centro)
+                    if (Mathf.Abs(x) + Mathf.Abs(y) <= rango)
                     {
-                        resultado.Add(t);
+                        GridManager._tiles.TryGetValue(new Vector2(pos.x + x, pos.y + y), out Tile t);
+                        if (t != null && t != centro)
+                        {
+                            resultado.Add(t);
+                        }
                     }
                 }
             }
         }
-
         return resultado;
     }
 }

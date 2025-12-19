@@ -39,12 +39,12 @@ public class TurnManager : MonoBehaviour
         interfaz = GameObject.Find("InterfazUsuario/NextTurn");
         GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().ManoTurno();
         GameObject.Find("GameManager").GetComponent<GameManager>().TilesEnemigos();
-        //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
         GameObject.Find("Player").GetComponent<PlayerController>().ResetMirilla();
         playerController.AumentarEnergia(playerController.GetEnergiaMaxima());
         playerController.AumentarMana(playerController.GetManaMaxima());
         playerController.fuego.gameObject.SetActive(false);
         playerController.aturdido.gameObject.SetActive(false);
+        playerController.escudo = 0;
         Debug.Log("Comienza el combate. Turno del jugador.");
     }
 
@@ -155,6 +155,7 @@ public class TurnManager : MonoBehaviour
             enemy.GetComponent<BoxCollider2D>().enabled = true;
         }
         playerController.Fuego();
+        playerController.escudo = 0;
     }
 
     public static void ResetTurn()

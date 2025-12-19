@@ -41,7 +41,7 @@ public class BestiarioManager : MonoBehaviour
         if (personaje.CompareTag("Player"))
         {
             nombre.text = "Player";
-            sprite.sprite = personaje.GetComponent<Image>().sprite;
+            sprite.sprite = personaje.GetComponent<SpriteRenderer>().sprite;
             PlayerController pc = GameManager.player.GetComponent<PlayerController>();
             if (pc.danoFuego > 0)
             {
@@ -54,7 +54,7 @@ public class BestiarioManager : MonoBehaviour
                 fuego.transform.SetParent(panel.transform, false);
                 textoF.transform.SetParent(panel.transform, false); 
             }
-            if (pc.aturdido)
+            if (pc.shock)
             {
                 GameObject at = new GameObject("at", typeof(RectTransform));
                 at.AddComponent<Image>().sprite = aturdidoS;

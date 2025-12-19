@@ -11,7 +11,7 @@ public class ManejoBaraja : MonoBehaviour
     public static List<GameObject> mano = new();
     public GameObject descartesPadre, roboPadre;
 
-    public static int[] mazoDefault = {7,8,8,1,7,3,3}; //1 fireballs,dos saltos, 1 espadazo y dos disparos
+    public static int[] mazoDefault = {7,8,8,1,7,3,3,20}; //1 fireballs,dos saltos, 1 espadazo y dos disparos
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public static void Inicializar()
     {
@@ -67,14 +67,21 @@ public class ManejoBaraja : MonoBehaviour
         {
             var carta = mano[0];
             int idCarta = carta.GetComponent<DisplayCard>().GetCard().id;
-            DevolverCarta(carta, idCarta);
+            DevolverCarta(carta, idCarta,true);
         }
     }
     //Para devolver la carta al usarse
-    public void DevolverCarta(GameObject carta, int id)
+    public void DevolverCarta(GameObject carta, int id, bool devolver)
     {
-        AddCartaDescartes(carta);
         mano.Remove(carta);
+        if (devolver)
+        {
+            AddCartaDescartes(carta);
+        }
+        else
+        {
+            Destroy(carta);
+        }
     }
     // Update is called once per frame
 
