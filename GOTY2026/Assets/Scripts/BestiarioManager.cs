@@ -47,45 +47,47 @@ public class BestiarioManager : MonoBehaviour
             PlayerController pc = GameManager.player.GetComponent<PlayerController>();
             if (pc.danoFuego > 0)
             {
-                GameObject fuego = new GameObject("Fuego", typeof(RectTransform));
+                GameObject fuego = new("Fuego", typeof(RectTransform));
                 fuego.AddComponent<Image>().sprite = fuegoS;
                 fuego.GetComponent<Image>().SetNativeSize();
                 GameObject textoF = new("textoF", typeof(RectTransform));
-                textoF.AddComponent<TextMeshProUGUI>().text = "El personaje tiene " + pc.danoFuego + " cargas de fuego, recibira daño equivalente a las cargas al final del turno y el contador disminuirá en uno.";
-                textoF.GetComponent<TextMeshProUGUI>().fontSize = 18;
+                textoF.AddComponent<TextMeshProUGUI>().text = "El personaje tiene " + pc.danoFuego + " cargas de fuego, recibira daño equivalente a las cargas al final del turno y el contador disminuirá en uno.\n";
+                textoF.GetComponent<TextMeshProUGUI>().fontSize = 9;
+                LayoutElement leF = textoF.AddComponent<LayoutElement>();
+                leF.preferredWidth = 150;
                 fuego.transform.SetParent(panel.transform, false);
                 textoF.transform.SetParent(panel.transform, false);
             }
             if (pc.shock)
             {
-                GameObject at = new GameObject("at", typeof(RectTransform));
+                GameObject at = new("at", typeof(RectTransform));
                 at.AddComponent<Image>().sprite = aturdidoS;
                 at.GetComponent<Image>().SetNativeSize();
                 GameObject textoAt = new("textoAt", typeof(RectTransform));
                 textoAt.AddComponent<TextMeshProUGUI>().text = "El personaje esta aturdido, y por tanto no podra usar cartas en este turno.";
-                textoAt.GetComponent<TextMeshProUGUI>().fontSize = 18;
+                textoAt.GetComponent<TextMeshProUGUI>().fontSize = 9;
                 at.transform.SetParent(panel.transform, false);
                 textoAt.transform.SetParent(panel.transform, false);
             }
             if (pc.apuntado)
             {
-                GameObject ap = new GameObject("ap", typeof(RectTransform));
+                GameObject ap = new("ap", typeof(RectTransform));
                 ap.AddComponent<Image>().sprite = mirillaS;
                 ap.GetComponent<Image>().SetNativeSize();
                 GameObject textoAp = new("textoAp", typeof(RectTransform));
                 textoAp.AddComponent<TextMeshProUGUI>().text = "El personaje esta apuntado por un francotirador, sino lo matas recibiras daño al final del turno\n";
-                textoAp.GetComponent<TextMeshProUGUI>().fontSize = 18;
+                textoAp.GetComponent<TextMeshProUGUI>().fontSize = 9;
                 ap.transform.SetParent(panel.transform, false);
                 textoAp.transform.SetParent(panel.transform, false);
             }
             if (pc.escudo > 0) {
-                GameObject es = new GameObject("es", typeof(RectTransform));
+                GameObject es = new("es", typeof(RectTransform));
                 es.AddComponent<Image>().sprite = escudoS;
-                es.GetComponent<Image>().SetNativeSize();
                 es.transform.localScale = new((float)0.4, (float)0.4, (float)0.4);
+                es.GetComponent<Image>().SetNativeSize();
                 GameObject textoEs = new("textoEs", typeof(RectTransform));
                 textoEs.AddComponent<TextMeshProUGUI>().text = "El personaje tiene " + pc.escudo + " de escudo" + "\n";
-                textoEs.GetComponent<TextMeshProUGUI>().fontSize = 18;
+                textoEs.GetComponent<TextMeshProUGUI>().fontSize = 9;
                 es.transform.SetParent(panel.transform, false);
                 textoEs.transform.SetParent(panel.transform, false);
             }

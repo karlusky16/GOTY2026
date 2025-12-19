@@ -132,9 +132,9 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Aumenta vida jugador");
     }
 
-    public void AddEscudo(int escudo)
+    public void AddEscudo(int escudoAdd)
     {
-        escudo += escudo;
+        escudo += escudoAdd;
         if (!escudoS.gameObject.activeSelf)
             escudoS.gameObject.SetActive(true);
         escudoS.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = escudo.ToString();
@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
     public int RedEscudo(int daño)
     {
         int res = escudo - daño;
-        if ((escudo -= daño) < 0)
+        if ((escudo -= daño) <= 0)
         {
             escudo = 0;
             escudoS.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "";

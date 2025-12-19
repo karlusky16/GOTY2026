@@ -24,89 +24,29 @@ public class TileManager : MonoBehaviour
             case "Cruz"://tipo Daño
                 var direcciones = Cruz(GameManager.carta.GetComponent<DisplayCard>().GetArea());
                 direccionesAnt = new Vector2[direcciones.Length];
-                int c = 0;
-                foreach (var dir in direcciones)
-                {
-                    direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
-                    if (GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
-                        tile2.gameObject.SendMessage("HighlightDaño");
-                    c++;
-                }
+                CargarTiles(direcciones,tile);
                 break;
-            case "RectaNP"://Tipo Daño
+            case "RectaNP"://Tipo Daño CargarTiles Sin P
                 direcciones = Recta(GameManager.carta.GetComponent<DisplayCard>().GetArea(), tile);
                 direccionesAnt = new Vector2[direcciones.Length];
-                c = 0;
-                bool seguir = true;
-                foreach (var dir in direcciones)
-                {
-                    if (seguir)
-                    {
-                        direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
-                        if (GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
-                        {
-                            if (tile2.ocupado == true)
-                            {
-                                seguir = false;
-                            }
-                            tile2.gameObject.SendMessage("HighlightDaño");
-                        }
-                    }
-                    c++;
-                }
+                CargarTilesNoP(direcciones,tile);
                 break;
             case "Recta"://Tipo Daño
                 direcciones = Recta(GameManager.carta.GetComponent<DisplayCard>().GetArea(), tile);
                 direccionesAnt = new Vector2[direcciones.Length];
-                c = 0;
-                foreach (var dir in direcciones)
-                {
-                    direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
-                    if (GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
-                    {
-                        tile2.gameObject.SendMessage("HighlightDaño");
-                    }
-                    c++;
-                }
+                CargarTiles(direcciones,tile);
                 break;
-            case "RectaM"://Tipo Movimiento + Daño
+            case "RectaM"://Tipo Movimiento + Daño y CargarTilesMov
                 direcciones = Recta(GameManager.carta.GetComponent<DisplayCard>().GetArea(), tile);
                 direccionesAnt = new Vector2[direcciones.Length];
-                c = 0;
-                Boolean si = true;
-                foreach (var dir in direcciones)
-                {
-                    direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
-                    if (si = GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
-                    {
-                        tile2.gameObject.SendMessage("HighlightDaño");
-                    }
-                    if (si)
-                    {
-                        tileMov = tile2;
-                    }
-                    c++;
-                }
+                CargarTilesMovAt(direcciones,tile);
                 break;
-            case "CirculoM":
+            case "CirculoM": //Tipo Movimiento + Daño yCargarTilesMov
                 direcciones = Circulo(GameManager.carta.GetComponent<DisplayCard>().GetArea());
                 direccionesAnt = new Vector2[direcciones.Length];
-                c = 0;
-                foreach (var dir in direcciones)
-                {
-                    direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
-                    if (si = GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
-                    {
-                        tile2.gameObject.SendMessage("HighlightDaño");
-                    }
-                    if (si)
-                    {
-                        tileMov = tile2;
-                    }
-                    c++;
-                }
+                CargarTilesMovAt(direcciones,tile);
                 break;
-            case "TresDirNP"://Tipo Daño
+            case "TresDirNP"://Tipo Daño y CargarTilesVariasDir
                 var direccionesA = TresDir(GameManager.carta.GetComponent<DisplayCard>().GetArea(), tile);
                 int total = 0;
                 for (int i = 0; i < 3; i++)
@@ -114,56 +54,17 @@ public class TileManager : MonoBehaviour
                     total += direccionesA[i].Length;
                 }
                 direccionesAnt = new Vector2[total];
-                c = 0;
-                seguir = true;
-                for (int i = 0; i < 3; i++)
-                {
-                    seguir = true;
-                    foreach (var dir in direccionesA[i])
-                    {
-                        if (seguir)
-                        {
-                            direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
-                            if (GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
-                            {
-                                if (tile2.ocupado == true)
-                                {
-                                    seguir = false;
-                                }
-                                tile2.gameObject.SendMessage("HighlightDaño");
-                            }
-                        }
-                        c++;
-                    }
-                }
+                CargarTilesVD(direccionesA,tile);
                 break;
             case "Rectangulo"://Tipo Daño
                 direcciones = Rectangulo(GameManager.carta.GetComponent<DisplayCard>().GetArea(), GameManager.carta.GetComponent<DisplayCard>().GetArea2(), tile);
                 direccionesAnt = new Vector2[direcciones.Length];
-                c = 0;
-                foreach (var dir in direcciones)
-                {
-                    direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
-                    if (GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
-                    {
-                        tile2.gameObject.SendMessage("HighlightDaño");
-                    }
-                    c++;
-                }
+                CargarTiles(direcciones,tile);
                 break;
-            case "Rectangulo2":
+            case "Rectangulo2": 
                 direcciones = Rectangulo2(GameManager.carta.GetComponent<DisplayCard>().GetArea(), GameManager.carta.GetComponent<DisplayCard>().GetArea2(), tile);
                 direccionesAnt = new Vector2[direcciones.Length];
-                c = 0;
-                foreach (var dir in direcciones)
-                {
-                    direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
-                    if (GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
-                    {
-                        tile2.gameObject.SendMessage("HighlightDaño");
-                    }
-                    c++;
-                }
+                CargarTiles(direcciones,tile);
                 break;
             case "Tile":
                 direccionesAnt = new Vector2[1];
@@ -174,46 +75,90 @@ public class TileManager : MonoBehaviour
                 }
                 tile.gameObject.SendMessage("HighlightDaño");
                 break;
-            case "RectaH":
+            case "RectaH": 
                 direcciones = RectaH(GameManager.carta.GetComponent<DisplayCard>().GetArea(), tile);
                 direccionesAnt = new Vector2[direcciones.Length];
-                c = 0;
-                foreach (var dir in direcciones)
+                CargarTiles(direcciones,tile);
+                break;
+            default:
+                break;
+        }
+    }
+    public void CargarTiles(Vector2[] direcciones, Tile tile)
+    {
+        int c = 0;
+        foreach (var dir in direcciones)
+        {
+            direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
+            if (GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
+            {
+                tile2.gameObject.SendMessage("HighlightDaño");
+            }
+            c++;
+        }
+    }
+    public void CargarTilesNoP(Vector2[] direcciones, Tile tile)
+    {
+        int c = 0;
+        bool seguir = true;
+        foreach (var dir in direcciones)
+        {
+            if (seguir)
+            {
+                direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
+                if (GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
+                {
+                    if (tile2.ocupado == true)
+                    {
+                        seguir = false;
+                    }
+                    tile2.gameObject.SendMessage("HighlightDaño");
+                }
+            }
+            c++;
+        }
+    }
+    public void CargarTilesMovAt(Vector2[] direcciones, Tile tile)
+    {
+        int c = 0;
+        Boolean si = true;
+        foreach (var dir in direcciones)
+        {
+            direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
+            if (si = GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
+            {
+                tile2.gameObject.SendMessage("HighlightDaño");
+            }
+            if (si)
+            {
+                tileMov = tile2;
+            }
+            c++;
+        } 
+    }
+    public void CargarTilesVD(Vector2[][] direccionesA,Tile tile)
+    {
+        int c = 0;
+        bool seguir = true;
+        for (int i = 0; i < 3; i++)
+        {
+            seguir = true;
+            foreach (var dir in direccionesA[i])
+            {
+                if (seguir)
                 {
                     direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
                     if (GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
                     {
+                        if (tile2.ocupado == true)
+                        {
+                            seguir = false;
+                        }
                         tile2.gameObject.SendMessage("HighlightDaño");
                     }
-                    c++;
                 }
-                break;
-            /*case "RectaC":
-                direcciones = Recta(GameManager.carta.GetComponent<DisplayCard>().GetArea(), tile);
-                direccionesAnt = new Vector2[direcciones.Length];
-                c = 0;
-                int seguirC = 0;
-                foreach (var dir in direcciones)
-                {
-                    if (seguirC < 2)
-                    {
-                        direccionesAnt[c] = new Vector2(tile.x, tile.y) + dir;
-                        if (GridManager._tiles.TryGetValue(new Vector2(tile.x, tile.y) + dir, out Tile tile2))
-                        {
-                            if (tile2.ocupado == true)
-                            {
-                                seguirC++;
-                            }
-                            if (GameManager.carta.GetComponent<DisplayCard>().GetTipo() == 1 ||GameManager.carta.GetComponent<DisplayCard>().GetTipo() == 2)
-                                tileMov = tile2;   
-                            tile2.gameObject.SendMessage("HighlightDaño");
-                        }
-                    }
-                    c++;
-                }
-                break;*/
-            default:
-                break;
+                c++;
+            }
         }
     }
     public void UnHighlightPatron(Tile tile)

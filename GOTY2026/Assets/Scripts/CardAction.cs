@@ -143,40 +143,13 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                     break;
 
             }
-            switch (GameManager.carta.GetComponent<DisplayCard>().GetTipoCoste())
-            {
-                case 0:
-                    player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                    break;
-                case 1:
-                    player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                    break;
-                case 2:
-                    player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                    player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                    break;
-                default:
-                    break;
-            }
-            if (gameObject.GetComponent<DisplayCard>().GetCard().eterea){
-                GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id,false);
-            }
-            else{
-                GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id,true);
-            }
-            GameManager.carta = null;
-            GameManager.cartaSeleccionada = false;
+            ReducirCosto();
+            ManejoCarta(); 
             }
         //Sino se muestra el mensaje correspondiente
         else
         {
-            Debug.Log("noMas");
-            TurnManager.noMas.text = "No hay recurso suficiente para usar esa carta";
-            Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
-            GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
-            GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
-            borde.color = gameObject.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
-            GameManager.CambiarLayerEnemy("Default");//Se vuelve a poner la layer original de los enemigos
+            NoMas();
         }
         
     }
@@ -200,51 +173,13 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             PlayerController pc = player.GetComponent<PlayerController>();
             pc.Mover(new(tile.x, tile.y));
             //Comprobación de tipo de coste y reducción del recurso correspondiente
-            switch (GameManager.carta.GetComponent<DisplayCard>().GetTipoCoste())
-            {
-                case 0:
-                    pc.ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                    break;
-                case 1:
-                    pc.ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                    break;
-                case 2:
-                    pc.ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                    pc.ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                    break;
-                default:
-                    break;
-            }
-            if (gameObject.GetComponent<DisplayCard>().GetCard().eterea){
-                GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id,false);
-            }
-            else{
-                GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id,true);
-            }
-            GameManager.carta = null;
-            GameManager.cartaSeleccionada = false;
+            ReducirCosto();
+            ManejoCarta(); 
         }
         //Sino se muestra el mensaje correspondiente
         else
         {
-            if (tile.ocupado)
-            {
-                Debug.Log("Tile ocupado");
-                TurnManager.noMas.text = "La casilla ya está ocupada";
-                Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
-            }
-            else
-            {
-                Debug.Log("noMas");
-                TurnManager.noMas.text = "No hay recurso suficiente para usar esa carta";
-                Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
-
-            }
-            GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
-            //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
-            GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
-            borde.color = gameObject.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
-            GameManager.CambiarLayerEnemy("Default");//Se vuelve a poner la layer original de los enemigos
+            NoMasMovimiento(tile);
         }
         GameManager.CambiarLayerEnemy("Default");
     }
@@ -274,36 +209,13 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 default:
                     break;
             }
-            if (gameObject.GetComponent<DisplayCard>().GetCard().eterea){
-                GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id,false);
-            }
-            else{
-                GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id,true);
-            }
-            GameManager.carta = null;
-            GameManager.cartaSeleccionada = false;
+            ReducirCosto();
+            ManejoCarta(); 
         }
         //Sino se muestra el mensaje correspondiente
         else
         {
-            if (tile.ocupado)
-            {
-                TurnManager.noMas.text = "La casilla ya está ocupada";
-                Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
-                Debug.Log("Tile ocupado");
-
-            }
-            else
-            {
-                Debug.Log("noMas");
-                TurnManager.noMas.text = "No hay recurso suficiente para usar esa carta";
-                Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
-            }
-            GameObject.Find("GameManager").SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
-            //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
-            GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
-            borde.color = gameObject.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
-            GameManager.CambiarLayerEnemy("Default");//Se vuelve a poner la layer original de los enemigos
+            NoMasMovimiento(tile);
         }
         GameManager.CambiarLayerEnemy("Default");
     }
@@ -326,8 +238,9 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                         ec.ReducirVida(gameObject.GetComponent<DisplayCard>().GetDaño());
                         ec.AddFuego(gameObject.GetComponent<DisplayCard>().GetDañoFuego());
                         ec.AddShock(gameObject.GetComponent<DisplayCard>().GetValorAturdido());
-                        if (gameObject.GetComponent<DisplayCard>().GetCard().id == 19) {
-                            GameManager.player.GetComponent<PlayerController>().escudo += 3;
+                        if (gameObject.GetComponent<DisplayCard>().GetCard().id == 19)
+                        {
+                            GameManager.player.GetComponent<PlayerController>().AddEscudo(gameObject.GetComponent<DisplayCard>().GetDaño());
                         }
                     }
                     else if (tile.ocupadoObj.CompareTag("Player"))
@@ -339,42 +252,13 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                     }
                 }
             }
-            //Comprobación de tipo de coste y reducción del recurso correspondiente
-            switch (GameManager.carta.GetComponent<DisplayCard>().GetTipoCoste())
-            {
-                case 0:
-                    player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                    break;
-                case 1:
-                    player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                    break;
-                case 2:
-                    player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                    player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                    break;
-                default:
-                    break;
-            }
-            if (gameObject.GetComponent<DisplayCard>().GetCard().eterea){
-                GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id,false);
-            }
-            else{
-                GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id,true);
-            }
-            GameManager.carta = null;
-            GameManager.cartaSeleccionada = false;
+            ReducirCosto();
+            ManejoCarta();  
         }
         //Sino se muestra el mensaje correspondiente
         else
         {
-            Debug.Log("noMas");
-            TurnManager.noMas.text = "No hay recurso suficiente para usar esa carta";
-            GameObject.Find("GameManager").SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
-            //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
-            GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
-            borde.color = gameObject.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
-            GameManager.CambiarLayerEnemy("Default");//Se vuelve a poner la layer original de los enemigos
-            Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
+            NoMas();
         }
         GameManager.CambiarLayerEnemy("Default");
     }
@@ -383,6 +267,67 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     void OcultarMensaje()
     {
         TurnManager.noMas.text = "";
+    }
+    private void ManejoCarta()
+    {
+        if (gameObject.GetComponent<DisplayCard>().GetCard().eterea){
+                GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id,false);
+        }
+        else{
+            GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id,true);
+        }
+        GameManager.carta = null;
+        GameManager.cartaSeleccionada = false;
+    }
+    private void NoMas()
+    {
+        Debug.Log("noMas");
+        TurnManager.noMas.text = "No hay recurso suficiente para usar esa carta";
+        GameObject.Find("GameManager").SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
+        //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
+        GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
+        borde.color = gameObject.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
+        GameManager.CambiarLayerEnemy("Default");//Se vuelve a poner la layer original de los enemigos
+        Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
+    }
+    private void NoMasMovimiento(Tile tile)
+    {
+        if (tile.ocupado)
+        {
+            TurnManager.noMas.text = "La casilla ya está ocupada";
+            Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
+            Debug.Log("Tile ocupado");
+        }
+        else
+        {
+            Debug.Log("noMas");
+            TurnManager.noMas.text = "No hay recurso suficiente para usar esa carta";
+            Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
+        }
+        GameObject.Find("GameManager").SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
+        //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
+        GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
+        borde.color = gameObject.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
+        GameManager.CambiarLayerEnemy("Default");//Se vuelve a poner la layer original de los enemigos
+    }
+    private void ReducirCosto()
+    {
+        //Comprobación de tipo de coste y reducción del recurso correspondiente
+        switch (GameManager.carta.GetComponent<DisplayCard>().GetTipoCoste())
+        {
+            case 0:
+                player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                break;
+            case 1:
+                player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                break;
+            case 2:
+                player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                break;
+            default:
+                break;
+        }
     }
 
 
