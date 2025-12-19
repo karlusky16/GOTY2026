@@ -184,8 +184,6 @@ public class EnemyController : MonoBehaviour
     {
         if (GameManager.cartaSeleccionada == false && !shock)
         {
-            Debug.Log("Mouse encima enemy");
-            GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");
             gameObject.SendMessage("HighlightEnemyTiles", gameObject);
         }
     }
@@ -194,11 +192,14 @@ public class EnemyController : MonoBehaviour
     {
         if (GameManager.cartaSeleccionada == false && !shock)
         {
-            Debug.Log("Mouse Sale enemy");
             gameObject.SendMessage("UnHighlightEnemyTiles");
-            //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
-            //GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");
         }
+    }
+    public void OnMouseDown()
+    {
+        Debug.Log("Mouse click enemy");
+        GameObject.Find("PanelInfo").SendMessage("CambiarEstado");
+        GameObject.Find("PanelInfo").SendMessage("DisplayDatos",this.gameObject);
     }
 /*Se mueve a la fila del player*/
     Vector2 MoverAFila(GameObject enemy)

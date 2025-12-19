@@ -12,27 +12,31 @@ public class HomeStoreScene : MonoBehaviour
         AbrirInicio();
     }
 
-    public void AbrirTienda()
+    /*public void AbrirTienda()
     {
         shopPanel.SetActive(true);
         homePanel.SetActive(false);
         inventoryPanel.SetActive(false);
         shopPanel.GetComponent<ShopManager>().ActualizarMonedasUI();
         shopPanel.GetComponent<ShopManager>().CardsPanelActivate();
-    }
-    public void AbrirInventario()
+    }*/
+    /*public void AbrirInventario()
     {
         inventoryPanel.SetActive(true);
         homePanel.SetActive(false);
         shopPanel.SetActive(false);
-        inventoryPanel.GetComponent<ShopManager>().ActualizarMonedasUI();
-        inventoryPanel.GetComponent<ShopManager>().CardsPanelActivate();
-    }
+        inventoryPanel.GetComponent<InventoryManager>().ActualizarMonedasUI();
+        inventoryPanel.GetComponent<InventoryManager>().CardsPanelActivate();
+    }*/
     public void AbrirInicio()
     {
         homePanel.SetActive(true);
-        shopPanel.SetActive(false);
-        inventoryPanel.SetActive(false);
+        inventoryPanel.GetComponent<InventoryManager>().CerrarInventario();
+        shopPanel.GetComponent<ShopManager>().CerrarTienda();
+    }
+    public void CerrarInicio()
+    {
+        homePanel.SetActive(false);
     }
     public void SigEscena()
     {

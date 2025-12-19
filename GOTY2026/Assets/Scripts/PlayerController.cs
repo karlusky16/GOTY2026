@@ -9,10 +9,10 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public static List<int> cartas = new();
-    public static List<int> descartes = new();
+    public PlayerStats stats;
     public Tile posicion;
     public GameObject mirilla;
-    public static int longMano = 6;
+    public static int longMano;
     public Action<int> JugadorReduceVida;
     public Action<int> JugadorAumentaVida;
 
@@ -33,25 +33,62 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int monedas;
     public Image fuego;
     public Image aturdido;
-    private int danoFuego = 0;
+    public int danoFuego = 0;
     public bool shock = false;
+    public bool apuntado = false;
+    public Boolean inicializado;
+    public int escudo;
 
     private void Awake()
     {
-        vidaActual = vidaMaxima;
+        stats ??= new PlayerStats();
+        inicializado = stats.inicializado;
+        longMano = stats.longMano;
+        vidaMaxima = stats.vidaMaxima;
+        vidaActual = stats.vidaActual;
+        energiaMaxima = stats.energiaMaxima;
+        manaMaxima = stats.manaMaxima;
+        monedas = stats.monedas;
+        cartas = stats.cartas;
         energiaActual = energiaMaxima;
         manaActual = manaMaxima;
     }
+    public void CargarStats(PlayerStats stats2)
+    {
+        this.stats = stats2;
+        inicializado = stats.inicializado;
+        longMano = stats.longMano;
+        vidaMaxima = stats.vidaMaxima;
+        vidaActual = stats.vidaActual;
+        energiaMaxima = stats.energiaMaxima;
+        manaMaxima = stats.manaMaxima;
+        monedas = stats.monedas;
+        cartas = stats.cartas;
+        energiaActual = energiaMaxima;
+        manaActual = manaMaxima;
+    }
+    public void GuardarStats()
+    {
+        stats.inicializado = this.inicializado;
+        stats.longMano = longMano;
+        stats.vidaMaxima = vidaMaxima;
+        stats.vidaActual = vidaActual;
+        stats.energiaMaxima = energiaMaxima;
+        stats.manaMaxima = manaMaxima;
+        stats.monedas = monedas;
+        stats.cartas = cartas;
+    }
     public void Mover(UnityEngine.Vector2 pos)
     {
-        if (posicion != null){
+        if (posicion != null)
+        {
             posicion.ocupado = false;
-            posicion.ocupadoObj = null; 
+            posicion.ocupadoObj = null;
         }
         posicion = GridManager._tiles[pos];
         posicion.ocupado = true;
         posicion.ocupadoObj = this.gameObject;
-        gameObject.transform.position = new(posicion.transform.position.x,posicion.transform.position.y,0);
+        gameObject.transform.position = new(posicion.transform.position.x, posicion.transform.position.y, 0);
     }
     //Getters
     public Tile GetPos() => posicion;
@@ -69,6 +106,15 @@ public class PlayerController : MonoBehaviour
     //Modificar vida del jugador
     public void ReducirVida(int vida)
     {
+        if ((escudo -= vida) < 0)
+        {
+            vida = -escudo;
+            escudo = 0;
+        }
+        else
+        {
+            vida = 0;
+        }
         if ((vidaActual -= vida) <= 0)
         {
             vidaActual = 0;
@@ -132,31 +178,7 @@ public class PlayerController : MonoBehaviour
     public void RemoveCarta(int id)
     {
         Debug.Log("RemoveCarta " + id);
-        cartas.Remove(id);
-    }
-    public void AddCartaDescartes(int id)
-    {
-        Debug.Log("AddCartaDescartes: " + id);
-        descartes.Add(id);
-    }
-    public void DescartesABaraja()
-    {
-        Debug.Log("DescartesABaraja");
-        cartas = new List<int>(descartes);
-        Debug.Log("Cartas en baraja: " + cartas.ToString());
-        descartes.Clear();
-    }
-
-    public void ResetBaraja()
-    {
-        if (cartas != null)
-        {
-            cartas.Clear();
-        }
-        if (descartes != null)
-        {
-            descartes.Clear();
-        }
+        cartas.Remove(id);  
     }
 
     public void ResetPlayer()
@@ -171,20 +193,34 @@ public class PlayerController : MonoBehaviour
     public void Mirilla()
     {
         Debug.Log("Activar mirilla");
+        apuntado = true;
         mirilla.SetActive(true);
     }
     public void ResetMirilla()
     {
         Debug.Log("Desactivar mirilla");
+        apuntado = false;
         mirilla.SetActive(false);
     }
     public void AddFuego(int dano)
     {
         danoFuego += dano;
-        if(!fuego.gameObject.activeSelf)
+        if (!fuego.gameObject.activeSelf)
             fuego.gameObject.SetActive(true);
         fuego.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = danoFuego.ToString();
         Debug.Log("Player recibe fuego");
+    }
+    public void RedFuego(int dano)
+    {
+        if ((danoFuego -= dano) < 0) danoFuego = 0;
+        if (danoFuego == 0)
+        {
+            fuego.gameObject.SetActive(false);
+        }
+        else
+        {
+            fuego.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = danoFuego.ToString();
+        }
     }
     public void AddShock(int valor)
     {
@@ -216,5 +252,11 @@ public class PlayerController : MonoBehaviour
         {
             fuego.gameObject.SetActive(false);
         }
+    }
+    public void OnMouseDown()
+    {
+        Debug.Log("Mouse click Player");
+        GameObject.Find("PanelInfo").SendMessage("CambiarEstado");
+        GameObject.Find("PanelInfo").SendMessage("DisplayDatos",this.gameObject);
     }
 }

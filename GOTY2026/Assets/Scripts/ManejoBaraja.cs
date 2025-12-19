@@ -5,14 +5,13 @@ using UnityEngine;
 
 public class ManejoBaraja : MonoBehaviour
 {
-    public static GameObject prefabCarta;   // tu prefab de carta
+    public GameObject prefabCarta;   // tu prefab de carta
     public static GameObject _image; //referencia al CardPanel
     public static PlayerController player;
     public static List<GameObject> mano = new();
-    static Boolean mazoInicializado = false;
     public GameObject descartesPadre, roboPadre;
 
-    public static int[] mazoDefault = {7,8,8,1,7,3,3}; //1 fireballs,dos saltos, 1 espadazo y dos disparos
+    public static int[] mazoDefault = {7,8,8,1,7,3,3,20}; //1 fireballs,dos saltos, 1 espadazo y dos disparos
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public static void Inicializar()
     {
@@ -20,12 +19,12 @@ public class ManejoBaraja : MonoBehaviour
         //Buscamos el atributo player controller
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         _image = GameObject.Find("InterfazUsuario/CardPanel");
-        prefabCarta = GameObject.Find("GameManager").GetComponent<GameManager>().GetPrefabCarta();
         //copiamos la longitud de la dataBase
         int cartas = GameManager.cardList.Count;
         System.Random rand = new();
-        if (mazoInicializado) return;
-        mazoInicializado = true;
+        if (player.stats.inicializado && player.GetCartasLength() > 0)
+        return; // Ya hay cartas, no inicializamos
+        GameManager.player.GetComponent<PlayerController>().inicializado = true;
         //Para meter cartas aleatorias en la baraja del jugador
         foreach (var id in mazoDefault)
         {
@@ -52,9 +51,6 @@ public class ManejoBaraja : MonoBehaviour
             if (cartas == 0)
             {
                 DescartesABaraja();
-                // After moving discards into the draw pile, use the actual
-                // count of `TurnManager.robo` (UI objects), not the player's
-                // logical card count to avoid mismatches.
                 cartas = TurnManager.robo.Count;
             }
             int indiceAleatorio = rand.Next(cartas);
@@ -71,14 +67,21 @@ public class ManejoBaraja : MonoBehaviour
         {
             var carta = mano[0];
             int idCarta = carta.GetComponent<DisplayCard>().GetCard().id;
-            DevolverCarta(carta, idCarta);
+            DevolverCarta(carta, idCarta,true);
         }
     }
     //Para devolver la carta al usarse
-    public void DevolverCarta(GameObject carta, int id)
+    public void DevolverCarta(GameObject carta, int id, bool devolver)
     {
-        AddCartaDescartes(carta);
         mano.Remove(carta);
+        if (devolver)
+        {
+            AddCartaDescartes(carta);
+        }
+        else
+        {
+            Destroy(carta);
+        }
     }
     // Update is called once per frame
 

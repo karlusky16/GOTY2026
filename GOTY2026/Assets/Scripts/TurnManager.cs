@@ -20,6 +20,7 @@ public class TurnManager : MonoBehaviour
     public GameObject prefabCarta; // tu prefab de carta
     public static GameObject _image; //referencia al CardPanel
     public bool pulsado = false;
+    public bool viendoTE = false;
     public GameObject descartesPadre, roboPadre;
     //De momento esto es asi ya que solo hay un enemigo
 
@@ -38,12 +39,12 @@ public class TurnManager : MonoBehaviour
         interfaz = GameObject.Find("InterfazUsuario/NextTurn");
         GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().ManoTurno();
         GameObject.Find("GameManager").GetComponent<GameManager>().TilesEnemigos();
-        //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
         GameObject.Find("Player").GetComponent<PlayerController>().ResetMirilla();
         playerController.AumentarEnergia(playerController.GetEnergiaMaxima());
         playerController.AumentarMana(playerController.GetManaMaxima());
         playerController.fuego.gameObject.SetActive(false);
         playerController.aturdido.gameObject.SetActive(false);
+        playerController.escudo = 0;
         Debug.Log("Comienza el combate. Turno del jugador.");
     }
 
@@ -100,7 +101,7 @@ public class TurnManager : MonoBehaviour
         foreach (var enemy in GameManager.enemigosLis)
         {
             enemy.GetComponent<EnemyController>().Fuego();
-            enemy.GetComponent<BoxCollider2D>().enabled = false; 
+            enemy.GetComponent<BoxCollider2D>().enabled = false;
         }
         // Aquí iría el ataque/movimiento del enemigo
 
@@ -154,6 +155,7 @@ public class TurnManager : MonoBehaviour
             enemy.GetComponent<BoxCollider2D>().enabled = true;
         }
         playerController.Fuego();
+        playerController.escudo = 0;
     }
 
     public static void ResetTurn()
@@ -177,4 +179,24 @@ public class TurnManager : MonoBehaviour
         }
     }
 
+    public void VerTilesEnemigos()
+    {
+        if (!viendoTE)
+        {
+            viendoTE = true;
+            foreach (var enemigo in GameManager.enemigosLis)
+            {
+                enemigo.GetComponent<TileManagerEnemigo>().HighlightEnemyTiles(enemigo);
+            }
+        }
+        else
+        {
+            viendoTE = false;
+            foreach (var enemigo in GameManager.enemigosLis)
+            {
+                enemigo.GetComponent<TileManagerEnemigo>().UnHighlightEnemyTiles();
+            }
+        }
+        
+    }
 }

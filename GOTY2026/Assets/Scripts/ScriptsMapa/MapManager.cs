@@ -14,11 +14,6 @@ namespace Map
 
         private void Start()
         {   
-            if (GameManager.reset)
-            {
-                PlayerPrefs.DeleteKey("Map");
-                GameManager.reset = false;
-            }
             if (PlayerPrefs.HasKey("Map"))
             {
                 string mapJson = PlayerPrefs.GetString("Map");

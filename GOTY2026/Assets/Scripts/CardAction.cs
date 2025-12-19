@@ -25,36 +25,37 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     //Metodo para gestionar los clicks en la carta
     public void OnPointerClick(PointerEventData eventData)
     {
-        //Si es click izquierdo y no hay ninguna carta seleccionada se selecciona la carta
-        if ((eventData.button == PointerEventData.InputButton.Left || eventData.button == PointerEventData.InputButton.Right) && !GameManager.cartaSeleccionada)
-        {
-            //GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");//Se muestra el fondo
-            GameManager.cartaSeleccionada = true;//Se marca la carta como seleccionada
-            borde.color = Color.red;//Se cambia el color del borde para indicar que está seleccionada
-            GameManager.carta = gameObject;//Se guarda la carta seleccionada en el GameManager
-            GameObject.Find("GameManager").gameObject.SendMessage("MarcarRango", player.GetComponent<PlayerController>().GetPos());//Se marcan las tiles en rango
-            GameManager.CambiarLayerEnemy("Ignore Raycast");//Se cambia la layer de los enemigos para que no interfieran con el click en las tiles
-        }
-        //Si es click derecho y hay una carta seleccionada se deselecciona la carta
-        else if ((eventData.button == PointerEventData.InputButton.Left || eventData.button == PointerEventData.InputButton.Right) && GameManager.cartaSeleccionada && GameManager.carta == gameObject)
-        {
-            GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
-            //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
-            GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
-            borde.color = gameObject.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
-            GameManager.CambiarLayerEnemy("Default");//Se vuelve a poner la layer original de los enemigos
-        }
-        else if ((eventData.button == PointerEventData.InputButton.Left || eventData.button == PointerEventData.InputButton.Right) && GameManager.cartaSeleccionada && GameManager.carta != gameObject)
-        {
-            GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
-            GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
-            GameManager.carta.GetComponent<CardAction>().borde.color = GameManager.carta.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
-            GameManager.CambiarLayerEnemy("Default");//Se vuelve a poner la layer original de los enemigos
-            GameManager.cartaSeleccionada = true;//Se marca la carta como seleccionada
-            borde.color = Color.red;//Se cambia el color del borde para indicar que está seleccionada
-            GameManager.carta = gameObject;//Se guarda la carta seleccionada en el GameManager
-            GameObject.Find("GameManager").gameObject.SendMessage("MarcarRango", player.GetComponent<PlayerController>().GetPos());//Se marcan las tiles en rango
-            GameManager.CambiarLayerEnemy("Ignore Raycast");//Se cambia la layer de los enemigos para que no interfieran con el click en las tiles
+        if (!GameObject.Find("TurnManager").GetComponent<TurnManager>().viendoTE) {
+              //Si es click izquierdo y no hay ninguna carta seleccionada se selecciona la carta
+            if ((eventData.button == PointerEventData.InputButton.Left || eventData.button == PointerEventData.InputButton.Right) && !GameManager.cartaSeleccionada)
+            {
+                //GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");//Se muestra el fondo
+                GameManager.cartaSeleccionada = true;//Se marca la carta como seleccionada
+                borde.color = Color.red;//Se cambia el color del borde para indicar que está seleccionada
+                GameManager.carta = gameObject;//Se guarda la carta seleccionada en el GameManager
+                GameObject.Find("GameManager").SendMessage("MarcarRango", player.GetComponent<PlayerController>().GetPos());//Se marcan las tiles en rango
+                GameManager.CambiarLayerEnemy("Ignore Raycast");//Se cambia la layer de los enemigos para que no interfieran con el click en las tiles
+            }
+            //Si es click derecho y hay una carta seleccionada se deselecciona la carta
+            else if ((eventData.button == PointerEventData.InputButton.Left || eventData.button == PointerEventData.InputButton.Right) && GameManager.cartaSeleccionada && GameManager.carta == gameObject)
+            {
+                GameObject.Find("GameManager").SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
+                GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
+                borde.color = gameObject.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
+                GameManager.CambiarLayerEnemy("Default");//Se vuelve a poner la layer original de los enemigos
+            }
+            else if ((eventData.button == PointerEventData.InputButton.Left || eventData.button == PointerEventData.InputButton.Right) && GameManager.cartaSeleccionada && GameManager.carta != gameObject)
+            {
+                GameObject.Find("GameManager").SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
+                GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
+                GameManager.carta.GetComponent<CardAction>().borde.color = GameManager.carta.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
+                GameManager.CambiarLayerEnemy("Default");//Se vuelve a poner la layer original de los enemigos
+                GameManager.cartaSeleccionada = true;//Se marca la carta como seleccionada
+                borde.color = Color.red;//Se cambia el color del borde para indicar que está seleccionada
+                GameManager.carta = gameObject;//Se guarda la carta seleccionada en el GameManager
+                GameObject.Find("GameManager").SendMessage("MarcarRango", player.GetComponent<PlayerController>().GetPos());//Se marcan las tiles en rango
+                GameManager.CambiarLayerEnemy("Ignore Raycast");//Se cambia la layer de los enemigos para que no interfieran con el click en las tiles
+            }
         }
     }
     //Al poner el puntero encima de la carta se crea una copia para destacarla
@@ -98,12 +99,86 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             case 2: //ataque y movimiento
                 EfectoMovimiento(tiles, GameObject.Find("GameManager").GetComponent<TileManager>().GetTileMov()); //A medio hacer
                 break;
-            case 3: //boosteo
-                //EfectoBoosteo(tiles); //A medio hacer
+            case 3:
+                EfectoBoosteo(tiles);
                 break;
             default:
                 break;
         }
+    }
+    internal void EfectoBoosteo(Vector2[] tiles)
+    {
+        if (SePuede())
+        {
+            switch (gameObject.GetComponent<DisplayCard>().GetCard().id)
+            {
+                case 13:
+                    foreach (var tile in tiles)
+                    {
+                        if (GridManager._tiles.TryGetValue(tile, out Tile tile2) && tile2.ocupado && tile2.ocupadoObj.CompareTag("Enemy"))
+                        {
+                            tile2.ocupadoObj.GetComponent<EnemyController>().AddFuego(tile2.ocupadoObj.GetComponent<EnemyController>().danoFuego);
+                        }
+                    }
+                    break;
+                case 15:
+                    foreach (var tile in tiles)
+                    {
+                        if (GridManager._tiles.TryGetValue(tile, out Tile tile2) && tile2.ocupado && tile2.ocupadoObj.CompareTag("Player"))
+                        {
+                            tile2.ocupadoObj.GetComponent<PlayerController>().RedFuego(tile2.ocupadoObj.GetComponent<PlayerController>().danoFuego / 2);
+                        }
+                    }
+                    break;
+                case 16 or 17 :
+                    foreach (var tile in tiles)
+                    {
+                        if (GridManager._tiles.TryGetValue(tile, out Tile tile2) && tile2.ocupado && tile2.ocupadoObj.CompareTag("Player"))
+                        {
+                            tile2.ocupadoObj.GetComponent<PlayerController>().AumentarVida(gameObject.GetComponent<DisplayCard>().GetDaño());
+                        }
+                    }
+                    break;
+                default:
+                    break;
+
+            }
+            switch (GameManager.carta.GetComponent<DisplayCard>().GetTipoCoste())
+            {
+                case 0:
+                    player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    break;
+                case 1:
+                    player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    break;
+                case 2:
+                    player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    break;
+                default:
+                    break;
+            }
+            if (gameObject.GetComponent<DisplayCard>().GetCard().eterea){
+                GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id,false);
+            }
+            else{
+                GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id,true);
+            }
+            GameManager.carta = null;
+            GameManager.cartaSeleccionada = false;
+            }
+        //Sino se muestra el mensaje correspondiente
+        else
+        {
+            Debug.Log("noMas");
+            TurnManager.noMas.text = "No hay recurso suficiente para usar esa carta";
+            Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
+            GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
+            GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
+            borde.color = gameObject.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
+            GameManager.CambiarLayerEnemy("Default");//Se vuelve a poner la layer original de los enemigos
+        }
+        
     }
     //Metodo para efecto de cartas que impliquen movimiento y ataque
     //Se debe pasar como parametro el tile al que se quiere mover el jugador y un array con las posiciones de ataque
@@ -122,24 +197,30 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 }
             }
             //Movimiento del jugador a la tile seleccionada
-            player.GetComponent<PlayerController>().Mover(new(tile.x, tile.y));
+            PlayerController pc = player.GetComponent<PlayerController>();
+            pc.Mover(new(tile.x, tile.y));
             //Comprobación de tipo de coste y reducción del recurso correspondiente
             switch (GameManager.carta.GetComponent<DisplayCard>().GetTipoCoste())
             {
                 case 0:
-                    player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    pc.ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
                     break;
                 case 1:
-                    player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    pc.ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
                     break;
                 case 2:
-                    player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                    player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    pc.ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    pc.ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
                     break;
                 default:
                     break;
             }
-            GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id);
+            if (gameObject.GetComponent<DisplayCard>().GetCard().eterea){
+                GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id,false);
+            }
+            else{
+                GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id,true);
+            }
             GameManager.carta = null;
             GameManager.cartaSeleccionada = false;
         }
@@ -157,7 +238,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 Debug.Log("noMas");
                 TurnManager.noMas.text = "No hay recurso suficiente para usar esa carta";
                 Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
-               
+
             }
             GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
             //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
@@ -174,25 +255,31 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         //Si se tiene suficiente recurso y la tile no está ocupada se realiza el efecto
         if (SePuede() && !tile.ocupado)
         {
+            PlayerController pc = player.GetComponent<PlayerController>();
             //Movimiento del jugador a la tile seleccionada
-            player.GetComponent<PlayerController>().Mover(new(tile.x, tile.y));
+            pc.Mover(new(tile.x, tile.y));
             //Comprobación de tipo de coste y reducción del recurso correspondiente
             switch (GameManager.carta.GetComponent<DisplayCard>().GetTipoCoste())
             {
                 case 0:
-                    player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    pc.ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
                     break;
                 case 1:
-                    player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    pc.ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
                     break;
                 case 2:
-                    player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                    player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    pc.ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    pc.ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
                     break;
                 default:
                     break;
             }
-            GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id);
+            if (gameObject.GetComponent<DisplayCard>().GetCard().eterea){
+                GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id,false);
+            }
+            else{
+                GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id,true);
+            }
             GameManager.carta = null;
             GameManager.cartaSeleccionada = false;
         }
@@ -212,7 +299,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 TurnManager.noMas.text = "No hay recurso suficiente para usar esa carta";
                 Invoke(nameof(OcultarMensaje), 1f); // Llama a OcultarMensaje después de 1 segundo
             }
-            GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
+            GameObject.Find("GameManager").SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
             //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
             GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
             borde.color = gameObject.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
@@ -235,15 +322,20 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 {
                     if (tile.ocupadoObj.CompareTag("Enemy"))
                     {
-                        tile.ocupadoObj.GetComponent<EnemyController>().ReducirVida(gameObject.GetComponent<DisplayCard>().GetDaño());
-                        tile.ocupadoObj.GetComponent<EnemyController>().AddFuego(gameObject.GetComponent<DisplayCard>().GetDañoFuego());
-                        tile.ocupadoObj.GetComponent<EnemyController>().AddShock(gameObject.GetComponent<DisplayCard>().GetValorAturdido());
+                        EnemyController ec = tile.ocupadoObj.GetComponent<EnemyController>();
+                        ec.ReducirVida(gameObject.GetComponent<DisplayCard>().GetDaño());
+                        ec.AddFuego(gameObject.GetComponent<DisplayCard>().GetDañoFuego());
+                        ec.AddShock(gameObject.GetComponent<DisplayCard>().GetValorAturdido());
+                        if (gameObject.GetComponent<DisplayCard>().GetCard().id == 19) {
+                            GameManager.player.GetComponent<PlayerController>().escudo += 3;
+                        }
                     }
                     else if (tile.ocupadoObj.CompareTag("Player"))
                     {
-                        tile.ocupadoObj.GetComponent<PlayerController>().ReducirVida(gameObject.GetComponent<DisplayCard>().GetDaño());
-                        tile.ocupadoObj.GetComponent<PlayerController>().AddFuego(gameObject.GetComponent<DisplayCard>().GetDañoFuego());
-                        tile.ocupadoObj.GetComponent<PlayerController>().AddShock(gameObject.GetComponent<DisplayCard>().GetValorAturdido());
+                        PlayerController pc = tile.ocupadoObj.GetComponent<PlayerController>();
+                        pc.ReducirVida(gameObject.GetComponent<DisplayCard>().GetDaño());
+                        pc.AddFuego(gameObject.GetComponent<DisplayCard>().GetDañoFuego());
+                        pc.AddShock(gameObject.GetComponent<DisplayCard>().GetValorAturdido());
                     }
                 }
             }
@@ -263,7 +355,12 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 default:
                     break;
             }
-            GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id);
+            if (gameObject.GetComponent<DisplayCard>().GetCard().eterea){
+                GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id,false);
+            }
+            else{
+                GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id,true);
+            }
             GameManager.carta = null;
             GameManager.cartaSeleccionada = false;
         }
@@ -272,7 +369,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         {
             Debug.Log("noMas");
             TurnManager.noMas.text = "No hay recurso suficiente para usar esa carta";
-            GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
+            GameObject.Find("GameManager").SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
             //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
             GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
             borde.color = gameObject.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
