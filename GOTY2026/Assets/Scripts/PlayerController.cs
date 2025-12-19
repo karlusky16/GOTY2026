@@ -255,7 +255,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnMouseDown()
     {
-        Debug.Log("Mouse click enemy");
+        Debug.Log("Mouse click Player");
         GameObject.Find("PanelInfo").SendMessage("CambiarEstado");
         GameObject.Find("PanelInfo").SendMessage("DisplayDatos",this.gameObject);
     }
