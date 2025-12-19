@@ -22,4 +22,5 @@ public class Card : ScriptableObject
     public int shockValue;
     public int precio;
     public Sprite sprite;
+    public bool eterea;
 }

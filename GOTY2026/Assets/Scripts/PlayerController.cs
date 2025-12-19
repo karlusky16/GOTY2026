@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     public bool shock = false;
     public bool apuntado = false;
     public Boolean inicializado;
+    public int escudo;
 
     private void Awake()
     {
@@ -105,6 +106,15 @@ public class PlayerController : MonoBehaviour
     //Modificar vida del jugador
     public void ReducirVida(int vida)
     {
+        if ((escudo -= vida) < 0)
+        {
+            vida = -escudo;
+            escudo = 0;
+        }
+        else
+        {
+            vida = 0;
+        }
         if ((vidaActual -= vida) <= 0)
         {
             vidaActual = 0;
@@ -199,6 +209,18 @@ public class PlayerController : MonoBehaviour
             fuego.gameObject.SetActive(true);
         fuego.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = danoFuego.ToString();
         Debug.Log("Player recibe fuego");
+    }
+    public void RedFuego(int dano)
+    {
+        if ((danoFuego -= dano) < 0) danoFuego = 0;
+        if (danoFuego == 0)
+        {
+            fuego.gameObject.SetActive(false);
+        }
+        else
+        {
+            fuego.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = danoFuego.ToString();
+        }
     }
     public void AddShock(int valor)
     {
