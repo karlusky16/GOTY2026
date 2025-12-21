@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AjustesManager : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip pulsarBotonClip;
     public Ajustes ajustes;
     public GameObject panelAjustes;
     public GameObject panelAjustes2;
@@ -30,24 +32,29 @@ public class AjustesManager : MonoBehaviour
     }
     public void ActivarPrimerMenu()
     {
+        audioSource.PlayOneShot(pulsarBotonClip);
         panelAjustes.SetActive(!panelAjustes.activeSelf);
     }
     public void Salir()
     {
+        audioSource.PlayOneShot(pulsarBotonClip);
         Application.Quit();
     }
     public void Guardar()
     {
+        audioSource.PlayOneShot(pulsarBotonClip);
         GameObject.Find("Player").GetComponent<PlayerController>().GuardarStats();
         string json = JsonUtility.ToJson(GameManager.player.GetComponent<PlayerController>().stats, true);
         File.WriteAllText(RutaSave, json);
     }
     public void ActivarSegundoMenu()
     {
+        audioSource.PlayOneShot(pulsarBotonClip);
         panelAjustes2.SetActive(!panelAjustes2.activeSelf);
     }
     public void Stamina()
     {
+        audioSource.PlayOneShot(pulsarBotonClip);
         if (!GameManager.estamina)
         {
             GameObject.Find("Estamina").transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Estamina = true";
