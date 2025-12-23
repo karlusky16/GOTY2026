@@ -105,7 +105,6 @@ public class TurnManager : MonoBehaviour
             enemy.GetComponent<BoxCollider2D>().enabled = false;
         }
         // Aquí iría el ataque/movimiento del enemigo
-
         foreach (var enemy in GameManager.enemigosLis)
         {
             Debug.Log("Ataca el enemigo en: " + GameManager.enemigos[enemy]);
@@ -132,6 +131,8 @@ public class TurnManager : MonoBehaviour
                     enemy.GetComponent<EnemyController>().Ataque(enemy.GetComponent<TileManagerEnemigo>().GetRango(), enemy.GetComponent<DisplayEnemy>().GetDaño());
                 }
                 enemy.GetComponent<EnemyController>().Movimiento(enemy);
+                if(enemy.GetComponent<DisplayEnemy>().GetName() == "Bomba") enemy.GetComponent<DisplayEnemy>().SendMessage("ActualizarSprite");
+            
                 Debug.Log("El enemigo ataca");
             }
         }
