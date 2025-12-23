@@ -20,4 +20,7 @@ MonoBehaviour:
   area: 0
   movimiento: 0
   patronAtaque: Bomba
-  sprite: {fileID: -4168811989648472685, guid: b99de7df713924a7d83c9b1675ff0d23, type: 3}
+  sprite: {fileID: 0}
+  sprite2: {fileID: 0}
+  sprite3: {fileID: 0}
+  sprite4: {fileID: 0}
