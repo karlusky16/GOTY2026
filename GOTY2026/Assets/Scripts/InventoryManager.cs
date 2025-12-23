@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip pulsarBotonClip;
     public GameObject ItemsPanel;
     public GameObject CardsPanel;
     public Button ItemsBtn;
@@ -20,7 +22,7 @@ public class InventoryManager : MonoBehaviour
 
     public void Start()
     {
-        CerrarInventario();
+        inventoryPanel.SetActive(false);
     }
 
     public void AbrirInventario()
@@ -35,6 +37,7 @@ public class InventoryManager : MonoBehaviour
     }
     public void CardsPanelActivate()
     {
+        audioSource.PlayOneShot(pulsarBotonClip);
         ItemsBtn.interactable = true;
         CardsBtn.interactable = false;
         CardsPanel.SetActive(true);
@@ -48,6 +51,7 @@ public class InventoryManager : MonoBehaviour
     }
     public void ItemsPanelActivate()
     {
+        audioSource.PlayOneShot(pulsarBotonClip);
         ItemsBtn.interactable = false;
         CardsBtn.interactable = true;
         ItemsPanel.SetActive(true);
