@@ -93,13 +93,9 @@ public class ManejoBaraja : MonoBehaviour
     public void DescartesABaraja()
     {
         Debug.Log("DescartesABaraja");
-        // Move all discard GameObjects into the draw pile list and
-        // reparent them under the `roboPadre` (draw pile parent) so the
-        // UI/ hierarchy reflects the move.
         TurnManager.robo = new List<GameObject>(TurnManager.descartes);
         for (int i = 0; i < TurnManager.robo.Count; i++)
         {
-            // parent under roboPadre and preserve local transform
             TurnManager.robo[i].transform.SetParent(roboPadre.transform);
         }
         Debug.Log("Cartas en baraja: " + TurnManager.robo.Count);

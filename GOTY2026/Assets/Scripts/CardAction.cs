@@ -166,7 +166,14 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
                 if (GridManager._tiles.TryGetValue(dir, out Tile tile2) && tile2.ocupado && tile2.ocupadoObj.CompareTag("Enemy"))
                 {
-                    tile2.ocupadoObj.GetComponent<EnemyController>().ReducirVida(gameObject.GetComponent<DisplayCard>().GetDaño());
+                    EnemyController ec = tile.ocupadoObj.GetComponent<EnemyController>();
+                    ec.ReducirVida(gameObject.GetComponent<DisplayCard>().GetDaño());
+                    ec.AddFuego(gameObject.GetComponent<DisplayCard>().GetDañoFuego());
+                    ec.AddShock(gameObject.GetComponent<DisplayCard>().GetValorAturdido());
+                    if (gameObject.GetComponent<DisplayCard>().GetCard().id == 19)
+                    {
+                        GameManager.player.GetComponent<PlayerController>().AddEscudo(gameObject.GetComponent<DisplayCard>().GetDaño());
+                    }
                 }
             }
             //Movimiento del jugador a la tile seleccionada
@@ -193,22 +200,6 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             PlayerController pc = player.GetComponent<PlayerController>();
             //Movimiento del jugador a la tile seleccionada
             pc.Mover(new(tile.x, tile.y));
-            //Comprobación de tipo de coste y reducción del recurso correspondiente
-            switch (GameManager.carta.GetComponent<DisplayCard>().GetTipoCoste())
-            {
-                case 0:
-                    pc.ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                    break;
-                case 1:
-                    pc.ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                    break;
-                case 2:
-                    pc.ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                    pc.ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                    break;
-                default:
-                    break;
-            }
             ReducirCosto();
             ManejoCarta(); 
         }
@@ -329,7 +320,6 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 break;
         }
     }
-
 
     bool SePuede()
     {
