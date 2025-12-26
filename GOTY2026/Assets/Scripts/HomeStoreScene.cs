@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class HomeStoreScene : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip pulsarBotonClip;
     public GameObject homePanel;
     public GameObject shopPanel;
     public GameObject inventoryPanel;
@@ -9,7 +11,9 @@ public class HomeStoreScene : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        AbrirInicio();
+        homePanel.SetActive(true);
+        inventoryPanel.GetComponent<InventoryManager>().CerrarInventario();
+        shopPanel.GetComponent<ShopManager>().CerrarTienda();
     }
 
     /*public void AbrirTienda()
@@ -30,6 +34,7 @@ public class HomeStoreScene : MonoBehaviour
     }*/
     public void AbrirInicio()
     {
+        audioSource.PlayOneShot(pulsarBotonClip);
         homePanel.SetActive(true);
         inventoryPanel.GetComponent<InventoryManager>().CerrarInventario();
         shopPanel.GetComponent<ShopManager>().CerrarTienda();
@@ -40,6 +45,8 @@ public class HomeStoreScene : MonoBehaviour
     }
     public void SigEscena()
     {
+        audioSource.PlayOneShot(pulsarBotonClip);
+        
         UnityEngine.SceneManagement.SceneManager.LoadScene("MapUi");
     }
 }

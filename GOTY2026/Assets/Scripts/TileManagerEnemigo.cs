@@ -50,6 +50,13 @@ public class TileManagerEnemigo : MonoBehaviour
             case "Cruz":
                 direccionesAnt = Cruz(enemy.GetComponent<DisplayEnemy>().GetArea(), enemy);
                 break;
+            case "Circulo":
+                direccionesAnt = Circulo(enemy.GetComponent<DisplayEnemy>().GetArea(), new(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y));
+                break;
+            case "Bomba":
+                if(TurnManager.numTurno == 2) direccionesAnt = TodoElTablero();
+                if(TurnManager.numTurno == 3) Destroy(enemy);
+                break;
             default:
                 break;
         }
@@ -234,4 +241,19 @@ public class TileManagerEnemigo : MonoBehaviour
         }
         return direcciones.ToArray();
         }
+    private static Vector2[] TodoElTablero()
+    {
+        var direcciones = new List<Vector2>();
+        int ancho = GameObject.Find("GridManager").GetComponent<GridManager>().GetWidth();
+        int alto = GameObject.Find("GridManager").GetComponent<GridManager>().GetHeight();
+        for(int i = 0; i < ancho; i++)
+        {
+            for(int j = 0; j < alto; j++)
+            {
+                direcciones.Add(new Vector2(i, j));
+            }
+        }
+        return direcciones.ToArray();
+    }
+
 }
