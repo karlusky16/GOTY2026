@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPasivo
   id: 5
   _name: Anillo de Fuego
+  precio: 10
   descripcion: Todos tus ataques aplican una carga de fuego adicional
   sprite: {fileID: 0}
