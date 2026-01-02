@@ -36,7 +36,6 @@ public class ShopManager : MonoBehaviour
     }
     public void CerrarTienda()
     {
-
         shopPanel.SetActive(false);
     }
     public void CardsPanelActivate()

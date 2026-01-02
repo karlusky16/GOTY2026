@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class Campfire : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip pulsarBotonClip;
     GameObject panelCartas;
     GameObject textoAlerta;
     GameObject noDestruir;
@@ -43,7 +45,9 @@ public class Campfire : MonoBehaviour
     }
 
     public void DestroyCard()
-    {   if (matado)
+    {   
+        audioSource.PlayOneShot(pulsarBotonClip);
+        if (matado)
         {
             textoAlerta.GetComponent<TextMeshProUGUI>().text = "El jugador ya ha eliminado una carta";
             Invoke(nameof(OcultarMensaje), 1f);
@@ -87,10 +91,12 @@ public class Campfire : MonoBehaviour
     }
     public void SigEscena()
     {
+        audioSource.PlayOneShot(pulsarBotonClip);
         UnityEngine.SceneManagement.SceneManager.LoadScene("MapUi");
     }
     public void NoDestruir()
     {
+        audioSource.PlayOneShot(pulsarBotonClip);
         for (int i = panelCartas.transform.childCount - 1; i >= 0; i--)
         {
             Destroy(panelCartas.transform.GetChild(i).gameObject);

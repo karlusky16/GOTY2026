@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class BestiarioManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public AudioSource audioSource;
+    public AudioClip pulsarBotonClip;
     public GameObject panel;
     public TextMeshProUGUI nombre;
     public Image sprite;
@@ -24,6 +26,7 @@ public class BestiarioManager : MonoBehaviour
     {
         if (enP)
         {
+            
             enP = false;
             foreach (Transform child in panel.transform)
             {
@@ -33,6 +36,7 @@ public class BestiarioManager : MonoBehaviour
         }
         else
         {
+            audioSource.PlayOneShot(pulsarBotonClip);
             enP = true;
             gameObject.transform.position = new(gameObject.transform.position.x - 1000, gameObject.transform.position.y);
         }

@@ -4,6 +4,8 @@ using UnityEngine.UIElements;
 
 public class RecompensasScript : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip pulsarBotonClip;
     [SerializeField] GameObject panelCartas;
     void Start()
     {
@@ -50,6 +52,8 @@ public class RecompensasScript : MonoBehaviour
     public GameObject prefabCarta;   // tu prefab de carta
     public void SigEscena()
     {
+        audioSource.PlayOneShot(pulsarBotonClip);
+        
         UnityEngine.SceneManagement.SceneManager.LoadScene("MapUi");
     }
     public void RecogerDinero()
@@ -60,6 +64,7 @@ public class RecompensasScript : MonoBehaviour
     }
     public void RecogerCarta()
     {
+        audioSource.PlayOneShot(pulsarBotonClip);
         Debug.Log("Carta recogida");
         MostrarCartasRecompensa();
         GameObject.Find("BotonVerCartas").GetComponent<UnityEngine.UI.Button>().interactable = false;
@@ -75,6 +80,7 @@ public class RecompensasScript : MonoBehaviour
     }
     public void CerrarPanelCartas(GameObject carta)
     {
+        audioSource.PlayOneShot(pulsarBotonClip);
         Debug.Log(carta.GetComponent<DisplayCard>().displayID);
         GameManager.player.GetComponent<PlayerController>().AddCarta(carta.GetComponent<DisplayCard>().displayID);
         panelCartas.SetActive(false);
