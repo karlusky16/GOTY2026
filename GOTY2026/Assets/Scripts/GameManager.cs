@@ -18,12 +18,13 @@ public class GameManager : MonoBehaviour
     public static Dictionary<GameObject, Vector2> enemigos = new();
     public static Dictionary<GameObject, Vector2> obstacles = new();
     public static List<GameObject> enemigosLis = new();
-    public static List<GameObject> obstaclesLis = new();
+    public static List<GameObject> obstaclesLis = new(); 
     public static GameObject enemy;
     public static GameObject obstacle;
     public static List<Card> cardList;
     public static List<Enemy> enemyList;
-    public static string[] combatSceneList = new string[] { "SampleScene", "Combate1", "Combate2", "Combate3", "CombateBoss"};
+    public static List<ItemPasivo> itemsLis;
+    public static string[] combatSceneList = new string[] { "SampleScene", "Combate1", "Combate2", "Combate3", "CombateBoss" };
     public static int indexScene = 0;
     public static bool reset;
 
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
         cardList = new List<Card>(Resources.LoadAll<Card>("Cartas"));
         enemyList = new List<Enemy>(Resources.LoadAll<Enemy>("Enemigos"));
         obstacleList = new List<Obstacle>(Resources.LoadAll<Obstacle>("Obstacles"));
+        itemsLis = new List<ItemPasivo>(Resources.LoadAll<ItemPasivo>("ItemsPasivos"));
         // Si la instancia no existe, crea una y marca el objeto para no ser destruido.
         if (instance == null)
         {
@@ -55,11 +57,11 @@ public class GameManager : MonoBehaviour
     public void InstanciateEnemy(Vector2 pos, int id)
     {
         enemigosLis.Add(Instantiate(prefabEnemigo, new(GridManager._tiles[pos].transform.position.x, GridManager._tiles[pos].transform.position.y, -0.1f), Quaternion.identity));
-        enemigos.Add(enemigosLis[enemigosLis.Count - 1], pos);
-        enemigosLis[enemigosLis.Count - 1].GetComponent<DisplayEnemy>().ActualizarID(id);
+        enemigos.Add(enemigosLis[^1], pos);
+        enemigosLis[^1].GetComponent<DisplayEnemy>().ActualizarID(id);
         GridManager._tiles[pos].ocupadoObj = enemigosLis[enemigosLis.Count - 1];
         GridManager._tiles[pos].ocupado = true;
-        enemigosLis[enemigosLis.Count - 1].GetComponent<EnemyController>().Mover(pos); // le asigna al enemigo su posición        
+        enemigosLis[^1].GetComponent<EnemyController>().Mover(pos); // le asigna al enemigo su posición        
     }
 
     public void InstanciateObstacle(Vector2 pos, int id)
@@ -68,7 +70,7 @@ public class GameManager : MonoBehaviour
         {
             obstaclesLis.Add(Instantiate(prefabObstaculo, new(GridManager._tiles[pos].transform.position.x, GridManager._tiles[pos].transform.position.y, -0.01f), Quaternion.identity));
             obstacles.Add(obstaclesLis[obstaclesLis.Count - 1], pos);
-            obstaclesLis[obstaclesLis.Count - 1].GetComponent<DisplayObstacle>().ActualizarID(id);
+            obstaclesLis[^1].GetComponent<DisplayObstacle>().ActualizarID(id);
             GridManager._tiles[pos].ocupadoObj = prefabObstaculo;
             GridManager._tiles[pos].ocupado = true;
         }
@@ -115,6 +117,7 @@ public class GameManager : MonoBehaviour
         {
             enemy.layer = LayerMask.NameToLayer(layer);
         }
+        player.layer = LayerMask.NameToLayer(layer);
     }
 
     public void ResetGame()

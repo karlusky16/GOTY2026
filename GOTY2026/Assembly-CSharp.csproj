@@ -99,6 +99,7 @@
     <Compile Include="Assets\Scripts\ScriptsMapa\MapNode.cs" />
     <Compile Include="Assets\Scripts\DisplayObstacle.cs" />
     <Compile Include="Assets\Scripts\SceneManagerBoss.cs" />
+    <Compile Include="Assets\Scripts\ItemPasivo.cs" />
     <Compile Include="Assets\Scripts\BestiarioManager.cs" />
     <Compile Include="Assets\Scripts\DisplayCard.cs" />
     <Compile Include="Assets\Scripts\Tests\TestPatronesCarta.cs" />
@@ -162,6 +163,7 @@
     <Compile Include="Assets\Scripts\HomeStoreScene.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\MapManager.cs" />
+    <Compile Include="Assets\Scripts\DisplayItems.cs" />
     <Compile Include="Assets\Scripts\TileManager.cs" />
     <Compile Include="Assets\OneLine\OneLine\Attributes\WeightAttribute.cs" />
     <Compile Include="Assets\OneLine\OneLine\Attributes\WidthAttribute.cs" />

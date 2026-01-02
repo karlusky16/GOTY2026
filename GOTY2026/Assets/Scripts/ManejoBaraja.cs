@@ -11,7 +11,8 @@ public class ManejoBaraja : MonoBehaviour
     public static List<GameObject> mano = new();
     public GameObject descartesPadre, roboPadre;
 
-    public static int[] mazoDefault = {7,8,8,1,7,3,3,19}; //1 fireballs,dos saltos, 1 espadazo y dos disparos
+    public static int[] mazoDefault = {7,8,8,1,7,3,3,26,27}; //1 fireballs,dos saltos, 1 espadazo y dos disparos
+    public List<GameObject> GetMano() => mano;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public static void Inicializar()
     {
@@ -23,7 +24,7 @@ public class ManejoBaraja : MonoBehaviour
         int cartas = GameManager.cardList.Count;
         System.Random rand = new();
         if (player.stats.inicializado && player.GetCartasLength() > 0)
-        return; // Ya hay cartas, no inicializamos
+            return; // Ya hay cartas, no inicializamos
         GameManager.player.GetComponent<PlayerController>().inicializado = true;
         //Para meter cartas aleatorias en la baraja del jugador
         foreach (var id in mazoDefault)
@@ -89,6 +90,27 @@ public class ManejoBaraja : MonoBehaviour
     {
         carta.transform.SetParent(descartesPadre.transform, false);
         TurnManager.descartes.Add(carta);
+    }
+    public void AddCartaRobo(int i)
+    {
+        for (int j = 0; j < i; j++)
+        {
+            RobarCarta();
+        }
+    }
+    public void RobarCarta()
+    {
+        System.Random rand = new();
+        int cartas = TurnManager.robo.Count;
+        if (cartas == 0)
+        {
+            DescartesABaraja();
+            cartas = TurnManager.robo.Count;
+        }
+        int indiceAleatorio = rand.Next(cartas);
+        mano.Add(TurnManager.robo[indiceAleatorio]);
+        mano[^1].transform.SetParent(_image.transform);
+        TurnManager.robo.RemoveAt(indiceAleatorio);
     }
     public void DescartesABaraja()
     {
