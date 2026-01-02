@@ -8,15 +8,21 @@ public class ShopManager : MonoBehaviour
 {
     public AudioSource audioSource;
     public AudioClip pulsarBotonClip;
+
     public GameObject ItemsPanel;
     public GameObject CardsPanel;
+
     public Button ItemsBtn;
     public Button CardsBtn;
     
     public GameObject shopCardTemplate;
+    public GameObject shopObjectTemplate;
 
     public Transform panelCartasTienda;
     public ScrollRect scrollRectCartasTienda;
+    public Transform panelObjetosTienda;
+    public ScrollRect scrollRectObjetosTienda;
+
     public TMP_Text monedasText;
 
     public GameObject shopPanel;
@@ -58,6 +64,11 @@ public class ShopManager : MonoBehaviour
         CardsBtn.interactable = true;
         ItemsPanel.SetActive(true);
         CardsPanel.SetActive(false);
+
+        MensajeCompraSatisfactoria.SetActive(false);
+        MostrarObjetosEnTienda();
+        Canvas.ForceUpdateCanvases();
+        scrollRectCartasTienda.verticalNormalizedPosition = 1f;
     }
 
     public void MostrarCartasEnTienda()
@@ -88,7 +99,7 @@ public class ShopManager : MonoBehaviour
 
             GameObject nuevoItem = Instantiate(shopCardTemplate, panelCartasTienda);
 
-            CardShopTemplate storeItem = nuevoItem.GetComponent<CardShopTemplate>();
+            ShopCardTemplate storeItem = nuevoItem.GetComponent<ShopCardTemplate>();
             if (storeItem != null)
             {
                 storeItem.Setup(cardId, precio, this);
@@ -96,6 +107,43 @@ public class ShopManager : MonoBehaviour
             else
             {
                 Debug.LogWarning("El prefab no tiene el componente CardShopTemplate.");
+            }
+        }
+        RefrescarInteractividadDeTodos();
+    }
+
+    public void MostrarObjetosEnTienda()
+    {
+        if(GameManager.itemsLis == null || GameManager.itemsLis.Count == 0)
+        {
+            Debug.LogError("La lista de objetos está vacía o no inicializada.");
+            return;
+        }
+        if(shopObjectTemplate == null || panelObjetosTienda == null)
+        {
+            Debug.LogError("Prefab o panel no asignados en el Inspector.");
+            return;
+        }
+        for(int i = panelObjetosTienda.childCount -1; i>=0; i--)
+        {
+            Destroy(panelObjetosTienda.GetChild(i).gameObject);
+        }
+
+        for(int i = 0; i< GameManager.itemsLis.Count; i++)
+        {
+            int itemId = GameManager.itemsLis[i].id;
+            int precio = GameManager.itemsLis[i].precio;
+
+            GameObject nuevoItem = Instantiate(shopObjectTemplate, panelObjetosTienda);
+
+            ShopObjectTemplate storeItem = nuevoItem.GetComponent<ShopObjectTemplate>();
+            if (storeItem != null)
+            {
+                storeItem.Setup(itemId, precio, this);
+            }
+            else
+            {
+                Debug.LogWarning("El prefab no tiene el componente ShopObjectTemplate.");
             }
         }
         RefrescarInteractividadDeTodos();
@@ -116,6 +164,21 @@ public class ShopManager : MonoBehaviour
             ActualizarMonedasUI();
         }
     }
+    public void ComprarItem(int itemId, int precio, String nombreItem)
+    {
+        PlayerController player = GameManager.player.GetComponent<PlayerController>();
+        if (player.GetMonedas() >= precio)
+        {
+            Debug.Log(nombreItem);
+            player.ReducirMonedas(precio);
+            player.AddPasivo(itemId);
+
+            textoMensajeCompraSatisfactoria.text ="El objeto " + nombreItem + " comprada por " + precio + " monedas ha sido añadida a tu inventario.";
+            MensajeCompraSatisfactoria.SetActive(true);
+
+            ActualizarMonedasUI();
+        }
+    }
 
     /// Recalcula la interactividad de todos los items según el dinero actual.
     private void RefrescarInteractividadDeTodos()
@@ -123,7 +186,7 @@ public class ShopManager : MonoBehaviour
         // Recorre todos los hijos del panel y llama a UpdateInteractivity() si tienen CardShopTemplate
         foreach (Transform t in panelCartasTienda)
         {
-            var item = t.GetComponent<CardShopTemplate>();
+            var item = t.GetComponent<ShopCardTemplate>();
             if (item != null)
             {
                 item.UpdateInteractivity(GameManager.player.GetComponent<PlayerController>().GetMonedas());

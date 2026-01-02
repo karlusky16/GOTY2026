@@ -152,6 +152,7 @@
     <Compile Include="Assets\OneLine\RectEx\ColumnExtensions.cs" />
     <Compile Include="Assets\Scripts\MenuManager.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Overview\Scripts\ComplexExample.cs" />
+    <Compile Include="Assets\Scripts\ShopObjectTemplate.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
     <Compile Include="Assets\Scripts\CardAction.cs" />
     <Compile Include="Assets\Scripts\Tests\TestGolem.cs" />

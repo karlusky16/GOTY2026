@@ -294,7 +294,7 @@ public class PlayerController : MonoBehaviour
             GameObject.Find("PanelInfo").SendMessage("DisplayDatos", this.gameObject);
         }
     }
-    public void AñadirPasivo(int id)
+    public void AddPasivo(int id)
     {
         pasivos.Add(id);
         ActivarPasivos(id);

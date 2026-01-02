@@ -14,6 +14,7 @@ public class InventoryManager : MonoBehaviour
     public Button CardsBtn;
     
     public GameObject inventoryCardTemplate;
+    public GameObject inventoryObjectTemplate;
 
     public Transform panelCartasInventario;
     public ScrollRect scrollRectCartasInventario;

@@ -6,6 +6,7 @@ public class ItemPasivo : ScriptableObject
 {
     public int id;
     public String _name;
+    public int precio;
     public String descripcion;
     public Sprite sprite;
 }

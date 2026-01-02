@@ -2,24 +2,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ShopCardTemplate : MonoBehaviour
+public class ShopObjectTemplate : MonoBehaviour
 {
-    public DisplayCard displayCard;   // Componente que muestra la carta
+    public DisplayItems displayItem;   // Componente que muestra la carta
     public Button buyButton;          
     public TMP_Text priceText;        
 
-    private int cardId;
+    private int itemId;
     private int price;
     private ShopManager manager;
     
     public void Setup(int id, int price, ShopManager shopManager)
     {
-        cardId = id;
+        itemId = id;
         this.price = price;
         manager = shopManager;
 
-        if (displayCard != null)
-            displayCard.ActualizarID(cardId);
+        if (displayItem != null)
+            displayItem.ActualizarID(itemId);
 
         if (priceText != null)
         {
@@ -32,7 +32,7 @@ public class ShopCardTemplate : MonoBehaviour
         }
         
         buyButton.onClick.RemoveAllListeners();
-        buyButton.onClick.AddListener(() => manager.ComprarCarta(cardId, price, displayCard.card._name));
+        buyButton.onClick.AddListener(() => manager.ComprarItem(itemId, price, displayItem.item._name));
 
         int dineroActual = GameManager.player.GetComponent<PlayerController>().GetMonedas();
         UpdateInteractivity(dineroActual);
