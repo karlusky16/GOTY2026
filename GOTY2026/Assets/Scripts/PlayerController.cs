@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public static List<int> cartas = new();
+    public static List<int> pasivos = new();
     public PlayerStats stats;
     public Tile posicion;
     public GameObject mirilla;
@@ -31,26 +32,27 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int manaMaxima;
     [SerializeField] private int manaActual;
     [SerializeField] private int monedas;
-    public Image fuego,aturdido,escudoS;
-    public int danoFuego = 0;
-    public int escudo = 0;
+    public Image fuego, aturdido, escudoS;
+    public int danoFuego;
+    public int escudo;
     public bool shock = false;
     public bool apuntado = false;
     public Boolean inicializado;
-
+    public int dañoTemp; //Daño adicional que se reinicia al final del turno
+    public int dañoItems; //Daño adicional permanente por items
+    public int shockTemp; //Shock adicional que se reinicia al final del turno
+    public int valorAturdidoItems; //Valor de aturdido adicional permanente por items
+    public int escudoItems; //Escudo adicional permanente por items
+    public int dañoFuegoItems; //Daño de fuego adicional permanente por items
     private void Awake()
     {
         stats ??= new PlayerStats();
         inicializado = stats.inicializado;
-        longMano = stats.longMano;
-        vidaMaxima = stats.vidaMaxima;
-        vidaActual = stats.vidaActual;
-        energiaMaxima = stats.energiaMaxima;
-        manaMaxima = stats.manaMaxima;
-        monedas = stats.monedas;
-        cartas = stats.cartas;
-        energiaActual = energiaMaxima;
-        manaActual = manaMaxima;
+        CargarStats(stats);
+        danoFuego = 0;
+        escudo = 0;
+        dañoTemp = 0;
+        dañoItems = 0;
     }
     public void CargarStats(PlayerStats stats2)
     {
@@ -65,6 +67,11 @@ public class PlayerController : MonoBehaviour
         cartas = stats.cartas;
         energiaActual = energiaMaxima;
         manaActual = manaMaxima;
+        pasivos = stats.pasivos;
+        dañoItems = stats.dañoItems;
+        escudoItems = stats.escudoItems;
+        dañoFuegoItems = stats.danoFuegoItems;
+        valorAturdidoItems = stats.valorAturdidoItems;
     }
     public void GuardarStats()
     {
@@ -76,6 +83,11 @@ public class PlayerController : MonoBehaviour
         stats.manaMaxima = manaMaxima;
         stats.monedas = monedas;
         stats.cartas = cartas;
+        stats.pasivos = pasivos;
+        stats.dañoItems = dañoItems;
+        stats.escudoItems = escudoItems;
+        stats.danoFuegoItems = dañoFuegoItems;
+        stats.valorAturdidoItems = valorAturdidoItems;
     }
     public void Mover(UnityEngine.Vector2 pos)
     {
@@ -134,6 +146,7 @@ public class PlayerController : MonoBehaviour
 
     public void AddEscudo(int escudoAdd)
     {
+        if(escudoAdd == 0)  return;
         escudo += escudoAdd;
         if (!escudoS.gameObject.activeSelf)
             escudoS.gameObject.SetActive(true);
@@ -196,7 +209,7 @@ public class PlayerController : MonoBehaviour
     public void RemoveCarta(int id)
     {
         Debug.Log("RemoveCarta " + id);
-        cartas.Remove(id);  
+        cartas.Remove(id);
     }
 
     public void ResetPlayer()
@@ -222,6 +235,7 @@ public class PlayerController : MonoBehaviour
     }
     public void AddFuego(int dano)
     {
+        if (dano == 0) return;
         danoFuego += dano;
         if (!fuego.gameObject.activeSelf)
             fuego.gameObject.SetActive(true);
@@ -277,7 +291,51 @@ public class PlayerController : MonoBehaviour
         GameObject.Find("PanelInfo").SendMessage("CambiarEstado");
         if (GameObject.Find("PanelInfo").GetComponent<BestiarioManager>().RetEnP())
         {
-            GameObject.Find("PanelInfo").SendMessage("DisplayDatos",this.gameObject);  
+            GameObject.Find("PanelInfo").SendMessage("DisplayDatos", this.gameObject);
         }
+    }
+    public void AñadirPasivo(int id)
+    {
+        pasivos.Add(id);
+        ActivarPasivos(id);
+    }
+    public void ActivarPasivos(int id)
+    {
+        switch (id)
+        {
+            case 0:
+                vidaMaxima += 5;
+                vidaActual += 5;
+                JugadorAumentaVida?.Invoke(vidaActual);
+                break;
+            case 1:
+                energiaMaxima += 2;
+                manaMaxima -= 2;
+                break;
+            case 2:
+                manaMaxima += 2;
+                manaActual -= 2;
+                break;
+            case 3:
+                dañoItems += 1;
+                break;
+            case 4:
+                escudoItems += 2;
+                break;
+            case 5:
+                dañoFuegoItems += 1;
+                break;
+            case 6:
+                valorAturdidoItems += 5;
+                break;
+            default:
+                Debug.LogError("Pasivo no reconocido");
+                break;
+        }
+    }
+    public void ResetTemporales()
+    {
+        dañoTemp = 0;
+        shockTemp = 0;
     }
 }

@@ -40,12 +40,13 @@ public class TurnManager : MonoBehaviour
         GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().ManoTurno();
         GameObject.Find("GameManager").GetComponent<GameManager>().TilesEnemigos();
         GameObject.Find("Player").GetComponent<PlayerController>().ResetMirilla();
+        GameObject.Find("Player").GetComponent<PlayerController>().ResetTemporales();
         playerController.AumentarEnergia(playerController.GetEnergiaMaxima());
         playerController.AumentarMana(playerController.GetManaMaxima());
         playerController.fuego.gameObject.SetActive(false);
         playerController.aturdido.gameObject.SetActive(false);
         playerController.escudoS.gameObject.SetActive(false);
-        playerController.RedEscudo(playerController.escudo);
+        playerController.AddEscudo(playerController.escudoItems);
         Debug.Log("Comienza el combate. Turno del jugador.");
     }
 
@@ -85,7 +86,7 @@ public class TurnManager : MonoBehaviour
     {
         if (GameManager.cartaSeleccionada == true)
         {
-            GameObject.Find("GameManager").gameObject.SendMessage("DesmarcarRango", GameManager.player.GetComponent<PlayerController>().GetPos());
+            GameObject.Find("GameManager").SendMessage("DesmarcarRango", GameManager.player.GetComponent<PlayerController>().GetPos());
         }
         GameManager.carta = null;
         GameManager.cartaSeleccionada = false;
@@ -99,11 +100,6 @@ public class TurnManager : MonoBehaviour
 
     void EnemyTurn()
     {
-        foreach (var enemy in GameManager.enemigosLis)
-        {
-            enemy.GetComponent<EnemyController>().Fuego();
-            enemy.GetComponent<BoxCollider2D>().enabled = false;
-        }
         // Aquí iría el ataque/movimiento del enemigo
         foreach (var enemy in GameManager.enemigosLis)
         {
@@ -132,11 +128,13 @@ public class TurnManager : MonoBehaviour
                 }
                 enemy.GetComponent<EnemyController>().Movimiento(enemy);
                 if(enemy.GetComponent<DisplayEnemy>().GetName() == "Bomba") enemy.GetComponent<DisplayEnemy>().SendMessage("ActualizarSprite");
-            
+                enemy.GetComponent<EnemyController>().Fuego();
+                enemy.GetComponent<EnemyController>().ResetShock();
+                enemy.GetComponent<BoxCollider2D>().enabled = false;
                 Debug.Log("El enemigo ataca");
             }
         }
-        Invoke("EndEnemyTurn", 1.5f);
+        Invoke(nameof(EndEnemyTurn), 1.5f);
         currentTurn = Turn.Player; //evita que ataque en cada frame
         playerController.AumentarEnergia(playerController.GetEnergiaMaxima());
         playerController.AumentarMana(playerController.GetManaMaxima());
@@ -150,14 +148,14 @@ public class TurnManager : MonoBehaviour
         GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().ManoTurno();
         GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");
         GameObject.Find("GameManager").GetComponent<GameManager>().TilesEnemigos();
-        //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");
+        GameObject.Find("Player").GetComponent<PlayerController>().ResetTemporales();
         Debug.Log("Vuelve el turno del jugador.");
         foreach (var enemy in GameManager.enemigosLis)
         {
             enemy.GetComponent<BoxCollider2D>().enabled = true;
         }
         playerController.Fuego();
-        playerController.RedEscudo(playerController.escudo);
+        playerController.RedEscudo(playerController.escudo - playerController.escudoItems);
     }
 
     public static void ResetTurn()

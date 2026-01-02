@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -110,6 +111,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     {
         if (SePuede())
         {
+            PlayerController pc = player.GetComponent<PlayerController>();
             switch (gameObject.GetComponent<DisplayCard>().GetCard().id)
             {
                 case 13:
@@ -126,22 +128,79 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                     {
                         if (GridManager._tiles.TryGetValue(tile, out Tile tile2) && tile2.ocupado && tile2.ocupadoObj.CompareTag("Player"))
                         {
-                            tile2.ocupadoObj.GetComponent<PlayerController>().RedFuego(tile2.ocupadoObj.GetComponent<PlayerController>().danoFuego / 2);
+                            pc.RedFuego(tile2.ocupadoObj.GetComponent<PlayerController>().danoFuego / 2);
                         }
                     }
                     break;
-                case 16 or 17 :
+                case 16:
                     foreach (var tile in tiles)
                     {
                         if (GridManager._tiles.TryGetValue(tile, out Tile tile2) && tile2.ocupado && tile2.ocupadoObj.CompareTag("Player"))
                         {
-                            tile2.ocupadoObj.GetComponent<PlayerController>().AumentarVida(gameObject.GetComponent<DisplayCard>().GetDaño());
+                            pc.dañoTemp += 2;
+                        }
+                    }
+                    break;
+                case 17:
+                    foreach (var tile in tiles)
+                    {
+                        if (GridManager._tiles.TryGetValue(tile, out Tile tile2) && tile2.ocupado && tile2.ocupadoObj.CompareTag("Player"))
+                        {
+                            GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().AddCartaRobo(2);
+                        }
+                    }
+                    break;
+                case 21:
+                    foreach (var tile in tiles)
+                    {
+                        if (GridManager._tiles.TryGetValue(tile, out Tile tile2) && tile2.ocupado && tile2.ocupadoObj.CompareTag("Player"))
+                        {
+                            pc.shockTemp += 10;
+                        }
+                    }
+                    break;
+                case 22:
+                    foreach (var tile in tiles)
+                    {
+                        if (GridManager._tiles.TryGetValue(tile, out Tile tile2) && tile2.ocupado && tile2.ocupadoObj.CompareTag("Enemy"))
+                        {
+                            tile2.ocupadoObj.GetComponent<EnemyController>().ReducirVida(tile2.ocupadoObj.GetComponent<EnemyController>().danoFuego);
+                            tile2.ocupadoObj.GetComponent<EnemyController>().RedFuego();
+                        }
+                    }
+                    break;
+                case 23:
+                    foreach (var tile in tiles)
+                    {
+                        if (GridManager._tiles.TryGetValue(tile, out Tile tile2) && tile2.ocupado && tile2.ocupadoObj.CompareTag("Player"))
+                        {
+                            GameManager.enemigosLis.ForEach(enemy => enemy.GetComponent<EnemyController>().ReducirVida(pc.danoFuego));
+                        }
+                    }
+                    break;
+                case 25 or 27:
+                    foreach (var tile in tiles)
+                    {
+                        if (GridManager._tiles.TryGetValue(tile, out Tile tile2) && tile2.ocupado && tile2.ocupadoObj.CompareTag("Player"))
+                        {
+                            pc.AddEscudo(gameObject.GetComponent<DisplayCard>().GetDaño());
+                        }
+                    }
+                    break;
+                case 28:
+                    foreach (var tile in tiles)
+                    {
+                        if (GridManager._tiles.TryGetValue(tile, out Tile tile2) && tile2.ocupado && tile2.ocupadoObj.CompareTag("Player"))
+                        {
+                            ManejoBaraja mb = GameObject.Find("TurnManager").GetComponent<ManejoBaraja>();
+                            int cartas = mb.GetMano().Count;
+                            mb.DevolverMano();
+                            mb.AddCartaRobo(cartas);
                         }
                     }
                     break;
                 default:
                     break;
-
             }
             ReducirCosto();
             ManejoCarta(); 
@@ -160,6 +219,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         //Si se tiene suficiente recurso y la tile no está ocupada se realiza el efecto
         if (SePuede() && !tile.ocupado)
         {
+            PlayerController pc = player.GetComponent<PlayerController>();
             //Comprobación de enemigos en las tiles afectadas y reducción de vida
             foreach (var dir in tiles)
             {
@@ -167,17 +227,15 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 if (GridManager._tiles.TryGetValue(dir, out Tile tile2) && tile2.ocupado && tile2.ocupadoObj.CompareTag("Enemy"))
                 {
                     EnemyController ec = tile.ocupadoObj.GetComponent<EnemyController>();
-                    ec.ReducirVida(gameObject.GetComponent<DisplayCard>().GetDaño());
-                    ec.AddFuego(gameObject.GetComponent<DisplayCard>().GetDañoFuego());
-                    ec.AddShock(gameObject.GetComponent<DisplayCard>().GetValorAturdido());
+                    Ataque(ec,null);
                     if (gameObject.GetComponent<DisplayCard>().GetCard().id == 19)
                     {
-                        GameManager.player.GetComponent<PlayerController>().AddEscudo(gameObject.GetComponent<DisplayCard>().GetDaño());
+                        pc.AddEscudo(gameObject.GetComponent<DisplayCard>().GetDaño());
                     }
                 }
             }
             //Movimiento del jugador a la tile seleccionada
-            PlayerController pc = player.GetComponent<PlayerController>();
+            
             pc.Mover(new(tile.x, tile.y));
             //Comprobación de tipo de coste y reducción del recurso correspondiente
             ReducirCosto();
@@ -225,21 +283,26 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 {
                     if (tile.ocupadoObj.CompareTag("Enemy"))
                     {
+                        PlayerController pc = player.GetComponent<PlayerController>();
                         EnemyController ec = tile.ocupadoObj.GetComponent<EnemyController>();
-                        ec.ReducirVida(gameObject.GetComponent<DisplayCard>().GetDaño());
-                        ec.AddFuego(gameObject.GetComponent<DisplayCard>().GetDañoFuego());
-                        ec.AddShock(gameObject.GetComponent<DisplayCard>().GetValorAturdido());
+                        Ataque(ec,null);
                         if (gameObject.GetComponent<DisplayCard>().GetCard().id == 19)
                         {
-                            GameManager.player.GetComponent<PlayerController>().AddEscudo(gameObject.GetComponent<DisplayCard>().GetDaño());
+                            pc.AddEscudo(gameObject.GetComponent<DisplayCard>().GetDaño());
+                        }
+                        if (gameObject.GetComponent<DisplayCard>().GetCard().id == 27)
+                        {
+                            ec.ReducirVida(pc.escudo);
+                            pc.RedEscudo(pc.escudo / 2);
+                        }
+                        if (gameObject.GetComponent<DisplayCard>().GetCard().id == 30 && ec.shock) {
+                            Ataque(ec,null);
                         }
                     }
                     else if (tile.ocupadoObj.CompareTag("Player"))
                     {
                         PlayerController pc = tile.ocupadoObj.GetComponent<PlayerController>();
-                        pc.ReducirVida(gameObject.GetComponent<DisplayCard>().GetDaño());
-                        pc.AddFuego(gameObject.GetComponent<DisplayCard>().GetDañoFuego());
-                        pc.AddShock(gameObject.GetComponent<DisplayCard>().GetValorAturdido());
+                        Ataque(null,pc);
                     }
                 }
             }
@@ -259,13 +322,30 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     {
         TurnManager.noMas.text = "";
     }
+    private void Ataque(EnemyController ec, PlayerController pc)
+    {
+        if (ec == null)
+        {
+            pc.ReducirVida(gameObject.GetComponent<DisplayCard>().GetDaño() + pc.dañoTemp + pc.dañoItems);
+            pc.AddFuego(gameObject.GetComponent<DisplayCard>().GetDañoFuego() + pc.dañoFuegoItems);
+            pc.AddShock(gameObject.GetComponent<DisplayCard>().GetValorAturdido() + pc.shockTemp + pc.valorAturdidoItems);
+        }
+        else
+        {
+            ec.ReducirVida(gameObject.GetComponent<DisplayCard>().GetDaño() + pc.dañoTemp + pc.dañoItems);
+            ec.AddFuego(gameObject.GetComponent<DisplayCard>().GetDañoFuego() + pc.dañoFuegoItems);
+            ec.AddShock(gameObject.GetComponent<DisplayCard>().GetValorAturdido() + pc.shockTemp + pc.valorAturdidoItems);
+        }
+    }
     private void ManejoCarta()
     {
-        if (gameObject.GetComponent<DisplayCard>().GetCard().eterea){
-                GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id,false);
+        if (gameObject.GetComponent<DisplayCard>().GetCard().eterea)
+        {
+            GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id, false);
         }
-        else{
-            GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id,true);
+        else
+        {
+            GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverCarta(gameObject, gameObject.GetComponent<DisplayCard>().GetCard().id, true);
         }
         GameManager.carta = null;
         GameManager.cartaSeleccionada = false;

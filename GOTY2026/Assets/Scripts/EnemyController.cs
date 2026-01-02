@@ -93,6 +93,11 @@ public class EnemyController : MonoBehaviour
             Debug.Log("Enemy aturdido");
         }
     }
+    public void ResetShock()
+    {
+        shock = false;
+        aturdido.gameObject.SetActive(false);
+    }
     public void Fuego()
     {
         if (danoFuego > 0)
@@ -112,6 +117,11 @@ public class EnemyController : MonoBehaviour
         {
             fuego.gameObject.SetActive(false);
         }
+    }
+    public void RedFuego()
+    {
+        danoFuego = 0;
+        fuego.gameObject.SetActive(false);
     }
     public void Ataque(Vector2[] posicionesAtaque, int dañoEnemy)
     {

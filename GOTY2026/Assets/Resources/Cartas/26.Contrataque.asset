@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b64cfcac6d60124eb6d181656d30b58, type: 3}
+  m_Name: 26.Contrataque
+  m_EditorClassIdentifier: Assembly-CSharp::Card
+  id: 26
+  _name: Contraataque
+  coste: 2
+  tipoCoste: 1
+  descripcion: "Haces da\xF1o a un enemigo equivalente a tu escudo, a cambio pierdes
+    lamitad del escudo que tuvieras."
+  patron: Tile
+  rango: 1
+  area: 1
+  area2: 0
+  tipo: 0
+  "da\xF1o": 0
+  "da\xF1oFuego": 0
+  shockValue: 0
+  precio: 30
+  sprite: {fileID: 0}
+  eterea: 0
