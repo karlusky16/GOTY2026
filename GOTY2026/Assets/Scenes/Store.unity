@@ -2891,6 +2891,7 @@ MonoBehaviour:
   ItemsBtn: {fileID: 1634089415}
   CardsBtn: {fileID: 671590388}
   inventoryCardTemplate: {fileID: 2291647133608997811, guid: 4f1bd688a97d74945ba12da9521d11d4, type: 3}
+  inventoryObjectTemplate: {fileID: 0}
   panelCartasInventario: {fileID: 1836354440}
   scrollRectCartasInventario: {fileID: 1173797262}
   monedasText: {fileID: 653787040}
@@ -3691,8 +3692,11 @@ MonoBehaviour:
   ItemsBtn: {fileID: 1896385098}
   CardsBtn: {fileID: 1333107492}
   shopCardTemplate: {fileID: 392296298868921792, guid: 2228f2203afe96b4cb64f25834fa6ee6, type: 3}
+  shopObjectTemplate: {fileID: 2182053060665806547, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
   panelCartasTienda: {fileID: 1882865728}
   scrollRectCartasTienda: {fileID: 435303815}
+  panelObjetosTienda: {fileID: 1127979036}
+  scrollRectObjetosTienda: {fileID: 1091368091}
   monedasText: {fileID: 1576839199}
   shopPanel: {fileID: 1229502067}
   MensajeCompraSatisfactoria: {fileID: 1265847351}
