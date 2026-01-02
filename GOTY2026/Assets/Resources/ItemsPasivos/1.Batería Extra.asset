@@ -15,4 +15,4 @@ MonoBehaviour:
   id: 1
   _name: Bateria Extra
   descripcion: Te agrega 2 de energia permanente pero reduce en 2 el mana maximo
-  sprite: {fileID: 0}
+  sprite: {fileID: 8383521278122326527, guid: 83d9be07b87371549b11ed504ea93395, type: 3}

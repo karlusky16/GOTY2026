@@ -163,6 +163,7 @@
     <Compile Include="Assets\Scripts\HomeStoreScene.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\MapManager.cs" />
+    <Compile Include="Assets\Scripts\DisplayItems.cs" />
     <Compile Include="Assets\Scripts\TileManager.cs" />
     <Compile Include="Assets\OneLine\OneLine\Attributes\WeightAttribute.cs" />
     <Compile Include="Assets\OneLine\OneLine\Attributes\WidthAttribute.cs" />
