@@ -16,6 +16,7 @@ public class ShopObjectTemplate : MonoBehaviour
     
     public void Setup(int id, int price, ShopManager shopManager)
     {
+        displayItem = gameObject.GetComponent<DisplayItems>();
         itemId = id;
         this.price = price;
         manager = shopManager;
