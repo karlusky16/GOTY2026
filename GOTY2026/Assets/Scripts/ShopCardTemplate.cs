@@ -4,6 +4,9 @@ using TMPro;
 
 public class ShopCardTemplate : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip pulsarBotonClip;
+
     public DisplayCard displayCard;   // Componente que muestra la carta
     public Button buyButton;          
     public TMP_Text priceText;        
@@ -33,6 +36,7 @@ public class ShopCardTemplate : MonoBehaviour
         
         buyButton.onClick.RemoveAllListeners();
         buyButton.onClick.AddListener(() => manager.ComprarCarta(cardId, price, displayCard.card._name));
+        buyButton.onClick.AddListener(() => audioSource.PlayOneShot(pulsarBotonClip));
 
         int dineroActual = GameManager.player.GetComponent<PlayerController>().GetMonedas();
         UpdateInteractivity(dineroActual);

@@ -68,7 +68,7 @@ public class ShopManager : MonoBehaviour
         MensajeCompraSatisfactoria.SetActive(false);
         MostrarObjetosEnTienda();
         Canvas.ForceUpdateCanvases();
-        scrollRectCartasTienda.verticalNormalizedPosition = 1f;
+        scrollRectObjetosTienda.verticalNormalizedPosition = 1f;
     }
 
     public void MostrarCartasEnTienda()
@@ -173,7 +173,7 @@ public class ShopManager : MonoBehaviour
             player.ReducirMonedas(precio);
             player.AddPasivo(itemId);
 
-            textoMensajeCompraSatisfactoria.text ="El objeto " + nombreItem + " comprada por " + precio + " monedas ha sido añadida a tu inventario.";
+            textoMensajeCompraSatisfactoria.text ="El objeto " + nombreItem + " comprado por " + precio + " monedas ha sido añadida a tu inventario.";
             MensajeCompraSatisfactoria.SetActive(true);
 
             ActualizarMonedasUI();

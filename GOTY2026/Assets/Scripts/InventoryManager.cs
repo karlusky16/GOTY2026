@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +18,10 @@ public class InventoryManager : MonoBehaviour
     public GameObject inventoryObjectTemplate;
 
     public Transform panelCartasInventario;
+    public Transform panelObjetosInventario;
+
     public ScrollRect scrollRectCartasInventario;
+    public ScrollRect scrollRectObjetosInventario;
     public TMP_Text monedasText;
     public GameObject inventoryPanel;
 
@@ -47,8 +51,6 @@ public class InventoryManager : MonoBehaviour
         MostrarCartasEnInventario();
         Canvas.ForceUpdateCanvases();
         scrollRectCartasInventario.verticalNormalizedPosition = 1f;
-        
-        
     }
     public void ItemsPanelActivate()
     {
@@ -57,9 +59,11 @@ public class InventoryManager : MonoBehaviour
         CardsBtn.interactable = true;
         ItemsPanel.SetActive(true);
         CardsPanel.SetActive(false);
-    }
 
-    
+        MostrarObjetosEnInventario();
+        Canvas.ForceUpdateCanvases();
+        scrollRectObjetosInventario.verticalNormalizedPosition = 1f;
+    }
 
     public void MostrarCartasEnInventario()
     {
@@ -94,6 +98,7 @@ public class InventoryManager : MonoBehaviour
         {
             int cardId = grupo.Key;
             int cantidad = grupo.Count();
+            
 
             var carta = GameManager.cardList.Find(c => c.id == cardId);
             if (carta == null)
@@ -107,6 +112,58 @@ public class InventoryManager : MonoBehaviour
             if (inventoryItem != null)
             {
                 inventoryItem.Setup(cardId, cantidad);
+            }
+        }
+        ActualizarMonedasUI();
+    }
+
+    public void MostrarObjetosEnInventario()
+    {
+        if(PlayerController.pasivos == null || PlayerController.pasivos.Count == 0)
+        {
+            Debug.LogWarning("La lista de objetos del player está vacía o no inicializada.");
+            return;
+        }
+
+        if(GameManager.itemsLis == null || GameManager.itemsLis.Count == 0)
+        {
+            Debug.LogWarning("La lista de objetos del manager está vacía o no inicializada.");
+            return;
+        }
+        if(inventoryObjectTemplate == null || panelObjetosInventario == null)
+        {
+            Debug.LogError("Prefab o panel no asignados en el Inspector.");
+            return;
+        }
+        int nObj = PlayerController.pasivos.Count;
+        Debug.Log("nObj: "+ nObj);
+        //limiar el panel
+        for(int i = panelObjetosInventario.childCount-1; i>=0; i--)
+        {
+            Destroy(panelObjetosInventario.GetChild(i).gameObject);
+        }
+
+        //agrupar objetos por id y contar cantidades
+        var grupos = PlayerController.pasivos.GroupBy(id => id).OrderBy(g=> g.Key);
+
+        foreach(var grupo in grupos)
+        {
+            int objetId = grupo.Key;
+            int cantidad = grupo.Count();
+            Debug.Log("ObjetoID: " + objetId);
+
+            var objeto = GameManager.itemsLis.Find(c => c.id == objetId);
+            if(objeto == null)
+            {
+                Debug.LogError("Objeto no encontrado con ID: " +objetId);
+                continue;
+            }
+
+            GameObject nuevoItem = Instantiate(inventoryObjectTemplate, panelObjetosInventario);
+            var inventoryItem = nuevoItem.GetComponent<InventoryObjectTemplate>();
+            if(inventoryItem != null)
+            {
+                inventoryItem.Setup(objetId, cantidad);
             }
         }
         ActualizarMonedasUI();

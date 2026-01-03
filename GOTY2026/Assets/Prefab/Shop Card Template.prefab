@@ -173,6 +173,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shop Card Template
       objectReference: {fileID: 0}
+    - target: {fileID: 2409786305255733295, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -264
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758101840481118485, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+      propertyPath: m_text
+      value: Precio
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758101840481118485, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+      propertyPath: m_fontSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758101840481118485, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 4aff14144bd15d34aa5870f6ba3ed811, type: 2}
+    - target: {fileID: 2758101840481118485, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758101840481118485, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758101840481118485, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758101840481118485, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2758101840481118485, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 6465948663912597246, guid: 4aff14144bd15d34aa5870f6ba3ed811, type: 2}
+    - target: {fileID: 2758101840481118485, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 3210113144171075820, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -257,12 +297,36 @@ PrefabInstance:
       propertyPath: displayItem
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5948803609351152024, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948803609351152024, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a24331652574b3e479d00a8c0c41d820, type: 3}
+    - target: {fileID: 6820694035156598239, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1dbaad69cbe7fa04199636488c2d68bc, type: 3}
+    - target: {fileID: 8501364913205156310, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+      propertyPath: itemText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8501364913205156310, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+      propertyPath: itemTextNombre
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8501364913205156310, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+    - {fileID: 3228608952567677792, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
     m_RemovedGameObjects:
     - {fileID: 6860822313120994517, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
     - {fileID: 2746854687022528863, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
     - {fileID: 5899698896998598296, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
     - {fileID: 8689620972862850670, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+    - {fileID: 4999986842506334831, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+    - {fileID: 5975905289217755149, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3210113144171075820, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
       insertIndex: -1
@@ -289,17 +353,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64f839352c1e7c841811f4afa11a5294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardShopTemplate
+  audioSource: {fileID: 6446305003635514342}
+  pulsarBotonClip: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
   displayCard: {fileID: 3042948374149649315}
-  buyButton: {fileID: 8360001205491488722}
-  priceText: {fileID: 4431328554515968518}
+  buyButton: {fileID: 7273701477342077924}
+  priceText: {fileID: 4365024956508476171}
 --- !u!224 &4014147837899260927 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3210113144171075820, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
   m_PrefabInstance: {fileID: 1961742965626002195}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4431328554515968518 stripped
+--- !u!114 &4365024956508476171 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2758101840481118485, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2858147248098068504, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
   m_PrefabInstance: {fileID: 1961742965626002195}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -308,9 +374,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!114 &8360001205491488722 stripped
+--- !u!82 &6446305003635514342 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4777302063795585269, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+  m_PrefabInstance: {fileID: 1961742965626002195}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7273701477342077924 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8015617993703296193, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
+  m_CorrespondingSourceObject: {fileID: 9207858073446070519, guid: a2cbca83b0067f1418495ece4ca62b22, type: 3}
   m_PrefabInstance: {fileID: 1961742965626002195}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

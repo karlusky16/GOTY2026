@@ -141,6 +141,7 @@
     <Compile Include="Assets\Scripts\Tests\TestCaballeroMethods.cs" />
     <Compile Include="Assets\Scripts\ShopCardTemplate.cs" />
     <Compile Include="Assets\Scripts\SceneManager2.cs" />
+    <Compile Include="Assets\Scripts\InventoryObjectTemplate.cs" />
     <Compile Include="Assets\OneLine\RectEx\GridExtensions.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\UI Lines\UIPrimitiveBase.cs" />
     <Compile Include="Assets\Scripts\TileManagerEnemigo.cs" />
