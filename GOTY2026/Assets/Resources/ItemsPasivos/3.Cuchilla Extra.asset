@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPasivo
   id: 3
   _name: Cuchilla Extra
+  precio: 5
   descripcion: "Todos los objetos hacen 1 de da\xF1o extra"
   sprite: {fileID: 0}

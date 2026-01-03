@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPasivo
   id: 3
   _name: Escudo de Repuesto
+  precio: 2
   descripcion: Te agrega 2 de escudo en cada turno
   sprite: {fileID: 0}

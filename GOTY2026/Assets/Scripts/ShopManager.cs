@@ -29,6 +29,8 @@ public class ShopManager : MonoBehaviour
 
     public GameObject MensajeCompraSatisfactoria;
     public TMP_Text textoMensajeCompraSatisfactoria;
+    public GameObject MensajeErrorPasivos;
+    public TMP_Text textoMensajeErrorPasivos;
 
     public void Start()
     {
@@ -53,6 +55,7 @@ public class ShopManager : MonoBehaviour
         ItemsPanel.SetActive(false);
 
         MensajeCompraSatisfactoria.SetActive(false);
+        MensajeErrorPasivos.SetActive(false);
         MostrarCartasEnTienda();
         Canvas.ForceUpdateCanvases();
         scrollRectCartasTienda.verticalNormalizedPosition = 1f;
@@ -66,9 +69,10 @@ public class ShopManager : MonoBehaviour
         CardsPanel.SetActive(false);
 
         MensajeCompraSatisfactoria.SetActive(false);
+        MensajeErrorPasivos.SetActive(false);
         MostrarObjetosEnTienda();
         Canvas.ForceUpdateCanvases();
-        scrollRectCartasTienda.verticalNormalizedPosition = 1f;
+        scrollRectObjetosTienda.verticalNormalizedPosition = 1f;
     }
 
     public void MostrarCartasEnTienda()
@@ -109,7 +113,7 @@ public class ShopManager : MonoBehaviour
                 Debug.LogWarning("El prefab no tiene el componente CardShopTemplate.");
             }
         }
-        RefrescarInteractividadDeTodos();
+        RefrescarInteractividadDeTodosShop();
     }
 
     public void MostrarObjetosEnTienda()
@@ -146,7 +150,7 @@ public class ShopManager : MonoBehaviour
                 Debug.LogWarning("El prefab no tiene el componente ShopObjectTemplate.");
             }
         }
-        RefrescarInteractividadDeTodos();
+        RefrescarInteractividadDeTodosShop();
     }
 
     public void ComprarCarta(int cardId, int precio, String nombreCarta)
@@ -163,25 +167,38 @@ public class ShopManager : MonoBehaviour
 
             ActualizarMonedasUI();
         }
+        RefrescarInteractividadDeTodosShop();
     }
     public void ComprarItem(int itemId, int precio, String nombreItem)
     {
+        bool flag = false;
         PlayerController player = GameManager.player.GetComponent<PlayerController>();
-        if (player.GetMonedas() >= precio)
+        for(int i=0; i<PlayerController.pasivos.Count; i++)
+        {
+            int id = PlayerController.pasivos[i];
+            if(id == itemId)
+            {
+                textoMensajeErrorPasivos.text ="El objeto " + nombreItem + " solo se puede tener una vez en el inventario.";
+                MensajeErrorPasivos.SetActive(true);
+                flag = true;
+            }
+        }
+        if (player.GetMonedas() >= precio && flag == false)
         {
             Debug.Log(nombreItem);
             player.ReducirMonedas(precio);
             player.AddPasivo(itemId);
 
-            textoMensajeCompraSatisfactoria.text ="El objeto " + nombreItem + " comprada por " + precio + " monedas ha sido añadida a tu inventario.";
+            textoMensajeCompraSatisfactoria.text ="El objeto " + nombreItem + " comprado por " + precio + " monedas ha sido añadida a tu inventario.";
             MensajeCompraSatisfactoria.SetActive(true);
 
             ActualizarMonedasUI();
         }
+        RefrescarInteractividadDeTodosInventory();
     }
 
     /// Recalcula la interactividad de todos los items según el dinero actual.
-    private void RefrescarInteractividadDeTodos()
+    private void RefrescarInteractividadDeTodosShop()
     {
         // Recorre todos los hijos del panel y llama a UpdateInteractivity() si tienen CardShopTemplate
         foreach (Transform t in panelCartasTienda)
@@ -194,10 +211,22 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    private void RefrescarInteractividadDeTodosInventory()
+    {
+        // Recorre todos los hijos del panel y llama a UpdateInteractivity() si tienen CardShopTemplate
+        foreach (Transform t in panelObjetosTienda)
+        {
+            var item = t.GetComponent<ShopObjectTemplate>();
+            if (item != null)
+            {
+                item.UpdateInteractivity(GameManager.player.GetComponent<PlayerController>().GetMonedas());
+            }
+        }
+    }
+
     public void ActualizarMonedasUI()
     {
         int monedasJugador = GameManager.player.GetComponent<PlayerController>().GetMonedas();
         monedasText.text = "Monedas: " + monedasJugador.ToString();
-        RefrescarInteractividadDeTodos();
     }
 }
