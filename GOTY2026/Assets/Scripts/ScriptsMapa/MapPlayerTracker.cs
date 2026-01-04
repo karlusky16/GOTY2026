@@ -90,7 +90,7 @@ namespace Map
                     SceneManager.LoadScene("CampFire");
                     break;
                 case NodeType.Treasure:
-                    SceneManager.LoadScene("WIP");
+                    SceneManager.LoadScene("Cofre");
                     break;
                 case NodeType.Store:
                     SceneManager.LoadScene("Store");
