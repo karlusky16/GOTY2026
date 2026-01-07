@@ -217,21 +217,23 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     internal void EfectoMovimiento(Vector2[] tiles, Tile tile)
     {
         //Si se tiene suficiente recurso y la tile no está ocupada se realiza el efecto
-        if (SePuede() && !tile.ocupado)
+        if (SePuede() && (!tile.ocupado || tile.ocupado && tile.ocupadoObj.CompareTag("Obstacle") && tile.ocupadoObj.GetComponent<DisplayObstacle>().GetObstacle().atravesable))
         {
             PlayerController pc = player.GetComponent<PlayerController>();
             //Comprobación de enemigos en las tiles afectadas y reducción de vida
             foreach (var dir in tiles)
             {
 
-                if (GridManager._tiles.TryGetValue(dir, out Tile tile2) && tile2.ocupado && tile2.ocupadoObj.CompareTag("Enemy"))
+                if (GridManager._tiles.TryGetValue(dir, out Tile tile2) && tile2.ocupado)
                 {
-                    EnemyController ec = tile.ocupadoObj.GetComponent<EnemyController>();
-                    Ataque(ec,null);
-                    if (gameObject.GetComponent<DisplayCard>().GetCard().id == 19)
-                    {
-                        pc.AddEscudo(gameObject.GetComponent<DisplayCard>().GetDaño());
-                    }
+                    if  (tile2.ocupadoObj.CompareTag("Enemy")) {
+                       EnemyController ec = tile.ocupadoObj.GetComponent<EnemyController>();
+                        Ataque(ec,null);
+                        if (gameObject.GetComponent<DisplayCard>().GetCard().id == 19)
+                        {
+                            pc.AddEscudo(gameObject.GetComponent<DisplayCard>().GetDaño());
+                        } 
+                    } 
                 }
             }
             //Movimiento del jugador a la tile seleccionada
@@ -253,7 +255,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     internal void EfectoMovimiento(Tile tile)
     {
         //Si se tiene suficiente recurso y la tile no está ocupada se realiza el efecto
-        if (SePuede() && !tile.ocupado)
+        if (SePuede() && (!tile.ocupado || tile.ocupado && tile.ocupadoObj.CompareTag("Obstacle") && tile.ocupadoObj.GetComponent<DisplayObstacle>().GetObstacle().atravesable))
         {
             PlayerController pc = player.GetComponent<PlayerController>();
             //Movimiento del jugador a la tile seleccionada
@@ -332,6 +334,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         }
         else
         {
+            pc = player.GetComponent<PlayerController>();
             ec.ReducirVida(gameObject.GetComponent<DisplayCard>().GetDaño() + pc.dañoTemp + pc.dañoItems);
             ec.AddFuego(gameObject.GetComponent<DisplayCard>().GetDañoFuego() + pc.dañoFuegoItems);
             ec.AddShock(gameObject.GetComponent<DisplayCard>().GetValorAturdido() + pc.shockTemp + pc.valorAturdidoItems);
@@ -355,7 +358,6 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         Debug.Log("noMas");
         TurnManager.noMas.text = "No hay recurso suficiente para usar esa carta";
         GameObject.Find("GameManager").SendMessage("DesmarcarRango", player.GetComponent<PlayerController>().GetPos());//Se desmarcan las tiles en rango
-        //GameObject.FindGameObjectWithTag("Background").SendMessage("Desaparecer");//Se oculta el fondo
         GameManager.cartaSeleccionada = false;//Se marca la carta como no seleccionada
         borde.color = gameObject.GetComponent<DisplayCard>().GetColor();//Se vuelve a poner el color original del borde
         GameManager.CambiarLayerEnemy("Default");//Se vuelve a poner la layer original de los enemigos

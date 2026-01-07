@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using TMPro;
 using Unity.VisualScripting;
@@ -39,8 +40,8 @@ public class TurnManager : MonoBehaviour
         interfaz = GameObject.Find("InterfazUsuario/NextTurn");
         GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().ManoTurno();
         GameObject.Find("GameManager").GetComponent<GameManager>().TilesEnemigos();
-        GameObject.Find("Player").GetComponent<PlayerController>().ResetMirilla();
-        GameObject.Find("Player").GetComponent<PlayerController>().ResetTemporales();
+        playerController.ResetMirilla();
+        playerController.ResetTemporales();
         playerController.AumentarEnergia(playerController.GetEnergiaMaxima());
         playerController.AumentarMana(playerController.GetManaMaxima());
         playerController.fuego.gameObject.SetActive(false);
@@ -100,7 +101,21 @@ public class TurnManager : MonoBehaviour
 
     void EnemyTurn()
     {
-        // Aquí iría el ataque/movimiento del enemigo
+        foreach (var obstacle in GameManager.obstacles.Keys.ToList())
+        {
+            var d = obstacle.GetComponent<DisplayObstacle>();
+            d.turnosRestantes--;
+
+            if (d.turnosRestantes <= 0 && d.obstacle.atravesable)
+            {
+                GameManager.obstacles.TryGetValue(obstacle, out Vector2 pos);
+                GridManager._tiles[pos].ocupado = false;
+                GridManager._tiles[pos].ocupadoObj = null;
+                GameManager.obstacles.Remove(obstacle);
+                Destroy(obstacle);
+
+            }
+        }
         foreach (var enemy in GameManager.enemigosLis)
         {
             Debug.Log("Ataca el enemigo en: " + GameManager.enemigos[enemy]);
@@ -111,7 +126,7 @@ public class TurnManager : MonoBehaviour
                 Debug.Log("enemy.GetComponent<EnemyController>() == null");
 
                 // Espera
-                Invoke("EndEnemyTurn", 1.5f);
+                Invoke(nameof(EndEnemyTurn), 1.5f);
 
                 currentTurn = Turn.Player; //evita que ataque en cada frame
             }
@@ -127,7 +142,7 @@ public class TurnManager : MonoBehaviour
                     enemy.GetComponent<EnemyController>().Ataque(enemy.GetComponent<TileManagerEnemigo>().GetRango(), enemy.GetComponent<DisplayEnemy>().GetDaño());
                 }
                 enemy.GetComponent<EnemyController>().Movimiento(enemy);
-                if(enemy.GetComponent<DisplayEnemy>().GetName() == "Bomba") enemy.GetComponent<DisplayEnemy>().SendMessage("ActualizarSprite");
+                if (enemy.GetComponent<DisplayEnemy>().GetName() == "Bomba") enemy.GetComponent<DisplayEnemy>().SendMessage("ActualizarSprite");
                 enemy.GetComponent<EnemyController>().Fuego();
                 enemy.GetComponent<EnemyController>().ResetShock();
                 enemy.GetComponent<BoxCollider2D>().enabled = false;

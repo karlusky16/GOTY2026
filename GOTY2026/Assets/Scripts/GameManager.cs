@@ -69,9 +69,9 @@ public class GameManager : MonoBehaviour
         if (GridManager._tiles[pos].ocupadoObj == null)
         {
             obstaclesLis.Add(Instantiate(prefabObstaculo, new(GridManager._tiles[pos].transform.position.x, GridManager._tiles[pos].transform.position.y, -0.01f), Quaternion.identity));
-            obstacles.Add(obstaclesLis[obstaclesLis.Count - 1], pos);
+            obstacles.Add(obstaclesLis[^1], pos);
             obstaclesLis[^1].GetComponent<DisplayObstacle>().ActualizarID(id);
-            GridManager._tiles[pos].ocupadoObj = prefabObstaculo;
+            GridManager._tiles[pos].ocupadoObj = obstaclesLis[^1];
             GridManager._tiles[pos].ocupado = true;
         }
         else

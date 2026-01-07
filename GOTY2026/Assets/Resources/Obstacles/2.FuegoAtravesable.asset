@@ -10,7 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21ba78fb963c8a2498f1a24ec5b8d0ed, type: 3}
-  m_Name: Piedra
+  m_Name: 2.FuegoAtravesable
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  id: 1
-  _name: Piedra
+  id: 2
+  _name: FuegoA
+  sprite: {fileID: -3821933466149153230, guid: 7aa30df5a66713048929ca3936927f83, type: 3}
+  "da\xF1o": 2
+  atravesable: 1
+  turnosRestantes: 1

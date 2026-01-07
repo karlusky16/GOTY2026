@@ -132,11 +132,37 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            List<Vector2> posicionesAtaqueList = new List<Vector2>(posicionesAtaque);
+            List<Vector2> posicionesAtaqueList = new(posicionesAtaque);
             if (posicionesAtaqueList.Contains(new Vector2(player.GetPos().x, player.GetPos().y)))
             {
                 player.ReducirVida(dañoEnemy);
                 Debug.Log("Player atacado por enemy");
+            }
+            if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 5 || gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 8)
+            {
+                GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+                for (int i = 0; i < posicionesAtaqueList.Count; i++)
+                {
+                    if (GridManager._tiles.TryGetValue(posicionesAtaqueList[i], out Tile t))
+                    {
+                        if (!t.ocupado ) {
+                            gm.InstanciateObstacle(posicionesAtaqueList[i], 2);
+                        }
+                    }
+                }
+            }
+            else if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 6)
+            {
+                GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+                for (int i = 0; i < posicionesAtaqueList.Count; i++)
+                {
+                    if (GridManager._tiles.TryGetValue(posicionesAtaqueList[i], out Tile t))
+                    {
+                        if (!t.ocupado ) {
+                            gm.InstanciateObstacle(posicionesAtaqueList[i], 3);
+                        }
+                    }
+                }
             }
         }
     }

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +15,10 @@ public class SceneManagerSample : MonoBehaviour
         GameManager.enemigosLis.Clear();
         GameManager.obstaclesLis.Clear();
         GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if (GameManager.player == null)
+        {
+            Debug.Log("Platyer no esta en GameManager");
+        }
         GameManager.player.GetComponent<PlayerController>().Mover(new Vector2(0, 2));
         GenerarEnemigos();
         TurnManager.playerController = GameManager.player.GetComponent<PlayerController>();

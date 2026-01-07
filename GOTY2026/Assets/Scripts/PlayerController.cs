@@ -96,6 +96,20 @@ public class PlayerController : MonoBehaviour
             posicion.ocupado = false;
             posicion.ocupadoObj = null;
         }
+        if (GridManager._tiles[pos].ocupado)
+        {
+            GameObject ocupante = GridManager._tiles[pos].ocupadoObj;
+            if (ocupante.GetComponent<DisplayObstacle>().obstacle.id == 2)
+            {
+                AddFuego(ocupante.GetComponent<DisplayObstacle>().obstacle.daño);
+            }
+            else if (ocupante.GetComponent<DisplayObstacle>().obstacle.id == 3)
+            {
+                ReducirVida(ocupante.GetComponent<DisplayObstacle>().obstacle.daño);
+            }
+            GameManager.obstacles.Remove(ocupante);
+            Destroy(ocupante);
+        }
         posicion = GridManager._tiles[pos];
         posicion.ocupado = true;
         posicion.ocupadoObj = this.gameObject;

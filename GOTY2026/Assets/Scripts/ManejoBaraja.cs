@@ -25,7 +25,7 @@ public class ManejoBaraja : MonoBehaviour
         System.Random rand = new();
         if (player.stats.inicializado && player.GetCartasLength() > 0)
             return; // Ya hay cartas, no inicializamos
-        GameManager.player.GetComponent<PlayerController>().inicializado = true;
+        player.stats.inicializado = true;
         //Para meter cartas aleatorias en la baraja del jugador
         foreach (var id in mazoDefault)
         {

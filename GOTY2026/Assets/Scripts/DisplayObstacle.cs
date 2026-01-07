@@ -6,6 +6,8 @@ public class DisplayObstacle : MonoBehaviour
     public Obstacle obstacle;
     public int displayID;
     public int id;
+    public int turnosRestantes;
+    public SpriteRenderer spriteRenderer;
     public void ActualizarID(int nuevoDisplayID)
     {
         displayID = nuevoDisplayID;
@@ -13,8 +15,11 @@ public class DisplayObstacle : MonoBehaviour
         if (obstacle == null)
         {
             Debug.LogError($" Obstacle ID {displayID} no encontrado en ObstacleDatabase");
+
             return;
         }
+        spriteRenderer.sprite = obstacle.sprite;
+        turnosRestantes = obstacle.turnosRestantes;
     }
 
 

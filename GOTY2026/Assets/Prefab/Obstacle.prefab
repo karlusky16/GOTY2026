@@ -106,3 +106,4 @@ MonoBehaviour:
   obstacle: {fileID: 0}
   displayID: 0
   id: 0
+  spriteRenderer: {fileID: 7217608333526629402}
