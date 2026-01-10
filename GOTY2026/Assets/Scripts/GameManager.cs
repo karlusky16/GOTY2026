@@ -60,13 +60,12 @@ public class GameManager : MonoBehaviour
         enemigos.Add(enemigosLis[^1], pos);
         enemigosLis[^1].GetComponent<DisplayEnemy>().ActualizarID(id);
         GridManager._tiles[pos].ocupadoObj = enemigosLis[enemigosLis.Count - 1];
-        GridManager._tiles[pos].ocupado = true;
         enemigosLis[^1].GetComponent<EnemyController>().Mover(pos); // le asigna al enemigo su posición        
     }
 
     public void InstanciateObstacle(Vector2 pos, int id)
     {
-        if (id != 1)
+        if (id > 1)
         {
             if (GridManager._tiles[pos].ocupadoObjAt == null)
             {

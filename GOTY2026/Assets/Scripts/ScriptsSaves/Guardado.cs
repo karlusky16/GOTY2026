@@ -7,7 +7,12 @@ public class Guardado : MonoBehaviour
     public void Guardar()
     {
         GameManager.player.GetComponent<PlayerController>().GuardarStats();
-        string json = JsonUtility.ToJson(GameManager.player.GetComponent<PlayerController>().stats, true);
+        SaveData saveData = new SaveData
+        {
+            escena = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name,
+            stats = GameManager.player.GetComponent<PlayerController>().stats
+        };
+        string json = JsonUtility.ToJson(saveData, true);
         File.WriteAllText(rutaSave, json);
         Debug.Log("Jugador guardado en: " + rutaSave);
     }
@@ -25,7 +30,8 @@ public class Guardado : MonoBehaviour
             return;
         }
         string json = File.ReadAllText(rutaSave);
-        PlayerStats statsGuardadas = JsonUtility.FromJson<PlayerStats>(json);
+        SaveData saveGuardada = JsonUtility.FromJson<SaveData>(json);
+        PlayerStats statsGuardadas = saveGuardada.stats;
         GameManager.player.GetComponent<PlayerController>().stats = statsGuardadas;
         Debug.Log("Jugador cargado correctamente");
     }

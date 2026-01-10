@@ -40,6 +40,7 @@ public class TurnManager : MonoBehaviour
         interfaz = GameObject.Find("InterfazUsuario/NextTurn");
         GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().ManoTurno();
         GameObject.Find("GameManager").GetComponent<GameManager>().TilesEnemigos();
+        playerController.QuitarShock();
         playerController.ResetMirilla();
         playerController.ResetTemporales();
         playerController.AumentarEnergia(playerController.GetEnergiaMaxima());
@@ -91,6 +92,7 @@ public class TurnManager : MonoBehaviour
         }
         GameManager.carta = null;
         GameManager.cartaSeleccionada = false;
+        playerController.QuitarShock();
         if (CardAction.carta != null) Destroy(CardAction.carta);
         currentTurn = Turn.Enemy;
         GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().DevolverMano(); ;
@@ -112,6 +114,7 @@ public class TurnManager : MonoBehaviour
                 GridManager._tiles[pos].ocupadoAt = false;
                 GridManager._tiles[pos].ocupadoObjAt = null;
                 GameManager.obstacles.Remove(obstacle);
+                GameManager.obstaclesLis.Remove(obstacle);
                 Destroy(obstacle);
 
             }
@@ -132,14 +135,16 @@ public class TurnManager : MonoBehaviour
             }
             else
             {
-                if (enemy.GetComponent<DisplayEnemy>().enemy.id == 4)
+                if (enemy.GetComponent<DisplayEnemy>().enemy.id == 4 || (enemy.GetComponent<DisplayEnemy>().GetEnemy().id == 10  && enemy.GetComponent<TileManagerEnemigo>().patronDragon == 5))
                 {
                     GameObject.Find("Player").GetComponent<PlayerController>().ReducirVida(enemy.GetComponent<DisplayEnemy>().GetDaño());
+                    GameObject.Find("Player").GetComponent<PlayerController>().AddFuego(enemy.GetComponent<DisplayEnemy>().enemy.dañoFuego);
+                    GameObject.Find("Player").GetComponent<PlayerController>().AddShock(enemy.GetComponent<DisplayEnemy>().enemy.shockValue);
                 }
                 else
                 {
                     Debug.Log("Rango enemigo: " + enemy.GetComponent<TileManagerEnemigo>().GetRango());
-                    enemy.GetComponent<EnemyController>().Ataque(enemy.GetComponent<TileManagerEnemigo>().GetRango(), enemy.GetComponent<DisplayEnemy>().GetDaño());
+                    enemy.GetComponent<EnemyController>().Ataque(enemy.GetComponent<TileManagerEnemigo>().GetRango(), enemy.GetComponent<DisplayEnemy>().GetDaño(), enemy.GetComponent<DisplayEnemy>().enemy.dañoFuego, enemy.GetComponent<DisplayEnemy>().enemy.shockValue);
                 }
                 enemy.GetComponent<EnemyController>().Movimiento(enemy);
                 if (enemy.GetComponent<DisplayEnemy>().GetName() == "Bomba") enemy.GetComponent<DisplayEnemy>().SendMessage("ActualizarSprite");

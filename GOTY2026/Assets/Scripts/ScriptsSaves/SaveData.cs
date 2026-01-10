@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 
 [System.Serializable]
-public class PlayerData
+public class SaveData
 {
-    public Vector3 posicion;
+    public String escena;
     public PlayerStats stats;
 }

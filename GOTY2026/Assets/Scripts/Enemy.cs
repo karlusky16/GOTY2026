@@ -7,6 +7,8 @@ public class Enemy : ScriptableObject
     public String _name;
     public int vida;
     public int daño;
+    public int dañoFuego;
+    public int shockValue;
     public int rango;
     public int area;
     public int movimiento;

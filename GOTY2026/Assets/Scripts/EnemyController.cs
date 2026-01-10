@@ -123,7 +123,7 @@ public class EnemyController : MonoBehaviour
         danoFuego = 0;
         fuego.gameObject.SetActive(false);
     }
-    public void Ataque(Vector2[] posicionesAtaque, int dañoEnemy)
+    public void Ataque(Vector2[] posicionesAtaque, int dañoEnemy,int danoFE,int sVE)
     {
         if (shock)
         {
@@ -136,9 +136,11 @@ public class EnemyController : MonoBehaviour
             if (posicionesAtaqueList.Contains(new Vector2(player.GetPos().x, player.GetPos().y)))
             {
                 player.ReducirVida(dañoEnemy);
+                player.AddFuego(danoFE);
+                player.AddShock(sVE);
                 Debug.Log("Player atacado por enemy");
             }
-            if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 5 || gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 8)
+            if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 5 || gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 8 || (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 10  && gameObject.GetComponent<TileManagerEnemigo>().patronDragon == 1))
             {
                 GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
                 for (int i = 0; i < posicionesAtaqueList.Count; i++)
@@ -154,7 +156,7 @@ public class EnemyController : MonoBehaviour
                     }
                 }
             }
-            else if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 6)
+            else if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 6 || (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 10  && gameObject.GetComponent<TileManagerEnemigo>().patronDragon == 6))
             {
                 GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
                 for (int i = 0; i < posicionesAtaqueList.Count; i++)
@@ -176,7 +178,7 @@ public class EnemyController : MonoBehaviour
 
         switch (name)
         {
-            case "Robot":
+            case "Robot" or "Dragon":
                 Mover(MoverAFila(enemy));
                 break;
             case "Caballero":
@@ -204,7 +206,7 @@ public class EnemyController : MonoBehaviour
                 if(movimientos > 0) Mover(CalcularRutaMasCorta(enemy, movimientos));
                 break;
         }
-        }
+    }
 
     public void Mover(UnityEngine.Vector2 pos)
     {
@@ -212,11 +214,39 @@ public class EnemyController : MonoBehaviour
             posicion.ocupado = false;
             posicion.ocupadoObj = null; 
         }
-        posicion = GridManager._tiles[pos];
-        posicion.ocupado = true;
-        posicion.ocupadoObj = this.gameObject;
-        gameObject.transform.position = new(posicion.transform.position.x,posicion.transform.position.y,-0.1f);
-        GameManager.enemigos[gameObject] = pos;
+        if (gameObject.GetComponent<DisplayEnemy>().GetName() == "Dragon")
+        {
+            Tile posAnt = posicion;
+            posicion = GridManager._tiles[pos];
+            if (posicion.ocupado)
+            {
+                GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+                GameManager.obstacles.Remove(posicion.ocupadoObj);
+                GameManager.obstaclesLis.Remove(posicion.ocupadoObj);
+                Destroy(posicion.ocupadoObj);
+                posicion = GridManager._tiles[pos];
+                posicion.ocupado = true;
+                posicion.ocupadoObj = this.gameObject;
+                gameObject.transform.position = new(posicion.transform.position.x,posicion.transform.position.y,-0.1f);
+                GameManager.enemigos[gameObject] = pos;
+                gm.InstanciateObstacle(new Vector2(posAnt.x,posAnt.y),0);
+            }
+            else {
+                posicion = GridManager._tiles[pos];
+                posicion.ocupado = true;
+                posicion.ocupadoObj = this.gameObject;
+                gameObject.transform.position = new(posicion.transform.position.x,posicion.transform.position.y,-0.1f);
+                GameManager.enemigos[gameObject] = pos;
+            }
+        }
+        else {
+            posicion = GridManager._tiles[pos];
+            posicion.ocupado = true;
+            posicion.ocupadoObj = this.gameObject;
+            gameObject.transform.position = new(posicion.transform.position.x,posicion.transform.position.y,-0.1f);
+            GameManager.enemigos[gameObject] = pos;
+        }
+        
     }
 
     void OnMouseEnter()
@@ -237,10 +267,11 @@ public class EnemyController : MonoBehaviour
     public void OnMouseDown()
     {
         Debug.Log("Mouse click enemy");
-        GameObject.Find("PanelInfo").SendMessage("CambiarEstado");
-        if (GameObject.Find("PanelInfo").GetComponent<BestiarioManager>().RetEnP())
+        BestiarioManager bm = GameObject.Find("PanelInfo").GetComponent<BestiarioManager>();
+        bm.CambiarEstado();
+        if (bm.RetEnP())
         {
-            GameObject.Find("PanelInfo").SendMessage("DisplayDatos",this.gameObject);  
+            bm.DisplayDatos(gameObject);  
         }
     }
 /*Se mueve a la fila del player*/
@@ -250,14 +281,18 @@ public class EnemyController : MonoBehaviour
         int playerx =  GameManager.player.GetComponent<PlayerController>().GetPos().x;
         int enemyx = enemy.GetComponent<EnemyController>().GetPos().x;
         if(playery == enemy.GetComponent<EnemyController>().GetPos().y) return new Vector2(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y); // si ya está en la fila del player se queda donde estaba
-        Vector2 nuevaPos = new Vector2(enemyx, playery);
+        Vector2 nuevaPos = new(enemyx, playery);
         Tile tile;
         GridManager._tiles.TryGetValue(nuevaPos, out tile);
         if(tile.ocupado == false && enemyx != playerx) return nuevaPos; // moverlo desde el método Movimiento
+        if (tile.ocupado && tile.ocupadoObj.CompareTag("Obstacle") && tile.ocupadoObj.GetComponent<DisplayObstacle>().GetId() == 0) {
+            Debug.Log("Estoy Aqui");
+            return nuevaPos;
+        }
         else
         {
-            int ancho ;
-            if(GameObject.Find("GridManager") == null)
+            int ancho;
+            if (GameObject.Find("GridManager") == null)
             {
                 FondoManager fondo = GameObject.Find("Fondo").GetComponent<FondoManager>();
                 fondo.Aparecer();
@@ -267,17 +302,17 @@ public class EnemyController : MonoBehaviour
             {
                 ancho = GameObject.Find("GridManager").GetComponent<GridManager>().GetWidth();
             }
-            
-            for(int i = 0; i < ancho - 1; i++)
+
+            for (int i = 0; i < ancho - 1; i++)
             {
-                if(enemyx == 0) enemyx = ancho;
+                if (enemyx == 0) enemyx = ancho;
                 enemyx--;
                 nuevaPos = new Vector2(enemyx, playery);
                 GridManager._tiles.TryGetValue(nuevaPos, out tile);
-                if(tile.ocupado == false && enemyx != playerx) return nuevaPos;
+                if (tile.ocupado == false && enemyx != playerx) return nuevaPos;
             }
-            return new Vector2(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y) ; // aqui solo llega si ha acabado el for, por tanto i = ancho y como no se ha podido mover se queda en su posición original
-            
+            return new Vector2(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y); // aqui solo llega si ha acabado el for, por tanto i = ancho y como no se ha podido mover se queda en su posición original
+
         }
 
     }
@@ -303,10 +338,10 @@ public class EnemyController : MonoBehaviour
 
         Vector2[] dirs = new Vector2[]
         {
-            new Vector2(1,0),
-            new Vector2(-1,0),
-            new Vector2(0,1),
-            new Vector2(0,-1)
+            new(1,0),
+            new(-1,0),
+            new(0,1),
+            new(0,-1)
         };
         /*Dijkstra*/
         while (open.Count > 0)

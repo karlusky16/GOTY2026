@@ -42,10 +42,17 @@ public class AjustesManager : MonoBehaviour
     }
     public void Guardar()
     {
-        audioSource.PlayOneShot(pulsarBotonClip);
-        GameObject.Find("Player").GetComponent<PlayerController>().GuardarStats();
-        string json = JsonUtility.ToJson(GameManager.player.GetComponent<PlayerController>().stats, true);
-        File.WriteAllText(RutaSave, json);
+        if ( UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "MenuPrincipal" && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "SelectCharacter"){
+            GameManager.player.GetComponent<PlayerController>().GuardarStats();
+            SaveData saveData = new SaveData
+            {
+                escena = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name,
+                stats = GameManager.player.GetComponent<PlayerController>().stats
+            };
+            string json = JsonUtility.ToJson(saveData, true);
+            File.WriteAllText(RutaSave, json);
+            Debug.Log("Jugador guardado en: " + RutaSave);
+        }
     }
     public void ActivarSegundoMenu()
     {

@@ -59,7 +59,6 @@
     <Compile Include="Assets\Scripts\AjustesManager.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\MapPlayerTracker.cs" />
     <Compile Include="Assets\Scripts\ScriptsSaves\Ajustes.cs" />
-    <Compile Include="Assets\Scripts\ScriptsSaves\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Tile.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
     <Compile Include="Assets\Scripts\GridManager.cs" />
@@ -147,6 +146,7 @@
     <Compile Include="Assets\Scripts\ScriptsMapa\UI Lines\UIPrimitiveBase.cs" />
     <Compile Include="Assets\Scripts\TileManagerEnemigo.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs" />
+    <Compile Include="Assets\Scripts\ScriptsSaves\SaveData.cs" />
     <Compile Include="Assets\Scripts\ScriptsSaves\PlayerStats.cs" />
     <Compile Include="Assets\OneLine\OneLine\Attributes\ExpandableAttribute.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
