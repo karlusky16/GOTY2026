@@ -25,18 +25,15 @@ public class SceneManagerBoss : MonoBehaviour
 
     public void GenerarEnemigos()
     {
-        GameManager.InstanciateEnemy(new Vector2(6, 2), 6);
-        GameManager.InstanciateEnemy(new Vector2(7, 2), 8);
-        GameManager.InstanciateEnemy(new Vector2(7, 4), 5);
-        GameManager.InstanciateEnemy(new Vector2(8, 0), 5);
-        GameManager.InstanciateEnemy(new Vector2(8, 2), 4);
+        GameManager.InstanciateEnemy(new Vector2(8, 2), 10);
     }
 
     public void GenerarObstaculos()
     {
-        GameManager.InstanciateObstacle(new Vector2(7, 0), 1);
-        GameManager.InstanciateObstacle(new Vector2(6, 4), 1);
-
+        GameManager.InstanciateObstacle(new Vector2(8, 0), 0);
+        GameManager.InstanciateObstacle(new Vector2(8, 1), 0);
+        GameManager.InstanciateObstacle(new Vector2(8, 3), 0);
+        GameManager.InstanciateObstacle(new Vector2(8, 4), 0);
     }
     // Update is called once per frame
     void Update()

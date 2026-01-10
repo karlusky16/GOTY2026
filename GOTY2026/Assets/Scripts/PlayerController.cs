@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
             posicion = GridManager._tiles[pos];
             posicion.ocupado = true;
             posicion.ocupadoObj = this.gameObject;
-            gameObject.transform.position = new(posicion.transform.position.x, posicion.transform.position.y, 0);
+            gameObject.transform.position = new(posicion.transform.position.x, posicion.transform.position.y,(float) -0.1);
         }
         
     }

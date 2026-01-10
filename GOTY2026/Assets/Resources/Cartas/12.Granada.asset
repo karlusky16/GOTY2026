@@ -22,6 +22,9 @@ MonoBehaviour:
   area: 3
   area2: 3
   tipo: 0
-  "da\xF1o": 4
-  precio: 12
+  "da\xF1o": 6
+  "da\xF1oFuego": 0
+  shockValue: 0
+  precio: 15
   sprite: {fileID: 8600474013063023763, guid: 988924d005394884a86585d8baa6eedc, type: 3}
+  eterea: 0

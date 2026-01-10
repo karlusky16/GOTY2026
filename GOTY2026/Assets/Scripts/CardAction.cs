@@ -203,13 +203,14 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                     break;
             }
             ReducirCosto();
-            ManejoCarta(); 
-            }
+            ManejoCarta();
+        }
         //Sino se muestra el mensaje correspondiente
         else
         {
             NoMas();
         }
+        GameManager.CambiarLayerEnemy("Default");
         
     }
     //Metodo para efecto de cartas que impliquen movimiento y ataque
