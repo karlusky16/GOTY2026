@@ -109,8 +109,8 @@ public class TurnManager : MonoBehaviour
             if (d.turnosRestantes <= 0 && d.obstacle.atravesable)
             {
                 GameManager.obstacles.TryGetValue(obstacle, out Vector2 pos);
-                GridManager._tiles[pos].ocupado = false;
-                GridManager._tiles[pos].ocupadoObj = null;
+                GridManager._tiles[pos].ocupadoAt = false;
+                GridManager._tiles[pos].ocupadoObjAt = null;
                 GameManager.obstacles.Remove(obstacle);
                 Destroy(obstacle);
 

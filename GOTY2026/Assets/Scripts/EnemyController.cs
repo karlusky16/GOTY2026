@@ -145,7 +145,10 @@ public class EnemyController : MonoBehaviour
                 {
                     if (GridManager._tiles.TryGetValue(posicionesAtaqueList[i], out Tile t))
                     {
-                        if (!t.ocupado ) {
+                        if (!t.ocupadoAt ) {
+                            if (t.ocupado && t.ocupadoObj.CompareTag("Player")) {
+                                GameManager.player.GetComponent<PlayerController>().Mover(new(t.x,t.y));
+                            }
                             gm.InstanciateObstacle(posicionesAtaqueList[i], 2);
                         }
                     }

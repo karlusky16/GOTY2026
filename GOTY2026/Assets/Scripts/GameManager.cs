@@ -66,17 +66,35 @@ public class GameManager : MonoBehaviour
 
     public void InstanciateObstacle(Vector2 pos, int id)
     {
-        if (GridManager._tiles[pos].ocupadoObj == null)
+        if (id != 1)
         {
-            obstaclesLis.Add(Instantiate(prefabObstaculo, new(GridManager._tiles[pos].transform.position.x, GridManager._tiles[pos].transform.position.y, -0.01f), Quaternion.identity));
-            obstacles.Add(obstaclesLis[^1], pos);
-            obstaclesLis[^1].GetComponent<DisplayObstacle>().ActualizarID(id);
-            GridManager._tiles[pos].ocupadoObj = obstaclesLis[^1];
-            GridManager._tiles[pos].ocupado = true;
+            if (GridManager._tiles[pos].ocupadoObjAt == null)
+            {
+                obstaclesLis.Add(Instantiate(prefabObstaculo, new(GridManager._tiles[pos].transform.position.x, GridManager._tiles[pos].transform.position.y, -0.01f), Quaternion.identity));
+                obstacles.Add(obstaclesLis[^1], pos);
+                obstaclesLis[^1].GetComponent<DisplayObstacle>().ActualizarID(id);
+                GridManager._tiles[pos].ocupadoObjAt = obstaclesLis[^1];
+                GridManager._tiles[pos].ocupadoAt = true;
+            }
+            else
+            {
+                Debug.LogError(" La casilla donde se ha intentado instanciar el obstaculo no estaba vacía");
+            }
         }
         else
         {
-            Debug.LogError(" La casilla donde se ha intentado instanciar el obstaculo no estaba vacía");
+            if (GridManager._tiles[pos].ocupadoObj == null)
+            {
+                obstaclesLis.Add(Instantiate(prefabObstaculo, new(GridManager._tiles[pos].transform.position.x, GridManager._tiles[pos].transform.position.y, -0.01f), Quaternion.identity));
+                obstacles.Add(obstaclesLis[^1], pos);
+                obstaclesLis[^1].GetComponent<DisplayObstacle>().ActualizarID(id);
+                GridManager._tiles[pos].ocupadoObj = obstaclesLis[^1];
+                GridManager._tiles[pos].ocupado = true;
+            }
+            else
+            {
+                Debug.LogError(" La casilla donde se ha intentado instanciar el obstaculo no estaba vacía");
+            }
         }
     }
 

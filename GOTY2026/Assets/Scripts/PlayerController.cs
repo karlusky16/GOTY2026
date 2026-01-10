@@ -96,9 +96,9 @@ public class PlayerController : MonoBehaviour
             posicion.ocupado = false;
             posicion.ocupadoObj = null;
         }
-        if (GridManager._tiles[pos].ocupado)
+        if (GridManager._tiles[pos].ocupadoAt)
         {
-            GameObject ocupante = GridManager._tiles[pos].ocupadoObj;
+            GameObject ocupante = GridManager._tiles[pos].ocupadoObjAt;
             if (ocupante.GetComponent<DisplayObstacle>().obstacle.id == 2)
             {
                 AddFuego(ocupante.GetComponent<DisplayObstacle>().obstacle.daño);
@@ -107,6 +107,8 @@ public class PlayerController : MonoBehaviour
             {
                 ReducirVida(ocupante.GetComponent<DisplayObstacle>().obstacle.daño);
             }
+            GridManager._tiles[pos].ocupadoAt = false;
+            GridManager._tiles[pos].ocupadoObjAt = null;
             GameManager.obstacles.Remove(ocupante);
             Destroy(ocupante);
         }

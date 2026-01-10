@@ -17,6 +17,8 @@ public class Tile : MonoBehaviour
     public GameObject gridManager;
     public Boolean ocupado = false;
     public GameObject ocupadoObj;
+    public Boolean ocupadoAt = false;
+    public GameObject ocupadoObjAt;
     //Variables para obtener la posicion del tile
     public int x, y;
     private object direccionesEfecto;

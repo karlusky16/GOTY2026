@@ -217,7 +217,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     internal void EfectoMovimiento(Vector2[] tiles, Tile tile)
     {
         //Si se tiene suficiente recurso y la tile no está ocupada se realiza el efecto
-        if (SePuede() && (!tile.ocupado || tile.ocupado && tile.ocupadoObj.CompareTag("Obstacle") && tile.ocupadoObj.GetComponent<DisplayObstacle>().GetObstacle().atravesable))
+        if (SePuede() && !tile.ocupado)
         {
             PlayerController pc = player.GetComponent<PlayerController>();
             //Comprobación de enemigos en las tiles afectadas y reducción de vida
@@ -255,7 +255,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     internal void EfectoMovimiento(Tile tile)
     {
         //Si se tiene suficiente recurso y la tile no está ocupada se realiza el efecto
-        if (SePuede() && (!tile.ocupado || tile.ocupado && tile.ocupadoObj.CompareTag("Obstacle") && tile.ocupadoObj.GetComponent<DisplayObstacle>().GetObstacle().atravesable))
+        if (SePuede() && !tile.ocupado )
         {
             PlayerController pc = player.GetComponent<PlayerController>();
             //Movimiento del jugador a la tile seleccionada
