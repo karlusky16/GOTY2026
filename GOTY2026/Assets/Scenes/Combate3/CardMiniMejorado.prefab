@@ -457,7 +457,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8383521278122326527, guid: caec77112135e6f43a8e1bb9a932ee19, type: 3}
+  m_Sprite: {fileID: 8383521278122326527, guid: 7466b4c15745bcb4eb1b109fefe65e13, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -553,7 +553,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -3403103626577751401, guid: 341cf50f68c777d47aca6bbc7cefe92f, type: 3}
+  m_Sprite: {fileID: -3403103626577751401, guid: baa1a50759072c744bd0e099afa41228, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1179,7 +1179,7 @@ GameObject:
   - component: {fileID: 8323249172640336184}
   - component: {fileID: 4004594087583399076}
   m_Layer: 5
-  m_Name: Prefab_CardMiniMejorado
+  m_Name: CardMiniMejorado
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1235,7 +1235,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: 70c355325747abf4e9614a2c780e9dd5, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 7d71e6c9f01419149b6b1f06017ff496, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

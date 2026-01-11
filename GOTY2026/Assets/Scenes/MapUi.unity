@@ -509,7 +509,7 @@ PrefabInstance:
     - target: {fileID: 280146311420083190, guid: a48d9705e38d22e4dbf293bddfdd46bc, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 572309070}
     - target: {fileID: 759758291390773534, guid: a48d9705e38d22e4dbf293bddfdd46bc, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -703,6 +703,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91aa5df4facf30e4391e869fa4696d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AjustesManager
+--- !u!82 &572309070 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3422242011525408243, guid: a48d9705e38d22e4dbf293bddfdd46bc, type: 3}
+  m_PrefabInstance: {fileID: 572309068}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &579924304
 GameObject:
   m_ObjectHideFlags: 0

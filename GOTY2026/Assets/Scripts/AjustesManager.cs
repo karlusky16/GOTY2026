@@ -38,14 +38,21 @@ public class AjustesManager : MonoBehaviour
     public void Salir()
     {
         audioSource.PlayOneShot(pulsarBotonClip);
+        #if UNITY_EDITOR
+        // Si estás en el editor, detiene el Play Mode
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
+        // Si estás en un build (EXE, Mac, etc.), cierra la aplicación
         Application.Quit();
+        #endif
     }
     public void Guardar()
     {
         if ( UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "MenuPrincipal" && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "SelectCharacter"){
             GameManager.player.GetComponent<PlayerController>().GuardarStats();
-            SaveData saveData = new SaveData
+            SaveData saveData = new()
             {
+                batTutorial = GameManager.primerC,
                 escena = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name,
                 stats = GameManager.player.GetComponent<PlayerController>().stats
             };

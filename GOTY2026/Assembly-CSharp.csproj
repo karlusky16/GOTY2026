@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
+    <Compile Include="Assets\Scripts\SceneManagerE1.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Details\Scripts\WeightExample.cs" />
     <Compile Include="Assets\Scripts\CofreScript.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\MapLayer.cs" />

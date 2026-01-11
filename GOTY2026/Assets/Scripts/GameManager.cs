@@ -24,9 +24,10 @@ public class GameManager : MonoBehaviour
     public static List<Card> cardList;
     public static List<Enemy> enemyList;
     public static List<ItemPasivo> itemsLis;
-    public static string[] combatSceneList = new string[] { "SampleScene", "Combate1", "Combate2", "Combate3", "CombateBoss" };
+    public static string[] combatSceneList = new string[] { "Combate1", "SampleScene", "Combate2", "Combate3", "CombateBoss" };
     public static int indexScene = 0;
     public static bool reset;
+    public static bool primerC = false;
 
     public static List<Obstacle> obstacleList;
 

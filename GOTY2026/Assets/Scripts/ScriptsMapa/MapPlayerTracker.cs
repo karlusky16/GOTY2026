@@ -71,8 +71,9 @@ namespace Map
             {
                 case NodeType.MinorEnemy:
                     string sceneName = GameManager.combatSceneList[GameManager.indexScene];
-                    if (GameManager.indexScene >= 1)
+                    if (!GameManager.primerC)
                     {
+                        GameManager.primerC = true;
                         System.Random rand = new();
                         GameManager.indexScene = rand.Next(1,4) ;
                     }
