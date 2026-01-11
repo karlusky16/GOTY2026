@@ -62,6 +62,7 @@ namespace Map
 
         private static void EnterNode(MapNode mapNode)
         {
+            System.Random rand = new();
             // we have access to blueprint name here as well
             Debug.Log("Entering node: " + mapNode.Node.blueprintName + " of type: " + mapNode.Node.nodeType);
             // load appropriate scene with context based on nodeType:
@@ -74,18 +75,19 @@ namespace Map
                     if (!GameManager.primerC)
                     {
                         GameManager.primerC = true;
-                        System.Random rand = new();
-                        GameManager.indexScene = rand.Next(1,4) ;
+                        GameManager.indexScene = rand.Next(1, 5);
                     }
                     else
                     {
                         sceneName = GameManager.combatSceneList[GameManager.indexScene];
-                        GameManager.indexScene=1;
+                        GameManager.indexScene = 1;
                     }
                         SceneManager.LoadScene(sceneName);
                     break;
                 case NodeType.EliteEnemy:
-                    SceneManager.LoadScene("WIP");
+                    GameManager.indexScene = rand.Next(1,2) ;
+                    sceneName = GameManager.combatSceneListE[GameManager.indexScene];
+                    SceneManager.LoadScene(sceneName);
                     break;
                 case NodeType.RestSite:
                     SceneManager.LoadScene("CampFire");

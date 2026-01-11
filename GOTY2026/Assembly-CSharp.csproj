@@ -70,6 +70,8 @@
     <Compile Include="Assets\Scripts\SceneManagerSample.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Benchmark\Scripts\ArrayBenchmark.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\Node.cs" />
+    <Compile Include="Assets\Scripts\SceneManager4.cs" />
+    <Compile Include="Assets\Scripts\SceneManagerE2.cs" />
     <Compile Include="Assets\OneLine\RectEx\MoveToExtensions.cs" />
     <Compile Include="Assets\Scripts\DisplayEnemy.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Details\Scripts\OneLineDrawerExample.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Assets\OneLine\OneLine\Example\Details\Scripts\WidthExample.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\InventoryCardTemplate.cs" />
+    <Compile Include="Assets\Scripts\RecompensasElite.cs" />
     <Compile Include="Assets\OneLine\RectEx\CutFromExtensions.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Tests\Scripts\ExtendedGenericTest.cs" />
     <Compile Include="Assets\Scripts\ApuntadoImagen.cs" />

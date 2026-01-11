@@ -55,11 +55,24 @@ public class EnemyController : MonoBehaviour
             GameManager.enemigosLis.Remove(gameObject);
             if (GameManager.enemigos.Count == 0)
             {
-                SceneManager.LoadScene("Recompensas");
-            }
-            if (GameManager.enemigos.Count == 0 && SceneManager.GetActiveScene().name=="CombateBoss")
-            {
-                GameObject.Find("SceneManager").SendMessage("LoadVictory");
+                if (SceneManager.GetActiveScene().name == "CombateBoss")
+                {
+                    GameManager.player.GetComponent<RectTransform>().position = new Vector2(-1000, 0);
+                    GameObject.Find("SceneManager").SendMessage("LoadVictory");
+                }
+                else
+                {
+                  if (SceneManager.GetActiveScene().name != "CombateE2" && SceneManager.GetActiveScene().name != "CombateE1")
+                    {
+                        GameManager.player.transform.position = new Vector2(-1000, 0);
+                        SceneManager.LoadScene("Recompensas");
+                    }
+                    else
+                    {
+                        GameManager.player.transform.position = new Vector2(-1000, 0);
+                        SceneManager.LoadScene("RecompensasElite");
+                    }  
+                }
             }
             
         }

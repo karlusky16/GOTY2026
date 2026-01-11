@@ -100,9 +100,17 @@ public class PlayerController : MonoBehaviour
             if (GridManager._tiles[pos].ocupadoAt)
             {
                 GameObject ocupante = GridManager._tiles[pos].ocupadoObjAt;
-                if (ocupante.GetComponent<DisplayObstacle>().obstacle.id == 2)
+                if (ocupante.GetComponent<DisplayObstacle>().obstacle.id == 2 )
                 {
                     AddFuego(ocupante.GetComponent<DisplayObstacle>().obstacle.daño);
+                }
+                else if (ocupante.GetComponent<DisplayObstacle>().obstacle.id == 4 )
+                {
+                    AddFuego(ocupante.GetComponent<DisplayObstacle>().obstacle.daño);
+                }
+                else if (ocupante.GetComponent<DisplayObstacle>().obstacle.id == 5 )
+                {
+                    AddShock(ocupante.GetComponent<DisplayObstacle>().obstacle.daño);
                 }
                 else if (ocupante.GetComponent<DisplayObstacle>().obstacle.id == 3)
                 {
