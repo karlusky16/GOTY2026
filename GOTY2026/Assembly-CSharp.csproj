@@ -164,6 +164,7 @@
     <Compile Include="Assets\Scripts\ScriptsSaves\Guardado.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Overview\Scripts\StandartTypesOverview.cs" />
     <Compile Include="Assets\Scripts\HomeStoreScene.cs" />
+    <Compile Include="Assets\Scripts\TutorialManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\MapManager.cs" />
     <Compile Include="Assets\Scripts\DisplayItems.cs" />

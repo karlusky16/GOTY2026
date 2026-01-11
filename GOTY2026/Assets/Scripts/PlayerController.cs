@@ -108,10 +108,6 @@ public class PlayerController : MonoBehaviour
                 {
                     ReducirVida(ocupante.GetComponent<DisplayObstacle>().obstacle.daño);
                 }
-                GridManager._tiles[pos].ocupadoAt = false;
-                GridManager._tiles[pos].ocupadoObjAt = null;
-                GameManager.obstacles.Remove(ocupante);
-                Destroy(ocupante);
             }
             posicion = GridManager._tiles[pos];
             posicion.ocupado = true;

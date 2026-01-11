@@ -30,4 +30,7 @@ public class MenuManager : MonoBehaviour
         GameManager.player.GetComponent<PlayerController>().CargarStats(statsGuardadas.stats);
         SceneManager.LoadScene(statsGuardadas.escena);
     }
+    public void CargarTutorial(){
+        SceneManager.LoadScene("Tutorial");
+    }
 }

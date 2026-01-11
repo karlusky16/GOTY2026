@@ -39,8 +39,8 @@ public class SceneManagerSample : MonoBehaviour
 
     public void GenerarObstaculos()
     {
-        GameManager.InstanciateObstacle(new Vector2(2, 3), 1);
-        GameManager.InstanciateObstacle(new Vector2(4, 5), 1);
+        GameManager.InstanciateObstacle(new Vector2(2, 3), 5);
+        GameManager.InstanciateObstacle(new Vector2(4, 4), 4);
     }
     // Update is called once per frame
     void Update()

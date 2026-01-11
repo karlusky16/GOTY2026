@@ -102,7 +102,12 @@ public class EnemyController : MonoBehaviour
     {
         if (danoFuego > 0)
         {
-            ReducirVida(danoFuego--);
+            if (gameObject.GetComponent<DisplayEnemy>().GetName() == "Dragon"){
+                ReducirVida(danoFuego-- / 2);
+            }
+            else {
+                ReducirVida(danoFuego--);
+            }
             if (danoFuego == 0)
             {
                 fuego.gameObject.SetActive(false);
@@ -325,14 +330,14 @@ public class EnemyController : MonoBehaviour
         int playerx = GameManager.player.GetComponent<PlayerController>().GetPos().x;
         int playery = GameManager.player.GetComponent<PlayerController>().GetPos().y;
 
-        Vector2 start = new Vector2(enemyx, enemyy);
-        Vector2 fin = new Vector2(playerx, playery);
+        Vector2 start = new(enemyx, enemyy);
+        Vector2 fin = new(playerx, playery);
         if (start == fin) return start;
         if (enemyx == playerx && ((playery == enemyy - 1) || (playery == enemyy + 1))) return start;
         if (enemyy == playery && ((playerx == enemyx - 1) || (playerx == enemyx + 1))) return start;
         Dictionary<Vector2, int> dist = new Dictionary<Vector2, int>();
         Dictionary<Vector2, Vector2> parent = new Dictionary<Vector2, Vector2>();
-        List<Vector2> open = new List<Vector2>();
+        List<Vector2> open = new();
         dist[start] = 0;
         open.Add(start);
 
@@ -378,7 +383,7 @@ public class EnemyController : MonoBehaviour
         {
             return start;
         }
-        List<Vector2> path = new List<Vector2>();
+        List<Vector2> path = new();
         Vector2 aux = fin;
         path.Add(aux);
         while (aux != start)
