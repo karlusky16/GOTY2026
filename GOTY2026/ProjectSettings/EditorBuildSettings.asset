@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Recompensas.unity
     guid: 0ef6a438fe68ec44ea8df70503078854
   - enabled: 1
+    path: Assets/Scenes/RecompensaElite.unity
+    guid: e4ce5dad1cac60a48bf440da34ab91e5
+  - enabled: 1
     path: Assets/Scenes/CampFire.unity
     guid: dd2908e807bd7184d9c342578df40dfc
   - enabled: 1
@@ -42,6 +45,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Combate2.unity
     guid: 72e86a8c38cbd3b47a1a2492ca55e02f
   - enabled: 1
+    path: Assets/Scenes/CombateE2.unity
+    guid: 9a15ff2dc050bdb4d997447e7cc2621b
+  - enabled: 1
+    path: Assets/Scenes/Combate4.unity
+    guid: 1c889dbeffe5c3b4ab8c3fbb8d697d99
+  - enabled: 1
+    path: Assets/Scenes/CombateE1.unity
+    guid: 3b854f2d57d0d9d42b872e21fd4e880d
+  - enabled: 1
     path: Assets/Scenes/CombateBoss.unity
     guid: d663c9d4804c09c44b589bb4b2d2c291
   - enabled: 1
@@ -53,6 +65,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cofre.unity
     guid: e328e042df9769340bfc8097c7d6dccd
+  - enabled: 1
+    path: Assets/Scenes/MenuPrincipal.unity
+    guid: f0b185c74cba32b46aa4284f5f8d2d89
+  - enabled: 1
+    path: Assets/Scenes/EventScene.unity
+    guid: 60bb3746b25bdcd47b2b9d83e95ec41b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

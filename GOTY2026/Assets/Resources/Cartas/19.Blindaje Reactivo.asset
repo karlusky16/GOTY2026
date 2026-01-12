@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Blindaje Reactivo
   coste: 1
   tipoCoste: 1
-  descripcion: "Haces 3 de da\xF1o, si golpeas a un enemigo se te agrega 3 de escudo"
+  descripcion: "Haces 3 de da\xF1o, si golpeas a un enemigo se te agrega 3 de escudo."
   patron: Tile
   rango: 1
   area: 1
@@ -26,5 +26,5 @@ MonoBehaviour:
   "da\xF1oFuego": 0
   shockValue: 0
   precio: 25
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: d38e0784f7f53ef4cb85cb3983a89715, type: 3}
   eterea: 0

@@ -11,6 +11,7 @@ public class TileManagerEnemigo : MonoBehaviour
     public int patronDragon = 0;
     public Vector2[] GetRango() => direccionesAnt;
     public Boolean visto = false;
+    public GameObject lanzaPrefab;
     public Vector2[] circulo = { new(1, 0), new(-1, 0), new(1, -1), new(1, 1), new(-1, 1), new(-1, -1), new(0, 1), new(0, -1) };
     public void CalculoTiles(GameObject enemy)
     {

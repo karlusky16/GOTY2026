@@ -16,8 +16,13 @@ MonoBehaviour:
   _name: Mislero
   vida: 20
   "da\xF1o": 4
+  "da\xF1oFuego": 0
+  shockValue: 0
   rango: 0
   area: 0
   movimiento: 0
   patronAtaque: Misilero
-  sprite: {fileID: -6755893110898524868, guid: ecd33070d6d81ac4abd3b01e7fc17b33, type: 3}
+  sprite: {fileID: 1175865607548563936, guid: cdff31df6762d554d955448338e9311f, type: 3}
+  sprite2: {fileID: 0}
+  sprite3: {fileID: 0}
+  sprite4: {fileID: 0}

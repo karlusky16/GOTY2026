@@ -24,9 +24,11 @@ public class GameManager : MonoBehaviour
     public static List<Card> cardList;
     public static List<Enemy> enemyList;
     public static List<ItemPasivo> itemsLis;
-    public static string[] combatSceneList = new string[] { "SampleScene", "Combate1", "Combate2", "Combate3", "CombateBoss" };
+    public static string[] combatSceneList = new string[] { "Combate1", "SampleScene", "Combate2", "Combate3","Combate4", "CombateBoss" };
+    public static string[] combatSceneListE = new string[] { "CombateE1", "CombateE2"};
     public static int indexScene = 0;
     public static bool reset;
+    public static bool primerC = false;
 
     public static List<Obstacle> obstacleList;
 
@@ -44,6 +46,7 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             player = GameObject.FindWithTag("Player");
+            player.transform.position = new Vector2(-1000, 0);
             DontDestroyOnLoad(player);
             //
         }

@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -48,10 +49,21 @@ public class SceneManager3 : MonoBehaviour
         GameManager.reset = true;
         Destroy(GameManager.player);
         Destroy(GameManager);
+        if (File.Exists( Application.persistentDataPath + "/save.json"))
+        {
+            File.Delete( Application.persistentDataPath + "/save.json");
+            Debug.Log("Archivo de guardado eliminado");
+        }
         SceneManager.LoadScene("SelectCharacter");
     }
     public void Salir()
     {
+        #if UNITY_EDITOR
+        // Si estás en el editor, detiene el Play Mode
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
+        // Si estás en un build (EXE, Mac, etc.), cierra la aplicación
         Application.Quit();
+        #endif
     }
 }

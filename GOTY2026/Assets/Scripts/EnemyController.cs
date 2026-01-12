@@ -18,6 +18,8 @@ public class EnemyController : MonoBehaviour
     public Boolean shock;
     public Image fuego;
     public Image aturdido;
+    private Animator anim;
+    public GameObject lanzaPrefab;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,6 +36,7 @@ public class EnemyController : MonoBehaviour
         shock = false;
         fuego.gameObject.SetActive(false);
         aturdido.gameObject.SetActive(false);
+        anim = GetComponent<Animator>();
     }
     public void Vida(int vida)
     {
@@ -55,11 +58,24 @@ public class EnemyController : MonoBehaviour
             GameManager.enemigosLis.Remove(gameObject);
             if (GameManager.enemigos.Count == 0)
             {
-                SceneManager.LoadScene("Recompensas");
-            }
-            if (GameManager.enemigos.Count == 0 && SceneManager.GetActiveScene().name=="CombateBoss")
-            {
-                GameObject.Find("SceneManager").SendMessage("LoadVictory");
+                if (SceneManager.GetActiveScene().name == "CombateBoss")
+                {
+                    GameManager.player.GetComponent<RectTransform>().position = new Vector2(-1000, 0);
+                    GameObject.Find("SceneManager").SendMessage("LoadVictory");
+                }
+                else
+                {
+                  if (SceneManager.GetActiveScene().name != "CombateE2" && SceneManager.GetActiveScene().name != "CombateE1")
+                    {
+                        GameManager.player.transform.position = new Vector2(-1000, 0);
+                        SceneManager.LoadScene("Recompensas");
+                    }
+                    else
+                    {
+                        GameManager.player.transform.position = new Vector2(-1000, 0);
+                        SceneManager.LoadScene("RecompensasElite");
+                    }  
+                }
             }
             
         }
@@ -145,30 +161,41 @@ public class EnemyController : MonoBehaviour
                 player.AddShock(sVE);
                 Debug.Log("Player atacado por enemy");
             }
-            if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 5 || gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 8 || (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 10  && gameObject.GetComponent<TileManagerEnemigo>().patronDragon == 1))
+            if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 1)
+            {
+                for (int i = 0; i < posicionesAtaqueList.Count; i++)
+                {
+                    var lanza = Instantiate(lanzaPrefab, posicionesAtaqueList[i], Quaternion.identity);
+                    Destroy(lanza, 1f);
+                }
+            }
+            if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 5 || gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 8 || (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 10 && gameObject.GetComponent<TileManagerEnemigo>().patronDragon == 1))
             {
                 GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
                 for (int i = 0; i < posicionesAtaqueList.Count; i++)
                 {
                     if (GridManager._tiles.TryGetValue(posicionesAtaqueList[i], out Tile t))
                     {
-                        if (!t.ocupadoAt ) {
-                            if (t.ocupado && t.ocupadoObj.CompareTag("Player")) {
-                                GameManager.player.GetComponent<PlayerController>().Mover(new(t.x,t.y));
+                        if (!t.ocupadoAt)
+                        {
+                            if (t.ocupado && t.ocupadoObj.CompareTag("Player"))
+                            {
+                                GameManager.player.GetComponent<PlayerController>().Mover(new(t.x, t.y));
                             }
                             gm.InstanciateObstacle(posicionesAtaqueList[i], 2);
                         }
                     }
                 }
             }
-            else if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 6 || (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 10  && gameObject.GetComponent<TileManagerEnemigo>().patronDragon == 6))
+            else if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 6 || (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 10 && gameObject.GetComponent<TileManagerEnemigo>().patronDragon == 6))
             {
                 GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
                 for (int i = 0; i < posicionesAtaqueList.Count; i++)
                 {
                     if (GridManager._tiles.TryGetValue(posicionesAtaqueList[i], out Tile t))
                     {
-                        if (!t.ocupado ) {
+                        if (!t.ocupado)
+                        {
                             gm.InstanciateObstacle(posicionesAtaqueList[i], 3);
                         }
                     }

@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Disparo
   coste: 1
   tipoCoste: 1
-  descripcion: Disparas una bala que no atraviesa enemigos
+  descripcion: "Disparas una bala que hace 3 de da\xF1o"
   patron: RectaNP
   rango: 1
   area: 4
@@ -26,5 +26,5 @@ MonoBehaviour:
   "da\xF1oFuego": 0
   shockValue: 0
   precio: 5
-  sprite: {fileID: 2550100444761443495, guid: c9d13e6fa4dd1574ba715ccd4cc2b5d2, type: 3}
+  sprite: {fileID: 2112997781907438548, guid: 31bcc4ae4047d224ca8cbae7d76c6bfe, type: 3}
   eterea: 0

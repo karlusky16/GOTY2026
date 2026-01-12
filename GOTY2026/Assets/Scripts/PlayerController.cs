@@ -100,9 +100,17 @@ public class PlayerController : MonoBehaviour
             if (GridManager._tiles[pos].ocupadoAt)
             {
                 GameObject ocupante = GridManager._tiles[pos].ocupadoObjAt;
-                if (ocupante.GetComponent<DisplayObstacle>().obstacle.id == 2)
+                if (ocupante.GetComponent<DisplayObstacle>().obstacle.id == 2 )
                 {
                     AddFuego(ocupante.GetComponent<DisplayObstacle>().obstacle.daño);
+                }
+                else if (ocupante.GetComponent<DisplayObstacle>().obstacle.id == 4 )
+                {
+                    AddFuego(ocupante.GetComponent<DisplayObstacle>().obstacle.daño);
+                }
+                else if (ocupante.GetComponent<DisplayObstacle>().obstacle.id == 5 )
+                {
+                    AddShock(ocupante.GetComponent<DisplayObstacle>().obstacle.daño);
                 }
                 else if (ocupante.GetComponent<DisplayObstacle>().obstacle.id == 3)
                 {
@@ -159,6 +167,20 @@ public class PlayerController : MonoBehaviour
         JugadorAumentaVida?.Invoke(vidaActual);
         Debug.Log("Aumenta vida jugador");
     }
+    public void AumentarVidaMaxima(int vida)
+    {
+        vidaMaxima += vida;
+        Debug.Log("Aumenta vida máxima jugador");
+    }
+    public void ReducirVidaMaxima(int vida)
+    {
+        if(vidaMaxima > vida) vidaMaxima -= vida;
+        else{
+            vidaMaxima = 1; // no creo que se llegue a esta situacion pero por si acaso la minima vida máxima la pongo a 1
+        }
+        if(vidaActual > vidaMaxima) vidaActual = vidaMaxima;
+        Debug.Log("Reduce vida máxima jugador");
+    }
 
     public void AddEscudo(int escudoAdd)
     {
@@ -198,6 +220,18 @@ public class PlayerController : MonoBehaviour
         JugadorAumentaEnergia?.Invoke(energiaActual);
         Debug.Log("Aumenta energia jugador");
     }
+    public void AumentarEnergiaMaxima(int energia)
+    {
+        energiaMaxima += energia;
+    }
+    public void ReducirEnergiaMaxima(int energia)
+    {
+        if(energiaMaxima > energia) energiaMaxima -= energia;
+        else{
+            energiaMaxima = 0;
+        }
+        if(energiaActual > energiaMaxima) energiaActual = energiaMaxima;
+    }
 
     //Modificar mana del jugador
     public void ReducirMana(int mana)
@@ -211,6 +245,18 @@ public class PlayerController : MonoBehaviour
         if ((manaActual += mana) > manaMaxima) manaActual = manaMaxima;
         JugadorAumentaMana?.Invoke(manaActual);
         Debug.Log("Aumenta mana jugador");
+    }
+    public void AumentarManaMaxima(int mana)
+    {
+        manaMaxima += mana;
+    }
+    public void ReducirManaMaxima(int mana)
+    {
+        if(manaMaxima > mana) manaMaxima -= mana;
+        else{
+            manaMaxima = 0;
+        }
+        if(manaActual > manaMaxima) manaActual = manaMaxima;
     }
     public void AumentarMonedas(int cantidad)
     {

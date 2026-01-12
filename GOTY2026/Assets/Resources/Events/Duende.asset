@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fba0b161643fb147915edb98030df84, type: 3}
+  m_Name: Duende
+  m_EditorClassIdentifier: Assembly-CSharp::Events
+  id: 2
+  nombre: Duende
+  texto: "Un peque\xF1o duende con una bater\xEDa entre las manos se te acerca y
+    te dice:\\n\\nEh... \xBFNo tendr\xE1s algo de oro o man\xE1 de sobra?\\nEsta
+    bater\xEDa se la rob\xE9 a un tipo raro, as\xED que si quieres te la puedo dar
+    a cambio de 40 de oro o 1 de tu man\xE1."
+  textBoton1: "Dar 40 monedas a cambio de aumentar en 1 la energ\xEDa m\xE1xima"
+  textBoton2: "Dar 1 de man\xE1 m\xE1ximo a cambio de aumentar en 1 la energ\xEDa
+    m\xE1xima"
+  costeMonedas1: 40
+  costeMonedas2: 0
+  costeMana1: 1
+  costeMana2: 0
+  costeEnergia1: 0
+  costeEnergia2: 0
+  costeVida1: 0
+  costeVida2: 0

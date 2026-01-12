@@ -16,12 +16,15 @@ MonoBehaviour:
   _name: DashCut
   coste: 2
   tipoCoste: 0
-  descripcion: "Te desplazas 4 casillas y haces da\xF1o a los enemigos que atarvieses"
+  descripcion: "Te desplazas 4 casillas y haces 4 de da\xF1o."
   patron: RectaM
   rango: 1
   area: 4
   area2: 0
   tipo: 2
   "da\xF1o": 4
+  "da\xF1oFuego": 0
+  shockValue: 0
   precio: 15
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 696d45b6c82b62843abf7a7170a21ca4, type: 3}
+  eterea: 0

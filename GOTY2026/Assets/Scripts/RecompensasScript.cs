@@ -59,7 +59,7 @@ public class RecompensasScript : MonoBehaviour
     public void RecogerDinero()
     {
         Debug.Log("Dinero recogido");
-        GameManager.player.GetComponent<PlayerController>().AumentarMonedas(10);
+        GameManager.player.GetComponent<PlayerController>().AumentarMonedas(20);
         GameObject.Find("BotonDinero").GetComponent<UnityEngine.UI.Button>().interactable = false;
     }
     public void RecogerCarta()

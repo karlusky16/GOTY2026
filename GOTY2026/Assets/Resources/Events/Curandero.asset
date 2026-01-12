@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fba0b161643fb147915edb98030df84, type: 3}
+  m_Name: Curandero
+  m_EditorClassIdentifier: Assembly-CSharp::Events
+  id: 1
+  nombre: Curandero
+  texto: "Un anciano envuelto en vendas junto con un carro de frascos de colores
+    te observa con atenci\xF3n.\\nSe te acerca y te ofrece algunas de sus pociones.\\n\\nSe
+    que te habr\xE1n hecho da\xF1o por el camino, as\xED que si quieres puedo venderte
+    algunas de mis pociones. Tengo una que te cura 2 de vida por 10 monedas y otra
+    que te hace m\xE1s fuerte (a\xF1ade 3 de vida m\xE1xima) a cambio de 50 monedas."
+  textBoton1: Dar 10 monedas a cambio de curar 2 de vida
+  textBoton2: "Dar 50 monedas a cambio de sumar 3 de vida m\xE1xima"
+  costeMonedas1: 10
+  costeMonedas2: 50
+  costeMana1: 0
+  costeMana2: 0
+  costeEnergia1: 0
+  costeEnergia2: 0
+  costeVida1: 0
+  costeVida2: 0
