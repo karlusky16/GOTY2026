@@ -384,7 +384,7 @@ public class PlayerController : MonoBehaviour
                 break;
             case 2:
                 manaMaxima += 2;
-                manaActual -= 2;
+                energiaMaxima -= 2;
                 break;
             case 3:
                 dañoItems += 1;
