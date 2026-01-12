@@ -487,6 +487,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3210113144171075820}
     m_Modifications:
+    - target: {fileID: 1410556403452825877, guid: 78929d59b7e5e8a4a89c058beec458ae, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3597446994806982776, guid: 78929d59b7e5e8a4a89c058beec458ae, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 146
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729446128143766797, guid: 78929d59b7e5e8a4a89c058beec458ae, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.89146215
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729446128143766797, guid: 78929d59b7e5e8a4a89c058beec458ae, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.89146215
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729446128143766797, guid: 78929d59b7e5e8a4a89c058beec458ae, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.89146215
+      objectReference: {fileID: 0}
     - target: {fileID: 7831217457790921641, guid: 78929d59b7e5e8a4a89c058beec458ae, type: 3}
       propertyPath: m_Name
       value: ItemDisplay
