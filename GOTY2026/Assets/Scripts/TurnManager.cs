@@ -125,8 +125,6 @@ public class TurnManager : MonoBehaviour
                 Destroy(obstacle);
             }
         }
-
-        // 2️⃣ Enemigos UNO A UNO
         for (int i = GameManager.enemigosLis.Count - 1; i >= 0; i--)
         {
             var enemy = GameManager.enemigosLis[i];
@@ -138,23 +136,28 @@ public class TurnManager : MonoBehaviour
                 animator.SetBool("ataque", true);
                 if (enemy.GetComponent<DisplayEnemy>().GetEnemy().id == 9)
                 {
-                    animator.SetInteger("turno", numTurno+1);
+                    enemy.GetComponent<EnemyController>().HacerObstaculos(enemy.GetComponent<TileManagerEnemigo>().GetRango());
                     
                 }
             }
 
             yield return new WaitForSeconds(1f);
-            enemy.GetComponent<EnemyController>().HacerObstaculos(enemy.GetComponent<TileManagerEnemigo>().GetRango());
+            
             var display = enemy.GetComponent<DisplayEnemy>();
             var controller = enemy.GetComponent<EnemyController>();
 
             if (display.enemy.id == 4 ||
                 (display.enemy.id == 10 &&
-                enemy.GetComponent<TileManagerEnemigo>().patronDragon == 5))
+                enemy.GetComponent<TileManagerEnemigo>().patronDragon == 5) )
             {
-                playerController.ReducirVida(display.GetDaño());
-                playerController.AddFuego(display.enemy.dañoFuego);
-                playerController.AddShock(display.enemy.shockValue);
+                if (enemy.GetComponent<EnemyController>().shock) {
+                    enemy.GetComponent<EnemyController>().shock = false
+                }
+                else {
+                    playerController.ReducirVida(display.GetDaño());
+                    playerController.AddFuego(display.enemy.dañoFuego);
+                    playerController.AddShock(display.enemy.shockValue);
+                }
             }
             else
             {
