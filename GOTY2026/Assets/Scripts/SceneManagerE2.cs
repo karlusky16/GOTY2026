@@ -1,3 +1,4 @@
+using System.Collections;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -53,24 +54,37 @@ public class SceneManagerE2 : MonoBehaviour
 
     public void Reset()
     {
+        StartCoroutine(ResetCoroutine());
+    }
+    private IEnumerator ResetCoroutine()
+    {
         GameManager.reset = true;
-        Destroy(GameManager.player);
-        Destroy(GameObject.Find("GameManager").GetComponent<GameManager>());
-        if (File.Exists( Application.persistentDataPath + "/save.json"))
+
+        if (GameManager.player != null)
+            Destroy(GameManager.player);
+
+        if (GameManager.instance != null)
+            Destroy(GameManager.instance.gameObject);
+
+        if (File.Exists(Application.persistentDataPath + "/save.json"))
         {
-            File.Delete( Application.persistentDataPath + "/save.json");
+            File.Delete(Application.persistentDataPath + "/save.json");
             Debug.Log("Archivo de guardado eliminado");
         }
+
+        // Espera un frame para que Destroy se ejecute
+        yield return null;
+
         SceneManager.LoadScene("MenuPrincipal");
     }
     public void Salir()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         // Si estás en el editor, detiene el Play Mode
         UnityEditor.EditorApplication.isPlaying = false;
-        #else
+#else
         // Si estás en un build (EXE, Mac, etc.), cierra la aplicación
         Application.Quit();
-        #endif
+#endif
     }
 }
