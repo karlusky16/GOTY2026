@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fba0b161643fb147915edb98030df84, type: 3}
+  m_Name: Mendigo
+  m_EditorClassIdentifier: Assembly-CSharp::Events
+  id: 4
+  nombre: Mendigo
+  texto: "Te encuentras con un tipo tumbado en el suelo con una carta a su lado.\\nTe
+    acercas y se incorpora para hablarte.\\n\\nMe encontr\xE9 esta carta hace tiempo,
+    pero no se para que usarla, igual a ti te sirve m\xE1s que a mi.\\nSi me quieres
+    donar algo significar\xEDa mucho para mi."
+  textBoton1: Aceptar carta
+  textBoton2: Donar 10 monedas
+  costeMonedas1: 0
+  costeMonedas2: 10
+  costeMana1: 0
+  costeMana2: 0
+  costeEnergia1: 0
+  costeEnergia2: 0
+  costeVida1: 0
+  costeVida2: 0
