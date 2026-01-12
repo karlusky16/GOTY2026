@@ -185,7 +185,7 @@ public class TurnManager : MonoBehaviour
                 enemy.GetComponent<TileManagerEnemigo>().patronDragon == 5) )
             {
                 if (enemy.GetComponent<EnemyController>().shock) {
-                    enemy.GetComponent<EnemyController>().shock = false
+                    enemy.GetComponent<EnemyController>().shock = false;
                 }
                 else {
                     playerController.ReducirVida(display.GetDaño());
