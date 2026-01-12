@@ -172,7 +172,7 @@ public class TurnManager : MonoBehaviour
             controller.ResetShock();
 
             enemy.GetComponent<BoxCollider2D>().enabled = false;
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.5f);
         }
         EndEnemyTurn();
     }
@@ -185,6 +185,8 @@ public class TurnManager : MonoBehaviour
         GameObject.Find("TurnManager").GetComponent<ManejoBaraja>().ManoTurno();
         GameObject.FindGameObjectWithTag("Background").SendMessage("Aparecer");
         GameObject.Find("GameManager").GetComponent<GameManager>().TilesEnemigos();
+        GameObject.Find("Player").GetComponent<PlayerController>().AumentarMana(GameObject.Find("Player").GetComponent<PlayerController>().GetManaMaxima());
+        GameObject.Find("Player").GetComponent<PlayerController>().AumentarEnergia(GameObject.Find("Player").GetComponent<PlayerController>().GetEnergiaMaxima());
         GameObject.Find("Player").GetComponent<PlayerController>().ResetTemporales();
         Debug.Log("Vuelve el turno del jugador.");
         foreach (var enemy in GameManager.enemigosLis)

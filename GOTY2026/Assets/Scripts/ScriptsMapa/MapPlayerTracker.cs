@@ -99,7 +99,7 @@ namespace Map
                     SceneManager.LoadScene("Store");
                     break;
                 case NodeType.Boss:
-                    SceneManager.LoadScene(GameManager.combatSceneList[4]);
+                    SceneManager.LoadScene("CombateBoss");
                     break;
                 case NodeType.Mystery:
                     SceneManager.LoadScene("EventScene");
