@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c29ee5db422de640b97a3758474fa25, type: 3}
   m_Name: 4.Escudo de Repuesto
   m_EditorClassIdentifier: Assembly-CSharp::ItemPasivo
-  id: 3
+  id: 4
   _name: Escudo de Repuesto
   precio: 40
   descripcion: Te agrega 2 de escudo en cada turno
