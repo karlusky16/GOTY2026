@@ -22,7 +22,5 @@ MonoBehaviour:
   area: 10
   movimiento: 0
   patronAtaque: Dragon
-  sprite: {fileID: 3428391033546482049, guid: b16b599ec3660b848b4bba3daf3bef14, type: 3}
-  sprite2: {fileID: 0}
-  sprite3: {fileID: 0}
-  sprite4: {fileID: 0}
+  animator: {fileID: 9100000, guid: ea6b464990123b24bb73af9eb2b8b535, type: 2}
+  prefabAtaque: {fileID: 0}

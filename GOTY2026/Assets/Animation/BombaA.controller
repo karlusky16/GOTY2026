@@ -87,6 +87,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: ataque
     m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: turno
+    m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1292519798199095626}
   m_Solo: 0
@@ -112,6 +115,12 @@ AnimatorController:
   m_AnimatorParameters:
   - m_Name: ataque
     m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: turno
+    m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -195,6 +204,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: ataque
     m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: turno
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8431171532373216834}
   m_Solo: 0

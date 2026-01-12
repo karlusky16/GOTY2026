@@ -111,6 +111,8 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     {
         if (SePuede())
         {
+            Animator animator = player.GetComponent<Animator>();
+            animator.SetBool("ataque", true);
             PlayerController pc = player.GetComponent<PlayerController>();
             switch (gameObject.GetComponent<DisplayCard>().GetCard().id)
             {
@@ -220,6 +222,8 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         //Si se tiene suficiente recurso y la tile no está ocupada se realiza el efecto
         if (SePuede() && !tile.ocupado)
         {
+            Animator animator = player.GetComponent<Animator>();
+            animator.SetBool("ataque", true);
             PlayerController pc = player.GetComponent<PlayerController>();
             //Comprobación de enemigos en las tiles afectadas y reducción de vida
             foreach (var dir in tiles)
@@ -258,6 +262,8 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         //Si se tiene suficiente recurso y la tile no está ocupada se realiza el efecto
         if (SePuede() && !tile.ocupado )
         {
+            Animator animator = player.GetComponent<Animator>();
+            animator.SetBool("ataque", true);
             PlayerController pc = player.GetComponent<PlayerController>();
             //Movimiento del jugador a la tile seleccionada
             pc.Mover(new(tile.x, tile.y));
@@ -278,6 +284,8 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         //Si se tiene suficiente recurso se realiza el efecto
         if (SePuede())
         {
+            Animator animator = player.GetComponent<Animator>();
+            animator.SetBool("ataque", true);
             //Comprobación de enemigos en las tiles afectadas y reducción de vida
             foreach (var dir in tiles)
             {
@@ -288,7 +296,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                     {
                         PlayerController pc = player.GetComponent<PlayerController>();
                         EnemyController ec = tile.ocupadoObj.GetComponent<EnemyController>();
-                        Ataque(ec,null);
+                        Ataque(ec, null);
                         if (gameObject.GetComponent<DisplayCard>().GetCard().id == 19)
                         {
                             pc.AddEscudo(gameObject.GetComponent<DisplayCard>().GetDaño());
@@ -298,14 +306,15 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                             ec.ReducirVida(pc.escudo);
                             pc.RedEscudo(pc.escudo / 2);
                         }
-                        if (gameObject.GetComponent<DisplayCard>().GetCard().id == 30 && ec.shock) {
-                            Ataque(ec,null);
+                        if (gameObject.GetComponent<DisplayCard>().GetCard().id == 30 && ec.shock)
+                        {
+                            Ataque(ec, null);
                         }
                     }
                     else if (tile.ocupadoObj.CompareTag("Player"))
                     {
                         PlayerController pc = tile.ocupadoObj.GetComponent<PlayerController>();
-                        Ataque(null,pc);
+                        Ataque(null, pc);
                     }
                 }
             }

@@ -18,3 +18,4 @@ MonoBehaviour:
   "da\xF1o": 4
   atravesable: 1
   turnosRestantes: 1
+  animator: {fileID: 9100000, guid: 61616495f1196ec42a623c516a54a455, type: 2}

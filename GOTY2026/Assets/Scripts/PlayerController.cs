@@ -140,7 +140,10 @@ public class PlayerController : MonoBehaviour
     //Modificar vida del jugador
     public void ReducirVida(int vida)
     {
-        if (!GameManager.estamina) {
+        Animator animator = gameObject.GetComponent<Animator>();
+        animator.SetBool("daño", true);
+        if (!GameManager.estamina)
+        {
             int vidDE = 0;
             if ((vidDE = RedEscudo(vida)) < 0)
             {

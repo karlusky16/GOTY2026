@@ -26,9 +26,9 @@ public class SceneManager1 : MonoBehaviour
 
     public void GenerarEnemigos()
     {
-        GameManager.InstanciateEnemy(new Vector2(6, 4), 6);
+        GameManager.InstanciateEnemy(new Vector2(6, 4), 1);
         GameManager.InstanciateEnemy(new Vector2(5, 1), 7);
-        GameManager.InstanciateEnemy(new Vector2(7, 2), 9);
+        GameManager.InstanciateEnemy(new Vector2(7, 2), 2);
 
     }
 
@@ -57,7 +57,7 @@ public class SceneManager1 : MonoBehaviour
             File.Delete( Application.persistentDataPath + "/save.json");
             Debug.Log("Archivo de guardado eliminado");
         }
-        SceneManager.LoadScene("SelectCharacter");
+        SceneManager.LoadScene("MenuPrincipal"); 
     }
     public void Salir()
     {

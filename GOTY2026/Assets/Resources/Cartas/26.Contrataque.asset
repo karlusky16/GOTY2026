@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 26.Contrataque
   m_EditorClassIdentifier: Assembly-CSharp::Card
   id: 26
-  _name: Contraataque
+  _name: Contra Ataque
   coste: 2
   tipoCoste: 1
   descripcion: "Haces da\xF1o a un enemigo equivalente a tu escudo, a cambio pierdes

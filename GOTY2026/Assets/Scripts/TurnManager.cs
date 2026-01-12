@@ -136,7 +136,13 @@ public class TurnManager : MonoBehaviour
             if (animator != null)
             {
                 animator.SetBool("ataque", true);
+                if (enemy.GetComponent<DisplayEnemy>().GetEnemy().id == 9)
+                {
+                    animator.SetInteger("turno", numTurno+1);
+                    
+                }
             }
+
 
             yield return new WaitForSeconds(1f);
 

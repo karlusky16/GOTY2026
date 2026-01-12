@@ -17,13 +17,10 @@ MonoBehaviour:
   vida: 10
   "da\xF1o": 3
   "da\xF1oFuego": 0
-  shockValue: 25
+  shockValue: 5
   rango: 1
   area: 1
   movimiento: 0
   patronAtaque: Sniper
-  sprite: {fileID: -2193531703648604724, guid: 767d21ec93aad0e4083077aadda98b99, type: 3}
-  sprite2: {fileID: 0}
-  sprite3: {fileID: 0}
-  sprite4: {fileID: 0}
   animator: {fileID: 9100000, guid: 5599eca2cde5cd34daf5580f66857538, type: 2}
+  prefabAtaque: {fileID: 0}

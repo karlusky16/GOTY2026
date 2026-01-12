@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 20.EntradaHeroica
   m_EditorClassIdentifier: Assembly-CSharp::Card
   id: 20
-  _name: EntradaHeroica
+  _name: Entrada Heroica
   coste: 3
   tipoCoste: 1
   descripcion: Haces un salto largo que hace 4 a los enemigos de tu alrededor.

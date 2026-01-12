@@ -64,7 +64,7 @@ public class EnemyController : MonoBehaviour
                 }
                 else
                 {
-                  if (SceneManager.GetActiveScene().name != "CombateE2" && SceneManager.GetActiveScene().name != "CombateE1")
+                    if (SceneManager.GetActiveScene().name != "CombateE2" && SceneManager.GetActiveScene().name != "CombateE1")
                     {
                         GameManager.player.transform.position = new Vector2(-1000, 0);
                         SceneManager.LoadScene("Recompensas");
@@ -73,10 +73,10 @@ public class EnemyController : MonoBehaviour
                     {
                         GameManager.player.transform.position = new Vector2(-1000, 0);
                         SceneManager.LoadScene("RecompensasElite");
-                    }  
+                    }
                 }
             }
-            
+
         }
     }
     public int GetVidaMaxima() => vidaMaximaEnemy;
@@ -93,7 +93,7 @@ public class EnemyController : MonoBehaviour
     {
         if (dano <= 0) return;
         danoFuego += dano;
-        if(!fuego.gameObject.activeSelf) fuego.gameObject.SetActive(true);
+        if (!fuego.gameObject.activeSelf) fuego.gameObject.SetActive(true);
         fuego.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = danoFuego.ToString();
         Debug.Log("Enemy recibe fuego");
     }
@@ -117,10 +117,12 @@ public class EnemyController : MonoBehaviour
     {
         if (danoFuego > 0)
         {
-            if (gameObject.GetComponent<DisplayEnemy>().GetName() == "Dragon"){
+            if (gameObject.GetComponent<DisplayEnemy>().GetName() == "Dragon")
+            {
                 ReducirVida(danoFuego-- / 2);
             }
-            else {
+            else
+            {
                 ReducirVida(danoFuego--);
             }
             if (danoFuego == 0)
@@ -143,7 +145,7 @@ public class EnemyController : MonoBehaviour
         danoFuego = 0;
         fuego.gameObject.SetActive(false);
     }
-    public void Ataque(Vector2[] posicionesAtaque, int dañoEnemy,int danoFE,int sVE)
+    public void Ataque(Vector2[] posicionesAtaque, int dañoEnemy, int danoFE, int sVE)
     {
         if (shock)
         {
@@ -160,47 +162,12 @@ public class EnemyController : MonoBehaviour
                 player.AddShock(sVE);
                 Debug.Log("Player atacado por enemy");
             }
-            if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 1 || gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 1)
+            if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 1 || gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 6|| gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 9)
             {
                 for (int i = 0; i < posicionesAtaqueList.Count; i++)
                 {
-                    var ataque= Instantiate(gameObject.GetComponent<DisplayEnemy>().GetEnemy().prefabAtaque, posicionesAtaqueList[i], Quaternion.identity);
+                    var ataque = Instantiate(gameObject.GetComponent<DisplayEnemy>().GetEnemy().prefabAtaque, posicionesAtaqueList[i], Quaternion.identity);
                     Destroy(ataque, 1f);
-                }
-            }
-            if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 1) {
-                
-            }
-            if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 5 || gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 8 || (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 10 && gameObject.GetComponent<TileManagerEnemigo>().patronDragon == 1))
-            {
-                GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-                for (int i = 0; i < posicionesAtaqueList.Count; i++)
-                {
-                    if (GridManager._tiles.TryGetValue(posicionesAtaqueList[i], out Tile t))
-                    {
-                        if (!t.ocupadoAt)
-                        {
-                            if (t.ocupado && t.ocupadoObj.CompareTag("Player"))
-                            {
-                                GameManager.player.GetComponent<PlayerController>().Mover(new(t.x, t.y));
-                            }
-                            gm.InstanciateObstacle(posicionesAtaqueList[i], 2);
-                        }
-                    }
-                }
-            }
-            else if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 6 || (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 10 && gameObject.GetComponent<TileManagerEnemigo>().patronDragon == 6))
-            {
-                GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-                for (int i = 0; i < posicionesAtaqueList.Count; i++)
-                {
-                    if (GridManager._tiles.TryGetValue(posicionesAtaqueList[i], out Tile t))
-                    {
-                        if (!t.ocupado)
-                        {
-                            gm.InstanciateObstacle(posicionesAtaqueList[i], 3);
-                        }
-                    }
                 }
             }
         }
@@ -220,14 +187,14 @@ public class EnemyController : MonoBehaviour
                 {
 
                     GridManager._tiles.TryGetValue(new(0, 2), out Tile tile2);
-                    int playerx =  GameManager.player.GetComponent<PlayerController>().GetPos().x;
+                    int playerx = GameManager.player.GetComponent<PlayerController>().GetPos().x;
                     if (!tile2.ocupado && playerx != 0)
                     {
                         Mover(new(0, 2));
                     }
                     else
                     {
-                        Mover(new(1, 2));;
+                        Mover(new(1, 2)); ;
                     }
 
                 }
@@ -237,16 +204,17 @@ public class EnemyController : MonoBehaviour
                 }
                 break;
             default:
-                if(movimientos > 0) Mover(CalcularRutaMasCorta(enemy, movimientos));
+                if (movimientos > 0) Mover(CalcularRutaMasCorta(enemy, movimientos));
                 break;
         }
     }
 
     public void Mover(UnityEngine.Vector2 pos)
     {
-        if (posicion != null){
+        if (posicion != null)
+        {
             posicion.ocupado = false;
-            posicion.ocupadoObj = null; 
+            posicion.ocupadoObj = null;
         }
         if (gameObject.GetComponent<DisplayEnemy>().GetName() == "Dragon")
         {
@@ -261,36 +229,38 @@ public class EnemyController : MonoBehaviour
                 posicion = GridManager._tiles[pos];
                 posicion.ocupado = true;
                 posicion.ocupadoObj = this.gameObject;
-                gameObject.transform.position = new(posicion.transform.position.x,posicion.transform.position.y,-0.1f);
+                gameObject.transform.position = new(posicion.transform.position.x, posicion.transform.position.y, -0.1f);
                 GameManager.enemigos[gameObject] = pos;
-                gm.InstanciateObstacle(new Vector2(posAnt.x,posAnt.y),0);
+                gm.InstanciateObstacle(new Vector2(posAnt.x, posAnt.y), 0);
             }
-            else {
+            else
+            {
                 posicion = GridManager._tiles[pos];
                 posicion.ocupado = true;
                 posicion.ocupadoObj = this.gameObject;
-                gameObject.transform.position = new(posicion.transform.position.x,posicion.transform.position.y,-0.1f);
+                gameObject.transform.position = new(posicion.transform.position.x, posicion.transform.position.y, -0.1f);
                 GameManager.enemigos[gameObject] = pos;
             }
         }
-        else {
+        else
+        {
             posicion = GridManager._tiles[pos];
             posicion.ocupado = true;
             posicion.ocupadoObj = this.gameObject;
-            gameObject.transform.position = new(posicion.transform.position.x,posicion.transform.position.y,-0.1f);
+            gameObject.transform.position = new(posicion.transform.position.x, posicion.transform.position.y, -0.1f);
             GameManager.enemigos[gameObject] = pos;
         }
-        
+
     }
 
     void OnMouseEnter()
     {
-        if (GameManager.cartaSeleccionada == false && !shock)
+        if (GameManager.cartaSeleccionada == false && !shock && (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id != 9 && TurnManager.numTurno != 2))
         {
             gameObject.SendMessage("HighlightEnemyTiles", gameObject);
         }
     }
-    
+
     void OnMouseExit()
     {
         if (GameManager.cartaSeleccionada == false && !shock)
@@ -305,21 +275,22 @@ public class EnemyController : MonoBehaviour
         bm.CambiarEstado();
         if (bm.RetEnP())
         {
-            bm.DisplayDatos(gameObject);  
+            bm.DisplayDatos(gameObject);
         }
     }
-/*Se mueve a la fila del player*/
+    /*Se mueve a la fila del player*/
     Vector2 MoverAFila(GameObject enemy)
     {
-        int playery =  GameManager.player.GetComponent<PlayerController>().GetPos().y;
-        int playerx =  GameManager.player.GetComponent<PlayerController>().GetPos().x;
+        int playery = GameManager.player.GetComponent<PlayerController>().GetPos().y;
+        int playerx = GameManager.player.GetComponent<PlayerController>().GetPos().x;
         int enemyx = enemy.GetComponent<EnemyController>().GetPos().x;
-        if(playery == enemy.GetComponent<EnemyController>().GetPos().y) return new Vector2(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y); // si ya está en la fila del player se queda donde estaba
+        if (playery == enemy.GetComponent<EnemyController>().GetPos().y) return new Vector2(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y); // si ya está en la fila del player se queda donde estaba
         Vector2 nuevaPos = new(enemyx, playery);
         Tile tile;
         GridManager._tiles.TryGetValue(nuevaPos, out tile);
-        if(tile.ocupado == false && enemyx != playerx) return nuevaPos; // moverlo desde el método Movimiento
-        if (tile.ocupado && tile.ocupadoObj.CompareTag("Obstacle") && tile.ocupadoObj.GetComponent<DisplayObstacle>().GetId() == 0) {
+        if (tile.ocupado == false && enemyx != playerx) return nuevaPos; // moverlo desde el método Movimiento
+        if (tile.ocupado && tile.ocupadoObj.CompareTag("Obstacle") && tile.ocupadoObj.GetComponent<DisplayObstacle>().GetId() == 0)
+        {
             Debug.Log("Estoy Aqui");
             return nuevaPos;
         }
@@ -354,7 +325,7 @@ public class EnemyController : MonoBehaviour
     /*Calcula la ruta más corta y devulve la casilla a la que se mueve con sus x movimientos*/
     Vector2 CalcularRutaMasCorta(GameObject enemy, int movimientos)
     {
-        int enemyx =enemy.GetComponent<EnemyController>().GetPos().x;
+        int enemyx = enemy.GetComponent<EnemyController>().GetPos().x;
         int enemyy = enemy.GetComponent<EnemyController>().GetPos().y;
         int playerx = GameManager.player.GetComponent<PlayerController>().GetPos().x;
         int playery = GameManager.player.GetComponent<PlayerController>().GetPos().y;
@@ -420,12 +391,52 @@ public class EnemyController : MonoBehaviour
             aux = parent[aux];
             path.Add(aux);
         }
-        path.Reverse(); 
+        path.Reverse();
         if (movimientos <= 0)
             return start;
         if (movimientos >= path.Count - 1)
             return path[path.Count - 2];
-        return path[movimientos];   
+        return path[movimientos];
+    }
+    public void HacerObstaculos(Vector2[] posicionesAtaque)
+    {
+        List<Vector2> posicionesAtaqueList = new(posicionesAtaque);
+        if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 5 || gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 8 || (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 10 && gameObject.GetComponent<TileManagerEnemigo>().patronDragon == 1))
+        {
+            GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+            for (int i = 0; i < posicionesAtaqueList.Count; i++)
+            {
+                if (GridManager._tiles.TryGetValue(posicionesAtaqueList[i], out Tile t))
+                {
+                    if (!t.ocupadoAt)
+                    {
+                        if (t.ocupado && t.ocupadoObj.CompareTag("Player"))
+                        {
+                            GameManager.player.GetComponent<PlayerController>().Mover(new(t.x, t.y));
+                        }
+                        gm.InstanciateObstacle(posicionesAtaqueList[i], 2);
+                    }
+                }
+            }
         }
+        else if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 6 || (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 10 && gameObject.GetComponent<TileManagerEnemigo>().patronDragon == 6))
+        {
+            GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+            for (int i = 0; i < posicionesAtaqueList.Count; i++)
+            {
+                if (GridManager._tiles.TryGetValue(posicionesAtaqueList[i], out Tile t))
+                {
+                    if (!t.ocupadoAt)
+                    {
+                        if (t.ocupado && t.ocupadoObj.CompareTag("Player"))
+                        {
+                            GameManager.player.GetComponent<PlayerController>().Mover(new(t.x, t.y));
+                        }
+                        gm.InstanciateObstacle(posicionesAtaqueList[i], 3);
+                    }
+                }
+            }
+        }
+    }
 }
 

@@ -22,5 +22,5 @@ MonoBehaviour:
   area: 3
   movimiento: 1
   patronAtaque: Golem
-  animator: {fileID: 0}
+  animator: {fileID: 9100000, guid: bc3706987c5c1484983594ebfaec6155, type: 2}
   prefabAtaque: {fileID: 1073338981676839163, guid: fb584e5cf91f0394a968dace45b813ff, type: 3}

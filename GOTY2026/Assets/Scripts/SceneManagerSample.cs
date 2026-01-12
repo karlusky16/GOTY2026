@@ -64,7 +64,7 @@ public class SceneManagerSample : MonoBehaviour
             File.Delete( Application.persistentDataPath + "/save.json");
             Debug.Log("Archivo de guardado eliminado");
         }
-        SceneManager.LoadScene("SelectCharacter");
+        SceneManager.LoadScene("MenuPrincipal");
     }
     public void Salir()
     {
