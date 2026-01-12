@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:GOTY2026/Assets/Scenes/Combate1/Inventory Item Template.prefab.meta
 guid: c4e728c3cf16bb4459f384b271cfb0c4
+========
+guid: bf3e1bb9becfa7b4f8b2a210bf8f1504
+>>>>>>>> f330cacc9573ce001d876ac9b254fed378e2b867:GOTY2026/Assets/Scenes/Combate1/ItemDisplay.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

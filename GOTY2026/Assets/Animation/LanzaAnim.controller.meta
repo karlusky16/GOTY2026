@@ -1,8 +1,15 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:GOTY2026/Assets/Animation/LanzaAnim.controller.meta
 guid: 5d953734f90fc1f40bb348488adcd0a8
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 9100000
+========
+guid: 5947f45165818e6418f8321a923c48b4
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+>>>>>>>> f330cacc9573ce001d876ac9b254fed378e2b867:GOTY2026/Assets/Scenes/Combate4/400Aanimated.mat.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 
