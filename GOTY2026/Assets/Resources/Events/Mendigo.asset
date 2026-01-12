@@ -16,8 +16,8 @@ MonoBehaviour:
   nombre: Mendigo
   texto: "Te encuentras con un tipo tumbado en el suelo con una carta a su lado.\\nTe
     acercas y se incorpora para hablarte.\\n\\nMe encontr\xE9 esta carta hace tiempo,
-    pero no se para que usarla, igual a ti te sirve m\xE1s que a mi.\\nSi me quieres
-    donar algo significar\xEDa mucho para mi."
+    pero no s\xE9 para qu\xE9 usarla, igual a t\xED te sirve m\xE1s que a mi.\\nSi
+    me quieres donar algo, significar\xEDa mucho para m\xED."
   textBoton1: Aceptar carta
   textBoton2: Donar 10 monedas
   costeMonedas1: 0
@@ -28,3 +28,4 @@ MonoBehaviour:
   costeEnergia2: 0
   costeVida1: 0
   costeVida2: 0
+  sprite: {fileID: 2800000, guid: 2f75fccdb7d59c34c8dad0803d3348df, type: 3}

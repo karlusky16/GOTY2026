@@ -142,24 +142,12 @@ public class EventManager : MonoBehaviour
     }
     private void Mendigo1()
     {
-        // 1. Elegir carta aleatoria REAL
-    int randomIndex = UnityEngine.Random.Range(0, GameManager.cardList.Count);
-    int idCarta = GameManager.cardList[randomIndex].id;
-
-    // 2. Añadir la carta al jugador
-    GameManager.player
-        .GetComponent<PlayerController>()
-        .AddCarta(idCarta);
-
-    // 3. Mostrar el panel de mensaje
-    eventUI.mensajeCarta.SetActive(true);
-
-    // 4. ACTUALIZAR la carta que YA EXISTE
-    cartaMendigo.ActualizarID(idCarta);
-    
-
-    // 5. Desactivar botón
-    eventUI.boton1.interactable = false;
+        int randomIndex = UnityEngine.Random.Range(0, GameManager.cardList.Count);
+        int idCarta = GameManager.cardList[randomIndex].id;
+        GameManager.player.GetComponent<PlayerController>().AddCarta(idCarta);
+        eventUI.mensajeCarta.SetActive(true);
+        cartaMendigo.ActualizarID(idCarta);
+        eventUI.boton1.interactable = false;
         
     }
     private void Mendigo2()

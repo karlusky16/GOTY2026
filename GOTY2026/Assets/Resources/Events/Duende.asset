@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 2
   nombre: Duende
   texto: "Un peque\xF1o duende con una bater\xEDa entre las manos se te acerca y
-    te dice:\\n\\nEh... \xBFNo tendr\xE1s algo de oro o man\xE1 de sobra?\\nEsta
+    te dice:\\n\\nEh... \xBFno tendr\xE1s algo de oro o man\xE1 de sobra?\\nEsta
     bater\xEDa se la rob\xE9 a un tipo raro, as\xED que si quieres te la puedo dar
     a cambio de 40 de oro o 1 de tu man\xE1."
   textBoton1: "Dar 40 monedas a cambio de aumentar en 1 la energ\xEDa m\xE1xima"

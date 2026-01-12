@@ -15,11 +15,11 @@ MonoBehaviour:
   id: 3
   nombre: Mago
   texto: "Un mago con una capa desgastada est\xE1 haciendo s\xEDmbolos luminosos
-    en el aire mientras murmura.\\nTe acercas a \xE9l para ver que est\xE1 diciendo
+    en el aire mientras murmura.\\nTe acercas a \xE9l para ver qu\xE9 est\xE1 diciendo
     y decide hablarte:\\n\\nTe puedo hacer un hechizo que aumente tu man\xE1 si me
-    das 40 monedas.\\nTambi\xE9n tengo esta poci\xF3n que  me regal\xF3 un viejo
-    amigo hace mucho tiempo, pero no sabr\xEDa decirte si se encuentra en buen estado.\\nSi
-    quieres arriesgarte es toda tuya."
+    das 40 monedas.\\nTambi\xE9n tengo esta poci\xF3n que me regal\xF3 un viejo amigo
+    hace mucho tiempo, pero no sabr\xEDa decirte si se encuentra en buen estado.\\nSi
+    quieres arriesgarte, es toda tuya."
   textBoton1: "Dar 40 monedas a cambio de aumentar 1 de man\xE1 m\xE1ximo"
   textBoton2: "Tomar poci\xF3n (Puede aumentar o restar 2 de salud y vida m\xE1xima)"
   costeMonedas1: 40
