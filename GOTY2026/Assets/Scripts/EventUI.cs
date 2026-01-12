@@ -20,6 +20,7 @@ public class EventUI : MonoBehaviour
     public GameObject mensajeSuma;
     public GameObject mensajeResta;
     public GameObject mensajeCarta;
+    public RawImage imagen;
 
 
     public void Show(Events evento)
@@ -28,6 +29,7 @@ public class EventUI : MonoBehaviour
         textoDescripcion.text = evento.texto;
         textoBoton1.text = evento.textBoton1;
         textoBoton2.text = evento.textBoton2;
+        imagen.texture = evento.sprite;
         events = evento;
         ComprobarCosteBotones();
         ActualizarTextoMonedas();

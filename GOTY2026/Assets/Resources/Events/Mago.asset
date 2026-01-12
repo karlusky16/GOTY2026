@@ -30,3 +30,4 @@ MonoBehaviour:
   costeEnergia2: 0
   costeVida1: 0
   costeVida2: 0
+  sprite: {fileID: 2800000, guid: 2e03a6e93d143014e9c51867e800f91d, type: 3}
