@@ -71,16 +71,16 @@ namespace Map
             switch (mapNode.Node.nodeType)
             {
                 case NodeType.MinorEnemy:
-                    string sceneName = GameManager.combatSceneList[GameManager.indexScene];
-                    if (!GameManager.primerC)
+                    string sceneName;
+                    if (GameManager.primerC)
                     {
-                        GameManager.primerC = true;
                         GameManager.indexScene = rand.Next(1, 5);
+                        sceneName = GameManager.combatSceneList[GameManager.indexScene];
                     }
                     else
                     {
-                        sceneName = GameManager.combatSceneList[GameManager.indexScene];
-                        GameManager.indexScene = 1;
+                        GameManager.primerC = true;
+                        sceneName = "Combate1";
                     }
                         SceneManager.LoadScene(sceneName);
                     break;
