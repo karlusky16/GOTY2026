@@ -17,7 +17,7 @@ MonoBehaviour:
   coste: 2
   tipoCoste: 1
   descripcion: "Haces da\xF1o a un enemigo equivalente a tu escudo, a cambio pierdes
-    lamitad del escudo que tuvieras."
+    la mitad del escudo que tuvieras."
   patron: Tile
   rango: 1
   area: 1
