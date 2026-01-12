@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: "Extinci\xF3n Forzada"
   coste: 1
   tipoCoste: 2
-  descripcion: "Elimina el Fuego del enemigo e inflige da\xF1o inmediato igual a
+  descripcion: "Elimina el fuego del enemigo e inflige da\xF1o inmediato igual a
     su valor."
   patron: Tile
   rango: 3

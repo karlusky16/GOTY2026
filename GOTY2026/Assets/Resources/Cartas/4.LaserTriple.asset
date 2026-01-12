@@ -16,8 +16,8 @@ MonoBehaviour:
   _name: Laser Triple
   coste: 1
   tipoCoste: 1
-  descripcion: "Dispara con un laser en 3 direcciones que hace 2 de a\xF1o y a\xF1ade
-    una carga de fuego."
+  descripcion: "Dispara con un l\xE1ser en 3 direcciones que hace 2 de da\xF1o y
+    a\xF1ade una carga de fuego."
   patron: TresDirNP
   rango: 1
   area: 9

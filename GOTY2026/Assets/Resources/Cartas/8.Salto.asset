@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Salto
   coste: 1
   tipoCoste: 2
-  descripcion: Saltas hasta a 2 Casillas de distancia.
+  descripcion: Saltas hasta a 2 casillas de distancia.
   patron: Tile
   rango: 2
   area: 1

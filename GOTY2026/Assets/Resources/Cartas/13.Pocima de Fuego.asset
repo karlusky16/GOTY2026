@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 13.Pocima de Fuego
   m_EditorClassIdentifier: Assembly-CSharp::Card
   id: 13
-  _name: Pocima de fuego
+  _name: "P\xF3cima de fuego"
   coste: 2
   tipoCoste: 0
-  descripcion: Duplicas las cargas de fuego del enemigo elegido.
+  descripcion: "Duplicas las cargas de fuego del enemigo elegido.Et\xE9rea."
   patron: Tile
   rango: 3
   area: 1

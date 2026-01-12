@@ -379,8 +379,8 @@ public class PlayerController : MonoBehaviour
                 JugadorAumentaVida?.Invoke(vidaActual);
                 break;
             case 1:
-                ReducirEnergiaMaxima(2);
-                AumentarManaMaxima(2);
+                AumentarEnergiaMaxima(2);
+                ReducirManaMaxima(2);
                 break;
             case 2:
                 AumentarManaMaxima(2);

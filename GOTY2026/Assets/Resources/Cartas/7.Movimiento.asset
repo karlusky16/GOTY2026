@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Pasito
   coste: 0
   tipoCoste: 2
-  descripcion: Te mueves a una casilla de hasta uno de distancia.
+  descripcion: Te mueves a una casilla de hasta 1 de distancia.
   patron: Tile
   rango: 1
   area: 1

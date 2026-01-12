@@ -17,7 +17,7 @@ MonoBehaviour:
   coste: 2
   tipoCoste: 1
   descripcion: Agrega un 10% de probabilidades. de aturdir a enemigos con cualquier
-    carta
+    carta.
   patron: Tile
   rango: -1
   area: 1

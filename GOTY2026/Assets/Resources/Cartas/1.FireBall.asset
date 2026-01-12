@@ -16,7 +16,8 @@ MonoBehaviour:
   _name: FireBall
   coste: 2
   tipoCoste: 0
-  descripcion: "Disparas una bola de fuego que hace 3 de da\xF1o en un area de cruz."
+  descripcion: "Disparas una bola de fuego que hace 3 de da\xF1o con un patr\xF3n
+    de cruz."
   patron: Cruz
   rango: 4
   area: 1

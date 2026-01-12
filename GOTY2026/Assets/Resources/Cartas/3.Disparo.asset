@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Disparo
   coste: 1
   tipoCoste: 1
-  descripcion: "Disparas una bala que hace 3 de da\xF1o"
+  descripcion: "Disparas una bala que hace 3 de da\xF1o."
   patron: RectaNP
   rango: 1
   area: 4

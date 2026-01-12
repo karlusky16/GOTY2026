@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: "Espadazo L\xE1ser"
   coste: 2
   tipoCoste: 1
-  descripcion: "Das un espadazo que hace 3 de da\xF1o en un area de 3x2."
+  descripcion: "Das un espadazo que hace 3 de da\xF1o en un \xE1rea de 3x2."
   patron: Rectangulo
   rango: 1
   area: 2

@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: "Flecha M\xE1gica"
   coste: 4
   tipoCoste: 0
-  descripcion: "Dispara una flecha que atraviesa enemigos y hace 6 de da\xF1o"
+  descripcion: "Dispara una flecha que atraviesa enemigos y hace 6 de da\xF1o."
   patron: Recta
   rango: 1
   area: 9

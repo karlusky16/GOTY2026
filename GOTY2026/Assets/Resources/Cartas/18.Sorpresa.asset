@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Sorpresa
   coste: 2
   tipoCoste: 1
-  descripcion: "Pillas por sorpresa al enemigo, haciendo 2 de da\xF1o yaturdiendolo
+  descripcion: "Pillas por sorpresa al enemigo, haciendo 2 de da\xF1o y aturdiendolo
     en este turno.Eterea."
   patron: Tile
   rango: 1
