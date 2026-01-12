@@ -205,8 +205,8 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 default:
                     break;
             }
-            ReducirCosto();
             if (gameObject.GetComponent<DisplayCard>().GetCard().id != 28) {
+                ReducirCosto();
                 ManejoCarta();
             }
             
