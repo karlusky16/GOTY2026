@@ -255,18 +255,15 @@ public class EnemyController : MonoBehaviour
 
     void OnMouseEnter()
     {
-        if (GameManager.cartaSeleccionada == false && !shock)
+        if (GameManager.cartaSeleccionada == false && !shock && !GameObject.Find("TurnManager").GetComponent<TurnManager>().viendoTE)
         {
-            if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id != 9 && TurnManager.numTurno != 2) {
-                return;
-            }
             gameObject.SendMessage("HighlightEnemyTiles", gameObject);
         }
     }
 
     void OnMouseExit()
     {
-        if (GameManager.cartaSeleccionada == false && !shock)
+        if (GameManager.cartaSeleccionada == false && !shock && !GameObject.Find("TurnManager").GetComponent<TurnManager>().viendoTE)
         {
             gameObject.SendMessage("UnHighlightEnemyTiles");
         }
