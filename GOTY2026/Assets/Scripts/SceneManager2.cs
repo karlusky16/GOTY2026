@@ -6,7 +6,7 @@ public class SceneManager2 : MonoBehaviour
 {
     public GameObject deathScreen;
     public GameObject victoryScreen;
-    GameManager GameManager;
+    GameManager gm;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -14,7 +14,6 @@ public class SceneManager2 : MonoBehaviour
         GameManager.obstacles.Clear();
         GameManager.enemigosLis.Clear();
         GameManager.obstaclesLis.Clear();
-        GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         GameManager.player.GetComponent<PlayerController>().Mover(new Vector2(0, 2));
         GenerarEnemigos();
         TurnManager.playerController = GameManager.player.GetComponent<PlayerController>();
@@ -26,15 +25,15 @@ public class SceneManager2 : MonoBehaviour
 
     public void GenerarEnemigos()
     {
-        GameManager.InstanciateEnemy(new Vector2(8, 4), 4);
-        GameManager.InstanciateEnemy(new Vector2(9, 0), 5);
-        GameManager.InstanciateEnemy(new Vector2(6, 1), 7);
-        GameManager.InstanciateEnemy(new Vector2(6, 3), 7);
+        GameObject.Find("GameManager").GetComponent<GameManager>().InstanciateEnemy(new Vector2(8, 4), 4);
+        GameObject.Find("GameManager").GetComponent<GameManager>().InstanciateEnemy(new Vector2(9, 0), 5);
+        GameObject.Find("GameManager").GetComponent<GameManager>().InstanciateEnemy(new Vector2(6, 1), 7);
+        GameObject.Find("GameManager").GetComponent<GameManager>().InstanciateEnemy(new Vector2(6, 3), 7);
     }
 
     public void GenerarObstaculos()
     {
-        GameManager.InstanciateObstacle(new Vector2(9, 4), 1);
+        GameObject.Find("GameManager").GetComponent<GameManager>().InstanciateObstacle(new Vector2(9, 4), 1);
     }
     // Update is called once per frame
     void Update()
@@ -49,7 +48,7 @@ public class SceneManager2 : MonoBehaviour
     {
         GameManager.reset = true;
         Destroy(GameManager.player);
-        Destroy(GameManager);
+        Destroy(GameObject.Find("GameManager").GetComponent<GameManager>());
         if (File.Exists( Application.persistentDataPath + "/save.json"))
         {
             File.Delete( Application.persistentDataPath + "/save.json");

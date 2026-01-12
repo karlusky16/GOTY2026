@@ -10,11 +10,11 @@ public class SceneManager1 : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         GameManager.enemigos.Clear();
         GameManager.obstacles.Clear();
         GameManager.enemigosLis.Clear();
         GameManager.obstaclesLis.Clear();
-        GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         GameManager.player.GetComponent<PlayerController>().Mover(new Vector2(0, 2));
         GenerarEnemigos();
         TurnManager.playerController = GameManager.player.GetComponent<PlayerController>();
@@ -51,7 +51,7 @@ public class SceneManager1 : MonoBehaviour
     {
         GameManager.reset = true;
         Destroy(GameManager.player);
-        Destroy(GameManager);
+        Destroy(GameObject.Find("GameManager").GetComponent<GameManager>());
         if (File.Exists( Application.persistentDataPath + "/save.json"))
         {
             File.Delete( Application.persistentDataPath + "/save.json");

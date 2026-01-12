@@ -59,7 +59,7 @@ public class EnemyController : MonoBehaviour
             {
                 if (SceneManager.GetActiveScene().name == "CombateBoss")
                 {
-                    GameManager.player.GetComponent<RectTransform>().position = new Vector2(-1000, 0);
+                    GameManager.player.transform.position = new Vector2(-1000, 0);
                     GameObject.Find("SceneManager").SendMessage("LoadVictory");
                 }
                 else

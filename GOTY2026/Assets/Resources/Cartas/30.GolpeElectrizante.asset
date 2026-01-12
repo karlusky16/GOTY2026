@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 30.GolpeElectrizante
   m_EditorClassIdentifier: Assembly-CSharp::Card
   id: 30
-  _name: GolpeElectrizante
+  _name: Golpe Electrizante
   coste: 2
   tipoCoste: 1
   descripcion: "Haces 4 de da\xF1o. Tiene un 25% de probabilidad de aturdir. Si aturdes

@@ -55,7 +55,7 @@ public class SceneManagerE2 : MonoBehaviour
     {
         GameManager.reset = true;
         Destroy(GameManager.player);
-        Destroy(GameManager);
+        Destroy(GameObject.Find("GameManager").GetComponent<GameManager>());
         if (File.Exists( Application.persistentDataPath + "/save.json"))
         {
             File.Delete( Application.persistentDataPath + "/save.json");
