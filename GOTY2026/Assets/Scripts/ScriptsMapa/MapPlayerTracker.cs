@@ -99,7 +99,7 @@ namespace Map
                     SceneManager.LoadScene(GameManager.combatSceneList[4]);
                     break;
                 case NodeType.Mystery:
-                    SceneManager.LoadScene("WIP");
+                    SceneManager.LoadScene("EventScene");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
