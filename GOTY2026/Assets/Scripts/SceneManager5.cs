@@ -26,7 +26,7 @@ public class SceneManager5 : MonoBehaviour
 
     public void GenerarEnemigos()
     {
-        GameManager.InstanciateEnemy(new Vector2(8, 0), 4);
+        GameManager.InstanciateEnemy(new Vector2(5, 0), 4);
         GameManager.InstanciateEnemy(new Vector2(6, 4), 5);
         GameManager.InstanciateEnemy(new Vector2(6, 2), 6);
         GameManager.InstanciateEnemy(new Vector2(7, 3), 8);
@@ -60,10 +60,10 @@ public class SceneManager5 : MonoBehaviour
     public void Salir()
     {
 #if UNITY_EDITOR
-        // Si estás en el editor, detiene el Play Mode
+        // Si estï¿½s en el editor, detiene el Play Mode
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-        // Si estás en un build (EXE, Mac, etc.), cierra la aplicación
+        // Si estï¿½s en un build (EXE, Mac, etc.), cierra la aplicaciï¿½n
         Application.Quit();
 #endif
     }

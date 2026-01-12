@@ -11,7 +11,7 @@ public class ManejoBaraja : MonoBehaviour
     public static List<GameObject> mano = new();
     public GameObject descartesPadre, roboPadre;
 
-    public static int[] mazoDefault = {7,8,8,1,7,3,3}; //1 fireballs,dos saltos, 1 espadazo y dos disparos
+    public static int[] mazoDefault = {7,8,8,1,7,3,3,14}; //1 fireballs,dos saltos, 1 espadazo y dos disparos
     public List<GameObject> GetMano() => mano;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public static void Inicializar()

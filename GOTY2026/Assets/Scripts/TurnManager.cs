@@ -127,8 +127,9 @@ public class TurnManager : MonoBehaviour
         }
 
         // 2️⃣ Enemigos UNO A UNO
-        foreach (var enemy in GameManager.enemigosLis)
+        for (int i = GameManager.enemigosLis.Count - 1; i >= 0; i--)
         {
+            var enemy = GameManager.enemigosLis[i];
             Debug.Log("Ataca el enemigo en: " + GameManager.enemigos[enemy]);
 
             var animator = enemy.GetComponent<Animator>();

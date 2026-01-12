@@ -166,7 +166,7 @@ public class EnemyController : MonoBehaviour
             {
                 for (int i = 0; i < posicionesAtaqueList.Count; i++)
                 {
-                    var ataque = Instantiate(gameObject.GetComponent<DisplayEnemy>().GetEnemy().prefabAtaque, posicionesAtaqueList[i], Quaternion.identity);
+                    var ataque = Instantiate(gameObject.GetComponent<DisplayEnemy>().GetEnemy().prefabAtaque, new(posicionesAtaqueList[i].x, posicionesAtaqueList[i].y,(float) -1.0), Quaternion.identity);
                     Destroy(ataque, 1f);
                 }
             }
@@ -255,8 +255,11 @@ public class EnemyController : MonoBehaviour
 
     void OnMouseEnter()
     {
-        if (GameManager.cartaSeleccionada == false && !shock && (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id != 9 && TurnManager.numTurno != 2))
+        if (GameManager.cartaSeleccionada == false && !shock)
         {
+            if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id != 9 && TurnManager.numTurno != 2) {
+                return;
+            }
             gameObject.SendMessage("HighlightEnemyTiles", gameObject);
         }
     }

@@ -1,5 +1,4 @@
 using System;
-using UnityEditor.Animations;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Obstacle", menuName = "ScriptableObjects/Obstacle")]
@@ -12,7 +11,7 @@ public class Obstacle : ScriptableObject
     public int daño;
     public bool atravesable;
     public int turnosRestantes;
-    public AnimatorController animator;
+    public RuntimeAnimatorController animator;
     
     //de momento estos dos como idea, no los voy a usar en esta iteración
     //public bool destruible;

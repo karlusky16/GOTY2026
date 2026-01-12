@@ -1,5 +1,4 @@
 using System;
-using UnityEditor.Animations;
 using UnityEngine;
 [CreateAssetMenu(fileName = "New Enemy", menuName = "ScriptableObjects/Enemy")]
 public class Enemy : ScriptableObject
@@ -14,7 +13,7 @@ public class Enemy : ScriptableObject
     public int area;
     public int movimiento;
     public String patronAtaque;
-    public AnimatorController animator;
+    public RuntimeAnimatorController animator;
     public GameObject prefabAtaque;
     
 }
