@@ -374,17 +374,17 @@ public class PlayerController : MonoBehaviour
         switch (id)
         {
             case 0:
-                vidaMaxima += 5;
-                vidaActual += 5;
+                AumentarVidaMaxima(5);
+                AumentarVida(5);
                 JugadorAumentaVida?.Invoke(vidaActual);
                 break;
             case 1:
-                energiaMaxima += 2;
-                manaMaxima -= 2;
+                ReducirEnergiaMaxima(2);
+                AumentarManaMaxima(2);
                 break;
             case 2:
-                manaMaxima += 2;
-                energiaMaxima -= 2;
+                AumentarManaMaxima(2);
+                ReducirEnergiaMaxima(2);
                 break;
             case 3:
                 dañoItems += 1;
