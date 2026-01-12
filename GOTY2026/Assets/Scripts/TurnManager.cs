@@ -136,9 +136,43 @@ public class TurnManager : MonoBehaviour
                 animator.SetBool("ataque", true);
                 if (enemy.GetComponent<DisplayEnemy>().GetEnemy().id == 9)
                 {
-                    enemy.GetComponent<EnemyController>().HacerObstaculos(enemy.GetComponent<TileManagerEnemigo>().GetRango());
-                    
+                    animator.SetInteger("turno", numTurno+1);
                 }
+            }
+            if (!enemy.GetComponen<EnemyController>().shock)
+            {
+                enemy.GetComponent<EnemyController>().HacerObstaculos(enemy.GetComponent<TileManagerEnemigo>().GetRango());
+            }
+            else
+            {
+                var display = enemy.GetComponent<DisplayEnemy>();
+                var controller = enemy.GetComponent<EnemyController>();
+
+                if (display.enemy.id == 4 ||
+                    (display.enemy.id == 10 &&
+                    enemy.GetComponent<TileManagerEnemigo>().patronDragon == 5) )
+                {
+                    if (enemy.GetComponent<EnemyController>().shock)
+                    {
+                        enemy.GetComponent<EnemyController>().shock = false;
+                    }
+                    else
+                    {
+                        playerController.ReducirVida(display.GetDaño());
+                        playerController.AddFuego(display.enemy.dañoFuego);
+                        playerController.AddShock(display.enemy.shockValue);
+                    }
+                }
+                else
+                {
+                    controller.Ataque(
+                        enemy.GetComponent<TileManagerEnemigo>().GetRango(),
+                        display.GetDaño(),
+                        display.enemy.dañoFuego,
+                        display.enemy.shockValue
+                    );
+                }
+                
             }
 
             yield return new WaitForSeconds(1f);
