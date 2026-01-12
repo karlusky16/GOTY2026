@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Bunker
   coste: 2
   tipoCoste: 1
-  descripcion: "Te pones 20 de escudo.Et\xE9rea."
+  descripcion: "Te pones 20 de escudo. Et\xE9rea."
   patron: Tile
   rango: -1
   area: 1
