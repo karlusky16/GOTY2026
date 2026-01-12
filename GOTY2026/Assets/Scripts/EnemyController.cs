@@ -19,7 +19,6 @@ public class EnemyController : MonoBehaviour
     public Image fuego;
     public Image aturdido;
     private Animator anim;
-    public GameObject lanzaPrefab;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -161,13 +160,16 @@ public class EnemyController : MonoBehaviour
                 player.AddShock(sVE);
                 Debug.Log("Player atacado por enemy");
             }
-            if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 1)
+            if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 1 || gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 1)
             {
                 for (int i = 0; i < posicionesAtaqueList.Count; i++)
                 {
-                    var lanza = Instantiate(lanzaPrefab, posicionesAtaqueList[i], Quaternion.identity);
-                    Destroy(lanza, 1f);
+                    var ataque= Instantiate(gameObject.GetComponent<DisplayEnemy>().GetEnemy().prefabAtaque, posicionesAtaqueList[i], Quaternion.identity);
+                    Destroy(ataque, 1f);
                 }
+            }
+            if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 1) {
+                
             }
             if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 5 || gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 8 || (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 10 && gameObject.GetComponent<TileManagerEnemigo>().patronDragon == 1))
             {
