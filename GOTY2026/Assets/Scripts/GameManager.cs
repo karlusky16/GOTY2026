@@ -24,9 +24,11 @@ public class GameManager : MonoBehaviour
     public static List<Card> cardList;
     public static List<Enemy> enemyList;
     public static List<ItemPasivo> itemsLis;
-    public static string[] combatSceneList = new string[] { "SampleScene", "Combate1", "Combate2", "Combate3", "CombateBoss" };
+    public static string[] combatSceneList = new string[] { "Combate1", "SampleScene", "Combate2", "Combate3","Combate4", "CombateBoss" };
+    public static string[] combatSceneListE = new string[] { "CombateE1", "CombateE2"};
     public static int indexScene = 0;
     public static bool reset;
+    public static bool primerC = false;
 
     public static List<Obstacle> obstacleList;
 
@@ -44,6 +46,7 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             player = GameObject.FindWithTag("Player");
+            player.transform.position = new Vector2(-1000, 0);
             DontDestroyOnLoad(player);
             //
         }
@@ -60,13 +63,12 @@ public class GameManager : MonoBehaviour
         enemigos.Add(enemigosLis[^1], pos);
         enemigosLis[^1].GetComponent<DisplayEnemy>().ActualizarID(id);
         GridManager._tiles[pos].ocupadoObj = enemigosLis[enemigosLis.Count - 1];
-        GridManager._tiles[pos].ocupado = true;
         enemigosLis[^1].GetComponent<EnemyController>().Mover(pos); // le asigna al enemigo su posición        
     }
 
     public void InstanciateObstacle(Vector2 pos, int id)
     {
-        if (id != 1)
+        if (id > 1)
         {
             if (GridManager._tiles[pos].ocupadoObjAt == null)
             {
@@ -99,35 +101,35 @@ public class GameManager : MonoBehaviour
     }
 
     public void TilesEnemigos()
-{
-    Debug.Log($"TilesEnemigos: enemigos.Count = {enemigos.Count}");
-    foreach (var kv in enemigos)
     {
-        var go = kv.Key;
-        if (go == null)
+        Debug.Log($"TilesEnemigos: enemigos.Count = {enemigos.Count}");
+        foreach (var kv in enemigos)
         {
-            Debug.LogWarning("TilesEnemigos: encontrado key NULL en GameManager.enemigos");
-            continue;
-        }
-
-        Debug.Log($"TilesEnemigos: key='{go.name}' instanceId={go.GetInstanceID()} active={go.activeSelf} scene='{go.scene.name}'");
-
-        var tme = go.GetComponent<TileManagerEnemigo>();
-        if (tme == null)
-        {
-            Debug.LogError($"TilesEnemigos: GameObject '{go.name}' en GameManager.enemigos NO tiene TileManagerEnemigo. Componentes:");
-            foreach (var c in go.GetComponents<Component>())
+            var go = kv.Key;
+            if (go == null)
             {
-                Debug.Log($" - {c.GetType().Name}");
+                Debug.LogWarning("TilesEnemigos: encontrado key NULL en GameManager.enemigos");
+                continue;
+            }
+
+            Debug.Log($"TilesEnemigos: key='{go.name}' instanceId={go.GetInstanceID()} active={go.activeSelf} scene='{go.scene.name}'");
+
+            var tme = go.GetComponent<TileManagerEnemigo>();
+            if (tme == null)
+            {
+                Debug.LogError($"TilesEnemigos: GameObject '{go.name}' en GameManager.enemigos NO tiene TileManagerEnemigo. Componentes:");
+                foreach (var c in go.GetComponents<Component>())
+                {
+                    Debug.Log($" - {c.GetType().Name}");
+                }
+            }
+            else
+            {
+                Debug.Log($"TilesEnemigos: '{go.name}' tiene TileManagerEnemigo, llamando CalculoTiles");
+                tme.CalculoTiles(go);
             }
         }
-        else
-        {
-            Debug.Log($"TilesEnemigos: '{go.name}' tiene TileManagerEnemigo, llamando CalculoTiles");
-            tme.CalculoTiles(go);
-        }
     }
-}
 
     public static void CambiarLayerEnemy(String layer)
     {

@@ -17,7 +17,7 @@ MonoBehaviour:
   coste: 1
   tipoCoste: 2
   descripcion: "Adquieres la resistencia al fuego de un drag\xF3n reduciendote las
-    cargas de fuego a la mitad"
+    cargas de fuego a la mitad."
   patron: Tile
   rango: -1
   area: 1
@@ -26,6 +26,6 @@ MonoBehaviour:
   "da\xF1o": 0
   "da\xF1oFuego": 0
   shockValue: 0
-  precio: 15
-  sprite: {fileID: 0}
+  precio: 8
+  sprite: {fileID: 21300000, guid: 73afc8214edf6e441b922f381422ce4a, type: 3}
   eterea: 0

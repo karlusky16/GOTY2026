@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
   id: 3
   _name: PiedraA
-  sprite: {fileID: 3725169624300552218, guid: a592a28d35fa2f94daecbb0b4f0d7da8, type: 3}
+  sprite: {fileID: 21300000, guid: 47178cc01919be140a359d3116b8cf0e, type: 3}
   "da\xF1o": 4
   atravesable: 1
   turnosRestantes: 1

@@ -25,9 +25,16 @@ public class MenuManager : MonoBehaviour
     public void CargarPartida()
     {
         audioSource.PlayOneShot(pulsarBotonClip);
-        string json = File.ReadAllText(rutaSave);
-        PlayerStats statsGuardadas = JsonUtility.FromJson<PlayerStats>(json);
-        GameManager.player.GetComponent<PlayerController>().CargarStats(statsGuardadas);
-        SceneManager.LoadScene("MapUI");
+        if (File.Exists(rutaSave))
+        {
+            string json = File.ReadAllText(rutaSave);
+            SaveData statsGuardadas = JsonUtility.FromJson<SaveData>(json);
+            GameManager.player.GetComponent<PlayerController>().CargarStats(statsGuardadas.stats);
+            GameManager.primerC = statsGuardadas.batTutorial;
+            SceneManager.LoadScene(statsGuardadas.escena);
+        }
+    }
+    public void CargarTutorial(){
+        SceneManager.LoadScene("Tutorial");
     }
 }

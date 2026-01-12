@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPasivo
   id: 1
   _name: Bateria Extra
-  precio: 3
+  precio: 30
   descripcion: Te agrega 2 de energia permanente pero reduce en 2 el mana maximo
   sprite: {fileID: 8383521278122326527, guid: 83d9be07b87371549b11ed504ea93395, type: 3}

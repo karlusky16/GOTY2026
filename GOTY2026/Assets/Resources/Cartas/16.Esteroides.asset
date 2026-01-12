@@ -17,7 +17,7 @@ MonoBehaviour:
   coste: 2
   tipoCoste: 1
   descripcion: "Potencias todos los ataques de esta ronda que har\xE1n 2 m\xE1s de
-    da\xF1o.Eterea."
+    da\xF1o."
   patron: Tile
   rango: -1
   area: 1
@@ -27,5 +27,5 @@ MonoBehaviour:
   "da\xF1oFuego": 0
   shockValue: 0
   precio: 30
-  sprite: {fileID: 0}
-  eterea: 1
+  sprite: {fileID: 21300000, guid: 57a6d037efacc984ba75116f0f92489c, type: 3}
+  eterea: 0

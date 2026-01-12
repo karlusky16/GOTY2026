@@ -16,15 +16,15 @@ MonoBehaviour:
   _name: FireBall
   coste: 2
   tipoCoste: 0
-  descripcion: Disparas una bola de fuego que forma una cruz desde la casilla seleccionada
+  descripcion: "Disparas una bola de fuego que hace 3 de da\xF1o en un area de cruz."
   patron: Cruz
   rango: 4
   area: 1
   area2: 0
   tipo: 0
   "da\xF1o": 3
-  "da\xF1oFuego": 2
+  "da\xF1oFuego": 0
   shockValue: 0
-  precio: 10
-  sprite: {fileID: 3289050274112686242, guid: caab3e027f4e291468181479f7ed0b02, type: 3}
+  precio: 20
+  sprite: {fileID: 21300000, guid: d3144f8af27434042abffbf84cf63972, type: 3}
   eterea: 0
