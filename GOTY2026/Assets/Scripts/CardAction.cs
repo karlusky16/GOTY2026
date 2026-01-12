@@ -196,6 +196,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                         {
                             ManejoBaraja mb = GameObject.Find("TurnManager").GetComponent<ManejoBaraja>();
                             int cartas = mb.GetMano().Count;
+                            ManejoCarta();
                             mb.DevolverMano();
                             mb.AddCartaRobo(cartas);
                         }
@@ -205,7 +206,10 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                     break;
             }
             ReducirCosto();
-            ManejoCarta();
+            if (gameObject.GetComponent<DisplayCard>().GetCard().id != 28) {
+                ManejoCarta();
+            }
+            
         }
         //Sino se muestra el mensaje correspondiente
         else
