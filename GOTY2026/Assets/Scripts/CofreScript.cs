@@ -77,7 +77,6 @@ public class CofreScript : MonoBehaviour
     {
         audioSource.PlayOneShot(pulsarBotonClip);
         Debug.Log(carta.GetComponent<DisplayItems>().displayID);
-        GameManager.player.GetComponent<PlayerController>().AumentarMonedas(30);
         GameManager.player.GetComponent<PlayerController>().AddPasivo(carta.GetComponent<DisplayItems>().displayID);
         panelCartas.SetActive(false);
     }

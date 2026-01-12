@@ -16,13 +16,8 @@ MonoBehaviour:
   _name: Robot
   vida: 15
   "da\xF1o": 5
-  "da\xF1oFuego": 0
-  shockValue: 50
   rango: 0
   area: 8
   movimiento: 0
   patronAtaque: RectaHorizontal
   sprite: {fileID: 5839569561631017189, guid: 0edf6754330e1724cae4f78bc74ae06c, type: 3}
-  sprite2: {fileID: 0}
-  sprite3: {fileID: 0}
-  sprite4: {fileID: 0}

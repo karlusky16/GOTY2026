@@ -14,10 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   id: 9
   _name: Bomba
-  vida: 10
+  vida: 30
   "da\xF1o": 10
-  "da\xF1oFuego": 0
-  shockValue: 100
   rango: 0
   area: 0
   movimiento: 0

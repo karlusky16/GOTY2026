@@ -16,13 +16,8 @@ MonoBehaviour:
   _name: Golem
   vida: 40
   "da\xF1o": 5
-  "da\xF1oFuego": 0
-  shockValue: 10
   rango: 3
   area: 3
   movimiento: 1
   patronAtaque: Golem
   sprite: {fileID: -5815501924927439300, guid: 630bb26265bb7054f9d135171e774eb1, type: 3}
-  sprite2: {fileID: 0}
-  sprite3: {fileID: 0}
-  sprite4: {fileID: 0}

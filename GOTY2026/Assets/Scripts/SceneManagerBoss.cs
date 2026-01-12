@@ -1,4 +1,3 @@
-using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -26,15 +25,18 @@ public class SceneManagerBoss : MonoBehaviour
 
     public void GenerarEnemigos()
     {
-        GameManager.InstanciateEnemy(new Vector2(8, 2), 10);
+        GameManager.InstanciateEnemy(new Vector2(6, 2), 6);
+        GameManager.InstanciateEnemy(new Vector2(7, 2), 8);
+        GameManager.InstanciateEnemy(new Vector2(7, 4), 5);
+        GameManager.InstanciateEnemy(new Vector2(8, 0), 5);
+        GameManager.InstanciateEnemy(new Vector2(8, 2), 4);
     }
 
     public void GenerarObstaculos()
     {
-        GameManager.InstanciateObstacle(new Vector2(8, 0), 0);
-        GameManager.InstanciateObstacle(new Vector2(8, 1), 0);
-        GameManager.InstanciateObstacle(new Vector2(8, 3), 0);
-        GameManager.InstanciateObstacle(new Vector2(8, 4), 0);
+        GameManager.InstanciateObstacle(new Vector2(7, 0), 1);
+        GameManager.InstanciateObstacle(new Vector2(6, 4), 1);
+
     }
     // Update is called once per frame
     void Update()
@@ -50,26 +52,15 @@ public class SceneManagerBoss : MonoBehaviour
         GameManager.reset = true;
         Destroy(GameManager.player);
         Destroy(GameManager);
-        if (File.Exists( Application.persistentDataPath + "/save.json"))
-        {
-            File.Delete( Application.persistentDataPath + "/save.json");
-            Debug.Log("Archivo de guardado eliminado");
-        }
         SceneManager.LoadScene("SelectCharacter");
-    }
-    public void Salir()
-    {
-        #if UNITY_EDITOR
-        // Si estás en el editor, detiene el Play Mode
-        UnityEditor.EditorApplication.isPlaying = false;
-        #else
-        // Si estás en un build (EXE, Mac, etc.), cierra la aplicación
-        Application.Quit();
-        #endif
     }
     public void LoadVictory()
     {
         victoryScreen.SetActive(true);
         
+    }
+    public void Salir()
+    {
+        Application.Quit();
     }
 }

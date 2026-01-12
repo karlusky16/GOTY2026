@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
 public class DisplayObstacle : MonoBehaviour
 {
     public Obstacle obstacle;
@@ -9,7 +8,6 @@ public class DisplayObstacle : MonoBehaviour
     public int id;
     public int turnosRestantes;
     public SpriteRenderer spriteRenderer;
-    private Animator animator;
     public void ActualizarID(int nuevoDisplayID)
     {
         displayID = nuevoDisplayID;
@@ -22,14 +20,9 @@ public class DisplayObstacle : MonoBehaviour
         }
         spriteRenderer.sprite = obstacle.sprite;
         turnosRestantes = obstacle.turnosRestantes;
-        animator.SetInteger("Id", displayID);
-        animator.enabled = true;
     }
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-        animator.enabled = false;
-    }
+
+
     void Update()
     {
 

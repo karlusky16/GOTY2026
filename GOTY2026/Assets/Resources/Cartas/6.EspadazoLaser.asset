@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: "Espadazo L\xE1ser"
   coste: 2
   tipoCoste: 1
-  descripcion: "Das un espadazo que hace 3 de da\xF1o en un area de 3x2."
+  descripcion: Das un espadazo en un area 3x2
   patron: Rectangulo
   rango: 1
   area: 2
@@ -26,5 +26,5 @@ MonoBehaviour:
   "da\xF1oFuego": 0
   shockValue: 0
   precio: 15
-  sprite: {fileID: 6366154977894732205, guid: 71cdce6e7a3746640b4311c22e798c07, type: 3}
+  sprite: {fileID: 3093130058741019465, guid: 48023d83516e6914ca7db15b3f674a22, type: 3}
   eterea: 0

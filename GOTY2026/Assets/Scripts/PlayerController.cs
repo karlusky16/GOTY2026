@@ -91,38 +91,31 @@ public class PlayerController : MonoBehaviour
     }
     public void Mover(UnityEngine.Vector2 pos)
     {
-        if (!shock) {
-            if (posicion != null)
-            {
-                posicion.ocupado = false;
-                posicion.ocupadoObj = null;
-            }
-            if (GridManager._tiles[pos].ocupadoAt)
-            {
-                GameObject ocupante = GridManager._tiles[pos].ocupadoObjAt;
-                if (ocupante.GetComponent<DisplayObstacle>().obstacle.id == 2 )
-                {
-                    AddFuego(ocupante.GetComponent<DisplayObstacle>().obstacle.daño);
-                }
-                else if (ocupante.GetComponent<DisplayObstacle>().obstacle.id == 4 )
-                {
-                    AddFuego(ocupante.GetComponent<DisplayObstacle>().obstacle.daño);
-                }
-                else if (ocupante.GetComponent<DisplayObstacle>().obstacle.id == 5 )
-                {
-                    AddShock(ocupante.GetComponent<DisplayObstacle>().obstacle.daño);
-                }
-                else if (ocupante.GetComponent<DisplayObstacle>().obstacle.id == 3)
-                {
-                    ReducirVida(ocupante.GetComponent<DisplayObstacle>().obstacle.daño);
-                }
-            }
-            posicion = GridManager._tiles[pos];
-            posicion.ocupado = true;
-            posicion.ocupadoObj = this.gameObject;
-            gameObject.transform.position = new(posicion.transform.position.x, posicion.transform.position.y,(float) -0.1);
+        if (posicion != null)
+        {
+            posicion.ocupado = false;
+            posicion.ocupadoObj = null;
         }
-        
+        if (GridManager._tiles[pos].ocupadoAt)
+        {
+            GameObject ocupante = GridManager._tiles[pos].ocupadoObjAt;
+            if (ocupante.GetComponent<DisplayObstacle>().obstacle.id == 2)
+            {
+                AddFuego(ocupante.GetComponent<DisplayObstacle>().obstacle.daño);
+            }
+            else if (ocupante.GetComponent<DisplayObstacle>().obstacle.id == 3)
+            {
+                ReducirVida(ocupante.GetComponent<DisplayObstacle>().obstacle.daño);
+            }
+            GridManager._tiles[pos].ocupadoAt = false;
+            GridManager._tiles[pos].ocupadoObjAt = null;
+            GameManager.obstacles.Remove(ocupante);
+            Destroy(ocupante);
+        }
+        posicion = GridManager._tiles[pos];
+        posicion.ocupado = true;
+        posicion.ocupadoObj = this.gameObject;
+        gameObject.transform.position = new(posicion.transform.position.x, posicion.transform.position.y, 0);
     }
     //Getters
     public Tile GetPos() => posicion;
@@ -140,26 +133,25 @@ public class PlayerController : MonoBehaviour
     //Modificar vida del jugador
     public void ReducirVida(int vida)
     {
-        if (!GameManager.estamina) {
-            int vidDE = 0;
-            if ((vidDE = RedEscudo(vida)) < 0)
-            {
-                vida = -vidDE;
-            }
-            else
-            {
-                vida = 0;
-            }
-            if ((vidaActual -= vida) <= 0)
-            {
-                vidaActual = 0;
-                GameObject.Find("SceneManager").SendMessage("LoadGameOver");
-                Debug.Log("Jugador muerto");
-
-            }
-            JugadorReduceVida?.Invoke(vidaActual);
-            Debug.Log("Reduce vida jugador");
+        int vidDE = 0;
+        if ((vidDE = RedEscudo(vida)) < 0)
+        {
+            vida = -vidDE;
         }
+        else
+        {
+            vida = 0;
+        }
+        if ((vidaActual -= vida) <= 0)
+        {
+            vidaActual = 0;
+            GameObject.Find("SceneManager").SendMessage("LoadGameOver");
+            Debug.Log("Jugador muerto");
+
+        }
+        JugadorReduceVida?.Invoke(vidaActual);
+        Debug.Log("Reduce vida jugador");
+
     }
     public void AumentarVida(int vida)
     {
@@ -201,11 +193,6 @@ public class PlayerController : MonoBehaviour
             escudoS.gameObject.SetActive(false);
         }
         return res;
-    }
-    public void QuitarShock()
-    {
-        aturdido.gameObject.SetActive(false);
-        shock = false;
     }
     //Modificar energia del jugador
     public void ReducirEnergia(int energia)

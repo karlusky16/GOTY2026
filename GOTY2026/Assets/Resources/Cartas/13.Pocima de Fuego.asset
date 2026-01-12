@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Pocima de fuego
   coste: 2
   tipoCoste: 0
-  descripcion: Duplicas las cargas de fuego del enemigo elegido.
+  descripcion: Duplicas las cargas de fuego del enemigo elegido
   patron: Tile
   rango: 3
   area: 1
@@ -25,6 +25,6 @@ MonoBehaviour:
   "da\xF1o": 0
   "da\xF1oFuego": 0
   shockValue: 0
-  precio: 30
-  sprite: {fileID: 21300000, guid: dbe9b619ff934774199d4a887e08faae, type: 3}
+  precio: 20
+  sprite: {fileID: 0}
   eterea: 1

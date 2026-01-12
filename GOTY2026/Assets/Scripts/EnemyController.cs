@@ -55,24 +55,11 @@ public class EnemyController : MonoBehaviour
             GameManager.enemigosLis.Remove(gameObject);
             if (GameManager.enemigos.Count == 0)
             {
-                if (SceneManager.GetActiveScene().name == "CombateBoss")
-                {
-                    GameManager.player.GetComponent<RectTransform>().position = new Vector2(-1000, 0);
-                    GameObject.Find("SceneManager").SendMessage("LoadVictory");
-                }
-                else
-                {
-                  if (SceneManager.GetActiveScene().name != "CombateE2" && SceneManager.GetActiveScene().name != "CombateE1")
-                    {
-                        GameManager.player.transform.position = new Vector2(-1000, 0);
-                        SceneManager.LoadScene("Recompensas");
-                    }
-                    else
-                    {
-                        GameManager.player.transform.position = new Vector2(-1000, 0);
-                        SceneManager.LoadScene("RecompensasElite");
-                    }  
-                }
+                SceneManager.LoadScene("Recompensas");
+            }
+            if (GameManager.enemigos.Count == 0 && SceneManager.GetActiveScene().name=="CombateBoss")
+            {
+                GameObject.Find("SceneManager").SendMessage("LoadVictory");
             }
             
         }
@@ -115,12 +102,7 @@ public class EnemyController : MonoBehaviour
     {
         if (danoFuego > 0)
         {
-            if (gameObject.GetComponent<DisplayEnemy>().GetName() == "Dragon"){
-                ReducirVida(danoFuego-- / 2);
-            }
-            else {
-                ReducirVida(danoFuego--);
-            }
+            ReducirVida(danoFuego--);
             if (danoFuego == 0)
             {
                 fuego.gameObject.SetActive(false);
@@ -141,7 +123,7 @@ public class EnemyController : MonoBehaviour
         danoFuego = 0;
         fuego.gameObject.SetActive(false);
     }
-    public void Ataque(Vector2[] posicionesAtaque, int dañoEnemy,int danoFE,int sVE)
+    public void Ataque(Vector2[] posicionesAtaque, int dañoEnemy)
     {
         if (shock)
         {
@@ -154,11 +136,9 @@ public class EnemyController : MonoBehaviour
             if (posicionesAtaqueList.Contains(new Vector2(player.GetPos().x, player.GetPos().y)))
             {
                 player.ReducirVida(dañoEnemy);
-                player.AddFuego(danoFE);
-                player.AddShock(sVE);
                 Debug.Log("Player atacado por enemy");
             }
-            if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 5 || gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 8 || (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 10  && gameObject.GetComponent<TileManagerEnemigo>().patronDragon == 1))
+            if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 5 || gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 8)
             {
                 GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
                 for (int i = 0; i < posicionesAtaqueList.Count; i++)
@@ -174,7 +154,7 @@ public class EnemyController : MonoBehaviour
                     }
                 }
             }
-            else if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 6 || (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 10  && gameObject.GetComponent<TileManagerEnemigo>().patronDragon == 6))
+            else if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 6)
             {
                 GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
                 for (int i = 0; i < posicionesAtaqueList.Count; i++)
@@ -196,7 +176,7 @@ public class EnemyController : MonoBehaviour
 
         switch (name)
         {
-            case "Robot" or "Dragon":
+            case "Robot":
                 Mover(MoverAFila(enemy));
                 break;
             case "Caballero":
@@ -224,7 +204,7 @@ public class EnemyController : MonoBehaviour
                 if(movimientos > 0) Mover(CalcularRutaMasCorta(enemy, movimientos));
                 break;
         }
-    }
+        }
 
     public void Mover(UnityEngine.Vector2 pos)
     {
@@ -232,39 +212,11 @@ public class EnemyController : MonoBehaviour
             posicion.ocupado = false;
             posicion.ocupadoObj = null; 
         }
-        if (gameObject.GetComponent<DisplayEnemy>().GetName() == "Dragon")
-        {
-            Tile posAnt = posicion;
-            posicion = GridManager._tiles[pos];
-            if (posicion.ocupado)
-            {
-                GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-                GameManager.obstacles.Remove(posicion.ocupadoObj);
-                GameManager.obstaclesLis.Remove(posicion.ocupadoObj);
-                Destroy(posicion.ocupadoObj);
-                posicion = GridManager._tiles[pos];
-                posicion.ocupado = true;
-                posicion.ocupadoObj = this.gameObject;
-                gameObject.transform.position = new(posicion.transform.position.x,posicion.transform.position.y,-0.1f);
-                GameManager.enemigos[gameObject] = pos;
-                gm.InstanciateObstacle(new Vector2(posAnt.x,posAnt.y),0);
-            }
-            else {
-                posicion = GridManager._tiles[pos];
-                posicion.ocupado = true;
-                posicion.ocupadoObj = this.gameObject;
-                gameObject.transform.position = new(posicion.transform.position.x,posicion.transform.position.y,-0.1f);
-                GameManager.enemigos[gameObject] = pos;
-            }
-        }
-        else {
-            posicion = GridManager._tiles[pos];
-            posicion.ocupado = true;
-            posicion.ocupadoObj = this.gameObject;
-            gameObject.transform.position = new(posicion.transform.position.x,posicion.transform.position.y,-0.1f);
-            GameManager.enemigos[gameObject] = pos;
-        }
-        
+        posicion = GridManager._tiles[pos];
+        posicion.ocupado = true;
+        posicion.ocupadoObj = this.gameObject;
+        gameObject.transform.position = new(posicion.transform.position.x,posicion.transform.position.y,-0.1f);
+        GameManager.enemigos[gameObject] = pos;
     }
 
     void OnMouseEnter()
@@ -285,11 +237,10 @@ public class EnemyController : MonoBehaviour
     public void OnMouseDown()
     {
         Debug.Log("Mouse click enemy");
-        BestiarioManager bm = GameObject.Find("PanelInfo").GetComponent<BestiarioManager>();
-        bm.CambiarEstado();
-        if (bm.RetEnP())
+        GameObject.Find("PanelInfo").SendMessage("CambiarEstado");
+        if (GameObject.Find("PanelInfo").GetComponent<BestiarioManager>().RetEnP())
         {
-            bm.DisplayDatos(gameObject);  
+            GameObject.Find("PanelInfo").SendMessage("DisplayDatos",this.gameObject);  
         }
     }
 /*Se mueve a la fila del player*/
@@ -299,18 +250,14 @@ public class EnemyController : MonoBehaviour
         int playerx =  GameManager.player.GetComponent<PlayerController>().GetPos().x;
         int enemyx = enemy.GetComponent<EnemyController>().GetPos().x;
         if(playery == enemy.GetComponent<EnemyController>().GetPos().y) return new Vector2(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y); // si ya está en la fila del player se queda donde estaba
-        Vector2 nuevaPos = new(enemyx, playery);
+        Vector2 nuevaPos = new Vector2(enemyx, playery);
         Tile tile;
         GridManager._tiles.TryGetValue(nuevaPos, out tile);
         if(tile.ocupado == false && enemyx != playerx) return nuevaPos; // moverlo desde el método Movimiento
-        if (tile.ocupado && tile.ocupadoObj.CompareTag("Obstacle") && tile.ocupadoObj.GetComponent<DisplayObstacle>().GetId() == 0) {
-            Debug.Log("Estoy Aqui");
-            return nuevaPos;
-        }
         else
         {
-            int ancho;
-            if (GameObject.Find("GridManager") == null)
+            int ancho ;
+            if(GameObject.Find("GridManager") == null)
             {
                 FondoManager fondo = GameObject.Find("Fondo").GetComponent<FondoManager>();
                 fondo.Aparecer();
@@ -320,17 +267,17 @@ public class EnemyController : MonoBehaviour
             {
                 ancho = GameObject.Find("GridManager").GetComponent<GridManager>().GetWidth();
             }
-
-            for (int i = 0; i < ancho - 1; i++)
+            
+            for(int i = 0; i < ancho - 1; i++)
             {
-                if (enemyx == 0) enemyx = ancho;
+                if(enemyx == 0) enemyx = ancho;
                 enemyx--;
                 nuevaPos = new Vector2(enemyx, playery);
                 GridManager._tiles.TryGetValue(nuevaPos, out tile);
-                if (tile.ocupado == false && enemyx != playerx) return nuevaPos;
+                if(tile.ocupado == false && enemyx != playerx) return nuevaPos;
             }
-            return new Vector2(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y); // aqui solo llega si ha acabado el for, por tanto i = ancho y como no se ha podido mover se queda en su posición original
-
+            return new Vector2(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y) ; // aqui solo llega si ha acabado el for, por tanto i = ancho y como no se ha podido mover se queda en su posición original
+            
         }
 
     }
@@ -343,23 +290,23 @@ public class EnemyController : MonoBehaviour
         int playerx = GameManager.player.GetComponent<PlayerController>().GetPos().x;
         int playery = GameManager.player.GetComponent<PlayerController>().GetPos().y;
 
-        Vector2 start = new(enemyx, enemyy);
-        Vector2 fin = new(playerx, playery);
+        Vector2 start = new Vector2(enemyx, enemyy);
+        Vector2 fin = new Vector2(playerx, playery);
         if (start == fin) return start;
         if (enemyx == playerx && ((playery == enemyy - 1) || (playery == enemyy + 1))) return start;
         if (enemyy == playery && ((playerx == enemyx - 1) || (playerx == enemyx + 1))) return start;
         Dictionary<Vector2, int> dist = new Dictionary<Vector2, int>();
         Dictionary<Vector2, Vector2> parent = new Dictionary<Vector2, Vector2>();
-        List<Vector2> open = new();
+        List<Vector2> open = new List<Vector2>();
         dist[start] = 0;
         open.Add(start);
 
         Vector2[] dirs = new Vector2[]
         {
-            new(1,0),
-            new(-1,0),
-            new(0,1),
-            new(0,-1)
+            new Vector2(1,0),
+            new Vector2(-1,0),
+            new Vector2(0,1),
+            new Vector2(0,-1)
         };
         /*Dijkstra*/
         while (open.Count > 0)
@@ -396,7 +343,7 @@ public class EnemyController : MonoBehaviour
         {
             return start;
         }
-        List<Vector2> path = new();
+        List<Vector2> path = new List<Vector2>();
         Vector2 aux = fin;
         path.Add(aux);
         while (aux != start)

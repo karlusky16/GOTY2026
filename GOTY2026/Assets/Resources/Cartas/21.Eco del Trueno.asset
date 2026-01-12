@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Eco del Trueno
   coste: 2
   tipoCoste: 1
-  descripcion: Agrega un 10% de probabilidades. de aturdir a enemigos con cualquier
+  descripcion: Agrega un 10% de probabilidades de aturdir a enemigos con cualquier
     carta
   patron: Tile
   rango: -1
@@ -26,6 +26,6 @@ MonoBehaviour:
   "da\xF1o": 0
   "da\xF1oFuego": 0
   shockValue: 10
-  precio: 20
-  sprite: {fileID: 21300000, guid: 3fdeefa9a1a37ec4a89008fba07c88da, type: 3}
+  precio: 30
+  sprite: {fileID: 0}
   eterea: 0

@@ -174,17 +174,12 @@ public class TileManager : MonoBehaviour
     }
     //Getter direcionesAnt
     public Vector2[] GetDireccionesAnt() => direccionesAnt;
-    public Vector2[] AlientoFuego(int area)
-    {
-        List<Vector2> direcciones = new();
-        return direcciones.ToArray();
-    }
     //Calculo de patrones
     public Vector2[] Circulo(int area)
     {
         List<Vector2> direcciones = new();
         foreach (var dir in circulo) direcciones.Add(dir);
-        direcciones.Add(new(0, 0));
+        direcciones.Add(new(0,0));
         return direcciones.ToArray();
     }
     private static Vector2[] Cruz(int area)

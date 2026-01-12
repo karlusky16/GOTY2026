@@ -68,7 +68,7 @@ public class BestiarioManager : MonoBehaviour
                 at.AddComponent<Image>().sprite = aturdidoS;
                 at.GetComponent<Image>().SetNativeSize();
                 GameObject textoAt = new("textoAt", typeof(RectTransform));
-                textoAt.AddComponent<TextMeshProUGUI>().text = "El personaje esta aturdido, y por tanto no podra moverse en este turno.\n";
+                textoAt.AddComponent<TextMeshProUGUI>().text = "El personaje esta aturdido, y por tanto no podra usar cartas en este turno.";
                 textoAt.GetComponent<TextMeshProUGUI>().fontSize = 9;
                 at.transform.SetParent(panel.transform, false);
                 textoAt.transform.SetParent(panel.transform, false);
@@ -104,14 +104,6 @@ public class BestiarioManager : MonoBehaviour
             DisplayEnemy dc = personaje.GetComponent<DisplayEnemy>();
             GameObject texto = new();
             texto.AddComponent<TextMeshProUGUI>().text = "El enemigo hace " + dc.GetDaño() + " de daño y tiene " + dc.enemy.vida + " de vida.\n";
-            if (dc.enemy.dañoFuego > 0)
-            {
-                texto.GetComponent<TextMeshProUGUI>().text += "El enemigo aplica " + dc.enemy.dañoFuego + " cargas de fuego.\n";
-                
-            }
-            if (dc.enemy.shockValue > 0) {
-                texto.GetComponent<TextMeshProUGUI>().text += "El enemigo tiene un " + dc.enemy.shockValue + "% de aturdirte.\n";
-            }
             texto.GetComponent<TextMeshProUGUI>().fontSize = 9;
             LayoutElement le = texto.AddComponent<LayoutElement>();
             le.preferredWidth = 150;

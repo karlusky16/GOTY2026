@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 573097506632140755}
   - component: {fileID: 7217608333526629402}
   - component: {fileID: 4420535874939125938}
-  - component: {fileID: 6687868298753579591}
-  - component: {fileID: 2047651431205523091}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: Obstacle
@@ -108,39 +106,4 @@ MonoBehaviour:
   obstacle: {fileID: 0}
   displayID: 0
   id: 0
-  turnosRestantes: 0
   spriteRenderer: {fileID: 7217608333526629402}
---- !u!95 &6687868298753579591
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4971694915616071951}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1b1c752c63a058a44902ec502bc75ee2, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2047651431205523091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4971694915616071951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68206732818863048a4d8698c0558948, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ObstacleAnimator

@@ -26,6 +26,7 @@ public class DisplayCard : MonoBehaviour
         card = GameManager.cardList.Find(c => c.id == displayID);
         nameText.text = " " + card._name;
         costText.text = " " + card.coste;
+        DañoText.text = "Daño " + card.daño + "\n" + "Rango " + card.rango + "\n";
         descriptionText.text = " " + card.descripcion;
         cardImage.sprite = card.sprite;
         Color32 mana = new(95, 16, 120, 255);

@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Rayo
   coste: 1
   tipoCoste: 0
-  descripcion: "Disparas un rayo que hace 4 de da\xF1o y tiene un 10% de aturdir."
+  descripcion: "Disparas un rayo que da\xF1a a una casilla"
   patron: Cruz
   rango: 6
   area: 0
@@ -26,5 +26,4 @@ MonoBehaviour:
   "da\xF1oFuego": 0
   shockValue: 10
   precio: 15
-  sprite: {fileID: 21300000, guid: 4ed7559fc5d9e8243a3e3882cf14e87b, type: 3}
-  eterea: 0
+  sprite: {fileID: -1269056368326576234, guid: 4c0af175e2afd3349be63852ee2b99cb, type: 3}

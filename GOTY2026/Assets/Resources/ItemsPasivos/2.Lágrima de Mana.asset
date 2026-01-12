@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPasivo
   id: 2
   _name: Lagrima de Mana
-  precio: 30
+  precio: 8
   descripcion: Te agrega 2 de mana permanente y reduce en 2 la energia
   sprite: {fileID: 0}

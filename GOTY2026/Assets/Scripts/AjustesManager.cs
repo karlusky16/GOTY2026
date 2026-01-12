@@ -38,28 +38,14 @@ public class AjustesManager : MonoBehaviour
     public void Salir()
     {
         audioSource.PlayOneShot(pulsarBotonClip);
-        #if UNITY_EDITOR
-        // Si estás en el editor, detiene el Play Mode
-        UnityEditor.EditorApplication.isPlaying = false;
-        #else
-        // Si estás en un build (EXE, Mac, etc.), cierra la aplicación
         Application.Quit();
-        #endif
     }
     public void Guardar()
     {
-        if ( UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "MenuPrincipal" && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "SelectCharacter"){
-            GameManager.player.GetComponent<PlayerController>().GuardarStats();
-            SaveData saveData = new()
-            {
-                batTutorial = GameManager.primerC,
-                escena = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name,
-                stats = GameManager.player.GetComponent<PlayerController>().stats
-            };
-            string json = JsonUtility.ToJson(saveData, true);
-            File.WriteAllText(RutaSave, json);
-            Debug.Log("Jugador guardado en: " + RutaSave);
-        }
+        audioSource.PlayOneShot(pulsarBotonClip);
+        GameObject.Find("Player").GetComponent<PlayerController>().GuardarStats();
+        string json = JsonUtility.ToJson(GameManager.player.GetComponent<PlayerController>().stats, true);
+        File.WriteAllText(RutaSave, json);
     }
     public void ActivarSegundoMenu()
     {

@@ -49,7 +49,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
-    <Compile Include="Assets\Scripts\SceneManagerE1.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Details\Scripts\WeightExample.cs" />
     <Compile Include="Assets\Scripts\CofreScript.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\MapLayer.cs" />
@@ -60,6 +59,7 @@
     <Compile Include="Assets\Scripts\AjustesManager.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\MapPlayerTracker.cs" />
     <Compile Include="Assets\Scripts\ScriptsSaves\Ajustes.cs" />
+    <Compile Include="Assets\Scripts\ScriptsSaves\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Tile.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
     <Compile Include="Assets\Scripts\GridManager.cs" />
@@ -70,8 +70,6 @@
     <Compile Include="Assets\Scripts\SceneManagerSample.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Benchmark\Scripts\ArrayBenchmark.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\Node.cs" />
-    <Compile Include="Assets\Scripts\SceneManager4.cs" />
-    <Compile Include="Assets\Scripts\SceneManagerE2.cs" />
     <Compile Include="Assets\OneLine\RectEx\MoveToExtensions.cs" />
     <Compile Include="Assets\Scripts\DisplayEnemy.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Details\Scripts\OneLineDrawerExample.cs" />
@@ -85,7 +83,6 @@
     <Compile Include="Assets\OneLine\OneLine\Example\Details\Scripts\WidthExample.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\InventoryCardTemplate.cs" />
-    <Compile Include="Assets\Scripts\RecompensasElite.cs" />
     <Compile Include="Assets\OneLine\RectEx\CutFromExtensions.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Tests\Scripts\ExtendedGenericTest.cs" />
     <Compile Include="Assets\Scripts\ApuntadoImagen.cs" />
@@ -152,7 +149,6 @@
     <Compile Include="Assets\Scripts\TileManagerEnemigo.cs" />
     <Compile Include="Assets\Scripts\EventUI.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs" />
-    <Compile Include="Assets\Scripts\ScriptsSaves\SaveData.cs" />
     <Compile Include="Assets\Scripts\ScriptsSaves\PlayerStats.cs" />
     <Compile Include="Assets\OneLine\OneLine\Attributes\ExpandableAttribute.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
@@ -170,7 +166,6 @@
     <Compile Include="Assets\Scripts\ScriptsSaves\Guardado.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Overview\Scripts\StandartTypesOverview.cs" />
     <Compile Include="Assets\Scripts\HomeStoreScene.cs" />
-    <Compile Include="Assets\Scripts\TutorialManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\MapManager.cs" />
     <Compile Include="Assets\Scripts\DisplayItems.cs" />
