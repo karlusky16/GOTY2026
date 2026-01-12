@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 [CreateAssetMenu(fileName = "New Event", menuName = "ScriptableObjects/Event")]
 public class Events : ScriptableObject
 {
@@ -16,4 +17,5 @@ public class Events : ScriptableObject
     public int costeEnergia2;
     public int costeVida1;
     public int costeVida2;
+    public Texture sprite;
 }
