@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Entrada Heroica
   coste: 3
   tipoCoste: 1
-  descripcion: Haces un salto largo que hace 4 a los enemigos de tu alrededor.
+  descripcion: "Haces un salto largo que hace 4 de da\xF1o a los enemigos de tu alrededor."
   patron: CirculoM
   rango: 4
   area: 1
