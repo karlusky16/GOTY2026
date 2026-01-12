@@ -59,7 +59,7 @@ public class SceneManager5 : MonoBehaviour
 
         if (GameManager.instance != null)
             Destroy(GameManager.instance.gameObject);
-
+        Destroy(GameObject.Find("SaveManager"));
         if (File.Exists(Application.persistentDataPath + "/save.json"))
         {
             File.Delete(Application.persistentDataPath + "/save.json");

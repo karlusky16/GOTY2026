@@ -18,6 +18,7 @@ public class MenuManager : MonoBehaviour
             File.Delete(rutaSave);
             Debug.Log("Archivo de guardado eliminado");
         }
+        GameManager.primerC = false;
         PlayerPrefs.DeleteKey("Map");
         PlayerPrefs.Save();
         SceneManager.LoadScene("SelectCharacter");
