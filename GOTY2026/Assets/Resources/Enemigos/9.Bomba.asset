@@ -23,4 +23,4 @@ MonoBehaviour:
   movimiento: 0
   patronAtaque: Bomba
   animator: {fileID: 9100000, guid: f897101e3dc74784f9df12d08c56e2ef, type: 2}
-  prefabAtaque: {fileID: 0}
+  prefabAtaque: {fileID: 4031096645747978543, guid: 268e3877aff83f849b392f2a26dc3f49, type: 3}

@@ -162,7 +162,7 @@ public class EnemyController : MonoBehaviour
                 player.AddShock(sVE);
                 Debug.Log("Player atacado por enemy");
             }
-            if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 1 || gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 6|| gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 9)
+            if (gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 1 || gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 6 || gameObject.GetComponent<DisplayEnemy>().GetEnemy().id == 9)
             {
                 for (int i = 0; i < posicionesAtaqueList.Count; i++)
                 {

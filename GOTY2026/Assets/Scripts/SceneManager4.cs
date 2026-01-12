@@ -38,7 +38,7 @@ public class SceneManager4 : MonoBehaviour
         GameManager.InstanciateObstacle(new Vector2(0, 3), 5);
         GameManager.InstanciateObstacle(new Vector2(1, 4), 5);
         GameManager.InstanciateObstacle(new Vector2(2, 5), 5);
-        GameManager.InstanciateObstacle(new Vector2(4, 0), 4);
+        GameManager.InstanciateObstacle(new Vector2(4, 0), 2);
     }
     // Update is called once per frame
     void Update()
