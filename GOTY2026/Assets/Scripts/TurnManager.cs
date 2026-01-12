@@ -68,7 +68,8 @@ public class TurnManager : MonoBehaviour
         }
         else if (currentTurn == Turn.Enemy)
         {
-            EnemyTurn();
+            currentTurn = Turn.Player; // evita repetirse
+            StartCoroutine(EnemyTurn());
         }
     }
 
@@ -107,8 +108,9 @@ public class TurnManager : MonoBehaviour
 
     }
 
-    void EnemyTurn()
+    IEnumerator EnemyTurn()
     {
+        // 1️⃣ Obstáculos (se hace instantáneo)
         foreach (var obstacle in GameManager.obstacles.Keys.ToList())
         {
             var d = obstacle.GetComponent<DisplayObstacle>();
@@ -122,54 +124,51 @@ public class TurnManager : MonoBehaviour
                 GameManager.obstacles.Remove(obstacle);
                 GameManager.obstaclesLis.Remove(obstacle);
                 Destroy(obstacle);
-
             }
         }
+
+        // 2️⃣ Enemigos UNO A UNO
         foreach (var enemy in GameManager.enemigosLis)
         {
             Debug.Log("Ataca el enemigo en: " + GameManager.enemigos[enemy]);
-            if (enemy.GetComponent<EnemyController>() == null)
+
+            var animator = enemy.GetComponent<Animator>();
+            if (animator != null)
             {
-                //Debug.Log("El enemigo ataca");
-                //enemy.GetComponent<EnemyController>().Ataque();
-                Debug.Log("enemy.GetComponent<EnemyController>() == null");
+                animator.SetBool("ataque", true);
+            }
 
-                // Espera
-                Invoke(nameof(EndEnemyTurn), 1.5f);
+            yield return new WaitForSeconds(1f);
 
-                currentTurn = Turn.Player; //evita que ataque en cada frame
+            var display = enemy.GetComponent<DisplayEnemy>();
+            var controller = enemy.GetComponent<EnemyController>();
+
+            if (display.enemy.id == 4 ||
+                (display.enemy.id == 10 &&
+                enemy.GetComponent<TileManagerEnemigo>().patronDragon == 5))
+            {
+                playerController.ReducirVida(display.GetDaño());
+                playerController.AddFuego(display.enemy.dañoFuego);
+                playerController.AddShock(display.enemy.shockValue);
             }
             else
             {
-                if (enemy.GetComponent<DisplayEnemy>().enemy.animator != null)
-                {
-                    animator = enemy.GetComponent<Animator>();
-                    animator.SetBool("ataque", true);
-
-                }
-                if (enemy.GetComponent<DisplayEnemy>().enemy.id == 4 || (enemy.GetComponent<DisplayEnemy>().GetEnemy().id == 10 && enemy.GetComponent<TileManagerEnemigo>().patronDragon == 5))
-                {
-                    GameObject.Find("Player").GetComponent<PlayerController>().ReducirVida(enemy.GetComponent<DisplayEnemy>().GetDaño());
-                    GameObject.Find("Player").GetComponent<PlayerController>().AddFuego(enemy.GetComponent<DisplayEnemy>().enemy.dañoFuego);
-                    GameObject.Find("Player").GetComponent<PlayerController>().AddShock(enemy.GetComponent<DisplayEnemy>().enemy.shockValue);
-                }
-                else
-                {
-                    Debug.Log("Rango enemigo: " + enemy.GetComponent<TileManagerEnemigo>().GetRango());
-                    enemy.GetComponent<EnemyController>().Ataque(enemy.GetComponent<TileManagerEnemigo>().GetRango(), enemy.GetComponent<DisplayEnemy>().GetDaño(), enemy.GetComponent<DisplayEnemy>().enemy.dañoFuego, enemy.GetComponent<DisplayEnemy>().enemy.shockValue);
-                }
-                enemy.GetComponent<EnemyController>().Movimiento(enemy);
-                if (enemy.GetComponent<DisplayEnemy>().GetName() == "Bomba") enemy.GetComponent<DisplayEnemy>().SendMessage("ActualizarSprite");
-                enemy.GetComponent<EnemyController>().Fuego();
-                enemy.GetComponent<EnemyController>().ResetShock();
-                enemy.GetComponent<BoxCollider2D>().enabled = false;
-                Debug.Log("El enemigo ataca");
+                controller.Ataque(
+                    enemy.GetComponent<TileManagerEnemigo>().GetRango(),
+                    display.GetDaño(),
+                    display.enemy.dañoFuego,
+                    display.enemy.shockValue
+                );
             }
+
+            controller.Movimiento(enemy);
+            controller.Fuego();
+            controller.ResetShock();
+
+            enemy.GetComponent<BoxCollider2D>().enabled = false;
+            yield return new WaitForSeconds(0.3f);
         }
-        Invoke(nameof(EndEnemyTurn), 1.5f);
-        currentTurn = Turn.Player; //evita que ataque en cada frame
-        playerController.AumentarEnergia(playerController.GetEnergiaMaxima());
-        playerController.AumentarMana(playerController.GetManaMaxima());
+        EndEnemyTurn();
     }
 
     void EndEnemyTurn()
