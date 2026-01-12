@@ -232,7 +232,7 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 if (GridManager._tiles.TryGetValue(dir, out Tile tile2) && tile2.ocupado)
                 {
                     if  (tile2.ocupadoObj.CompareTag("Enemy")) {
-                       EnemyController ec = tile.ocupadoObj.GetComponent<EnemyController>();
+                       EnemyController ec = tile2.ocupadoObj.GetComponent<EnemyController>();
                         Ataque(ec,null);
                         if (gameObject.GetComponent<DisplayCard>().GetCard().id == 19)
                         {
