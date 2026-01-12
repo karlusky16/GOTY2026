@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 1
   nombre: Curandero
   texto: "Un anciano envuelto en vendas junto con un carro de frascos de colores
-    te observa con atenci\xF3n.\\nSe te acerca y te ofrece algunas de sus pociones.\\n\\nSe
+    te observa con atenci\xF3n.\\nSe te acerca y te ofrece algunas de sus pociones.\\n\\nS\xE9
     que te habr\xE1n hecho da\xF1o por el camino, as\xED que si quieres puedo venderte
     algunas de mis pociones. Tengo una que te cura 2 de vida por 10 monedas y otra
     que te hace m\xE1s fuerte (a\xF1ade 3 de vida m\xE1xima) a cambio de 50 monedas."
