@@ -16,7 +16,8 @@ MonoBehaviour:
   _name: Rerrol
   coste: 0
   tipoCoste: 2
-  descripcion: Descartas todas las cartas de tu mano y robas la misma cantidad.Eterea.
+  descripcion: "Descartas todas las cartas de tu mano y robas la misma cantidad.
+    Et\xE9rea."
   patron: Tile
   rango: -1
   area: 1

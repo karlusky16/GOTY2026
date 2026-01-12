@@ -16,8 +16,8 @@ MonoBehaviour:
   _name: Resistencia Draconica
   coste: 1
   tipoCoste: 2
-  descripcion: "Adquieres la resistencia al fuego de un drag\xF3n reduciendote las
-    cargas de fuego a la mitad."
+  descripcion: "Adquieres la resistencia al fuego de un drag\xF3n reduci\xE9ndote
+    las cargas de fuego a la mitad."
   patron: Tile
   rango: -1
   area: 1
