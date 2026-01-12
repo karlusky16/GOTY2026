@@ -16,4 +16,4 @@ MonoBehaviour:
   _name: Bateria Extra
   precio: 30
   descripcion: Te agrega 2 de energia permanente pero reduce en 2 el mana maximo
-  sprite: {fileID: 8383521278122326527, guid: 83d9be07b87371549b11ed504ea93395, type: 3}
+  sprite: {fileID: -8747603448465671348, guid: a98eeca15fc94f74abd005a7fe4c88e9, type: 3}

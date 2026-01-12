@@ -16,4 +16,4 @@ MonoBehaviour:
   _name: Lagrima de Mana
   precio: 30
   descripcion: Te agrega 2 de mana permanente y reduce en 2 la energia
-  sprite: {fileID: 0}
+  sprite: {fileID: -37783305042780876, guid: 7495d5833f34c1d41bf0ea4114910cda, type: 3}

@@ -16,4 +16,4 @@ MonoBehaviour:
   _name: Cuchilla Extra
   precio: 25
   descripcion: "Todos los objetos hacen 1 de da\xF1o extra"
-  sprite: {fileID: 0}
+  sprite: {fileID: -8406030280312334510, guid: c5a0485b59f04f1488cc2274002bd081, type: 3}

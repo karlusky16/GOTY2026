@@ -93,9 +93,8 @@ public class TurnManager : MonoBehaviour
         }
         if (viendoTE)
         {
-            viendoTE = false;
             VerTilesEnemigos();
-
+            viendoTE = false;
         }
         GameManager.carta = null;
         GameManager.cartaSeleccionada = false;
@@ -143,9 +142,8 @@ public class TurnManager : MonoBehaviour
                 }
             }
 
-
             yield return new WaitForSeconds(1f);
-
+            enemy.GetComponent<EnemyController>().HacerObstaculos(enemy.GetComponent<TileManagerEnemigo>().GetRango());
             var display = enemy.GetComponent<DisplayEnemy>();
             var controller = enemy.GetComponent<EnemyController>();
 
@@ -188,6 +186,7 @@ public class TurnManager : MonoBehaviour
         GameObject.Find("Player").GetComponent<PlayerController>().AumentarMana(GameObject.Find("Player").GetComponent<PlayerController>().GetManaMaxima());
         GameObject.Find("Player").GetComponent<PlayerController>().AumentarEnergia(GameObject.Find("Player").GetComponent<PlayerController>().GetEnergiaMaxima());
         GameObject.Find("Player").GetComponent<PlayerController>().ResetTemporales();
+        playerController.AddEscudo(playerController.escudoItems);
         Debug.Log("Vuelve el turno del jugador.");
         foreach (var enemy in GameManager.enemigosLis)
         {

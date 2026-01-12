@@ -16,4 +16,4 @@ MonoBehaviour:
   _name: Anillo de Vida
   precio: 50
   descripcion: "Te agrega 5 de vida m\xE1xima"
-  sprite: {fileID: 0}
+  sprite: {fileID: 7420348153724243738, guid: 72c7f9a147d8a6a4dbb30fe0cc07df25, type: 3}

@@ -16,4 +16,4 @@ MonoBehaviour:
   _name: Anillo de Fuego
   precio: 40
   descripcion: Todos tus ataques aplican una carga de fuego adicional
-  sprite: {fileID: 0}
+  sprite: {fileID: 2598274992309861360, guid: 26df9fbbb45812a4f9ac5f5642e0d4c3, type: 3}

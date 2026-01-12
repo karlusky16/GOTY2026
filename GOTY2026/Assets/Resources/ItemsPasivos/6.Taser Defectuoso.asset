@@ -16,4 +16,4 @@ MonoBehaviour:
   _name: Taser Defectuoso
   precio: 40
   descripcion: Todos tus ataques tienen un 5% adicional de aturdir
-  sprite: {fileID: 0}
+  sprite: {fileID: 6113777454410279907, guid: ebd7b7e39acfaed4981a3869becc55df, type: 3}

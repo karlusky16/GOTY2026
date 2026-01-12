@@ -22,8 +22,5 @@ MonoBehaviour:
   area: 10
   movimiento: 0
   patronAtaque: Aleatorios
-  sprite: {fileID: 256283122708437524, guid: db2147a262f7f494f92a14138d79206a, type: 3}
-  sprite2: {fileID: 0}
-  sprite3: {fileID: 0}
-  sprite4: {fileID: 0}
   animator: {fileID: 9100000, guid: 6fd92b4a347a7764b8825db984d04fc4, type: 2}
+  prefabAtaque: {fileID: 4920629880618140802, guid: 1794cc4f04cec4849b43c6a0b50ad918, type: 3}

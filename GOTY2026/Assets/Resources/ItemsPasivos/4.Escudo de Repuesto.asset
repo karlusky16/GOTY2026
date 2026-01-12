@@ -16,4 +16,4 @@ MonoBehaviour:
   _name: Escudo de Repuesto
   precio: 40
   descripcion: Te agrega 2 de escudo en cada turno
-  sprite: {fileID: 0}
+  sprite: {fileID: 6080969453264644737, guid: 43b4d8263a1952d4299d492178ed33dd, type: 3}
