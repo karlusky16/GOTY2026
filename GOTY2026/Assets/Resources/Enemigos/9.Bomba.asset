@@ -26,3 +26,4 @@ MonoBehaviour:
   sprite2: {fileID: 0}
   sprite3: {fileID: 0}
   sprite4: {fileID: 0}
+  animator: {fileID: 9100000, guid: f897101e3dc74784f9df12d08c56e2ef, type: 2}

@@ -131,6 +131,7 @@
     <Compile Include="Assets\Scripts\AturdidoImagen.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\BarraVidaPlayer.cs" />
+    <Compile Include="Assets\Scripts\AttackStateBehaviour.cs" />
     <Compile Include="Assets\OneLine\OneLine\Example\Details\Scripts\HideLabelExample.cs" />
     <Compile Include="Assets\Scripts\InventoryManager.cs" />
     <Compile Include="Assets\Scripts\ScriptsMapa\NodeBlueprint.cs" />

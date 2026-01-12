@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Animations;
 using UnityEngine;
 [CreateAssetMenu(fileName = "New Enemy", menuName = "ScriptableObjects/Enemy")]
 public class Enemy : ScriptableObject
@@ -17,6 +18,7 @@ public class Enemy : ScriptableObject
     public Sprite sprite2;
     public Sprite sprite3;
     public Sprite sprite4;
+    public AnimatorController animator;
     
 }
 

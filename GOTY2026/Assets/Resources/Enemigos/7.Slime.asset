@@ -16,8 +16,14 @@ MonoBehaviour:
   _name: Slime
   vida: 25
   "da\xF1o": 4
+  "da\xF1oFuego": 0
+  shockValue: 0
   rango: 0
   area: 1
   movimiento: 1
   patronAtaque: Cruz
   sprite: {fileID: -1823966767952768194, guid: 844f30ea37b14ad4da4a05a943ad3e76, type: 3}
+  sprite2: {fileID: 0}
+  sprite3: {fileID: 0}
+  sprite4: {fileID: 0}
+  animator: {fileID: 9100000, guid: 0d6de85ff0e91e94895fa95afaac3659, type: 2}

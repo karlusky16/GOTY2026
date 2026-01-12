@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -26,8 +27,7 @@ public class TurnManager : MonoBehaviour
     //De momento esto es asi ya que solo hay un enemigo
 
     public static PlayerController playerController;
-
-
+    private Animator animator;
 
     void Start()
     {
@@ -90,7 +90,12 @@ public class TurnManager : MonoBehaviour
         {
             GameObject.Find("GameManager").SendMessage("DesmarcarRango", GameManager.player.GetComponent<PlayerController>().GetPos());
         }
-        VerTilesEnemigos();
+        if (viendoTE)
+        {
+            viendoTE = false;
+            VerTilesEnemigos();
+
+        }
         GameManager.carta = null;
         GameManager.cartaSeleccionada = false;
         playerController.QuitarShock();
@@ -136,6 +141,12 @@ public class TurnManager : MonoBehaviour
             }
             else
             {
+                if (enemy.GetComponent<DisplayEnemy>().enemy.animator != null)
+                {
+                    animator = enemy.GetComponent<Animator>();
+                    animator.SetBool("ataque", true);
+
+                }
                 if (enemy.GetComponent<DisplayEnemy>().enemy.id == 4 || (enemy.GetComponent<DisplayEnemy>().GetEnemy().id == 10 && enemy.GetComponent<TileManagerEnemigo>().patronDragon == 5))
                 {
                     GameObject.Find("Player").GetComponent<PlayerController>().ReducirVida(enemy.GetComponent<DisplayEnemy>().GetDaño());

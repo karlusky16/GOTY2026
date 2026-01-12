@@ -2601,8 +2601,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneManagerSample, Assembly-CSharp
+      - m_Target: {fileID: 1617551212}
+        m_TargetAssemblyTypeName: SceneManager2, Assembly-CSharp
         m_MethodName: Reset
         m_Mode: 1
         m_Arguments:
@@ -15216,7 +15216,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 15
-      m_TileSpriteIndex: 16
+      m_TileSpriteIndex: 20
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -16023,16 +16023,16 @@ Tilemap:
     m_Data: {fileID: -127610346, guid: f7e737f9cf378724ea58aef0e79a1798, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -1448876391, guid: f7e737f9cf378724ea58aef0e79a1798, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -1647675286, guid: f7e737f9cf378724ea58aef0e79a1798, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 2
     m_Data: {fileID: 1797841243, guid: f7e737f9cf378724ea58aef0e79a1798, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -579063247, guid: f7e737f9cf378724ea58aef0e79a1798, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -852525027, guid: f7e737f9cf378724ea58aef0e79a1798, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -1647675286, guid: f7e737f9cf378724ea58aef0e79a1798, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -123422794, guid: 16c04ed1beaa375438b43414f15f3a5c, type: 3}
   - m_RefCount: 1
@@ -18854,8 +18854,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneManagerSample, Assembly-CSharp
+      - m_Target: {fileID: 1617551212}
+        m_TargetAssemblyTypeName: SceneManager2, Assembly-CSharp
         m_MethodName: Salir
         m_Mode: 1
         m_Arguments:

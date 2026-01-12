@@ -189,6 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TileManagerEnemigo
   direccionesAnt: []
+  patronDragon: 0
   visto: 0
   circulo:
   - {x: 1, y: 0}
