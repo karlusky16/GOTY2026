@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Escudo de Fuerza
   coste: 1
   tipoCoste: 1
-  descripcion: "Te a\xF1ades 3 de escudo"
+  descripcion: "Te a\xF1ades 3 de escudo."
   patron: Tile
   rango: -1
   area: 1
@@ -25,6 +25,6 @@ MonoBehaviour:
   "da\xF1o": 3
   "da\xF1oFuego": 0
   shockValue: 0
-  precio: 15
-  sprite: {fileID: 0}
+  precio: 10
+  sprite: {fileID: 21300000, guid: a651c93cefef77b438726270d2807893, type: 3}
   eterea: 0

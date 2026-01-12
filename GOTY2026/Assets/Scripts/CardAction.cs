@@ -203,13 +203,14 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                     break;
             }
             ReducirCosto();
-            ManejoCarta(); 
-            }
+            ManejoCarta();
+        }
         //Sino se muestra el mensaje correspondiente
         else
         {
             NoMas();
         }
+        GameManager.CambiarLayerEnemy("Default");
         
     }
     //Metodo para efecto de cartas que impliquen movimiento y ataque
@@ -385,21 +386,23 @@ public class CardAction : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     }
     private void ReducirCosto()
     {
-        //Comprobación de tipo de coste y reducción del recurso correspondiente
-        switch (GameManager.carta.GetComponent<DisplayCard>().GetTipoCoste())
-        {
-            case 0:
-                player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                break;
-            case 1:
-                player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                break;
-            case 2:
-                player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
-                break;
-            default:
-                break;
+        if (!GameManager.estamina) {
+             //Comprobación de tipo de coste y reducción del recurso correspondiente
+            switch (GameManager.carta.GetComponent<DisplayCard>().GetTipoCoste())
+            {
+                case 0:
+                    player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    break;
+                case 1:
+                    player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    break;
+                case 2:
+                    player.GetComponent<PlayerController>().ReducirEnergia(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    player.GetComponent<PlayerController>().ReducirMana(GameManager.carta.GetComponent<DisplayCard>().GetCoste());
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

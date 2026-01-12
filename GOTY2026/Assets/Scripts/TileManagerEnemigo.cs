@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TileManagerEnemigo : MonoBehaviour
 {
     public Vector2[] direccionesAnt;
     private String lastPatron;
+    public int patronDragon = 0;
     public Vector2[] GetRango() => direccionesAnt;
     public Boolean visto = false;
     public Vector2[] circulo = { new(1, 0), new(-1, 0), new(1, -1), new(1, 1), new(-1, 1), new(-1, -1), new(0, 1), new(0, -1) };
@@ -57,13 +59,44 @@ public class TileManagerEnemigo : MonoBehaviour
                 if(TurnManager.numTurno == 2) direccionesAnt = TodoElTablero();
                 if(TurnManager.numTurno == 3) Destroy(enemy);
                 break;
+            case "Dragon":
+                patronDragon = PatronDragon(enemy.GetComponent<EnemyController>().GetPos());
+                switch (patronDragon)
+                {
+                    case 1:
+                        ModificarDatosAtaque(2,2,0,enemy);
+                        direccionesAnt = AlientoFuego(enemy.GetComponent<DisplayEnemy>().GetArea(),new(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y));
+                        break;
+                    case 2:
+                        ModificarDatosAtaque(10,0,0,enemy);
+                        direccionesAnt = Circulo(enemy.GetComponent<DisplayEnemy>().GetArea(), new(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y));
+                        break;
+                    case 3:
+                        ModificarDatosAtaque(5,0,50,enemy);
+                        direccionesAnt = RayosParalizantes(enemy.GetComponent<DisplayEnemy>().GetArea(),new(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y));
+                        break;
+                    case 4:
+                        ModificarDatosAtaque(7,0,0,enemy);
+                        direccionesAnt = LatigoCola(new(enemy.GetComponent<EnemyController>().GetPos().x, enemy.GetComponent<EnemyController>().GetPos().y));
+                        break;
+                    case 5:
+                        ModificarDatosAtaque(2,0,50,enemy);
+                        break;
+                    case 6:
+                        ModificarDatosAtaque(4,0,0,enemy);
+                        direccionesAnt = MorteroD();
+                        break;
+                    default:
+                        break;
+                }
+                break;
             default:
                 break;
         }
     }
     public void HighlightEnemyTiles(GameObject enemy)
     {
-        if (enemy.GetComponent<DisplayEnemy>().GetPatron() == "Sniper")
+        if (enemy.GetComponent<DisplayEnemy>().GetPatron() == "Sniper" || (enemy.GetComponent<DisplayEnemy>().GetPatron() == "Dragon" && patronDragon == 5))
         {
             GameObject.Find("Player").GetComponent<PlayerController>().Mirilla();
         }
@@ -94,6 +127,109 @@ public class TileManagerEnemigo : MonoBehaviour
         }
         
     }
+    public int PatronDragon(Tile tile)
+    {
+        Vector2 posPlayer = new(GameManager.player.GetComponent<PlayerController>().posicion.x, GameManager.player.GetComponent<PlayerController>().posicion.y);
+        Vector2 posEnemy = new(tile.x, tile.y);
+        Vector2 distancia = posPlayer - posEnemy;
+        bool mele = false;
+        if (distancia.x < 2 && distancia.x > -2 && distancia.y < 2 && distancia.y > -2)
+        {
+            Debug.Log("Estoy a mele");
+            mele = true;
+        }
+        System.Random rand = new();
+        int num = rand.Next(1, 3);
+        int num2 = rand.Next(1, 6);
+        int[] numsM = { 2, 4, 5 };
+        int[] numsD = { 1, 1, 3, 5, 6, 6 };
+        if (mele)
+        {
+            num = numsM[num];
+        }
+        else
+        {
+            num = numsD[num2];
+        }
+        return num;
+    }
+    public void ModificarDatosAtaque(int daño, int dañoFuego, int shock, GameObject enemy)
+    {
+        enemy.GetComponent<DisplayEnemy>().enemy.daño = daño;
+        enemy.GetComponent<DisplayEnemy>().enemy.dañoFuego = dañoFuego;
+        enemy.GetComponent<DisplayEnemy>().enemy.shockValue = shock;
+    }
+    public Vector2[] AlientoFuego(int area,Vector2 posEnemigo)
+    {
+        List<Vector2> direcciones = new();
+        for (int i = 1; i < area; i++)
+        {
+            if (i == 1)
+            {
+                direcciones.Add(posEnemigo + new Vector2(-i, 0));
+                direcciones.Add(posEnemigo + new Vector2(-i, i));
+                direcciones.Add(posEnemigo + new Vector2(-i, -i));
+            }
+            else
+            {
+                direcciones.Add(posEnemigo + new Vector2(-i, 0));
+                direcciones.Add(posEnemigo + new Vector2(-i, 1));
+                direcciones.Add(posEnemigo + new Vector2(-i, 2));
+                direcciones.Add(posEnemigo + new Vector2(-i, -1));
+                direcciones.Add(posEnemigo + new Vector2(-i, -2));
+            }
+        }
+        return direcciones.ToArray(); 
+    }
+    public Vector2[] RayosParalizantes(int area,Vector2 posEnemigo)
+    {
+        List<Vector2> direcciones = new();
+        for (int i = 1; i < area; i++)
+        {
+            if (i == 1)
+            {
+                direcciones.Add(posEnemigo + new Vector2(-i, 0));
+                direcciones.Add(posEnemigo + new Vector2(-i, i));
+                direcciones.Add(posEnemigo + new Vector2(-i, 2 * i));
+                direcciones.Add(posEnemigo + new Vector2(-i, 3 * i));
+                direcciones.Add(posEnemigo + new Vector2(-i, 4 * i));
+                direcciones.Add(posEnemigo + new Vector2(-i, 5 * i));
+                direcciones.Add(posEnemigo + new Vector2(-i, -i));
+                direcciones.Add(posEnemigo + new Vector2(-i, 2 * -i));
+                direcciones.Add(posEnemigo + new Vector2(-i, 3 * -i));
+                direcciones.Add(posEnemigo + new Vector2(-i, 4 * -i));
+                direcciones.Add(posEnemigo + new Vector2(-i, 5 * -i));
+            }
+            else
+            {
+                direcciones.Add(posEnemigo + new Vector2(-i, 0));
+            }
+        }
+        return direcciones.ToArray(); 
+    }
+    public Vector2[] LatigoCola(Vector2 posEnemigo)
+    {
+        List<Vector2> direcciones = new();
+        for (int i = 0; i < 3; i++)
+        {
+            if (i == 0)
+            {
+                direcciones.Add(posEnemigo + new Vector2(i, 1));
+                direcciones.Add(posEnemigo + new Vector2(i, 2));
+                direcciones.Add(posEnemigo + new Vector2(i, -1));
+                direcciones.Add(posEnemigo + new Vector2(i, -2));
+            }
+            else
+            {
+                direcciones.Add(posEnemigo + new Vector2(-i, 0));
+                direcciones.Add(posEnemigo + new Vector2(-i, 1));
+                direcciones.Add(posEnemigo + new Vector2(-i, 2));
+                direcciones.Add(posEnemigo + new Vector2(-i, -1));
+                direcciones.Add(posEnemigo + new Vector2(-i, -2));
+            }
+        }
+        return direcciones.ToArray();
+    }
     public Vector2[] AleatoriosPatron(int area)
     {
         HashSet<Vector2> direcciones = new();
@@ -109,8 +245,26 @@ public class TileManagerEnemigo : MonoBehaviour
         direccionesAnt = direcciones.ToArray();
         return direccionesAnt;
     }
+    public Vector2[] MorteroD()
+    {
+        HashSet<Vector2> direcciones = new();
+        System.Random rand = new();
+        int x = GameObject.Find("GridManager").GetComponent<GridManager>().GetWidth()-1;
+        int y = GameObject.Find("GridManager").GetComponent<GridManager>().GetHeight()-1;
+        while (direcciones.Count < 6*4)
+        {
+            int direccionX = rand.Next(0, x);
+            int direccionY = rand.Next(0, y);
+            direcciones.Add(new Vector2(direccionX, direccionY));
+            direcciones.Add(new(direccionX + 1, direccionY ));
+            direcciones.Add(new(direccionX, direccionY + 1));
+            direcciones.Add(new(direccionX + 1, direccionY + 1));
+        }
+        direccionesAnt = direcciones.ToArray();
+        return direccionesAnt;
+    }
     /*Para el robot, ya que ataca solo en su fila*/
-    private static Vector2[] RectaHorizontal(int area, Vector2 enemy,Vector2 player) // tile la casilla seleccionada
+    private static Vector2[] RectaHorizontal(int area, Vector2 enemy, Vector2 player) // tile la casilla seleccionada
     {
 
         List<Vector2> direcciones = new();

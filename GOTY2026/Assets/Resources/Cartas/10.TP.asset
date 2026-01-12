@@ -16,12 +16,15 @@ MonoBehaviour:
   _name: TP
   coste: 3
   tipoCoste: 0
-  descripcion: Te teletransportas a cualquier casilla no ocupada del mapa
+  descripcion: Te teletransportas a cualquier casilla no ocupada del mapa.
   patron: Tile
   rango: 15
   area: 1
   area2: 0
   tipo: 1
   "da\xF1o": 0
+  "da\xF1oFuego": 0
+  shockValue: 0
   precio: 20
-  sprite: {fileID: -8753283788699527778, guid: 629141ae736dc1c49af6c1c8c994f0a8, type: 3}
+  sprite: {fileID: 21300000, guid: 5d0c226726ea3bb488af5ab42811f3fb, type: 3}
+  eterea: 0

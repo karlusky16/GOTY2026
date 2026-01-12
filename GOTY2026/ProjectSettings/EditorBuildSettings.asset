@@ -9,14 +9,26 @@ EditorBuildSettings:
     path: Assets/Scenes/SceneCombate1.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
+    path: Assets/Scenes/MenuPrincipal.unity
+    guid: f0b185c74cba32b46aa4284f5f8d2d89
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 160f9f2c806d66b4187189d78f86000d
+  - enabled: 1
     path: Assets/Scenes/SelectCharacter.unity
     guid: 086162e5ce1e28d4d83f2aa3c47add0c
   - enabled: 1
     path: Assets/Scenes/Recompensas.unity
     guid: 0ef6a438fe68ec44ea8df70503078854
   - enabled: 1
+    path: Assets/Scenes/RecompensaElite.unity
+    guid: e4ce5dad1cac60a48bf440da34ab91e5
+  - enabled: 1
     path: Assets/Scenes/CampFire.unity
     guid: dd2908e807bd7184d9c342578df40dfc
+  - enabled: 1
+    path: Assets/Scenes/Pruebas.unity
+    guid: f58214a60b11a884e8b4c0c71a5948e9
   - enabled: 1
     path: Assets/Scenes/MapUi.unity
     guid: dbd57c3eef92746398b20e2c20501a83
@@ -32,6 +44,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Combate2.unity
     guid: 72e86a8c38cbd3b47a1a2492ca55e02f
+  - enabled: 1
+    path: Assets/Scenes/CombateE2.unity
+    guid: 9a15ff2dc050bdb4d997447e7cc2621b
+  - enabled: 1
+    path: Assets/Scenes/Combate4.unity
+    guid: 1c889dbeffe5c3b4ab8c3fbb8d697d99
+  - enabled: 1
+    path: Assets/Scenes/CombateE1.unity
+    guid: 3b854f2d57d0d9d42b872e21fd4e880d
   - enabled: 1
     path: Assets/Scenes/CombateBoss.unity
     guid: d663c9d4804c09c44b589bb4b2d2c291

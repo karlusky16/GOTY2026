@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Salto
   coste: 1
   tipoCoste: 2
-  descripcion: Saltas hasta a 3 Casillas de distancia
+  descripcion: Saltas hasta a 2 Casillas de distancia.
   patron: Tile
   rango: 2
   area: 1
@@ -26,4 +26,5 @@ MonoBehaviour:
   "da\xF1oFuego": 0
   shockValue: 0
   precio: 14
-  sprite: {fileID: 6923188316897733977, guid: 6cbd172ae618b204eaab70daf64161e3, type: 3}
+  sprite: {fileID: -3999693662336311195, guid: bf5a5ebab47632c4e8c7c2270d5f4563, type: 3}
+  eterea: 0

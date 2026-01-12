@@ -16,12 +16,15 @@ MonoBehaviour:
   _name: Granada
   coste: 3
   tipoCoste: 1
-  descripcion: Tiras una granada que explota al impactar con el suelo
+  descripcion: "Tiras una granada que hace 6 de da\xF1o."
   patron: Rectangulo2
   rango: 4
   area: 3
   area2: 3
   tipo: 0
-  "da\xF1o": 4
-  precio: 12
-  sprite: {fileID: 8600474013063023763, guid: 988924d005394884a86585d8baa6eedc, type: 3}
+  "da\xF1o": 6
+  "da\xF1oFuego": 0
+  shockValue: 0
+  precio: 15
+  sprite: {fileID: 7504479896191674613, guid: a23762fc3b5397c4eab1a0e979eae920, type: 3}
+  eterea: 0
