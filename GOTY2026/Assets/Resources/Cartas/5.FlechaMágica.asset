@@ -26,5 +26,5 @@ MonoBehaviour:
   "da\xF1oFuego": 0
   shockValue: 0
   precio: 20
-  sprite: {fileID: 3348396136679211433, guid: 58d920ab2918d4943b7ed72e0f311d0d, type: 3}
+  sprite: {fileID: 21300000, guid: 58d920ab2918d4943b7ed72e0f311d0d, type: 3}
   eterea: 0
